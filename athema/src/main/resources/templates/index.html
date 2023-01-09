@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -10,13 +10,13 @@
     <meta name="keywords" content="travel, tour, tourism, honeymoon pacakage, summer trip, exotic vacation, destination, international, domestic website template, holiday, travel agecny responsive website template">
     <title>Tour and Travel Agency - Responsive Website Template</title>
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <!-- Style CSS -->
-    <link href="css/style.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <!-- FontAwesome CSS -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,11 +38,11 @@
                 <div class="col-md-8 hidden-sm hidden-xs">
                     <div class="social">
                         <ul>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a th:href="@{#}"><i class="fa fa-facebook"></i></a></li>
+                            <li><a th:href="@{#}"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a th:href="@{#}"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a th:href="@{#}"><i class="fa fa-twitter"></i></a></li>
+                            <li><a th:href="@{#}"><i class="fa fa-pinterest"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -54,29 +54,24 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-2 col-sm-12 col-xs-12">
-                        <a href="index.html"><img src="images/logo.png" alt="Tour and Travel Agency - Responsive Website Template"></a>
+                        <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt="Tour and Travel Agency - Responsive Website Template"></a>
                     </div>
                     <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12">
                         <div class="navigation">
                             <div id="navigation">
                                 <ul>
-                                    <li class="active"><a href="index.html" title="Home">Home</a></li>
-                                    <li><a href="about.html" title="About us">About us</a> </li>
-                                    <li class="has-sub"><a href="tours.html" title="Tours">Tours</a>
+                                    <li class="active"><a th:href="@{/index}" title="Home">Home</a></li>
+                                    <li><a th:href="@{/about}" title="About us">About us</a> </li>
+                                    <li class="has-sub"><a th:href="@{/tours}" title="Tours">Tours</a></li>
+                                    <li class="has-sub"><a th:href="@{/blog-default}" title="Blog">Blog</a>
                                         <ul>
-                                            <li><a href="domestic-tour.html" title="Group Tours">Domestic Tours</a></li>
-                                            <li><a href="international-tour.html" title="Couple Tours">International Tours</a></li>
+                                            <li><a th:href="@{/blog-default}" title="Blog">Blog Default</a></li>
+                                            <li><a th:href="@{/blog-single}" title="Blog Single ">Blog Single</a></li>
                                         </ul>
                                     </li>
-                                    <li class="has-sub"><a href="blog-default.html" title="Blog ">Blog</a>
-                                        <ul>
-                                            <li><a href="blog-default.html" title="Blog">Blog Default</a></li>
-                                            <li><a href="blog-single.html" title="Blog Single ">Blog Single</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="testimonials.html" title="Testimonials">Testimonials</a>
-                                        <li><a href="contact-us.html" title="Contact Us">Contact Us</a> </li>
-                                        <li><a href="styleguide.html" title="Styleguide">styleguide</a> </li>
+                                    <li><a th:href="@{/testimonials}" title="Testimonials">Testimonials</a>
+                                        <li><a th:href="@{/contact-us}" title="Contact Us">Contact Us</a> </li>
+                                        <li><a th:href="@{/styleguide}" title="Styleguide">styleguide</a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -93,7 +88,7 @@
                 <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                     <div class="hero-section-caption pinside40">
                         <h1 class="hero-title">Discover The Places You’ve Never Been Before</h1>
-                        <a href="domestic-tour.html" class="btn btn-primary ">view tours</a> </div>
+                        <a th:href="@{/domestic-tour}" class="btn btn-primary ">view tours</a> </div>
                 </div>
             </div>
         </div>
@@ -114,13 +109,13 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="service-block">
                         <div class="service-img">
-                            <a href="#"><img src="images/service-img-1.jpg" alt="Tour and Travel Agency - Responsive Website Template"></a>
+                            <a th:href="@{#}"><img th:src="@{/images/service-img-1.jpg}" alt="Tour and Travel Agency - Responsive Website Template"></a>
                         </div>
                         <div class="service-content">
-                            <h3><a href="#" class="title">Group Tour</a></h3>
+                            <h3><a th:href="@{#}" class="title">Group Tour</a></h3>
                             <p>Scelerisque vitae velit e llamcorper plvinar esras sit amet odio et dolor por bibendum sit amet neceros.</p>
-                            <div class="service-btn-link"><a href="domestic-tour.html" class="btn-link">Domestic Tour</a></div>
-                            <div><a href="international-tour.html" class="btn-link">International Tour</a></div>
+                            <div class="service-btn-link"><a th:href="@{/domestic-tour}" class="btn-link">Domestic Tour</a></div>
+                            <div><a th:href="@{/international-tour}" class="btn-link">International Tour</a></div>
                         </div>
                     </div>
                 </div>
@@ -129,13 +124,13 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="service-block">
                         <div class="service-img">
-                            <a href="#"><img src="images/service-img-2.jpg" alt="Tour and Travel Agency - Responsive Website Template"></a>
+                            <a th:href="@{#}"><img th:src="@{/images/service-img-2.jpg}" alt="Tour and Travel Agency - Responsive Website Template"></a>
                         </div>
                         <div class="service-content">
-                            <h3><a href="#" class="title">Couple Tour</a></h3>
+                            <h3><a th:href="@{#}" class="title">Couple Tour</a></h3>
                             <p>Pellentesque bibendum, ante et ornare viverra, ex neque lorem ipusm dtium vestibulum eros ut lacinia.</p>
-                            <div class="service-btn-link"><a href="domestic-tour.html" class="btn-link">Domestic Tour</a></div>
-                            <div><a href="international-tour.html" class="btn-link">International Tour</a></div>
+                            <div class="service-btn-link"><a th:href="@{/domestic-tour}" class="btn-link">Domestic Tour</a></div>
+                            <div><a th:href="@{/international-tour}" class="btn-link">International Tour</a></div>
                         </div>
                     </div>
                 </div>
@@ -144,13 +139,13 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="service-block">
                         <div class="service-img">
-                            <a href="#"><img src="images/service-img-3.jpg" alt="Tour and Travel Agency - Responsive Website Template"></a>
+                            <a th:href="@{#}"><img th:src="@{/images/service-img-3.jpg}" alt="Tour and Travel Agency - Responsive Website Template"></a>
                         </div>
                         <div class="service-content">
-                            <h3><a href="#" class="title">Off Season Tour</a></h3>
+                            <h3><a th:href="@{#}" class="title">Off Season Tour</a></h3>
                             <p>Donec pretium vestibulum eros ut Pellentesque bineque luctus orci in pharetra ante quam etestibul.</p>
-                            <div class="service-btn-link"><a href="domestic-tour.html" class="btn-link">Domestic Tour</a></div>
-                            <div><a href="international-tour.html" class="btn-link">International Tour</a></div>
+                            <div class="service-btn-link"><a th:href="@{/domestic-tour}" class="btn-link">Domestic Tour</a></div>
+                            <div><a th:href="@{/international-tour}" class="btn-link">International Tour</a></div>
                         </div>
                     </div>
                 </div>
@@ -217,30 +212,30 @@
                 <!-- destination-one-start -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="destination-img">
-                        <a href="#" class="imghover"><img src="images/destination-1.jpg" alt "Tour and Travel Agency - Responsive Website Template" class="img-responsive"></a>
+                        <a th:href="@{#}" class="imghover"><img th:src="@{/images/destination-1.jpg}" alt "Tour and Travel Agency - Responsive Website Template" class="img-responsive"></a>
                     </div>
                     <div class="destination-content">
-                        <h3><a href="#" class="destination-title">Singapore</a></h3>
+                        <h3><a th:href="@{#}" class="destination-title">Singapore</a></h3>
                     </div>
                 </div>
                 <!-- destination-one-close -->
                 <!-- destination-two-start -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="destination-img imghover">
-                        <a href="#" class="imghover"><img src="images/destination-2.jpg" alt "Tour and Travel Agency - Responsive Website Template" class="img-responsive"></a>
+                        <a th:href="@{#}" class="imghover"><img th:src="@{/images/destination-2.jpg}" alt "Tour and Travel Agency - Responsive Website Template" class="img-responsive"></a>
                     </div>
                     <div class="destination-content">
-                        <h3><a href="#" class="destination-title">Greece</a></h3>
+                        <h3><a th:href="@{#}" class="destination-title">Greece</a></h3>
                     </div>
                 </div>
                 <!-- destination-two-close -->
                 <!-- destination-three-start -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="destination-img imghover">
-                        <a href="#"><img src="images/destination-3.jpg" alt "Tour and Travel Agency - Responsive Website Template" class="img-responsive"></a>
+                        <a th:href="@{#}"><img th:src="@{/images/destination-3.jpg}" alt "Tour and Travel Agency - Responsive Website Template" class="img-responsive"></a>
                     </div>
                     <div class="destination-content">
-                        <h3><a href="#" class="destination-title">Thailand</a></h3>
+                        <h3><a th:href="@{#}" class="destination-title">Thailand</a></h3>
                     </div>
                 </div>
                 <!-- destination-three-close -->
@@ -262,8 +257,8 @@
                 <!-- Testimonials-one-start -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="testimonial-block">
-                        <div class="testimonial-img"><img src="images/testimonial-img-1.jpg" alt="Tour and Travel Agency - Responsive Website Template"></div>
-                        <div class="testimonial-user-img"><img src="images/testimonial-user-img-1.jpg" alt="Tour and Travel Agency - Responsive Website Template" class="img-circle"></div>
+                        <div class="testimonial-img"><img th:src="@{/images/testimonial-img-1.jpg}" alt="Tour and Travel Agency - Responsive Website Template"></div>
+                        <div class="testimonial-user-img"><img th:src="@{/images/testimonial-user-img-1.jpg}" alt="Tour and Travel Agency - Responsive Website Template" class="img-circle"></div>
                         <div class="testimonial-content">
                             <h4>Paul Hasburg</h4>
                             <span class="location">Kerala</span>
@@ -278,8 +273,8 @@
                 <!-- Testimonials-two-start -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="testimonial-block">
-                        <div class="testimonial-img"><img src="images/testimonial-img-2.jpg" alt="Tour and Travel Agency - Responsive Website Template"></div>
-                        <div class="testimonial-user-img"><img src="images/testimonial-user-img-2.jpg" alt="Tour and Travel Agency - Responsive Website Template" class="img-circle"></div>
+                        <div class="testimonial-img"><img th:src="@{/images/testimonial-img-2.jpg}" alt="Tour and Travel Agency - Responsive Website Template"></div>
+                        <div class="testimonial-user-img"><img th:src="@{/images/testimonial-user-img-2.jpg}" alt="Tour and Travel Agency - Responsive Website Template" class="img-circle"></div>
                         <div class="testimonial-content">
                             <h4>Plisa Moody</h4>
                             <span class="location">Kullu-manali</span>
@@ -294,8 +289,8 @@
                 <!-- Testimonials-three-start -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="testimonial-block">
-                        <div class="testimonial-img"><img src="images/testimonial-img-3.jpg" alt="Tour and Travel Agency - Responsive Website Template"></div>
-                        <div class="testimonial-user-img"><img src="images/testimonial-user-img-3.jpg" alt="Tour and Travel Agency - Responsive Website Template" class="img-circle"></div>
+                        <div class="testimonial-img"><img th:src="@{/images/testimonial-img-3.jpg}" alt="Tour and Travel Agency - Responsive Website Template"></div>
+                        <div class="testimonial-user-img"><img th:src="@{/images/testimonial-user-img-3.jpg}" alt="Tour and Travel Agency - Responsive Website Template" class="img-circle"></div>
                         <div class="testimonial-content">
                             <h4>Christine Smith</h4>
                             <span class="location">Turkey</span>
@@ -319,7 +314,7 @@
                     <div class="footer-widget">
                         <h3 class="footer-title ">About us</h3>
                         <p>Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more in our travel agency !</p>
-                        <a href="#" class="footer-link">More about us</a></div>
+                        <a th:href="@{#}" class="footer-link">More about us</a></div>
                 </div>
                 <!-- footer-about-close -->
                 <!-- footer-location-start -->
@@ -327,11 +322,11 @@
                     <div class="footer-widget">
                         <h3 class="footer-title">Our Locations</h3>
                         <ul class="arrow arrow-chevron-circle-right">
-                            <li><a href="#">Ahmedabad</a></li>
-                            <li><a href="#">Mumbai</a></li>
-                            <li><a href="#">Surat</a></li>
-                            <li><a href="#">Jamnagar</a></li>
-                            <li><a href="#">Bhuj</a></li>
+                            <li><a th:href="@{#}">Ahmedabad</a></li>
+                            <li><a th:href="@{#}">Mumbai</a></li>
+                            <li><a th:href="@{#}">Surat</a></li>
+                            <li><a th:href="@{#}">Jamnagar</a></li>
+                            <li><a th:href="@{#}">Bhuj</a></li>
                         </ul>
                     </div>
                 </div>
@@ -380,12 +375,12 @@
     </div>
     <!-- footer close -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/menumaker.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/jquery.sticky.js"></script>
-    <script type="text/javascript" src="js/sticky-header.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/menumaker.js}" type="text/javascript"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.sticky.js}"></script>
+    <script type="text/javascript" th:src="@{/js/sticky-header.js}"></script>
 </body>
 
 </html>
