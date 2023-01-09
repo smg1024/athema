@@ -1,12 +1,14 @@
 package com.athema.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
 	@RequestMapping("/index")
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("center", "maincenter");
 		return "index";
 	}
 	
@@ -36,8 +38,9 @@ public class MainController {
 	}
 	
 	@RequestMapping("/contact-us")
-	public String contactus() {
-		return "contact-us";
+	public String contactus(Model model) {
+		model.addAttribute("center", "contact-us");
+		return "index";
 	}
 	
 	@RequestMapping("/styleguide")
