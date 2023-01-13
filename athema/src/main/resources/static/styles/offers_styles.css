@@ -884,18 +884,18 @@ section
 	margin-left: 0px;
 	margin-right: 0px;
 }
-.search_tabs_container
+.offers_search_tabs_container
 {
 	position: relative;
 	top: -94px;
 	width: 100%;
 }
-.search_tabs
+.offers_search_tabs
 {
 	height: auto;
 	flex-wrap: wrap;
 }
-.search_tab
+.offers_search_tab
 {
 	font-size: 14px;
 	font-weight: 700;
@@ -913,13 +913,13 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.search_tab:not(:first-child):not(:nth-child(2))
+.offers_search_tab:not(:first-child):not(:nth-child(2))
 {
 	border: solid 1px #ededed;
 	margin-right: -1px;
 	margin-bottom: -1px;
 }
-.search_tab img
+.offers_search_tab img
 {
 	margin-right: 10px;
 	-webkit-transition: all 200ms ease;
@@ -928,22 +928,22 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.search_tab:first-child
+.offers_search_tab:first-child
 {
 	border-top-left-radius: 94px;
 	padding-left: 7px;
 }
-.search_tab:nth-child(2)
+.offers_search_tab:nth-child(2)
 {
 	border-top-right-radius: 94px;
 	padding-right: 7px;
 }
-.search_tab.active
+.offers_search_tab.active
 {
 	background: #fa9e1b;
 	color: #FFFFFF;
 }
-.search_tab.active img
+.offers_search_tab.active img
 {
 	-webkit-filter: brightness(200%) grayscale(100%);
 	-moz-filter: brightness(200%) grayscale(100%);
@@ -951,12 +951,12 @@ section
 	-o-filter: brightness(200%) grayscale(100%);
   	filter: brightness(200%) grayscale(100%);
 }
-.search_tab:hover
+.offers_search_tab:hover
 {
 	background: #fa9e1b;
 	color: #FFFFFF;
 }
-.search_tab:hover img
+.offers_search_tab:hover img
 {
 	-webkit-filter: brightness(200%) grayscale(100%);
 	-moz-filter: brightness(200%) grayscale(100%);
