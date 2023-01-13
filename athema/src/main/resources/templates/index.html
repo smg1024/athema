@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Travelix</title>
+<title>ATHEMA</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Travelix Project">
@@ -12,8 +12,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/responsive.css">
-</head>
+<link rel="stylesheet" type="text/css" href="styles/responsive.css"></head>
 
 <body>
 
@@ -29,20 +28,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="phone">+45 345 3324 56789</div>
-						<div class="social">
-							<ul class="social_list">
-								<li class="social_list_item"><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-								<li class="social_list_item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li class="social_list_item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li class="social_list_item"><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-								<li class="social_list_item"><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-								<li class="social_list_item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
 						<div class="user_box ml-auto">
-							<div class="user_box_login user_box_link"><a href="#">login</a></div>
-							<div class="user_box_register user_box_link"><a href="#">register</a></div>
+							<div class="user_box_login user_box_link"><a href="login">login</a></div>
+							<div class="user_box_register user_box_link"><a href="register">register</a></div>
 						</div>
 					</div>
 				</div>
@@ -56,15 +44,14 @@
 				<div class="row">
 					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
 						<div class="logo_container">
-							<div class="logo"><a href="#"><img src="images/logo.png" alt="">travelix</a></div>
+							<div class="logo"><a href="index"><img src="images/logo.png" alt="">ATHEMA</a></div>
 						</div>
 						<div class="main_nav_container ml-auto">
 							<ul class="main_nav_list">
-								<li class="main_nav_item"><a href="index">home</a></li>
-								<li class="main_nav_item"><a href="about">about us</a></li>
-								<li class="main_nav_item"><a href="offers">offers</a></li>
-								<li class="main_nav_item"><a href="blog">news</a></li>
-								<li class="main_nav_item"><a href="contact">contact</a></li>
+								<li class="main_nav_item"><a href="about">여행상품 둘러보기</a></li>
+								<li class="main_nav_item"><a href="offers">테마여행 찾기</a></li>
+								<li class="main_nav_item"><a href="blog">지역여행 찾기</a></li>
+								<li class="main_nav_item"><a href="contact">고객지원</a></li>
 							</ul>
 						</div>
 						<div class="content_search ml-lg-0 ml-auto">
@@ -110,30 +97,30 @@
 			<div class="menu_close_container"><div class="menu_close"></div></div>
 			<div class="logo menu_logo"><a href="#"><img src="images/logo.png" alt=""></a></div>
 			<ul>
-				<li class="menu_item"><a href="index">home</a></li>
-				<li class="menu_item"><a href="about">about us</a></li>
-				<li class="menu_item"><a href="offers">offers</a></li>
-				<li class="menu_item"><a href="blog">news</a></li>
-				<li class="menu_item"><a href="contact">contact</a></li>
+				<li class="menu_item"><a href="about">여행상품 둘러보기s</a></li>
+				<li class="menu_item"><a href="offers">테마여행 찾기</a></li>
+				<li class="menu_item"><a href="blog">지역여행 찾기</a></li>
+				<li class="menu_item"><a href="contact">고객지원</a></li>
 			</ul>
 		</div>
 	</div>
-
+</div>
+	
 	<!-- Home -->
 
 	<div class="home">
 		
 		<!-- Home Slider -->
-
+	
 		<div class="home_slider_container">
 			
 			<div class="owl-carousel owl-theme home_slider">
-
+	
 				<!-- Slider Item -->
 				<div class="owl-item home_slider_item">
 					<!-- Image by https://unsplash.com/@anikindimitry -->
 					<div class="home_slider_background" style="background-image:url(images/home_slider.jpg)"></div>
-
+	
 					<div class="home_slider_content text-center">
 						<div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
 							<h1>discover</h1>
@@ -142,11 +129,11 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Slider Item -->
 				<div class="owl-item home_slider_item">
 					<div class="home_slider_background" style="background-image:url(images/home_slider.jpg)"></div>
-
+	
 					<div class="home_slider_content text-center">
 						<div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
 							<h1>discover</h1>
@@ -155,11 +142,11 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Slider Item -->
 				<div class="owl-item home_slider_item">
 					<div class="home_slider_background" style="background-image:url(images/home_slider.jpg)"></div>
-
+	
 					<div class="home_slider_content text-center">
 						<div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
 							<h1>discover</h1>
@@ -168,7 +155,7 @@
 						</div>
 					</div>
 				</div>
-
+	
 			</div>
 			
 			<!-- Home Slider Nav - Prev -->
@@ -206,9 +193,9 @@
 				17.046,15.554 "/>
 				</svg>
 			</div>
-
+	
 			<!-- Home Slider Dots -->
-
+	
 			<div class="home_slider_dots">
 				<ul id="home_slider_custom_dots" class="home_slider_custom_dots">
 					<li class="home_slider_custom_dot active"><div></div>01.</li>
@@ -218,22 +205,22 @@
 			</div>
 			
 		</div>
-
+	
 	</div>
-
+	
 	<!-- Search -->
-
+	
 	<div class="search">
 		
-
+	
 		<!-- Search Contents -->
 		
 		<div class="container fill_height">
 			<div class="row fill_height">
 				<div class="col fill_height">
-
+	
 					<!-- Search Tabs -->
-
+	
 					<div class="search_tabs_container">
 						<div class="search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 							<div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/suitcase.png" alt=""><span>hotels</span></div>
@@ -244,9 +231,9 @@
 							<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/diving.png" alt="">activities</div>
 						</div>		
 					</div>
-
+	
 					<!-- Search Panel -->
-
+	
 					<div class="search_panel active">
 						<form action="#" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 							<div class="search_item">
@@ -280,9 +267,9 @@
 							<button class="button search_button">search<span></span><span></span><span></span></button>
 						</form>
 					</div>
-
+	
 					<!-- Search Panel -->
-
+	
 					<div class="search_panel">
 						<form action="#" id="search_form_2" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 							<div class="search_item">
@@ -316,9 +303,9 @@
 							<button class="button search_button">search<span></span><span></span><span></span></button>
 						</form>
 					</div>
-
+	
 					<!-- Search Panel -->
-
+	
 					<div class="search_panel">
 						<form action="#" id="search_form_3" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 							<div class="search_item">
@@ -352,9 +339,9 @@
 							<button class="button search_button">search<span></span><span></span><span></span></button>
 						</form>
 					</div>
-
+	
 					<!-- Search Panel -->
-
+	
 					<div class="search_panel">
 						<form action="#" id="search_form_4" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 							<div class="search_item">
@@ -388,9 +375,9 @@
 							<button class="button search_button">search<span></span><span></span><span></span></button>
 						</form>
 					</div>
-
+	
 					<!-- Search Panel -->
-
+	
 					<div class="search_panel">
 						<form action="#" id="search_form_5" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 							<div class="search_item">
@@ -424,9 +411,9 @@
 							<button class="button search_button">search<span></span><span></span><span></span></button>
 						</form>
 					</div>
-
+	
 					<!-- Search Panel -->
-
+	
 					<div class="search_panel">
 						<form action="#" id="search_form_6" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 							<div class="search_item">
@@ -464,7 +451,7 @@
 			</div>
 		</div>		
 	</div>
-
+	
 	<!-- Intro -->
 	
 	<div class="intro">
@@ -482,9 +469,9 @@
 				</div>
 			</div>
 			<div class="row intro_items">
-
+	
 				<!-- Intro Item -->
-
+	
 				<div class="col-lg-4 intro_col">
 					<div class="intro_item">
 						<div class="intro_item_overlay"></div>
@@ -507,9 +494,9 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Intro Item -->
-
+	
 				<div class="col-lg-4 intro_col">
 					<div class="intro_item">
 						<div class="intro_item_overlay"></div>
@@ -532,9 +519,9 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Intro Item -->
-
+	
 				<div class="col-lg-4 intro_col">
 					<div class="intro_item">
 						<div class="intro_item_overlay"></div>
@@ -557,13 +544,13 @@
 						</div>
 					</div>
 				</div>
-
+	
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- CTA -->
-
+	
 	<div class="cta">
 		<!-- Image by https://unsplash.com/@thanni -->
 		<div class="cta_background" style="background-image:url(images/cta.jpg)"></div>
@@ -571,12 +558,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-
+	
 					<!-- CTA Slider -->
-
+	
 					<div class="cta_slider_container">
 						<div class="owl-carousel owl-theme cta_slider">
-
+	
 							<!-- CTA Slider Item -->
 							<div class="owl-item cta_item text-center">
 								<div class="cta_title">maldives deluxe package</div>
@@ -590,7 +577,7 @@
 								<p class="cta_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec. Proin bibendum, augue faucibus tincidunt ultrices, tortor augue gravida lectus, et efficitur enim justo vel ligula.</p>
 								<div class="button cta_button"><div class="button_bcg"></div><a href="#">book now<span></span><span></span><span></span></a></div>
 							</div>
-
+	
 							<!-- CTA Slider Item -->
 							<div class="owl-item cta_item text-center">
 								<div class="cta_title">maldives deluxe package</div>
@@ -604,7 +591,7 @@
 								<p class="cta_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec. Proin bibendum, augue faucibus tincidunt ultrices, tortor augue gravida lectus, et efficitur enim justo vel ligula.</p>
 								<div class="button cta_button"><div class="button_bcg"></div><a href="#">book now<span></span><span></span><span></span></a></div>
 							</div>
-
+	
 							<!-- CTA Slider Item -->
 							<div class="owl-item cta_item text-center">
 								<div class="cta_title">maldives deluxe package</div>
@@ -620,7 +607,7 @@
 							</div>
 							
 						</div>
-
+	
 						<!-- CTA Slider Nav - Prev -->
 						<div class="cta_slider_nav cta_slider_prev">
 							<svg version="1.1" id="Layer_4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -656,17 +643,17 @@
 							17.046,15.554 "/>
 							</svg>
 						</div>
-
+	
 					</div>
-
+	
 				</div>
 			</div>
 		</div>
 					
 	</div>
-
+	
 	<!-- Offers -->
-
+	
 	<div class="offers">
 		<div class="container">
 			<div class="row">
@@ -675,7 +662,7 @@
 				</div>
 			</div>
 			<div class="row offers_items">
-
+	
 				<!-- Offers Item -->
 				<div class="col-lg-6 offers_col">
 					<div class="offers_item">
@@ -749,7 +736,7 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Offers Item -->
 				<div class="col-lg-6 offers_col">
 					<div class="offers_item">
@@ -786,7 +773,7 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Offers Item -->
 				<div class="col-lg-6 offers_col">
 					<div class="offers_item">
@@ -823,13 +810,13 @@
 						</div>
 					</div>
 				</div>
-
+	
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Testimonials -->
-
+	
 	<div class="testimonials">
 		<div class="test_border"></div>
 		<div class="container">
@@ -842,10 +829,10 @@
 				<div class="col">
 					
 					<!-- Testimonials Slider -->
-
+	
 					<div class="test_slider_container">
 						<div class="owl-carousel owl-theme test_slider">
-
+	
 							<!-- Testimonial Item -->
 							<div class="owl-item">
 								<div class="test_item">
@@ -863,7 +850,7 @@
 									</div>
 								</div>
 							</div>
-
+	
 							<!-- Testimonial Item -->
 							<div class="owl-item">
 								<div class="test_item">
@@ -881,7 +868,7 @@
 									</div>
 								</div>
 							</div>
-
+	
 							<!-- Testimonial Item -->
 							<div class="owl-item">
 								<div class="test_item">
@@ -899,7 +886,7 @@
 									</div>
 								</div>
 							</div>
-
+	
 							<!-- Testimonial Item -->
 							<div class="owl-item">
 								<div class="test_item">
@@ -917,7 +904,7 @@
 									</div>
 								</div>
 							</div>
-
+	
 							<!-- Testimonial Item -->
 							<div class="owl-item">
 								<div class="test_item">
@@ -935,7 +922,7 @@
 									</div>
 								</div>
 							</div>
-
+	
 							<!-- Testimonial Item -->
 							<div class="owl-item">
 								<div class="test_item">
@@ -953,9 +940,9 @@
 									</div>
 								</div>
 							</div>
-
+	
 						</div>
-
+	
 						<!-- Testimonials Slider Nav - Prev -->
 						<div class="test_slider_nav test_slider_prev">
 							<svg version="1.1" id="Layer_6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -991,15 +978,15 @@
 							17.046,15.554 "/>
 							</svg>
 						</div>
-
+	
 					</div>
 					
 				</div>
 			</div>
-
+	
 		</div>
 	</div>
-
+	
 	<div class="trending">
 		<div class="container">
 			<div class="row">
@@ -1008,7 +995,7 @@
 				</div>
 			</div>
 			<div class="row trending_container">
-
+	
 				<!-- Trending Item -->
 				<div class="col-lg-3 col-sm-6">
 					<div class="trending_item clearfix">
@@ -1020,7 +1007,7 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Trending Item -->
 				<div class="col-lg-3 col-sm-6">
 					<div class="trending_item clearfix">
@@ -1032,7 +1019,7 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Trending Item -->
 				<div class="col-lg-3 col-sm-6">
 					<div class="trending_item clearfix">
@@ -1044,7 +1031,7 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Trending Item -->
 				<div class="col-lg-3 col-sm-6">
 					<div class="trending_item clearfix">
@@ -1056,7 +1043,7 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Trending Item -->
 				<div class="col-lg-3 col-sm-6">
 					<div class="trending_item clearfix">
@@ -1068,7 +1055,7 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Trending Item -->
 				<div class="col-lg-3 col-sm-6">
 					<div class="trending_item clearfix">
@@ -1080,7 +1067,7 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Trending Item -->
 				<div class="col-lg-3 col-sm-6">
 					<div class="trending_item clearfix">
@@ -1092,7 +1079,7 @@
 						</div>
 					</div>
 				</div>
-
+	
 				<!-- Trending Item -->
 				<div class="col-lg-3 col-sm-6">
 					<div class="trending_item clearfix">
@@ -1104,14 +1091,14 @@
 						</div>
 					</div>
 				</div>
-
+	
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="contact">
 		<div class="contact_background" style="background-image:url(images/contact.png)"></div>
-
+	
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-5">
@@ -1134,7 +1121,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- Footer -->
 
 	<footer class="footer">
@@ -1171,7 +1157,7 @@
 								<div class="footer_blog_image"><img src="images/footer_blog_1.jpg" alt="https://unsplash.com/@avidenov"></div>
 								<div class="footer_blog_content">
 									<div class="footer_blog_title"><a href="blog">Travel with us this year</a></div>
-									<div class="footer_blog_date">Nov 29, 2017</div>
+									<div class="footer_blog_date">Jan 29, 2023</div>
 								</div>
 							</div>
 							
@@ -1180,7 +1166,7 @@
 								<div class="footer_blog_image"><img src="images/footer_blog_2.jpg" alt="https://unsplash.com/@deannaritchie"></div>
 								<div class="footer_blog_content">
 									<div class="footer_blog_title"><a href="blog">New destinations for you</a></div>
-									<div class="footer_blog_date">Nov 29, 2017</div>
+									<div class="footer_blog_date">Nov 29, 2022</div>
 								</div>
 							</div>
 
@@ -1189,7 +1175,7 @@
 								<div class="footer_blog_image"><img src="images/footer_blog_3.jpg" alt="https://unsplash.com/@bergeryap87"></div>
 								<div class="footer_blog_content">
 									<div class="footer_blog_title"><a href="blog">Travel with us this year</a></div>
-									<div class="footer_blog_date">Nov 29, 2017</div>
+									<div class="footer_blog_date">Nov 29, 2019</div>
 								</div>
 							</div>
 
@@ -1224,19 +1210,19 @@
 							<ul class="contact_info_list">
 								<li class="contact_info_item d-flex flex-row">
 									<div><div class="contact_info_icon"><img src="images/placeholder.svg" alt=""></div></div>
-									<div class="contact_info_text">4127 Raoul Wallenber 45b-c Gibraltar</div>
+									<div class="contact_info_text">서울특별시 강남구 언주로 508 14층(역삼동, 서울상록빌딩)</div>
 								</li>
 								<li class="contact_info_item d-flex flex-row">
 									<div><div class="contact_info_icon"><img src="images/phone-call.svg" alt=""></div></div>
-									<div class="contact_info_text">2556-808-8613</div>
+									<div class="contact_info_text">1544-9001</div>
 								</li>
 								<li class="contact_info_item d-flex flex-row">
 									<div><div class="contact_info_icon"><img src="images/message.svg" alt=""></div></div>
-									<div class="contact_info_text"><a href="mailto:contactme@gmail.com?Subject=Hello" target="_top">contactme@gmail.com</a></div>
+									<div class="contact_info_text"><a href="mailto:contactme@gmail.com?Subject=Hello" target="_top">contact@athema.com</a></div>
 								</li>
 								<li class="contact_info_item d-flex flex-row">
 									<div><div class="contact_info_icon"><img src="images/planet-earth.svg" alt=""></div></div>
-									<div class="contact_info_text"><a href="https://colorlib.com">www.colorlib.com</a></div>
+									<div class="contact_info_text"><a href="#">www.athema.com</a></div>
 								</li>
 							</ul>
 						</div>
@@ -1274,8 +1260,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				</div>
 			</div>
 		</div>
-	</div>
-
 </div>
 
 <script src="js/jquery-3.2.1.min.js"></script>
