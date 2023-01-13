@@ -70,4 +70,10 @@ public class MainController {
 		return "main";
 	}
 	
+	@RequestMapping("/order")
+	public String order(Model model) {
+		model.addAttribute("content", "order");
+		return "main";
+	}
+	
 }
