@@ -2,23 +2,88 @@
 <link rel="stylesheet" type="text/css" href="styles/order_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/order_responsive.css">
 
-<div>
-	<div>
-		<h1>예약하기</h1>
-		<h2>상품 정보</h2>
-		<hr>
+<!-- jQuery -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<script>
+	function requestPay(data) {
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp46828311');
+		// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+		//IMP.request_pay(param, callback) 결제창 호출
+		IMP.request_pay({ // param
+			pg : "html5_inicis.INIpayTest",
+			pay_method : "card",
+			merchant_uid : 'merchant_' + new Date().getTime(),
+			name : "노르웨이 회전 의자",
+			amount : 100,
+			buyer_email : "gildong@gmail.com",
+			buyer_name : "홍길동",
+			buyer_tel : "010-4242-4242",
+			buyer_addr : "서울특별시 강남구 신사동",
+			buyer_postcode : "01181",
+			m_redirect_url : 'http://127.0.0.1/payments/complete'
+		}, function(rsp) {
+			console.log(rsp);
+			if (rsp.success) {
+				var msg = '결제가 완료되었습니다.';
+				msg += '고유ID : ' + rsp.imp_uid;
+				msg += '상점 거래ID : ' + rsp.merchant_uid;
+				msg += '결제 금액 : ' + rsp.paid_amount;
+				msg += '카드 승인번호 : ' + rsp.apply_num;
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+			}
+			alert(msg);
+		});
+
+	}
+</script>
+
+<div class="home_order">
+	<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/background_1.jpg"></div>
+	<div class="home_content">
+		<div class="order_home_title">order</div>
 	</div>
-	<div class="Content">
-		<img src="images/logo.png" alt="상품이미지">
-		<p>상품명</p>
-		<p>2023년02월10일까지</p>
-		<p>옵션 1.~~</p><p>1,000원</p>
-		<p>총 상품 금액</p><p>3,000원</p>
-		<hr>
-		<h2>예약자 정보</h2>
-		<p>예약자명</p><input type="text" name="book_name" value="book_name">
-		<p>예약자전화번호</p><input type="text" name="book_name" value="book_name">
-		<p>예약자이메일</p><input type="text" name="book_name" value="book_name">
+</div>
+<div id="order_content">
+	<div id="content">
+		<div class="section_title" id="main_section">
+				<div id="order_article_top">
+					<h3 id="order_item_h3">상품 정보</h3>
+					<hr>
+					<div id="order_item">
+						<img id="order_img_item"src="images/item_1.jpg" alt="상품이미지">
+						<div id="order_item_name">해변 투어<br><time datetime="2023-12-31">2023년 12월 31일까지</time></div><br>
+						<div id="order_item_option"><div id="order_item_option_info">옵션 1.어쩌고 저쩌고 &nbsp;&nbsp; 수량 3</div><div id="order_item_option_price">30,000원</div></div>
+						<div id="order_item_price"><div id="order_item_price_han">총 상품 금액</div><div id="order_item_price_int">30,000원</div></div>
+					</div>
+				</div>
+			<div id="order_article_bottom">
+				<h3 id="order_book_h3">예약자 정보 </h3>
+				<div id="order_book_data"><input type='checkbox' name='order_book_data' onclick=''/> 주문자의 정보와 동일</div>
+				<div id="order_book_data"><input type='checkbox' name='order_book_data' onclick=''/> 새로 입력</div>
+				<hr>
+				<div id="order_book">
+					<div><div>예약자 명</div><input type="text" name="book_name" id="book_name"></div>
+					<div><div>예약자 전화번호</div><input type="text" name="book_hp" id="book_hp"></div>
+					<div><div>예약자 이메일</div><input type="text" name="book_email" id="book_email"></div>
+				</div>
+			</div>
+		</div>
+		<div id="order_main_aside">
+			<div id="order_pay">
+				<h3 id="order_pay_h3">결제 상세</h3>
+				<hr>
+				<div id="order_pay_div"><div>총 결제 금액</div><div>30,000원</div></div>
+				<div id="order_pay_btn"><a class="order_button" href="#" onclick="javascript:requestPay(); return false;">결제하기</a></div>
+			</div>
+		</div>
+		
 	</div>
-	
 </div>

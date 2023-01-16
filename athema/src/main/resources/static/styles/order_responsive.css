@@ -100,6 +100,10 @@
 	{
 		padding-left: 74px;
 	}
+	#order_pay_div{
+	font-size: 17px;
+	}
+	
 }
 
 /************
@@ -260,6 +264,13 @@
 	{
 		display: block;
 	}
+	.order_home_title
+	{
+    	font-size: 48px;
+	}
+	#order_pay_div{
+	font-size: 15px;
+	}
 }
 
 /************
@@ -268,7 +279,9 @@
 
 @media only screen and (max-width: 959px)
 {
-	
+	#order_pay_div{
+	font-size: 13px;
+	}
 }
 
 /************
@@ -277,7 +290,10 @@
 
 @media only screen and (max-width: 880px)
 {
-	
+	.order_button{
+    	padding: 10px 25%;
+    	margin:5px 0;
+	}
 }
 
 /************
@@ -295,6 +311,7 @@
 
 @media only screen and (max-width: 767px)
 {
+	
 	.intro_item
 	{
 		height: 599px;
@@ -302,6 +319,11 @@
 	.offers_image_container
 	{
 		height: 524px;
+	}
+	.order_button{
+    	padding: 10px 25%;
+    	margin:5px 0;
+    	font-size: 11px;
 	}
 }
 
@@ -363,6 +385,10 @@
 	.header.scrolled .main_nav_col
 	{
 		height: 60px;
+	}
+	.order_home_title
+	{
+		font-size: 24px;
 	}
 	.logo_container
 	{
@@ -530,6 +556,11 @@
 	.footer_about_text
 	{
 		font-size: 13px;
+	}
+	.order_button{
+    	padding: 10px 13%;
+    	margin:5px 0;
+    	font-size: 11px;
 	}
 }
 
