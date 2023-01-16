@@ -1034,7 +1034,7 @@ section
 }
 .search_item div
 {
-	font-size: 13px;
+	font-size: 25px;
 	font-weight: 700;
 	color: #FFFFFF;
 	text-transform: uppercase;
@@ -1107,13 +1107,13 @@ section
 }
 .search_extras_item
 {
-	width: 50%;
+	width: 100%;
 	float: left;
 	margin-bottom: 10px;
 }
 .search_extras_item:nth-child(even)
 {
-	padding-left: 20px;
+	padding-left: 0px;
 }
 .search_extras_item div
 {
@@ -1132,8 +1132,8 @@ section
 {
 	display: block;
 	position: relative;
-	width: 12px;
-	height: 12px;
+	width: 15px;
+	height: 15px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	-ms-appearance: none;
@@ -1142,7 +1142,7 @@ section
 	background-color: #FFFFFF;
 	border: 1px solid #FFFFFF;
 	padding: 9px;
-	margin-top: 2px;
+	margin-top: 8px;
 	border-radius: 0px;
 	display: inline-block;
 	position: relative;
@@ -1169,7 +1169,7 @@ section
 {
 	display: block;
 	position: relative;
-	font-size: 12px;
+	font-size: 20px;
 	font-weight: 400;
 	padding-left: 31px;
 	margin-bottom: 0px;
