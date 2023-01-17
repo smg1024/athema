@@ -5,15 +5,15 @@
 <!-- Home -->
 
 <div class="home">
-	<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/single_background.jpg"></div>
+	<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/about_background.jpg"></div>
 	<div class="home_content">
-		<div class="home_title">the offers</div>
+		<div class="home_title">테마여행 찾기</div>
 	</div>
 </div>
 
 <!-- Offers -->
 
-<div class="listing">
+<div class="offers">
 
 	<!-- Search -->
 
@@ -28,14 +28,10 @@
 
 						<!-- Search Tabs -->
 
-						<div class="search_tabs_container">
-							<div class="search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-								<div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/suitcase.png" alt=""><span>hotels</span></div>
-								<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/bus.png" alt="">car rentals</div>
-								<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/departure.png" alt="">flights</div>
-								<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/island.png" alt="">trips</div>
-								<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/cruise.png" alt="">cruises</div>
-								<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/diving.png" alt="">activities</div>
+						<div class="offers_search_tabs_container">
+							<div class="offers_search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+								<div class="offers_search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/suitcase.png" alt=""><span>테마</span></div>
+								<div class="offers_search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/bus.png" alt="">지역</div>
 							</div>		
 						</div>
 
@@ -43,7 +39,7 @@
 
 						<div class="search_panel active">
 							<form action="#" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-								<div class="search_item">
+								<!-- <div class="search_item">
 									<div>destination</div>
 									<input type="text" class="destination search_input" required="required">
 								</div>
@@ -70,79 +66,43 @@
 										<option>02</option>
 										<option>03</option>
 									</select>
-								</div>
+								</div> -->
 								<div class="extras">
+									<div class="search_item"><div><b>테마를 선택하세요</b></div></div>
 									<ul class="search_extras clearfix">
 										<li class="search_extras_item">
 											<div class="clearfix">
 												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">Pet Friendly</label>
+												<label for="search_extras_1">가족</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
 												<input type="checkbox" id="search_extras_2" class="search_extras_cb">
-												<label for="search_extras_2">Car Parking</label>
+												<label for="search_extras_2">우정</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
 												<input type="checkbox" id="search_extras_3" class="search_extras_cb">
-												<label for="search_extras_3">Wireless Internet</label>
+												<label for="search_extras_3">효도</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
 												<input type="checkbox" id="search_extras_4" class="search_extras_cb">
-												<label for="search_extras_4">Reservations</label>
+												<label for="search_extras_4">커플</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
 												<input type="checkbox" id="search_extras_5" class="search_extras_cb">
-												<label for="search_extras_5">Private Parking</label>
-											</div>
-										</li>
-										<li class="search_extras_item">
-											<div class="clearfix">
-												<input type="checkbox" id="search_extras_6" class="search_extras_cb">
-												<label for="search_extras_6">Smoking Area</label>
-											</div>
-										</li>
-										<li class="search_extras_item">
-											<div class="clearfix">
-												<input type="checkbox" id="search_extras_7" class="search_extras_cb">
-												<label for="search_extras_7">Wheelchair Accessible</label>
-											</div>
-										</li>
-										<li class="search_extras_item">
-											<div class="clearfix">
-												<input type="checkbox" id="search_extras_8" class="search_extras_cb">
-												<label for="search_extras_8">Pool</label>
+												<label for="search_extras_5">솔로</label>
 											</div>
 										</li>
 									</ul>
 								</div>
-								<div class="more_options">
-									<div class="more_options_trigger">
-										<a href="#">load more options</a>
-									</div>
-									<ul class="more_options_list clearfix">
-										<li class="more_options_item">
-											<div class="clearfix">
-												<input type="checkbox" id="more_options_1" class="search_extras_cb">
-												<label for="more_options_1">Pet Friendly</label>
-											</div>	
-										</li>
-										<li class="more_options_item">
-											<div class="clearfix">
-												<input type="checkbox" id="more_options_2" class="search_extras_cb">
-												<label for="more_options_2">Car Parking</label>
-											</div>
-										</li>
-									</ul>
-								</div>
-								<button class="button search_button">search<span></span><span></span><span></span></button>
+								<button class="button search_button">검색</button>
 							</form>
 						</div>
 
@@ -150,7 +110,72 @@
 
 						<div class="search_panel">
 							<form action="#" id="search_form_2" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-								<div class="search_item">
+								<div class="extras">
+									<div class="search_item"><div><b>지역을 선택하세요</b></div></div>
+									<ul class="search_extras clearfix">
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
+												<label for="search_extras_1">서울</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_2" class="search_extras_cb">
+												<label for="search_extras_2">인천</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
+												<label for="search_extras_1">부산</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
+												<label for="search_extras_1">광주</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
+												<label for="search_extras_1">제주</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
+												<label for="search_extras_1">경기도</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_3" class="search_extras_cb">
+												<label for="search_extras_3">강원도</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_4" class="search_extras_cb">
+												<label for="search_extras_4">충청도</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_5" class="search_extras_cb">
+												<label for="search_extras_5">전라도</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
+												<label for="search_extras_1">경상도</label>
+											</div>	
+										</li>
+									</ul>
+								</div>
+								<!-- <div class="search_item">
 									<div>destination</div>
 									<input type="text" class="destination search_input" required="required">
 								</div>
@@ -177,152 +202,8 @@
 										<option>02</option>
 										<option>03</option>
 									</select>
-								</div>
-								<button class="button search_button">search<span></span><span></span><span></span></button>
-							</form>
-						</div>
-
-						<!-- Search Panel -->
-
-						<div class="search_panel">
-							<form action="#" id="search_form_3" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-								<div class="search_item">
-									<div>destination</div>
-									<input type="text" class="destination search_input" required="required">
-								</div>
-								<div class="search_item">
-									<div>check in</div>
-									<input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>check out</div>
-									<input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>adults</div>
-									<select name="adults" id="adults_3" class="dropdown_item_select search_input">
-										<option>01</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<div class="search_item">
-									<div>children</div>
-									<select name="children" id="children_3" class="dropdown_item_select search_input">
-										<option>0</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<button class="button search_button">search<span></span><span></span><span></span></button>
-							</form>
-						</div>
-
-						<!-- Search Panel -->
-
-						<div class="search_panel">
-							<form action="#" id="search_form_4" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-								<div class="search_item">
-									<div>destination</div>
-									<input type="text" class="destination search_input" required="required">
-								</div>
-								<div class="search_item">
-									<div>check in</div>
-									<input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>check out</div>
-									<input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>adults</div>
-									<select name="adults" id="adults_4" class="dropdown_item_select search_input">
-										<option>01</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<div class="search_item">
-									<div>children</div>
-									<select name="children" id="children_4" class="dropdown_item_select search_input">
-										<option>0</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<button class="button search_button">search<span></span><span></span><span></span></button>
-							</form>
-						</div>
-
-						<!-- Search Panel -->
-
-						<div class="search_panel">
-							<form action="#" id="search_form_5" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-								<div class="search_item">
-									<div>destination</div>
-									<input type="text" class="destination search_input" required="required">
-								</div>
-								<div class="search_item">
-									<div>check in</div>
-									<input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>check out</div>
-									<input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>adults</div>
-									<select name="adults" id="adults_5" class="dropdown_item_select search_input">
-										<option>01</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<div class="search_item">
-									<div>children</div>
-									<select name="children" id="children_5" class="dropdown_item_select search_input">
-										<option>0</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<button class="button search_button">search<span></span><span></span><span></span></button>
-							</form>
-						</div>
-
-						<!-- Search Panel -->
-
-						<div class="search_panel">
-							<form action="#" id="search_form_6" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-								<div class="search_item">
-									<div>destination</div>
-									<input type="text" class="destination search_input" required="required">
-								</div>
-								<div class="search_item">
-									<div>check in</div>
-									<input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>check out</div>
-									<input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>adults</div>
-									<select name="adults" id="adults_6" class="dropdown_item_select search_input">
-										<option>01</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<div class="search_item">
-									<div>children</div>
-									<select name="children" id="children_6" class="dropdown_item_select search_input">
-										<option>0</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<button class="button search_button">search<span></span><span></span><span></span></button>
+								</div> -->
+								<button class="button search_button">검색</button>
 							</form>
 						</div>
 					</div>
