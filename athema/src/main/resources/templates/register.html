@@ -11,7 +11,11 @@
 		<div class="sns_content">
 			<hr style="width:30%; display:inline-block; color: rgba(0,0,0,0.55);"><br>
 			<div class="sns_register_txt">간편 회원가입</div><br>
-
+				<div class="sns_register">
+				<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+	 			 <img th:src="@{/images/kakao_login.png}" width="222" alt="카카오 로그인 버튼" style="width:160px;"/></a>
+				<p id="token-result"></p>
+			</div>
 			<hr style="width:30%; display:inline-block; color: rgba(0,0,0,0.55);"><br>
 		</div>
         <!-- 회원가입 폼 -->
@@ -99,7 +103,7 @@
 	                </div>
            		</div>
 		        <!-- 가입하기 버튼 -->
-		        <a href="#" id="register_submit">가입하기</a>
+		        <a th:href="@{/member/welcome}" id="register_submit">가입하기</a>
 			</div>
 		</form>
 	</div>
@@ -132,4 +136,16 @@
 
 <!-- script -->
 
+<!-- KAKAO LOGIN SDK -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js" integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+<script>
+Kakao.init('7b732d1920e780fb62e9946f23fabf12');
+console.log(Kakao.isInitialized());
+
+function loginWithKakao() {
+    Kakao.Auth.authorize({
+    	redirectUri: 'http://127.0.0.1/member/kakao',
+    });
+  }
+</script>
 
