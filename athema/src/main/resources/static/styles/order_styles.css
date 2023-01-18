@@ -12,7 +12,7 @@
 	3.2 Logo
 	3.3 Main Nav
 	3.4 Menu
-4. Home-me
+4. Home-me 746
 	4.1 Home Slider
 	4.2 Home Slider Nav
 	4.3 Home Slider Dots
@@ -802,6 +802,9 @@ section
 	#content > #order_main_aside {
 	    width: 28%;
 	    float: right;
+	    border: 2px solid #dcdcdc;
+	    border-radius: 5px;
+	    
 	}
 	#order_article_top,#order_article_bottom{
 	padding: 5% 0 8% 0;
@@ -874,9 +877,7 @@ section
 	}
 	
 	/*결제 상세*/
-	#order_pay{
-	border: 2px solid #dcdcdc;
-	border-radius: 5px;
+	#order_pay, #order_terms{
 	padding: 20px;
 	}
 	#order_pay_h3{
@@ -885,12 +886,13 @@ section
 	#order_pay_div{
 	font-size: 20px;
 	color:#8d4fff;
-	margin: 20px 0;
-	
+	font-weight:800;
+	padding: 20px 0;
 	}
 	#order_pay_btn{
 	text-align: center;
-	margin: 13% 0 8% 0;
+	margin: 13% 0;
+	
 	}
 
 	.order_button{
@@ -900,11 +902,22 @@ section
     	margin:5px 0;
     	background:#8d4fff;
     	border-radius: 50px;
+    	
+	}
+	.order_button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
 	}
 	.order_button:hover {
 	background:#fa9e1b;
 	color:white;
-}
+	}
+	
+	#order_terms_box{
+	font-size: 17px;
+	margin: 7px 0;
+	color:#282828;
+	}
 
 /*********************************
 4.1 Home Slider

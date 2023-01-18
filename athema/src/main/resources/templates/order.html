@@ -8,7 +8,83 @@
 <!-- iamport.payment.js -->
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+	
 <script>
+$(document).ready(function() {
+	//전체 체크 클릭 시, 나머지 체크 
+	$("#order2_chk").click(function(){
+	var order2Chk=$("#order2_chk").prop("checked");
+
+	    if(order2Chk){
+	        $(".order2_chks").prop("checked",true);
+	        $(".order_button").prop("disabled",false);//활성화
+	    }
+	    else{
+	        $(".order2_chks").prop("checked",false);
+	        $(".order_button").prop("disabled",true);//비활성화
+	    }
+	});
+
+	// 모든 체크박스를 클릭하면 버튼 활성화시키기
+	$('.order2_chks').click(function(){
+	    var tmpp = $(this).prop('checked'); 
+	    //자식 체크 전체 체크시, 부모 체크박스 체크 됨
+	    var tt = $(".order2_chks").length;
+	    var ss = $(".order2_chks:checked").length;
+	    
+	    //선택한 체크박스 값이 true 이거나 체크박스 2개 이상 체크시 버튼 활성화시키기
+	    if(tmpp==true && ss>1){
+	    $(".order_button").prop("disabled",false);
+	    }
+	    else{
+	    $(".order_button").prop("disabled",true);
+	    }
+	    
+	    // 체크박스가 모두 선택되었을 때 상위 체크박스 선택되도록 설정
+	    if(tt == ss){
+	    	$("#order2_chk").prop("checked",true);
+	    }else{
+	    	$("#order2_chk").prop("checked",false);
+	    }
+	    
+		});
+	$(".order_button").click(function() {
+	requestPay();
+	});
+});
+function checkclickall()  {
+	  const checkboxes 
+	    = document.querySelectorAll('input[name="order_terms_box"]');
+	  const checked 
+	    = document.querySelectorAll('input[name="order_terms_box"]:checked');
+	  const clickall = document.querySelector('input[name="order_terms_boxall"]');
+	  const target = document.getElementById('input[name="order_button"]');
+	  
+	  if(checkboxes.length === checked.length)  {
+		 clickall.checked = true;
+		 $(target).prop("disabled", false);//활성
+	  }else {
+		 clickall.checked = false;
+		 $(target).prop("disabled", true);//비활성
+	  }
+
+	}
+	function clickall(clickall){
+		const checkboxes = document.getElementsByName('order_terms_box');
+	  
+	  checkboxes.forEach((checkbox) => {
+	    checkbox.checked = clickall.checked;
+	  });
+	};
+	function checkOnlyOne(element){
+		const checkboxes = document.getElementsByName("order_book_data");
+	  
+	  checkboxes.forEach((cb) => {
+	    cb.checked = false;
+	  });
+	  
+	  element.checked = true;
+	};
 	function requestPay(data) {
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp46828311');
@@ -66,8 +142,8 @@
 				</div>
 			<div id="order_article_bottom">
 				<h3 id="order_book_h3">예약자 정보 </h3>
-				<div id="order_book_data"><input type='checkbox' name='order_book_data' onclick=''/> 주문자의 정보와 동일</div>
-				<div id="order_book_data"><input type='checkbox' name='order_book_data' onclick=''/> 새로 입력</div>
+				<div id="order_book_data"><input type='checkbox' name='order_book_data' onclick='checkOnlyOne(this)'/> 주문자의 정보와 동일</div>
+				<div id="order_book_data"><input type='checkbox' name='order_book_data' onclick='checkOnlyOne(this)'/> 새로 입력</div>
 				<hr>
 				<div id="order_book">
 					<div><div>예약자 명</div><input type="text" name="book_name" id="book_name"></div>
@@ -81,8 +157,15 @@
 				<h3 id="order_pay_h3">결제 상세</h3>
 				<hr>
 				<div id="order_pay_div"><div>총 결제 금액</div><div>30,000원</div></div>
-				<div id="order_pay_btn"><a class="order_button" href="#" onclick="javascript:requestPay(); return false;">결제하기</a></div>
 			</div>
+			<div id="order_terms">
+				<h3 id="order_pay_h3">약관 안내</h3>
+				<hr>
+				<div id="order_terms_box"><input type='checkbox' id="order2_chk" name='order_terms_boxall' onclick='clickall(this)'/>전체 약관 동의</div>
+				<div id="order_terms_box"><input type='checkbox' class="order2_chks" name='order_terms_box' onclick='checkclickall()'/>개인정보 제공 동의(필수)</div>
+				<div id="order_terms_box"><input type='checkbox' class="order2_chks" name='order_terms_box' onclick='checkclickall()'/>개인정보 수집 및 이용 동의(필수)</div>
+			</div>
+			<div id="order_pay_btn"><button class="order_button" name='order_button' disabled="disabled">결제하기</button></div>
 		</div>
 		
 	</div>
