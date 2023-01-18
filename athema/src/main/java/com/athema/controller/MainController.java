@@ -76,4 +76,10 @@ public class MainController {
 		return "main";
 	}
 	
+	@RequestMapping("/order_detail")
+	public String order_detail(Model model) {
+		model.addAttribute("content", "order_detail");
+		return "main";
+	}
+	
 }
