@@ -1327,3 +1327,19 @@ input[type='date']:valid::before {
 	font-weight: 999;
     margin: 10px auto 20px;
 }
+
+form span {
+	color: #96051D;
+	margin: 3px 0 0 0;
+	font-size: 0.7em;
+}
+
+#email_check {
+	width: 80px;
+	height: 35px;
+	margin: 6px 0 6px 13px;
+	padding: 5px;
+	font-size: 0.8em;
+	letter-spacing: 1px;
+	text-align: center;
+}

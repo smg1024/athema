@@ -1,5 +1,6 @@
 package com.athema.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,9 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.athema.dto.MemberDTO;
+import com.athema.service.MemberService;
+
 @RestController
 @RequestMapping("/member")
 public class MemberController {
+	
+	@Autowired
+	MemberService mservice;
 	
 	@RequestMapping("/kakao")
 	public void callback(@RequestParam String code) {
@@ -48,6 +55,16 @@ public class MemberController {
 		return "main";
 	}
 	
+	@RequestMapping("/checkemail")
+	public int checkemail(MemberDTO email) {
+		int result = 0;
+		try {
+			result = mservice.getemail(email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	
 }
