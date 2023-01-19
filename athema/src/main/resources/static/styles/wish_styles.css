@@ -817,7 +817,7 @@ section
 	margin-bottom: 0px;
 	font-weight: 600;
 	color: black;
-	margin-top: 20px;
+	margin-top: 15px;
 }
 .intro_button
 {
@@ -826,9 +826,16 @@ section
 	margin-bottom: 30px;
 }
 
-.intro_item
+.item_rating
 {
-	color:black;
+	margin-top: 10px;
+	color: black;
+}
+
+.star mb-2
+{
+	color: orange;
+	margin-top: 10px;
 }
 
 
