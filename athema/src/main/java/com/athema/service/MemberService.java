@@ -48,8 +48,8 @@ public class MemberService implements AthemaService<Integer, MemberDTO> {
 		mapper.updatebutpass(v);
 	}
 	
-	public int getemail(MemberDTO v) throws Exception {
-		return mapper.selectemail(v);
+	public int getemail(String email) throws Exception {
+		return mapper.selectemail(email);
 	}
  
 }

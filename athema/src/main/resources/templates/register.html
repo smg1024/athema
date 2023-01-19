@@ -1,63 +1,11 @@
+<head>
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="styles/register_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/register_responsive.css">
 
 <!-- JavaScript -->
-<script>
-function getdata(email) {
-	$.ajax({
-		type: 'POST',
-		url:'[[@{/member/checkemail}]]',
-		data: email,
-		success: function(data){
-			if(data > 0) {
-				alert("이미 가입된 회원입니다.");
-				$('.mem_id').focus();
-			} else {
-				alert("사용 가능합니다.");
-				$('#email_check').hide();
-				$('#id_check').show();
-			}
-		}
-	});
-};
 
-$(document).ready(function(){
-	$('.mem_name').blur(function(){
-		var name = $(this).val();
-		if (name == '') {
-			$(this).focus();
-			$('#span_name').text("이름을 입력하세요");
-		} else {
-			$('#span_name').text('');			
-		}
-	});
-	
-	$('.mem_id').keyup(function(){
-		$('#email_check').show();
-		$('#id_check').hide();
-		var id = $(this).val();
-		var reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-		if (reg.test(id)) {
-			$('#span_id').text('');
-		} else {
-			$('#span_id').text("올바른 이메일 형식을 입력하세요");
-		}
-	});
-	
-	$('#email_check').click(function(){
-		var email = $('.mem_id').val();
-		if ($('#span_id').text() != '') {
-			alert("올바른 이메일 형식을 입력하세요");
-			return;
-		} else {
-			getdata(email);
-		}
-	});
-	
-	
-});
-
+<script type="text/javascript" th:src="@{/js/register.js}">
 </script>
 
 <!-- KAKAO LOGIN SDK -->
@@ -72,8 +20,8 @@ function loginWithKakao() {
     });
   }
   
-  
 </script>
+</head>
 
 
 <!-- login_home -->
@@ -105,7 +53,7 @@ function loginWithKakao() {
 		        <!-- 아이디(이메일) -->
 				<div class="field">
         			<b>이메일</b>
-        			<input type="hidden" name="checked_id" value="">
+        			<input type="hidden" id="email_hiddenChk" name="checked_id" value="N">
            			<input class="mem_id" type="text" placeholder="example@athema.com" style="width:368px">
            			<input id="email_check" type="button" value="중복검사">
            			<img th:src="@{/images/id_check.png}" id="id_check" style="width:30px; margin-left:10px; display:none;">
@@ -114,22 +62,24 @@ function loginWithKakao() {
 		        <!-- 비밀번호 -->
       			<div class="field">
       				<b>비밀번호</b>
-      				<input class="mem_pwd" type="password" placeholder="6~15자 이내의 알파벳, 숫자 필수">
+      				<input class="mem_pwd" type="password" placeholder="6~15자 이내로 알파벳, 숫자, 특수문자 포함">
+    			    <span id="span_pwd"></span>
       			</div>
 		        <div class="field">
 					<b>비밀번호 확인</b>
 					<input class="mem_pwd_confirm" type="password" placeholder="비밀번호를 한번 더 입력하세요">
+    			    <span id="span_pwd_confirm"></span>
 		        </div>
 			    <!-- 닉네임 -->
 				<div class="field">
         			<b>닉네임</b>
-           			<input class="mem_nick" type="text">
+           			<input class="mem_nick" type="text" maxlength="5" placeholder="5자 이내의 한글, 알파벳만 가능">
      			</div>
 
 		        <!-- 전화번호 -->
 		        <div class="field tel-number">
-		            <b>전화번호</b>
-	                <input type="tel" placeholder="전화번호 입력">
+		            <b>휴대전화번호</b>
+	                <input id="mem_tel" type="tel" maxlength="13" placeholder="010-0000-0000">
 		        </div>
 
 		        <!-- 생년월일 -->
@@ -147,7 +97,7 @@ function loginWithKakao() {
 	                <div class="checkBox check01">
 	                    <div class="clearfix">
 	                        <input type="checkbox" name="chkAll" id="chk" class="chkAll">
-	                        <b>이용약관, 개인정보 수집 및 이용, 프로모션 안내(선택)에 모두 동의합니다.</b>
+	                        <b>이용약관, 개인정보 수집 및 이용에 모두 동의합니다.</b>
 	                    </div>
 	                </div>
 	                <div class="checkBox check02">
@@ -163,16 +113,8 @@ function loginWithKakao() {
 	                        <b>개인정보 수집 및 이용에 대한 안내(필수)</b>
 	                        <input type="checkbox" name="chk">
 	                    </div>
-	                  	<textarea name="check_text">여러분을 환영합니다. 어테마 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 어테마 서비스의 이용과 관련하여 어테마 서비스를 제공하는 어테마 주식회사(이하 ‘어테마’)와 이를 이용하는 어테마 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 어테마 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
-	      				</textarea>
-	                </div>
-	                <div class="checkBox check04">
-	                    <div class="clearfix">
-	                        <b>이벤트 등 프로모션 알림 메일 수신(선택)</b>
-	                        <input type="checkbox" name="chk">
-	                    </div>
-	                  	<textarea name="check_text">여러분을 환영합니다. 어테마 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 어테마 서비스의 이용과 관련하여 어테마 서비스를 제공하는 어테마 주식회사(이하 ‘어테마’)와 이를 이용하는 어테마 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 어테마 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
-	      				</textarea>
+	                  	<textarea style="height:200px;" name="check_text">이용자가 제공한 모든 정보는 다음의 목적을 위해 활용하며, 하기 목적 이외의 용도로는 사용되지 않습니다
+① 개인정보 수집 항목 및 수집·이용 목적 가) 수집 항목 (필수항목) - 성명(국문), 이메일, 연락처, 생년월일(선택) 등 지원 신청서에 기재된 정보 또는 신청자가 제공한 정보 나) 수집 및 이용 목적 - Athema의 서비스 1 이용 - Athema의 서비스 2 이용 - Athema의 서비스 3 이용 ② 개인정보 보유 및 이용기간 - 수집·이용 동의일로부터 개인정보의 수집·이용목적을 달성할 때까지 ③ 동의거부관리 - 귀하께서는 본 안내에 따른 개인정보 수집, 이용에 대하여 동의를 거부하실 권리가 있습니다. 다만, 귀하가 개인정보의 수집/이용에 동의를 거부하시는 경우에 서비스 제공에 있어 불이익이 발생할 수 있음을 알려드립니다.</textarea>
 	                </div>
            		</div>
 		        <!-- 가입하기 버튼 -->

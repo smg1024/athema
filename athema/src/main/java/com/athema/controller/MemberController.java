@@ -56,7 +56,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/checkemail")
-	public int checkemail(MemberDTO email) {
+	public int checkemail(String email) {
 		int result = 0;
 		try {
 			result = mservice.getemail(email);
