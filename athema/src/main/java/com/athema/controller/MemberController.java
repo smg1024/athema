@@ -1,5 +1,7 @@
 package com.athema.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -48,23 +50,22 @@ public class MemberController {
 		// 이후 어떻게 추출? -> 아직 작성 못함
 		
 	}
-	
-	@RequestMapping("/welcome")
-	public String welcome(Model model) {
-		model.addAttribute("content", "welcome");
-		return "main";
-	}
-	
-	@RequestMapping("/checkemail")
-	public int checkemail(String email) {
-		int result = 0;
+
+	@RequestMapping("/addmember")
+	public String addmember(Model model, MemberDTO member, HttpSession session) {
 		try {
-			result = mservice.getemail(email);
+			System.out.println(member);
+			mservice.register(member);
+			session.setAttribute("loginmember", member);
+			model.addAttribute("content", "registerok");
+			model.addAttribute("remail", member.getMem_email());
+			model.addAttribute("rname", member.getMem_name());
 		} catch (Exception e) {
+			model.addAttribute("content", "registerfail");
+			model.addAttribute("femail", member.getMem_email());
 			e.printStackTrace();
 		}
-		return result;
+		return "main";
 	}
-
 	
 }

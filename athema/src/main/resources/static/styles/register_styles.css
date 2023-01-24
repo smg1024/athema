@@ -1331,13 +1331,14 @@ form span {
 	color: #96051D;
 	margin: 3px 0 0 0;
 	font-size: 0.7em;
+	display: block;
 }
 
 #email_check {
 	width: 80px;
 	height: 35px;
 	margin: 6px 0 6px 13px;
-	padding: 5px;
+	padding: 5px 5px 5px 8px;
 	font-size: 0.8em;
 	letter-spacing: 1px;
 	text-align: center;

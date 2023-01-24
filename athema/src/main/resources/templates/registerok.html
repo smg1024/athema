@@ -1,0 +1,15 @@
+<script>
+function gotomain() {
+	location.href="[[@{/}]]"
+}
+</script>
+
+<div class="site-section block-8">
+<div id="rcontainer">
+	<h5 th:text="${rname}+'님 Athema 회원이 되신 것을 환영합니다!'"></h5>
+	<div id="registerok">
+		<p th:text="'가입 이메일 : '+${remail}">가입 email</p>
+	</div>
+	<button th:onclick="gotomain()" class="btn btn-primary btn-sm">확인🌼</button>
+</div>
+</div>
