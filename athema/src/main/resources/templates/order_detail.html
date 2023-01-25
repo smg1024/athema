@@ -1,39 +1,175 @@
-<!-- ORDER -->
+<!-- ORDER DETAIL-->
 <link rel="stylesheet" type="text/css" href="styles/order_detail_style.css">
 <link rel="stylesheet" type="text/css" href="styles/order_detail_responsive.css">
 <style>
-.ord_main{width:80%; height:30vh; margin: 150px auto; border: 1px solid red;}
-.mypage_menu{width:20%; border: 1px solid green; float: left;}
-.ord_content{width:78%; border: 1px solid blue;  float: right;}
+.ord{width:78%; overflow: hidden; margin: 50px auto; margin-top:130px; padding: 10px 0 50px; color:black;}
+.mypage_menu{width:20%; float: left;}
+.ord_main{width:78%; padding:10px 0; float: left;}
+
+.mypage_menu > ul{
+padding: 10px 0;
+}
+.mypage_menu > ul>li{
+padding: 4px 0;
+}
+a{text-decoration:none;color:inherit;}
+
+#mypage_menu_title{
+	color:#969696;
+	font-size: 16px;
+}
+.mypage_menu>ul>li:hover>a{
+	color :#8d4fff;
+	font-weight:800;
+}
+.mypage_menu > ul > li > a{
+	color:#282828;
+	font-size: 18px;
+}
+
+#travel_menu{position: relative;}
+#submenu{
+display: none; position: absolute;
+border: 3px solid #8d4fff;
+border-radius:10px;
+ left: 100px; top:0px;
+ font-size: 18px;
+ padding: 10px 10px;
+ color:#505050;
+}
+#travel_menu:hover > #submenu{display: block;}
+#submenu > li >a:hover {
+	color :#8d4fff;
+	font-weight:800;
+}
+.view_detail{
+	padding:6px 18px;
+	border-radius: 10px;
+	float: right;
+	margin: 10px;
+}
+.view_detail:hover {
+	background-color: skyblue;
+}
+#day{
+	font-size: 18px;
+	padding : 5px 20px;
+	display: inline-block;
+}
+.ord_content{
+	width:600px;
+	margin: 0 0 35px 20px;
+	border: 2px solid ;
+	border-radius: 10px;
+	overflow: auto;
+}
+
+.ord_hidden{
+	display: none;
+	padding: 5px 0 5px 40px;
+}
+#ord_title{
+	text-align: center;
+	font-size: 18px;
+	padding: 15px 0 10px 0;
+}
+	#img_item{
+		position: relative;
+		display: inline-block;
+	    width: 150px;
+	    height: 150px;
+	    border-radius:8px;
+	    margin-bottom:20px; 
+	}
+	#img_item img{
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    transform: translate(50, 50);
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+	    margin: auto
+	}
+
+
 </style>
-<div class="ord_main">
-<h1>나의 페이지</h1>
+<script>
+$(document).ready(function(){
+	var hiddens = document.getElementsByClassName("ord_hidden");
+	var btns = document.getElementsByClassName("view_detail");
+	var funcs = []
+	function hide(num) {
+		return function() {
+			 btns[num].onclick = function() {
+				 hiddens[num].style.display = "block";
+		    };  
+		};
+	};	
+	for (var i = 0; i < btns.length; i++) {
+	  funcs[i] = hide(i);
+}
+
+	for (var j = 0; j < btns.length; j++) {
+	  funcs[j]();
+}
+});
+	
+	  
+  	
+
+
+</script>
+<div class="ord">
+	<h1>마이페이지</h1>
 	<div class="mypage_menu">
 		<ul>
-			<li>설정</li>
+			<li id="mypage_menu_title">설정</li>
 			<li><a href="#">계정 정보</a></li>
 		</ul>
 		<ul>
-			<li>여행 관리</li>
-			<li><a href="#">예정된 여행</a><ul><li><a href="#">지난 여행</a></li></ul></li>
+			<li id="mypage_menu_title">여행 관리</li>
+			<li id="travel_menu"><a href="#">여행 관리</a>
+			<ul id="submenu">
+				<li><a href="#">예정된 여행</a></li>
+				<li><a href="#">지난 여행</a></li>
+			</ul></li>
 			<li><a href="#">나의 후기</a></li>
 			<li><a href="#">위시리스트</a></li>
 		</ul>
 		<ul>
-			<li>고객지원</li>
+			<li id="mypage_menu_title">고객지원</li>
 			<li><a href="#">공지사항</a></li>
 			<li><a href="#">나의 문의</a></li>
 		</ul>
 	</div>
-	<div class="ord_content">
-		<div>나의 여행</div>
-		<div><time datetime="2023-03-31">2023년 3월 31일</time></div>
-		<div>경주 여행</div>
-		<div>이미지</div>
-		<div>상품명</div>
-		<div>옵션</div>
-		<div>유효기간 <time datetime="2023-12-31">2023년 12월 31일까지</time></div>
-		<div>결제 정보</div>
-		<div>상세보기</div>
+	<div class="ord_main">
+		<h3>여행리스트</h3>
+		<div id="day"><time datetime="2023-03-31">2023년 3월 31일</time></div>
+		<div class="ord_content">
+			<div id="ord_title">경주 여행</div>
+				<div class="ord_hidden">	
+					<div><img id="img_item" src="images/item_1.jpg" alt="상품이미지"></div>
+					<div>상품명 해변 투어</div>
+					<div>옵션 1.어쩌고 저쩌고 &nbsp;&nbsp;수량 3</div>
+					<div>유효기간 <time datetime="2023-12-31">2023년 12월 31일까지</time></div>
+					<div>결제 정보</div>
+				</div>	
+				<div><button class="view_detail">상세보기</button></div>
+				<div id="clear"></div>
+		</div>
+		<!-- <div id="day"><time datetime="2023-03-31">2023년 3월 31일</time></div>
+		<div class="ord_content">
+			<div id="ord_title">경주 여행</div>
+				<div class="ord_hidden">	
+					<div><img id="img_item" src="images/item_1.jpg" alt="상품이미지"></div>
+					<div>상품명 해변 투어</div>
+					<div>옵션 1.어쩌고 저쩌고 &nbsp;&nbsp;수량 3</div>
+					<div>유효기간 <time datetime="2023-12-31">2023년 12월 31일까지</time></div>
+					<div>결제 정보</div>
+				</div>	
+				<div><button class="view_detail">상세보기</button></div>
+				<div id="clear"></div>
+		</div> -->
 	</div>
 </div>

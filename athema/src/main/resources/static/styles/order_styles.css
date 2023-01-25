@@ -4,7 +4,7 @@
 /******************************
 
 [Table of Contents]
-
+me
 1. Fonts
 2. Body and some general stuff
 3. Header
@@ -12,7 +12,7 @@
 	3.2 Logo
 	3.3 Main Nav
 	3.4 Menu
-4. Home-me 746
+4. Home
 	4.1 Home Slider
 	4.2 Home Slider Nav
 	4.3 Home Slider Dots
@@ -36,6 +36,245 @@
 
 ******************************/
 
+
+/*********************************
+me
+*********************************/
+.home_order
+{
+	width: 100%;
+	height: 30vh;
+}
+.home_background{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+.home_content
+{
+	position: absolute;
+	bottom: 9px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+	.order_home_title{
+	font-size: 72px;
+	font-weight: 800;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	white-space: nowrap;
+
+	}
+	
+	#order_content{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	background: #FFFFFF;
+	color: #a5a5a5;}
+	
+/*본문 전체 틀*/
+	#order_content > #content {
+        width: 75%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    #content > #main_section {
+    width: 69%;
+    float: left;
+	}
+	#content > #order_main_aside {
+	    width: 28%;
+	    float: right;
+	    border: 2px solid #dcdcdc;
+	    border-radius: 5px;
+	    
+	}
+	#order_article_top,#order_article_bottom{
+	padding: 5% 0 8% 0;
+	}
+	
+	/*상품정보 css*/
+	#order_img_item{
+		position: relative;
+		display: inline-block;
+	    width: 150px;
+	    height: 150px;
+	    border-radius:8px;
+	    margin-bottom:20px; 
+	}
+	#order_img_item img{
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    transform: translate(50, 50);
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+	    margin: auto
+	}
+	#order_item_name{
+	font-size: 20px;
+	display: inline-block;
+	}
+	#order_item_name > time{
+	font-size: 15px;
+	color: gray;
+	}
+	#order_item_option{
+	background: #dcdcdc;
+	}
+	#order_item_option, #order_item_price, #order_pay_div, #order_terms_div{
+	display:flex;
+	justify-content:space-between;
+	}
+	
+	#order_item_option_info, #order_item_option_cnt, #order_item_option_price{
+	display: inline-block;
+	font-size: 17px;
+	margin: 15px;
+	}
+	#order_item_price_han, #order_item_price_int{
+	display: inline-block;
+	font-size: 17px;
+	margin: 10px;
+	padding: 10px 0;
+	}
+	#order_item_price_int{
+	font-size: 20px;
+	}
+	
+	/*예약자 정보 css*/
+	#order_book_h3{
+	display: inline-block;
+	}
+	#order_book_data{
+	display: inline-block;
+	font-size: 14px;
+	}
+	#order_book{
+	font-size: 17px;
+	}
+	
+	#order_book > div{
+	padding: 10px 0 15px 0;
+	}
+	
+	/*결제 상세*/
+	#order_pay, #order_terms{
+	padding: 20px;
+	}
+	#order_pay_h3{
+	color:#282828;
+	}
+	#order_pay_div{
+	font-size: 20px;
+	color:#8d4fff;
+	font-weight:800;
+	padding: 20px 0;
+	}
+	#order_pay_btn{
+	text-align: center;
+	margin: 13% 0;
+	}
+	#img_arrow{
+		display:inline-block;
+		width:20px;
+		height: auto;
+		margin: 9px 0;
+		opacity: 0.7;
+	}
+	.order_button{
+		text-decoration: none;
+		color:white;
+    	padding: 10px 30%;
+    	margin:5px 0;
+    	background:#8d4fff;
+    	border-radius: 50px;
+	}
+	.order_button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	}
+	.order_button:hover {
+	background:#fa9e1b;
+	color:white;
+	}
+	
+	#order_terms_box{
+	font-size: 17px;
+	margin: 7px 0;
+	color:#282828;
+	display: inline-block;
+	}
+	.btn-modal{
+        cursor:pointer;
+        }
+.modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            color:black;
+        }
+        /* Modal Content/Box */
+        .modal-window {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%; /* Could be more or less, depending on screen size */
+        }
+        /* The Close Button */
+        .close-area {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-area:hover,
+        .close-area:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+       .modal_table{
+       		text-align: center;
+       		border: 2px solid #dcdcdc;
+       		border-collapse: collapse;
+       }
+       #table_head{
+       background-color: #dcdcdc;
+       }
+      th, td{
+       	border-right: 1px solid #dcdcdc;
+       }
+       .close-ok{
+       float:right;
+       width: 100px;
+       padding: 10px;
+       border-radius:10px;
+       border: none;
+       }
+       #clear{
+       clear: both;
+       }
 /***********
 1. Fonts
 ***********/
@@ -743,181 +982,9 @@ section
 }
 
 /*********************************
-4. Home-me
+4. Home
 *********************************/
 
-.home_order
-{
-	width: 100%;
-	height: 30vh;
-}
-.home_background{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
-}
-.home_content
-{
-	position: absolute;
-	bottom: 9px;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-}
-
-	.order_home_title{
-	font-size: 72px;
-	font-weight: 800;
-	color: #FFFFFF;
-	text-transform: uppercase;
-	white-space: nowrap;
-
-	}
-	
-	#order_content{
-	font-family: 'Open Sans', sans-serif;
-	font-size: 14px;
-	font-weight: 400;
-	background: #FFFFFF;
-	color: #a5a5a5;}
-	
-/*본문 전체 틀*/
-	#order_content > #content {
-        width: 75%;
-        margin: 0 auto;
-        overflow: hidden;
-    }
-    #content > #main_section {
-    width: 69%;
-    float: left;
-	}
-	#content > #order_main_aside {
-	    width: 28%;
-	    float: right;
-	    border: 2px solid #dcdcdc;
-	    border-radius: 5px;
-	    
-	}
-	#order_article_top,#order_article_bottom{
-	padding: 5% 0 8% 0;
-	}
-	
-	/*상품정보 css*/
-	#order_img_item{
-		position: relative;
-		display: inline-block;
-	    width: 150px;
-	    height: 150px;
-	    border-radius:8px;
-	    margin-bottom:20px; 
-	}
-	#order_img_item img{
-		position: absolute;
-	    top: 0;
-	    left: 0;
-	    transform: translate(50, 50);
-	    width: 100%;
-	    height: 100%;
-	    object-fit: cover;
-	    margin: auto
-	}
-	#order_item_name{
-	font-size: 20px;
-	display: inline-block;
-	}
-	#order_item_name > time{
-	font-size: 15px;
-	color: gray;
-	}
-	#order_item_option{
-	background: #dcdcdc;
-	}
-	#order_item_option, #order_item_price, #order_pay_div{
-	display:flex;
-	justify-content:space-between;
-	}
-	
-	#order_item_option_info, #order_item_option_cnt, #order_item_option_price{
-	display: inline-block;
-	font-size: 17px;
-	margin: 15px;
-	}
-	#order_item_price_han, #order_item_price_int{
-	display: inline-block;
-	font-size: 17px;
-	margin: 10px;
-	padding: 10px 0;
-	}
-	#order_item_price_int{
-	font-size: 20px;
-	}
-	
-	/*예약자 정보 css*/
-	#order_book_h3{
-	display: inline-block;
-	}
-	#order_book_data{
-	display: inline-block;
-	font-size: 14px;
-	}
-	#order_book{
-	font-size: 17px;
-	}
-	
-	#order_book > div{
-	padding: 10px 0 15px 0;
-	}
-	
-	/*결제 상세*/
-	#order_pay, #order_terms{
-	padding: 20px;
-	}
-	#order_pay_h3{
-	color:#282828;
-	}
-	#order_pay_div{
-	font-size: 20px;
-	color:#8d4fff;
-	font-weight:800;
-	padding: 20px 0;
-	}
-	#order_pay_btn{
-	text-align: center;
-	margin: 13% 0;
-	
-	}
-
-	.order_button{
-		text-decoration: none;
-		color:white;
-    	padding: 10px 30%;
-    	margin:5px 0;
-    	background:#8d4fff;
-    	border-radius: 50px;
-    	
-	}
-	.order_button:disabled {
-	opacity: 0.5;
-	cursor: not-allowed;
-	}
-	.order_button:hover {
-	background:#fa9e1b;
-	color:white;
-	}
-	
-	#order_terms_box{
-	font-size: 17px;
-	margin: 7px 0;
-	color:#282828;
-	}
 
 /*********************************
 4.1 Home Slider

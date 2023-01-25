@@ -1,6 +1,7 @@
 <!-- ORDER -->
 <link rel="stylesheet" type="text/css" href="styles/order_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/order_responsive.css">
+<link rel="stylesheet" type="text/css"
+	href="styles/order_responsive.css">
 
 <!-- jQuery -->
 <script type="text/javascript"
@@ -8,9 +9,48 @@
 <!-- iamport.payment.js -->
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
-	
+
 <script>
 $(document).ready(function() {
+	// Modal을 가져옴
+	var modals = document.getElementsByClassName("modal-overlay");
+	// Modal을 띄우는 클래스 이름을 가져옴
+	var btns = document.getElementsByClassName("btn-modal");
+	// Modal을 닫는 close-area 클래스를 가져옴
+	var xkey = document.getElementsByClassName("close-area");
+	var okkey = document.getElementsByClassName("close-ok");
+	var funcs = [];
+
+	// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
+	function Modal(num) {
+	  return function() {
+	    // 해당 클래스의 내용을 클릭하면 Modal을 띄움
+	    btns[num].onclick = function() {
+	      modals[num].style.display = "block";
+	      console.log(num);
+	    };
+
+	    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫음
+	    xkey[num].onclick = function() {
+	      modals[num].style.display = "none";
+	    };
+	    okkey[num].onclick = function() {
+			modals[num].style.display = "none";
+		};
+	  };
+	}
+
+	// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의함
+	for (var i = 0; i < btns.length; i++) {
+	  funcs[i] = Modal(i);
+	}
+
+	// 원하는 Modal 수만큼 funcs 함수를 호출
+	for (var j = 0; j < btns.length; j++) {
+	  funcs[j]();
+	}
+
+	
 	//전체 체크 클릭 시, 나머지 체크 
 	$("#order2_chk").click(function(){
 	var order2Chk=$("#order2_chk").prop("checked");
@@ -85,6 +125,8 @@ function checkclickall()  {
 	  
 	  element.checked = true;
 	};
+
+
 	function requestPay(data) {
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp46828311');
@@ -122,7 +164,8 @@ function checkclickall()  {
 </script>
 
 <div class="home_order">
-	<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/background_1.jpg"></div>
+	<div class="home_background parallax-window" data-parallax="scroll"
+		data-image-src="images/background_1.jpg"></div>
 	<div class="home_content">
 		<div class="order_home_title">order</div>
 	</div>
@@ -130,25 +173,51 @@ function checkclickall()  {
 <div id="order_content">
 	<div id="content">
 		<div class="section_title" id="main_section">
-				<div id="order_article_top">
-					<h3 id="order_item_h3">상품 정보</h3>
-					<hr>
-					<div id="order_item">
-						<img id="order_img_item"src="images/item_1.jpg" alt="상품이미지">
-						<div id="order_item_name">해변 투어<br><time datetime="2023-12-31">2023년 12월 31일까지</time></div><br>
-						<div id="order_item_option"><div id="order_item_option_info">옵션 1.어쩌고 저쩌고 &nbsp;&nbsp; 수량 3</div><div id="order_item_option_price">30,000원</div></div>
-						<div id="order_item_price"><div id="order_item_price_han">총 상품 금액</div><div id="order_item_price_int">30,000원</div></div>
+			<div id="order_article_top">
+				<h3 id="order_item_h3">상품 정보</h3>
+				<hr>
+				<div id="order_item">
+					<img id="order_img_item" src="images/item_1.jpg" alt="상품이미지">
+					<div id="order_item_name">
+						해변 투어<br>
+						<time datetime="2023-12-31">2023년 12월 31일까지</time>
+					</div>
+					<br>
+					<div id="order_item_option">
+						<div id="order_item_option_info">옵션 1.어쩌고 저쩌고 &nbsp;&nbsp;
+							수량 3</div>
+						<div id="order_item_option_price">30,000원</div>
+					</div>
+					<div id="order_item_price">
+						<div id="order_item_price_han">총 상품 금액</div>
+						<div id="order_item_price_int">30,000원</div>
 					</div>
 				</div>
+			</div>
 			<div id="order_article_bottom">
-				<h3 id="order_book_h3">예약자 정보 </h3>
-				<div id="order_book_data"><input type='checkbox' name='order_book_data' onclick='checkOnlyOne(this)'/> 주문자의 정보와 동일</div>
-				<div id="order_book_data"><input type='checkbox' name='order_book_data' onclick='checkOnlyOne(this)'/> 새로 입력</div>
+				<h3 id="order_book_h3">예약자 정보</h3>
+				<div id="order_book_data">
+					<input type='checkbox' name='order_book_data'
+						onclick='checkOnlyOne(this)' /> 주문자의 정보와 동일
+				</div>
+				<div id="order_book_data">
+					<input type='checkbox' name='order_book_data'
+						onclick='checkOnlyOne(this)' /> 새로 입력
+				</div>
 				<hr>
 				<div id="order_book">
-					<div><div>예약자 명</div><input type="text" name="book_name" id="book_name"></div>
-					<div><div>예약자 전화번호</div><input type="text" name="book_hp" id="book_hp"></div>
-					<div><div>예약자 이메일</div><input type="text" name="book_email" id="book_email"></div>
+					<div>
+						<div>예약자 이름</div>
+						<input type="text" name="book_name" id="book_name">
+					</div>
+					<div>
+						<div>예약자 전화번호</div>
+						<input type="text" name="book_hp" id="book_hp">
+					</div>
+					<div>
+						<div>예약자 이메일</div>
+						<input type="text" name="book_email" id="book_email">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -156,17 +225,102 @@ function checkclickall()  {
 			<div id="order_pay">
 				<h3 id="order_pay_h3">결제 상세</h3>
 				<hr>
-				<div id="order_pay_div"><div>총 결제 금액</div><div>30,000원</div></div>
+				<div id="order_pay_div">
+					<div>총 결제 금액</div>
+					<div>30,000원</div>
+				</div>
 			</div>
 			<div id="order_terms">
 				<h3 id="order_pay_h3">약관 안내</h3>
 				<hr>
-				<div id="order_terms_box"><input type='checkbox' id="order2_chk" name='order_terms_boxall' onclick='clickall(this)'/>전체 약관 동의</div>
-				<div id="order_terms_box"><input type='checkbox' class="order2_chks" name='order_terms_box' onclick='checkclickall()'/>개인정보 제공 동의(필수)</div>
-				<div id="order_terms_box"><input type='checkbox' class="order2_chks" name='order_terms_box' onclick='checkclickall()'/>개인정보 수집 및 이용 동의(필수)</div>
+				<div id="order_terms_div">
+					<div id="order_terms_box">
+						<input type='checkbox' id="order2_chk" name='order_terms_boxall'
+							onclick='clickall(this)' />전체 약관 동의
+					</div>
+				</div>
+				<div id="order_terms_div">
+					<div id="order_terms_box">
+						<input type='checkbox' class="order2_chks" name='order_terms_box'
+							onclick='checkclickall()' />개인정보 제공 동의(필수)
+					</div>
+					<div class="btn-modal">
+						<img src="images/arrow.jpg" id="img_arrow" alt="arrow">
+					</div>
+				</div>
+				<div id="order_terms_div">
+					<div id="order_terms_box">
+						<input type='checkbox' class="order2_chks" name='order_terms_box'
+							onclick='checkclickall()' />개인정보 수집 및 이용 동의(필수)
+					</div>
+					<div class="btn-modal">
+						<img src="images/arrow.jpg" id="img_arrow" alt="arrow">
+					</div>
+				</div>
 			</div>
-			<div id="order_pay_btn"><button class="order_button" name='order_button' disabled="disabled">결제하기</button></div>
+			<div id="order_pay_btn">
+				<button class="order_button" name='order_button' disabled="disabled">결제하기</button>
+			</div>
 		</div>
-		
+
+	</div>
+</div>
+<div class="modal-overlay">
+	<div class="modal-window">
+	<span class="close-area">X</span>
+		<h3>개인정보 제공 동의(필수)</h3>
+		<hr>
+		<div class="modal_content">
+			<table class="modal_table">
+				<tr id="table_head">
+					<th>제공 받는자</th>
+					<th>제공목적</th>
+					<th>제공정보</th>
+					<th>보유 및 이용기간</th>
+				</tr>
+				<tr>
+					<td>ATHEMA사업자</td>
+					<td>주문상품의 예약 및 고객 관리(고객상담/불만처리)</td>
+					<td>여행자이름, 이메일주소, 연락처, 추가예약정보</td>
+					<td>예약 확정 후 3개월까지</td>
+				</tr>
+			</table>
+			<div>제3자 제공 동의를 거부할 수 있으며, 거부시 서비스 이용이 제한됩니다.</div>
+		</div>
+		<hr>
+		<button class="close-ok">확인</button>
+		<div id="clear"></div>
+	</div>
+</div>
+
+<div class="modal-overlay">
+	<div class="modal-window">
+		<div class="close-area">X</div>
+		<h3>개인정보 수집 및 이용 동의(필수)</h3>
+		<hr>
+		<div class="modal_content">
+			<div>[필수]개인정보 수집 및 이용 동의</div>
+			<table class="modal_table">
+				<tr id="table_head">
+					<th>수집 목적</th>
+					<th>수집 항목</th>
+					<th>보유기간</th>
+				</tr>
+				<tr>
+					<td>상품/서비스의 예약 또는 고객상담/맞춤형 컨텐츠 및 서비스 제공</td>
+					<td>예약자 정보(예약자 이름, 휴대전화 번호, 이메일 주소)</td>
+					<td rowspan="2">회원탈퇴시까지(단, 관계법령에 따름)</td>
+				</tr>
+				<tr>
+					<td>대금 결제/환불 서비스 제공, 주문/예약/거래 내역 조회 서비스 제공</td>
+					<td>신용카드 정보, 주문/예약/거래 내역</td>
+				</tr>
+			</table>
+			<div>동의를 거부할 수 있으며, 동의 거부시 서비스 이용이 제한됩니다.</div>
+
+		</div>
+		<hr>
+		<button class="close-ok">확인</button>
+		<div id="clear"></div>
 	</div>
 </div>
