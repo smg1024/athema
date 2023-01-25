@@ -7,6 +7,8 @@
 <!-- <script type="text/javascript" th:src="@{/js/register.js}"> -->
 
 <script>
+/* 프론트단의 유효성검사
+: 이메일 중복확인 후 속성변경 및 체크완료 이미지 띄우기 */
 function getdata(email) {
 	$.ajax({
 		type: 'POST',
@@ -21,9 +23,9 @@ function getdata(email) {
 					alert("이메일을 입력하세요");
 				} else {
 					alert("사용 가능합니다.");
-					$('#email_hiddenChk').attr("value", "Y")
-					$('#email_check').hide();
-					$('#id_check').show();
+					$('#email_hiddenChk').attr("value", "Y"); /*submit할때 N인지 Y인지 확인*/
+					$('#email_check').hide(); /*keyup있으면 다시 show*/
+					$('#id_check').show(); /*중복체크 완료되면 show*/
 				}
 			}
 		}
@@ -33,20 +35,30 @@ function getdata(email) {
 
 $(document).ready(function(){
 	
+// 	이름 입력해야만 다른 input창에 focus 가능하게 함
 	$('#mem_name').blur(function(){
 		var name = $(this).val();
 		if (name == '') {
 			$(this).focus();
 			$('#span_name').text("이름을 입력하세요");
 		} else {
+// 			한글, 영문자만 입력 가능하도록 정규표현식 작성
+			var reg = /[0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+			if (reg.test(name)) {
+			/*허용된 문자 이외의 글자 들어오면 blur시 공백으로 replace'*/
+				$('#mem_name').val(name.replace(reg,''));
+				$(this).focus();
+			}
 			$('#span_name').text('');			
 		}
 	});
 	
+	// 이메일 형식 체크 : keyup 이벤트로 화면에 띄워주기
 	$('#mem_email').keyup(function(){
 		$('#email_check').show();
-		$('#id_check').hide();
+		$('#id_check').hide();	/*기존에 중복확인 했더라도 keyup 발생하면 다시 중복체크 버튼 띄우기*/
 		var id = $(this).val();
+		// 	문자 및 표시형식 제한은 정규표현식 활용
 		var reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 		if (reg.test(id)) {
 			$('#span_id').text('');
@@ -55,17 +67,20 @@ $(document).ready(function(){
 		}
 	});
 	
+	// 중복확인 버튼 클릭 이벤트
 	$('#email_check').click(function(){
 		var email = $('#mem_email').val();
+		// span에 알림 있으면 alert
 		if ($('#span_id').text() != '') {
 			alert("올바른 이메일 형식을 입력하세요");
-			return;
+			return false;
 		} else {
-			getdata(email);
+			// span에 경고 글자 없으면 DB에서 email 중복조회 
+			getdata(email);		/*AJAX*/
 		}
 	});
 		
-	
+	// 비밀번호 : 정규표현식 활용, keyup 이벤트 > span으로 문자 띄우기
 	$('#mem_pwd').keyup(function(){
 		var pwd = $(this).val();
 		var reg = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,15}$/;
@@ -76,6 +91,7 @@ $(document).ready(function(){
 		}
 	});	
 	
+	// 비밀번호 확인 : 위 input val과 같으면 통과
 	$('#mem_pwd_confirm').change(function(){
 		var pwd_con = $(this).val();
 		var pwd = $('#mem_pwd').val();
@@ -88,22 +104,28 @@ $(document).ready(function(){
 		}
 	});
 	
+	// 닉네임 제한 : keyup, 정규표현식 활용
 	$('#mem_nick').on('keyup',function(){
 		var reg = /[0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
 		var v = $('#mem_nick').val();
 		if (reg.test(v)) {
 			$('#mem_nick').val(v.replace(reg,''));
+			/*허용된 문자 이외의 글자 들어오면 바로 공백으로 replace'*/
 		}
 	});
 	
+	// 휴대폰 번호 입력 제한
+	// 0-9 이외의 글자 들어오면 공백으로 replace, 11자 입력시 자동으로 (3-4-4)로 하이픈 입력되록 함
 	$('#mem_hp').keyup(function() {
 		$(this).val($(this).val().replace(/[^0-9]/g,"").replace(/([0-9]{3})+([0-9]{4})+([0-9]{4})/, "$1-$2-$3").replace("--","-"))
 	});
 	
+	// 동의항목 : 전체 선택 체크박스
 	$('input[name="chkAll"]').click(function(){
 		$('.chk').prop('checked', this.checked);
 	});
 	
+	// 개별 체크박스 2개 중 하나라도 체크 안되어있으면 chkAll > 해제되게끔 만들기
 	$('.chk').click(function(){
 		if ($('.chk:checked').length == 2) {
 			$('.chkAll').prop('checked', true);
@@ -112,55 +134,66 @@ $(document).ready(function(){
 		}
 	});
 	
+	// submit 버튼 클릭 > 유효성 검사 시작
 	$('#register_submit').click(function(){
-		if($('#mem_name').val() == '') {
-			alert("이름을 입력하세요");
+		
+		// 이름 비어있거나 1글자만 있을 시 알림창 띄우고 focus 이동
+		if($('#mem_name').val() == '' || $('#mem_name').val().length < 2) {
+			alert("2글자 이상 이름을 입력하세요");
 			$('#mem_name').focus();
 			return false;
 		}
 		
+		// 중복확인 안 했으면 알림창 띄우고 focus 이동
 		if ($('#email_hiddenChk').val() == 'N') {
 			alert("이메일 중복검사를 해주세요");
 			$('#mem_email').focus();
 			return false;
 		} 
 		
+		// 비밀번호 비어있을 시 알림창 띄우고 focus 이동
 		if ($('#mem_pwd').val() == '') {
 			alert("비밀번호를 입력하세요");
 			$('#mem_pwd').focus();
 			return false;
 		}
 		
+		// 비밀번호 확인 비어있을 시 알림창 띄우고 focus 이동
 		if ($('#mem_pwd_confirm').val() == '') {
 			alert("비밀번호를 확인하세요");
 			$('#mem_pwd_confirm').focus();
 			return false;
 		}
 		
+		// 비밀번호 형식 잘못되면 알림창 띄우고 focus 이동
 		if ($('#span_pwd').text() != '') {
 			alert("비밀번호 형식이 잘못되었습니다");
 			$('#mem_pwd').focus();
 			return false;
 		}
 		
+		// 비밀번호 확인과 비밀번호가 맞지 않으면 알림창 띄우고 focus 이동
 		if (($('#mem_pwd').val()) != ($('#mem_pwd_confirm').val())) {
 			alert("비밀번호를 확인하세요");
 			$('#mem_pwd_confirm').focus();
 			return ralse;
 		}
 		
+		// 닉네임 비어있을 시 알림창 띄우고 focus 이동
 		if ($('#mem_nick').val() == '') {
 			alert("닉네임을 입력하세요");
 			$('#mem_nick').focus();
 			return false;
 		}
 		
+		// 전화번호 11자 미만일 시 알림창 띄우고 focus 이동
 		if ($('#mem_hp').val().length < 11) {
 			alert("올바른 전화번호를 입력하세요");
 			$('#mem_hp').focus();
 			return false;
 		}
 		
+		// 필수항목 체크 안되어있으면 알림창 띄우고 focus 이동
 		if ($('.chkAll').is(":checked") == false) {
 			alert("개인정보 수집 동의가 필요합니다");
 			$('.chkAll').focus();
@@ -170,6 +203,7 @@ $(document).ready(function(){
 		/*date 형식 YYYYMMDD로 변경해주기*/
 // 		let datetmp = $('#mem_birth').val().replace(/-/g, '');
 
+		// 유효성검사 전체 항목 통과시 form > submit > addmember로 이동 (MemberController)
 		$('#register_form').attr({
 			method:'post',
 			action:'[[@{/member/addmember}]]'
@@ -219,7 +253,7 @@ function loginWithKakao() {
 		        <!-- 이름 -->
 				<div class="field">
         			<b>이름</b>
-           			<input name="mem_name" id="mem_name" type="text">
+           			<input name="mem_name" id="mem_name" type="text" placeholder="한글, 영문만 입력">
            			<span id="span_name"></span>
      			</div>
 		        <!-- 아이디(이메일) -->
