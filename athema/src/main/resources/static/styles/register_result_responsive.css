@@ -63,26 +63,6 @@
 
 @media only screen and (max-width: 1199px)
 {
-	.register_home
-	{
-		width: 100%;
-		height: 2400px;
-		background: transparent;
-	}
-	
-	.register_content
-	{
-	position: absolute;
-	width: 90%;
-	top: 250px;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-	}
-	
 	.main_nav_container
 	{
 		margin-right: 121px;
@@ -101,8 +81,31 @@
 		padding-left: 74px;
 	}
 	
-	#email_check {
-	width: 80px;
+	.result_fail_content
+{
+	position: absolute;
+	width: 70%;
+	top: 276px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.result_ok_content
+{
+	position: absolute;
+	width: 70%;
+	top: 276px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
 }
 
 /************
@@ -129,26 +132,6 @@
 
 @media only screen and (max-width: 991px)
 {
-	.register_home
-	{
-		width: 100%;
-		height: 2400px;
-		background: transparent;
-	}
-	
-	.register_content
-	{
-	position: absolute;
-	width: 90%;
-	top: 250px;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-	}
-	
 	.main_nav_container
 	{
 		display: none;
@@ -209,13 +192,6 @@
 	{
 		display: block;
 	}
-	
-	.box_register
-	{
-	width: 50%;
-	margin-top: 10px;
-	margin: auto;
-	}
 }
 
 /************
@@ -242,14 +218,7 @@
 
 @media only screen and (max-width: 768px)
 {
-	.box_register
-	{
-	width: 80%;
-	margin-top: 10px;
-	margin: auto;
-	}
-	
-	.register_title
+	.home_title
 	{
 		font-size: 48px;
 	}
@@ -313,10 +282,10 @@
 {
 	p{font-size: 13px;}
 	h1{font-size: 28px;}
-/* 	.top_bar */
-/* 	{ */
-/* 		display: none; */
-/* 	} */
+	.top_bar
+	{
+		display: none;
+	}
 	.button
 	{
 		height: 44px;
@@ -415,18 +384,31 @@
 	{
 		font-size: 21px;
 	}
-	.register_home
+	.register_result
 	{
 		width: 100%;
-		height: 2400px;
+		height: 375px;
 		background: transparent;
 	}
+
+	.result_ok_content
+	{
+		position: absolute;
+		width: 70%;
+		top: 156px;
+		left: 50%;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-o-transform: translateX(-50%);
+		transform: translateX(-50%);
+	}
 	
-	.register_content
+	.result_fail_content
 	{
 	position: absolute;
-	width: 90%;
-	top: 250px;
+	width: 70%;
+	top: 136px;
 	left: 50%;
 	-webkit-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
@@ -434,28 +416,10 @@
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
 	}
-	
-	.box_register
-	{
-	width: 80%;
-	margin-top: 10px;
-	margin: auto;
-	}
 	.register_title
 	{
-	font-size: 24px;
+		font-size: 24px;
 	}
-	
-	#email_check {
-	width: 80px;
-	height: 35px;
-	margin: 11px 0 6px 13px;
-	padding: 5px 5px 5px 8px;
-	font-size: 0.8em;
-	letter-spacing: 1px;
-	text-align: center;
-	}
-	
 	.intro_title
 	{
 		font-size: 21px;
@@ -536,5 +500,4 @@
 @media only screen and (max-width: 400px)
 {
 	
-}
 }

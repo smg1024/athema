@@ -12,10 +12,12 @@ public class AjaxController {
 	@Autowired
 	MemberService mservice;
 	
+	// 이메일 중복체크
 	@RequestMapping("/checkemail")
 	public int checkemail(String email) {
 		int result = 0;
 		try {
+			// 이메일 조회되면 cnt값이 result에 반영됨
 			result = mservice.getemail(email);
 		} catch (Exception e) {
 			e.printStackTrace();
