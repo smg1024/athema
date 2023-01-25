@@ -170,30 +170,11 @@ $(document).ready(function(){
 		/*date 형식 YYYYMMDD로 변경해주기*/
 // 		let datetmp = $('#mem_birth').val().replace(/-/g, '');
 
-		$.ajax({
-			url:'[[@{/checkemail}]]',
-			method: 'post',
-			data: {'email':$('#mem_email').val()},
-			success: function(data){
-				if(data > 0) {
-					alert("중복된 이메일입니다.");
-					$('#mem_email').focus();
-				} else {
-					$('#register_form').attr({
-						method:'post',
-						data:{
-							mem_email: $('#mem_email').val(),				
-							mem_pwd: $('#mem_pwd').val(),				
-							mem_name: $('#mem_name').val(),				
-							mem_nick: $('#mem_nick').val(),				
-							mem_hp: $('#mem_hp').val(),				
-						},
-						action:'/member/addmember'
-					});
-					$('#register_form').submit(); 	
-				}
-			}
+		$('#register_form').attr({
+			method:'post',
+			action:'[[@{/member/addmember}]]'
 		});
+		$('#register_form').submit(); 
 	});
 });
 	
@@ -245,10 +226,12 @@ function loginWithKakao() {
 				<div class="field">
         			<b>이메일</b>
         			<input type="hidden" id="email_hiddenChk" name="checked_id" value="N">
-           			<input id="mem_email" name="mem_email" type="text" placeholder="example@athema.com" style="width:270px">
-           			<input id="email_check" type="button" value="중복검사">
-           			<img th:src="@{/images/id_check.png}" id="id_check" style="width:30px; margin-left:10px; display:none;">
-    			    <span id="span_id"></span>
+           			<div class="email_field">
+           				<input id="mem_email" name="mem_email" type="text" placeholder="example@athema.com">
+           				<input id="email_check" type="button" value="중복검사">
+           				<img th:src="@{/images/id_check.png}" id="id_check" style="width:30px; margin-left:10px; display:none;">
+    			    </div>
+    			  		<span id="span_id"></span>
      			</div>
 		        <!-- 비밀번호 -->
       			<div class="field">
@@ -274,11 +257,11 @@ function loginWithKakao() {
 		        </div>
 
 		        <!-- 생년월일 -->
-<!-- 		        <div class="field birth"> -->
-<!-- 					<b>생년월일<span style="color:#808080; font-size:0.75em;"> (선택사항)</span></b> -->
-<!-- 					<input type="date" name="mem_birth" id="mem_birth" data-placeholder="날짜 선택" required -->
-<!-- 					aria-required="true"></input> -->
-<!-- 				</div> -->
+		        <div class="field birth">
+					<b>생년월일<span style="color:#808080; font-size:0.75em;"> (선택사항)</span></b>
+					<input type="date" name="mem_birth" id="mem_birth" data-placeholder="날짜 선택" required
+					aria-required="true"></input>
+				</div>
 				
 				<!-- 개인정보 수집 동의 -->
 				<div class="join_box">

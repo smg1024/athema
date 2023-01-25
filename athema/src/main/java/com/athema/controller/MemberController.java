@@ -7,18 +7,18 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.athema.dto.MemberDTO;
 import com.athema.service.MemberService;
 
-@RestController
+@Controller
 @RequestMapping("/member")
 public class MemberController {
 	
@@ -52,14 +52,20 @@ public class MemberController {
 	}
 
 	@RequestMapping("/addmember")
-	public String addmember(Model model, MemberDTO member, HttpSession session) {
+	public String addmember(Model model, MemberDTO member) {
+		int cnt = 0;
 		try {
 			System.out.println(member);
-			mservice.register(member);
-			session.setAttribute("loginmember", member);
-			model.addAttribute("content", "registerok");
-			model.addAttribute("remail", member.getMem_email());
-			model.addAttribute("rname", member.getMem_name());
+			cnt = mservice.getemail(member.getMem_email());
+			if (cnt > 0) {
+				model.addAttribute("content", "registerfail");
+				model.addAttribute("femail", member.getMem_email());
+			} else {
+				mservice.register(member);
+				model.addAttribute("content", "registerok");
+				model.addAttribute("remail", member.getMem_email());
+				model.addAttribute("rname", member.getMem_name());
+			}
 		} catch (Exception e) {
 			model.addAttribute("content", "registerfail");
 			model.addAttribute("femail", member.getMem_email());

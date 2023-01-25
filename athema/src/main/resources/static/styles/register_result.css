@@ -54,7 +54,7 @@ p
 	font-size: 14px;
 	line-height: 2;
 	font-weight: 400;
-	color: #929191;
+	color: #515151;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
@@ -63,8 +63,8 @@ p a
 {
 	display: inline;
 	position: relative;
-	color: inherit;
-	border-bottom: solid 1px #ffa07f;
+	color: #400080;
+	border-bottom: solid 1px #8080c0;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -74,6 +74,7 @@ p a
 a, a:hover, a:visited, a:active, a:link
 {
 	text-decoration: none;
+	color: #400080;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
@@ -87,6 +88,7 @@ p a:hover
 {
 	color: #FFFFFF;
 	background: #ffa07f;
+	border-bottom: none;
 }
 p a:hover::after
 {
@@ -104,7 +106,7 @@ h1{font-size: 48px;}
 h2{font-size: 36px;}
 h3{font-size: 24px;}
 h4{font-size: 18px;}
-h5{font-size: 14px;}
+h5{font-size: 14px; color: #9257BC}
 h1, h2, h3, h4, h5, h6
 {
 	font-family: 'Open Sans', sans-serif;
@@ -209,46 +211,7 @@ section
 {
 	padding: 0px !important;
 }
-.button
-{
-	display: inline-block;
-	height: 53px;
-	border-radius: 27px;
-	overflow: hidden;
-	z-index: 1;
-}
-.button_bcg
-{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 200%;
-	height: 100%;
-	background: linear-gradient(to right, #fa9e1b, #8d4fff, #fa9e1b);
-	z-index: -1;
-	-webkit-transition: all 400ms ease;
-	-moz-transition: all 400ms ease;
-	-ms-transition: all 400ms ease;
-	-o-transition: all 400ms ease;
-	transition: all 400ms ease;
-}
-.button:hover .button_bcg
-{
-	left: -100%;
-}
-.button a
-{
-	display: block;
-	font-size: 13px;
-	font-weight: 700;
-	color: #fff;
-	text-transform: uppercase;
-	line-height: 53px;
-	padding-left: 46px;
-	padding-right: 46px;
-	white-space: nowrap;
-	z-index: 2;
-}
+
 .button span
 {
 	display: inline-block;
@@ -718,100 +681,6 @@ section
 	background: #fa9e1c;
 }
 
-/*********************************
-4. Home
-*********************************/
-
-.home
-{
-	width: 100%;
-	height: 465px;
-	background: transparent;
-}
-.home_background
-{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
-}
-.home_content
-{
-	position: absolute;
-	bottom: 106px;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-}
-.home_title
-{
-	font-size: 72px;
-	font-weight: 800;
-	color: #FFFFFF;
-	text-transform: uppercase;
-}
-
-
-
-/*********************************
-9. Add
-*********************************/
-
-.add
-{
-	width: 100%;
-}
-.add_background
-{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
-}
-.add_container
-{
-	padding-top: 52px;
-	padding-bottom: 64px;
-}
-.add_content
-{
-	padding-left: 151px;
-}
-.add_title
-{
-	font-weight: 600;
-	text-transform: uppercase;
-	color: #FFFFFF;
-	padding-left: 2px;
-}
-.add_subtitle
-{
-	font-size: 16px;
-	font-weight: 400;
-	color: #FFFFFF;
-	padding-left: 7px;
-}
-.add_subtitle span
-{
-	font-size: 18px;
-	font-weight: 700;
-}
-.add_button
-{
-	margin-top: 30px;
-}
-
 
 /*********************************
 11. Footer
@@ -1129,21 +998,21 @@ section
 }
 
 /*********************************
-10. register_only
+10. register_result_only
 *********************************/
 
-.register_home
+.register_result
 {
 	width: 100%;
-	height: 2400px;
+	height: 500px;
 	background: transparent;
 }
 
-.register_content
+.result_fail_content
 {
 	position: absolute;
-	width: 70%;
-	top: 346px;
+	width: 50%;
+	top: 296px;
 	left: 50%;
 	-webkit-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
@@ -1152,209 +1021,16 @@ section
 	transform: translateX(-50%);
 }
 
-.register_title
+.result_ok_content
 {
-	text-align: center;
-	font-size: 72px;
-	font-weight: 800;
-	color: black;
-	text-transform: uppercase;
-}
-
-.title_desc
-{
-	text-align: center;
-	font-size: 20px;
-	color: black;
-	margin: 15px auto 50px;
-}
-
-.box_register
-{
-	width: 35%;
-	margin-top: 10px;
-	margin: auto;
-}
-
-.box_register b:not([name=private])
-{
-    /* border: 1px solid #000; */
-    display: block; /*수직 정렬 */
-    margin-bottom: 5px;
-    color: #350a4e;
-    font-weight: normal;
-}
-
-.box_register input:not([name=mem_email])
-{
-	width: 100%;
-	margin-top: 6px;
-	height: 2em;
-	padding: 20px 15px;
-	font-size: 0.8em;
-	letter-spacing: 3px;	
-	outline-color: #C8C8C8;
-}
-
-.email_field
-{
-	display: flex;
-	align-items: center;
-}
-.box_register input[name="mem_email"] {
-	width: 80%;
-	margin-top: 6px;
-	height: 2em;
-	padding: 20px 15px;
-	font-size: 0.8em;
-	letter-spacing: 3px;	
-	outline-color: #C8C8C8;
-}
-
-#email_check {
-	width: 20%;
-	height: 35px;
-	margin: 11px 0 6px 13px;
-	padding: 5px 5px 5px 8px;
-	font-size: 0.8em;
-	letter-spacing: 1px;
-	text-align: center;
-}
-
-input[type='date']::before {
-  content: attr(data-placeholder);
-  width: 100%;
-  color: #808080;
-}
-input[type='date']:focus::before,
-input[type='date']:valid::before {
-  display: none;
-}
-
-.box_register input:focus, .box_register select:focus
-{
-    outline: 1px solid #350a4e;
-}
-
-.box_register .field
-{
-	font-size: 1.3em;
-    margin :30px auto;
-}
-
-.join_box { padding: 15px; margin: 55px 0; border: 0.5px solid lightgray; }
-
-.private
-{
-	text-align: center;
-	font-weight: 900;
-	font-size: 1.3em;
-	margin: 30px 20px 20px 20px;
-    color: #350a4e;
-    font-weight: normal;
-}
-
-.checkBox b { color: gray; padding: 7px 0 0 0; }
-
-.checkBox div { margin: 13px 0 2px 0; }
-
-.checkBox .clearfix
-{
-	display: flex; align-items: center;
-}
-
-.clearfix input:not([name=chkAll])
-{ 
-	width: 30px;
-	position: relative;
-	transform: scale(0.7);
-	margin: 5px; bottom: -2px;
-}
-
-.clearfix input[name=chkAll]
-{
-	width: 30px;
-	position: relative;
-	transform: scale(0.7);
-	margin: 5px 1px 5px -5px;
-}
-
-.checkBox textarea
-{
-	padding: 7px 10px;
-	width: 99%;
-	height: 114px;
-	background-color: #F7F7F7;
-	color: #888;
-}
-
-#register_submit
-{
-	width: 100%;
-	background: #b68bf5;
-	display: inline-block;
-	height: 53px;
-	line-height: 53px;
-	text-align: center;
-	border-radius: 12px;
-	overflow: hidden;
-	color: #FFFFFF;
-	font-size: 1.4em;
-	font-weight: 800;
-	letter-spacing: 2px;
-}
-
-.login_add_subtitle span
-{
-	font-size: 18px;
-	font-weight: 700;
-}
-
-.login_add_button
-{
-	margin-top: 40px;
-	width: 30%;
-	text-align: center;
-}
-
-.login_add_button a
-{
-	font-size: 1.3em;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-}
-
-.login_append 
-{
-	margin-top: 20px;
-}
-
-.txt_find > ul > li
-{
-	margin: 30px;
-	display: inline-block;
-}
-
-.sns_content
-{
+	position: absolute;
 	width: 50%;
-	margin: auto;
-	margin-bottom: 70px;
-	text-align: center;
+	top: 286px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
 }
 
-.sns_register_txt
-{
-	display: inline-block;
-    color: rgba(0, 0, 0, 0.55);
-    font-size: 15px;
-	font-weight: 999;
-    margin: 10px auto 20px;
-}
-
-form span {
-	color: #96051D;
-	margin: 3px 0 0 0;
-	font-size: 0.7em;
-	display: block;
-}
