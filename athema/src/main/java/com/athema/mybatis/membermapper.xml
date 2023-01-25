@@ -9,6 +9,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		FROM member WHERE mem_code=#{mem_code}
 	</select>
 	
+<!-- 	이메일로 SELECT -->
+	<select id="searchemail" parameterType="String" resultType="MemberDTO">
+		SELECT mem_code, mem_email, mem_pwd, mem_name, mem_hp, mem_nick, mem_birth
+		FROM member WHERE mem_email=#{mem_email}
+	</select>
+
 <!-- 	이메일 중복검사 -->
 	<select id="selectemail" parameterType="String" resultType="int">
 		SELECT count(mem_email) FROM member WHERE mem_email=#{mem_email}

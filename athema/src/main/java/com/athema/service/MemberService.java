@@ -51,5 +51,8 @@ public class MemberService implements AthemaService<Integer, MemberDTO> {
 	public int getemail(String email) throws Exception {
 		return mapper.selectemail(email);
 	}
- 
+	
+	public MemberDTO searchemail(String email) throws Exception {
+		return mapper.searchemail(email);
+	}
 }

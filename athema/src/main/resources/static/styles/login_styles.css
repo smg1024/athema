@@ -1214,10 +1214,17 @@ section
 	display: inline-block;
 }
 
+.sns_login
+{
+	display: flex;
+	justify-content: center;
+}
+
 .sns_login > ul > li
 {
 	margin: 30px 20px;
 	display: inline-block;
+	text-align: center;
 }
 
 .sns_login_txt

@@ -23,8 +23,16 @@
 				<div class="sns_login_txt">SNS로 로그인하기</div>
 				<div class="sns_login">
 					<ul>
-						<li><a href="#">KAKAO</a></li>
-						<li><a href="https://www.naver.com">NAVER</a></li>
+						<li>
+						<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+	 					<img th:src="@{/images/member/icon_kakao.png}" width="50px" alt="카카오 로그인 아이콘"/></a>
+						<p id="kakao-token-result"></p>
+						</li>
+						<li>
+						<a id="naver-login-btn" href="javascript:loginWithNaver()">
+	 					<img th:src="@{/images/member/icon_naver.png}" width="50px" alt="네이버 로그인 아이콘"/></a>
+						<p id="naver-token-result"></p>
+						</li>
 					</ul>
 				</div>
 				<div class="txt_find">
