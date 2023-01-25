@@ -4,7 +4,7 @@
 /******************************
 
 [Table of Contents]
-
+0. me
 1. Fonts
 2. Body and some general stuff
 3. Header
@@ -35,7 +35,140 @@
 
 
 ******************************/
+/***********
+0. me
+***********/
+.ord{width:78%; overflow: hidden; margin: 50px auto; margin-top:130px; color:black;}
+.mypage_menu{float: left; font-weight: 500;}
+.ord_main{width:75%; padding:10px 0; float: left; margin-left: 5%;}
+#div_line{margin-left:10px; border-left: 2px solid rgba(0,0,0,.3);}
+#ord_div{display:block; padding:8px 0; font-size: 15px;}
 
+.mypage_menu > ul{
+padding: 10px 0;
+}
+.mypage_menu > ul>li{
+padding: 4px 0;
+}
+a{text-decoration:none;color:inherit;}
+
+#mypage_menu_title{
+	color:#969696;
+	font-size: 16px;
+}
+.mypage_menu>ul>li:hover>a{
+	color :#8d4fff;
+	font-weight:800;
+}
+.mypage_menu > ul > li > a{
+	color:#282828;
+	font-size: 18px;
+}
+
+#travel_menu{
+position: relative;
+ z-index: 597;
+ }
+#submenu{
+border:5px solid red;
+width:130px;
+display: none; 
+position: absolute;
+border: 3px solid #8d4fff;
+border-radius:10px;
+top:5px;
+ font-size: 18px;
+ padding: 10px 10px;
+ color:#505050;
+ z-index: 599;
+  background: #ffffff;
+}
+
+#travel_menu:hover > #submenu{display: inline-block;}
+#submenu > li >a:hover {
+	color :#8d4fff;
+	font-weight:800;
+}
+.view_detail{
+z-index: 596;
+	padding:4px 18px;
+	border-radius: 10px;
+	border:0px;
+	float: right;
+	margin: 0 10px 10px;
+	background-color:#C8D7FF;
+	border: 2px solid #BECDFF;
+	cursor: pointer;
+}
+.view_detail:hover {
+	background-color: #7B68EE;
+	color:white;
+	border: 2px solid #7B68EE;
+}
+.close_detail{
+	display:none;
+	padding:4px 18px;
+	border:0px;
+	border-radius: 10px;
+	float: right;
+	margin: 0 10px 10px;
+	background-color:#C8D7FF;
+	border: 2px solid #BECDFF;
+	cursor: pointer;
+}
+.close_detail:hover {
+	background-color: #7B68EE;
+	border: 2px solid #7B68EE;
+	color:white;
+}
+#day{
+	font-size: 18px;
+	padding : 5px 20px;
+	display: inline-block;
+	margin-left: 10px;
+}
+.ord_content{
+	width:80%;
+	margin: 0 0 35px 30px;
+	border: 2px solid ;
+	border-radius: 10px;
+	overflow: auto;
+}
+
+.ord_hidden{
+	display: none;
+	padding: 15px 0 5px 0;
+	font-weight: 500;
+}
+#ord_title{
+	margin:auto;
+	text-align: center;
+	font-size: 18px;
+	padding: 20px 0 0 0;
+	font-weight: 600;
+}
+	#img_item{
+		position: relative;
+		display: inline-block;
+	    width: 150px;
+	    height: 150px;
+	    border-radius:8px;
+	    margin: 0 10px 10px; 
+	    vertical-align:top;
+	    float: left;
+	}
+	#img_item img{
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    transform: translate(50, 50);
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+	    margin: auto;
+	    
+	   	
+	}
 /***********
 1. Fonts
 ***********/
