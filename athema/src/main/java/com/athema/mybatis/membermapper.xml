@@ -5,13 +5,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.athema.mapper.MemberMapper">
 	
 	<select id="select" parameterType="int" resultType="MemberDTO">
-		SELECT mem_code, mem_email, mem_pwd, mem_name, mem_hp, mem_nick, mem_birth
+		SELECT mem_code, mem_email, mem_pwd, mem_name, mem_hp, mem_nick, mem_birth, mem_date, mem_auth, mem_del, mem_deldate, provider
 		FROM member WHERE mem_code=#{mem_code}
 	</select>
 	
-<!-- 	이메일로 SELECT -->
+<!-- 	이메일로 찾기 -->
 	<select id="searchemail" parameterType="String" resultType="MemberDTO">
-		SELECT mem_code, mem_email, mem_pwd, mem_name, mem_hp, mem_nick, mem_birth
+		SELECT mem_code, mem_email, mem_pwd, mem_name, mem_hp, mem_nick, mem_birth, mem_date, mem_auth, mem_del, mem_deldate, provider
 		FROM member WHERE mem_email=#{mem_email}
 	</select>
 
