@@ -54,6 +54,7 @@ public class OauthController {
 				if (member.getMem_del() == 0 && member.getProvider() != null) {
 					System.out.println("탈퇴코드: " + member.getMem_del() + ", 서비스 제공자: " + member.getProvider());
 					session.setAttribute("loginMember", member);
+					System.out.println("로그인 정보 : "+member);
 					model.addAttribute("content", "index");
 					return "main";
 				} else {

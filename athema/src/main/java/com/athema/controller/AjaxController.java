@@ -24,4 +24,5 @@ public class AjaxController {
 		}
 		return result;
 	}
+
 }

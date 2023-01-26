@@ -192,6 +192,21 @@
 	{
 		display: block;
 	}
+	
+	.login_fail_content
+	{
+		position: absolute;
+		width: 70%;
+		top: 235px;
+		left: 50%;
+		padding: 40px 30px 30px 25px;
+		background: #FDF7FF;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-o-transform: translateX(-50%);
+		transform: translateX(-50%);
+	}		
 }
 
 /************
@@ -263,6 +278,22 @@
 	{
 		display: none;
 	}
+	
+	.login_fail_content
+	{
+		position: absolute;
+		width: 70%;
+		top: 225px;
+		left: 50%;
+		padding: 40px 30px 30px 25px;
+		background: #FDF7FF;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-o-transform: translateX(-50%);
+		transform: translateX(-50%);
+	}	
+	
 }
 
 /************
@@ -416,6 +447,22 @@
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
 	}
+	
+	.login_fail_content
+	{
+		position: absolute;
+		width: 60%;
+		top: 130px;
+		left: 50%;
+		padding: 60px 40px 40px 45px;
+		background: #FDF7FF;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-o-transform: translateX(-50%);
+		transform: translateX(-50%);
+	}
+	
 	.register_title
 	{
 		font-size: 24px;

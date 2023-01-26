@@ -2,6 +2,39 @@
 <link rel="stylesheet" type="text/css" href="styles/login_responsive.css">
 <link rel="stylesheet" type="text/css" href="styles/login_styles.css">
 
+<!-- JavaScript -->
+<script>
+
+function enterkey() {
+    if (window.event.keyCode == 13) {
+         // 엔터키가 눌렸을 때 submit
+         $('#login_submit').attr({
+			method:'post',
+			action:'[[@{/member/loginimpl}]]'
+		});
+		$('#login_submit').submit(); 
+    }
+}
+
+$(document).ready(function(){
+	$('#login_submit').click(function(){
+		if ($('#mem_email').val() == '') {
+			alert("이메일을 입력하세요");
+			return false;
+		} else if ($('#mem_pwd').val() == '') {
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
+				
+		$('#login_form').attr({
+			method:'post',
+			action:'[[@{/member/loginimpl}]]'
+		});
+		$('#login_form').submit(); 
+	});
+});
+</script>
+
 <!-- login_home -->
 
 <div class="login_home">
@@ -12,19 +45,19 @@
 			<fieldset style="text-align:center">
 				<div class="box_login" >
 					<div class="inp_text">
-					<input type="email" id="loginId" name="loginId" placeholder="ID">
-					<input type="password" id="loginPw" name="password"	placeholder="PASSWORD">
+					<input type="email" id="mem_email" name="mem_email" placeholder="E-MAIL" onkeyup="enterkey()">
+					<input type="password" id="mem_pwd" name="mem_pwd" placeholder="PASSWORD" onkeyup="enterkey()">
 					</div>
 				</div>
 				<div class="button login_add_button">
 					<div class="button_bcg"></div>
-					<a href="#">login</a>
+					<a href="#" id="login_submit">login</a>
 				</div>
 				<div class="sns_login_txt">SNS로 로그인하기</div>
 				<div class="sns_login">
 					<ul>
 						<li>
-						<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+						<a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=9740cda4f593e49b4bf7b3235435574d&redirect_uri=http://127.0.0.1/oauth/kakao&response_type=code">
 	 					<img th:src="@{/images/member/icon_kakao.png}" width="50px" alt="카카오 로그인 아이콘"/></a>
 						<p id="kakao-token-result"></p>
 						</li>
@@ -38,7 +71,7 @@
 				<div class="txt_find">
 					<ul>
 						<li><a href="#">아이디/비밀번호 찾기</a></li>
-						<li><a href="#">회원이 아니신가요?</a></li>
+						<li><a th:href="@{/register}">회원이 아니신가요?</a></li>
 					</ul>
 				</div>
 			</fieldset>

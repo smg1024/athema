@@ -1034,3 +1034,28 @@ section
 	transform: translateX(-50%);
 }
 
+/*********************************
+10. loginfail
+*********************************/
+
+.login_result
+{
+	width: 100%;
+	height: 510px;
+	background: transparent;
+}
+
+.login_fail_content
+{
+	position: absolute;
+	width: 60%;
+	top: 226px;
+	left: 50%;
+	padding: 60px 40px 40px 45px;
+	background: #FDF7FF;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+}

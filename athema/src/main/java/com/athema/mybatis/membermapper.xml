@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	</select>
 	
+<!-- 	회원가입 -->
 	<insert id="insert" parameterType="MemberDTO">
 		INSERT INTO member VALUES (mem_code,#{mem_email},#{mem_pwd},#{mem_name},#{mem_hp},#{mem_nick},#{mem_birth},NOW(),'M',0,null,#{provider})
 	</insert>
