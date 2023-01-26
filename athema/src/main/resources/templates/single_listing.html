@@ -1,3 +1,5 @@
+<!-- attribute : item -->
+
 <!-- SINGLE_LISTING -->
 <link rel="stylesheet" type="text/css" href="styles/single_listing_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/single_listing_responsive.css">
@@ -228,7 +230,7 @@
 						<!-- Title -->
 						<div class="hotel_title_container d-flex flex-lg-row flex-column">
 							<div class="hotel_title_content">
-								<h1 class="hotel_title">경주 대릉원 첨성대 야경</h1>
+								<h1 class="hotel_title"><div th:text="${item.item_name}"></div></h1>
 								<div class="rating_r rating_r_2 hotel_rating">
 									<i></i>
 									<i></i>
@@ -236,7 +238,7 @@
 									<i></i>
 									<i></i>
 								</div>
-								<div class="hotel_location">경북 경주시 인왕동 839-1번지</div>
+								<div class="hotel_location" th:text=${item.item_loc}></div>
 							</div>
 							<div class="hotel_title_button ml-lg-auto text-lg-right">
 								<div class="button book_button trans_200"><a href="#">예약하기<span></span><span></span><span></span></a></div>
@@ -256,7 +258,7 @@
 										<div class="hotel_review_title">very good</div>
 										<div class="hotel_review_subtitle">100 reviews</div>
 									</div>
-									<div class="hotel_review_rating text-center">8.1</div>
+									<div class="hotel_review_rating text-center">8.1</div><!-- review평균평점 구해서 넣기 -->
 								</div>
 							</div>
 						</div>
@@ -372,7 +374,7 @@
 						<!-- Hotel Info Text -->
 
 						<div class="hotel_info_text">
-							<p>경주에서도 야경이 아름다운 문화재 3곳을 한 번에 둘러볼 수 있는 상품</p>
+							<p th:text="${item.item_detail}"></p>
 						</div>
 
 						<!-- Hotel Info Tags -->

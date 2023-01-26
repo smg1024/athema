@@ -26,7 +26,11 @@ public class ItemDTO {
 	private Date rdate;
 	private int exp_days;
 	
+	// 상품의 옵션 정보
 	private int opt_code;
 	private int item_price;
 	private String opt_name;
+	
+	// 상품의 평균 평점
+	private double avg_rating;
 }

@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.athema.mapper.ItemMapper">
 	
 	<select id="select" parameterType="Integer" resultType="ItemDTO">
-	SELECT * FROM item WHERE item_name LIKE '%${param}%'
+	SELECT * FROM item WHERE item_code=${item_code}
 	</select>
 	<select id="selectall" resultType="ItemDTO">
 	SELECT * FROM item

@@ -17,18 +17,21 @@ public class MainController {
 	ItemService iservice;
 	
 	@RequestMapping("")
-	public String main() {
-		return "index";
+	public String main(Model model) {
+		model.addAttribute("content", "index");
+		return "main";
 	}
 	
 	@RequestMapping("/main")
-	public String main2() {
-		return "index";
+	public String main2(Model model) {
+		model.addAttribute("content", "index");
+		return "main";
 	}
 
 	@RequestMapping("/index")
-	public String index() {
-		return "index";
+	public String index(Model model) {
+		model.addAttribute("content", "index");
+		return "main";
 	}
 	
 	@RequestMapping("/login")
