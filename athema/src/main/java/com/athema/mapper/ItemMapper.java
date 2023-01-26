@@ -11,6 +11,6 @@ import com.athema.frame.AthemaMapper;
 @Repository
 @Mapper
 public interface ItemMapper extends AthemaMapper<Integer, ItemDTO>{
-	public List<ItemDTO> item_price(Integer k) throws Exception;
+	public List<ItemDTO> options(Integer k) throws Exception;
 
 }

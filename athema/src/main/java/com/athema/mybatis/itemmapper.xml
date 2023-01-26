@@ -17,10 +17,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	UPDATE item set item_name=#{item_name}, item_loc=#{item_loc}, item_detail=#{item_detail}, cate_code=#{cate_code}, lat=#{lat}, lng=#{lng}, exp_days=#{exp_days})
 	</update>
 	<delete id="delete" parameterType="Integer">
-	DELETE FROM item WHERE item_code=#{item_code}
+	DELETE FROM item WHERE item_code=${item_code}
 	</delete>
 	
-	<select id="item_price" parameterType="Integer" resultType="ItemDTO">
-	SELECT * FROM item i INNER JOIN `option` o ON i.item_code=o.item_code;
+	<select id="options" parameterType="Integer" resultType="ItemDTO">
+	SELECT * FROM item i INNER JOIN `option` o ON i.item_code=o.item_code WHERE i.item_code=${item_code}
 	</select>
 </mapper>

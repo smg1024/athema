@@ -40,5 +40,9 @@ public class ReviewService implements AthemaService<Integer, ReviewDTO>{
 	public List<ReviewDTO> getall() throws Exception{
 		return mapper.selectall();
 	}
+	
+	public double avg_rating(Integer k) throws Exception {
+		return mapper.avg_rating(k);
+	}
 
 }

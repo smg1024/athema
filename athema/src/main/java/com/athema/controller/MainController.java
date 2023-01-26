@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.athema.dto.ItemDTO;
 import com.athema.service.ItemService;
+import com.athema.service.ReviewService;
 
 @Controller
 public class MainController {
 	
 	@Autowired
 	ItemService iservice;
+	
+	@Autowired
+	ReviewService rservice;
+	
 	
 	@RequestMapping("")
 	public String main(Model model) {
@@ -88,13 +93,20 @@ public class MainController {
 	@RequestMapping("/single_listing")
 	public String single_listing(Model model, int item_code) {
 		ItemDTO item = null;
+		List<ItemDTO> options = null;
 		try {
 			item = iservice.get(item_code);
+			options = iservice.options(item_code);
+			item.setAvg_rating(rservice.avg_rating(item_code));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		System.out.println(item);
+		System.out.println(options);
 		model.addAttribute("item", item);
+		model.addAttribute("options", options);
+		model.addAttribute("content", "single_listing");
 		return "main";
 	}
 	

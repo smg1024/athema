@@ -22,4 +22,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		DELETE FROM review where review_code=#{review_code}
 	</delete>
 	
+	<select id="avg_rating" parameterType="Integer" resultType="Double">
+		SELECT AVG(score) avg_rating FROM review WHERE item_code=${item_code}
+	</select>
+	
 </mapper>

@@ -9,5 +9,5 @@ import com.athema.frame.AthemaMapper;
 @Repository
 @Mapper
 public interface ReviewMapper extends AthemaMapper<Integer, ReviewDTO>{
-
+	public double avg_rating(Integer k) throws Exception;
 }
