@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.CategoryMapper">
+	<select id="select" parameterType="Integer" resultType="CategoryDTO">
+		SELECT cate_code, cate_name, up_cate_code
+		FROM category where cate_code=#{cate_code} 
+	</select>
+	<select id="selectall" resultType="CategoryDTO">
+		SELECT * FROM category
+	</select>
+	<insert id="insert" parameterType="CategoryDTO">
+		INSERT INTO category VALUES (cate_code, #{cate_name}, #{up_cate_code})
+	</insert>
+	<update id="update" parameterType="CategoryDTO">
+		UPDATE option SET item_code=#{item_code}, option_name=#{option_name}, item_price=#{item_price}
+		WHERE opt_code=#{opt_code}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM option WHERE opt_code=#{opt_code}
+	</delete>
+</mapper>
