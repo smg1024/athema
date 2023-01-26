@@ -408,7 +408,11 @@ section
 {
 	margin-right: 15px;
 }
-.user_box_login::after
+.user_box_register
+{
+	margin-right: 15px;
+}
+.user_box_login::after, .user_box_register::after
 {
 	display: block;
 	position: absolute;
@@ -485,7 +489,7 @@ section
 {
 	position: relative;
 	display: inline-block;
-	margin-right: 40px;
+	margin-right: 120px;
 }
 .main_nav_item:last-child
 {

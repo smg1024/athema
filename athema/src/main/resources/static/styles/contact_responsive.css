@@ -67,6 +67,10 @@
 	{
 		margin-right: 121px;
 	}
+	.main_nav_item
+	{
+		margin-right: 70px;
+	}
 	.footer_blog_content
 	{
 		padding-left: 74px;
@@ -133,6 +137,18 @@
 	.about_info
 	{
 		padding-top: 90px;
+	}
+	#faq_container
+	{
+		padding: 50px 10px;
+	}	
+	.faq_table_category
+	{
+		flex: 1;
+	}
+	.faq_table_subject
+	{
+		flex: 4;
 	}
 	.footer_column
 	{
@@ -330,6 +346,18 @@
 	.contact_title
 	{
 		font-size: 24px;
+	}
+	#faq_container
+	{
+		padding: 50px 10px;
+	}	
+	.faq_table_category
+	{
+		flex: 1;
+	}
+	.faq_table_subject
+	{
+		flex: 3;
 	}
 	.about_content
 	{
