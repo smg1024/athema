@@ -105,6 +105,9 @@ me
 	}
 	
 	/*상품정보 css*/
+	#order_item+#order_item{
+		margin-top: 50px;
+	}
 	#order_img_item{
 		position: relative;
 		display: inline-block;

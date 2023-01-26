@@ -50,16 +50,33 @@ public class OauthController {
 			int cnt = mservice.getemail(mem_email);
 			member = mservice.searchemail(mem_email);
 			if(cnt > 0) {
-				System.out.println("탈퇴 및 중복회원");
-				model.addAttribute("content", "registerfail");
-				model.addAttribute("femail", mem_email);
-				return "main";
+				// 해당 이메일이 탈퇴하지 않았고 소셜 로그인 회원이면 세션 로그인
+				if (member.getMem_del() == 0 && member.getProvider() != null) {
+					System.out.println("탈퇴코드: " + member.getMem_del() + ", 서비스 제공자: " + member.getProvider());
+					session.setAttribute("loginMember", member);
+					model.addAttribute("content", "index");
+					return "main";
+				} else {
+					// 탈퇴한 회원은 일정 시간 지날 때까지 재가입 불가
+					System.out.println("탈퇴 및 중복회원");
+					model.addAttribute("content", "registerfail");
+					model.addAttribute("femail", mem_email);
+					return "main";
+				}
 			} else {		// 가입한 적 없는 회원, 아직 null 상태
 				member = new MemberDTO();
-				member.setMem_email(mem_email);
-				member.setMem_nick(mem_nick);
-				member.setProvider(provider);
-				mservice.register(member);
+				/* 가입 완료상태에서 새로고침하여 null값 DB에 저장되는 것 방지하기
+				 Object > String.valueOf() 거치면서 두 컬럼 모두 String값이 됨 */
+				if (mem_email != "null" && mem_nick != "null") {
+					member.setMem_email(mem_email);
+					member.setMem_nick(mem_nick);
+					member.setProvider(provider);
+					mservice.register(member);
+					System.out.println("새 소셜회원 DB 등록 & 회원가입 완료");
+				} else {
+					System.out.println("null값 DB 저장 방지용..");
+					model.addAttribute("content", "index");
+					return "main";				}
 				
 				// 프린트 찍어보기
 				MemberDTO newKakaoMem = mservice.searchemail(mem_email);
@@ -77,6 +94,7 @@ public class OauthController {
 		} catch (Exception e) {
 			System.out.println("이메일조회 실패");
 			e.printStackTrace();
+			model.addAttribute("content", "login");
 			return "main";
 		}
 	}
