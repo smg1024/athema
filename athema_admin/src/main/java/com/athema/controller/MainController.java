@@ -22,4 +22,11 @@ public class MainController {
 		model.addAttribute("center", "qna");
 		return "main";
 	}
+	
+	// 주문 관리
+	@RequestMapping("/order")
+	public String order(Model model) {
+		model.addAttribute("center", "order");
+		return "main";
+	}
 }
