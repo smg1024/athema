@@ -187,7 +187,7 @@ function checkclickall()  {
 				<h3 id="order_item_h3">상품 정보</h3>
 				<hr>
 				<div id="order_item">
-					<img id="order_img_item" th:src="@{images/}+${item.item_img}" alt="상품이미지">
+ 					<img id="order_img_item" th:src="@{/images/}+${item?.item_img}" alt="상품이미지">
 					<div id="order_item_name" th:text="${item.item_name}"><br>
 						<time datetime="2023-12-31">2023년 12월 31일까지</time>
 					</div>
