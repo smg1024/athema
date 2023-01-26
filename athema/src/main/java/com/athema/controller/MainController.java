@@ -102,8 +102,6 @@ public class MainController {
 			e.printStackTrace();
 		}
 		
-		System.out.println(item);
-		System.out.println(options);
 		model.addAttribute("item", item);
 		model.addAttribute("options", options);
 		model.addAttribute("content", "single_listing");
