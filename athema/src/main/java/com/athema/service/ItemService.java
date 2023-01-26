@@ -39,5 +39,9 @@ public class ItemService implements AthemaService<Integer, ItemDTO> {
 	public List<ItemDTO> getall() throws Exception {
 		return mapper.selectall();
 	}
+	
+	public List<ItemDTO> item_price(Integer k) throws Exception {
+		return mapper.item_price(k);
+	}
 
 }

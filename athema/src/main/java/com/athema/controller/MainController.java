@@ -1,11 +1,20 @@
 package com.athema.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.athema.dto.ItemDTO;
+import com.athema.service.ItemService;
+
 @Controller
 public class MainController {
+	
+	@Autowired
+	ItemService iservice;
 	
 	@RequestMapping("")
 	public String main() {
@@ -42,6 +51,15 @@ public class MainController {
 	
 	@RequestMapping("/offers")
 	public String offers(Model model) {
+		List<ItemDTO> list = null;
+		
+		try {
+			list = iservice.getall();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("itemlist", list);
 		model.addAttribute("content", "offers");
 		return "main";
 	}

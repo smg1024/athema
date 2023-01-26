@@ -1,3 +1,5 @@
+<!-- attribute : itemlist -->
+
 <!-- OFFERS -->
 <link rel="stylesheet" type="text/css" href="styles/offers_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/offers_responsive.css">
@@ -278,6 +280,7 @@
 
 					<!-- Offers Item -->
 
+					<th:block th:each="list:${itemlist}">
 					<div class="offers_item rating_4">
 						<div class="row">
 							<div class="col-lg-1 temp_col"></div>
@@ -285,7 +288,7 @@
 								<div class="offers_image_container">
 									<!-- Image by https://unsplash.com/@kensuarez -->
 									<div class="offers_image_background" style="background-image:url(images/offer_1.jpg)"></div>
-									<div class="offer_name"><a href="single_listing">경주 대릉원 첨성대 야경</a></div>
+									<div class="offer_name"><a href="single_listing"><div th:text="${list.item_name}"></div></a></div>
 								</div>
 							</div>
 							<div class="col-lg-8">
@@ -298,7 +301,7 @@
 										<i></i>
 										<i></i>
 									</div>
-									<p class="offers_text">경주에서도 야경이 아름다운 문화재 3곳을 한 번에 둘러볼 수 있는 상품</p>
+									<p class="offers_text"><div th:text="${list.item_detail}"></div></p>
 									<div class="offers_icons">
 										<ul class="offers_icons_list">
 											<li class="offers_icons_item"><img src="images/post.png" alt=""></li>
@@ -319,6 +322,7 @@
 							</div>
 						</div>
 					</div>
+					</th:block>
 
 					<!-- Offers Item -->
 

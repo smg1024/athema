@@ -25,4 +25,8 @@ public class ItemDTO {
 	private String item_img;
 	private Date rdate;
 	private int exp_days;
+	
+	private int opt_code;
+	private int item_price;
+	private String opt_name;
 }
