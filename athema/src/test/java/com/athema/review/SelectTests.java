@@ -16,11 +16,11 @@ class SelectTests {
 
 	@Test
 	void contextLoads() {
-		ReviewDTO reviewdto = null;
+		ReviewDTO review = null;
 
 		try {
-			reviewdto = service.get(3);
-			System.out.println(reviewdto);
+			review = service.get(3);
+			System.out.println(review);
 			System.out.println("[ OK ]");
 		} catch (Exception e) {
 			System.out.println("[ FAIL ]");
