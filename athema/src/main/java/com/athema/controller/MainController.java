@@ -109,7 +109,17 @@ public class MainController {
 	}
 	
 	@RequestMapping("/order")
-	public String order(Model model) {
+	public String order(Model model, int item_code) {
+		ItemDTO item = null;
+		List<ItemDTO> options = null;
+		try {
+			iservice.get(item_code);
+			options = iservice.options(item_code);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("item", item);
+		model.addAttribute("olist", options);
 		model.addAttribute("content", "order");
 		return "main";
 	}

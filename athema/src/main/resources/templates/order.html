@@ -109,14 +109,14 @@ function checkclickall()  {
 	  }
 
 	}
-	function clickall(clickall){
+	function clickall(clickall){//약관안내 체크박스
 		const checkboxes = document.getElementsByName('order_terms_box');
 	  
 	  checkboxes.forEach((checkbox) => {
 	    checkbox.checked = clickall.checked;
 	  });
 	};
-	function checkOnlyOne(element){
+	function checkOnlyOne(element){//
 		const checkboxes = document.getElementsByName("order_book_data");
 	  
 	  checkboxes.forEach((cb) => {
@@ -144,20 +144,30 @@ function checkclickall()  {
 			buyer_tel : "010-4242-4242",
 			buyer_addr : "서울특별시 강남구 신사동",
 			buyer_postcode : "01181",
-			m_redirect_url : 'http://127.0.0.1/payments/complete'
 		}, function(rsp) {
 			console.log(rsp);
 			if (rsp.success) {
-				var msg = '결제가 완료되었습니다.';
+				var msg = '결제가 성공하셨습니다.';/* 
 				msg += '고유ID : ' + rsp.imp_uid;
 				msg += '상점 거래ID : ' + rsp.merchant_uid;
 				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
+				msg += '카드 승인번호 : ' + rsp.apply_num; */
+				$('#bookregister_form').attr({//결제 성공하면 예약자 정보 update
+					'method':'post',
+					'action':'[[@{/order/bookregister}]]'
+				});
+				var confirmclick = confirm(msg+'예약 상세 페이지로 이동하시겠습니까?');
+				if(confirmclick){
+					location.href='http://127.0.0.1/order_detail';
+				}else{
+					location.href='http://127.0.0.1';
+				}
 			} else {
 				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
+				/* msg += '에러내용 : ' + rsp.error_msg; */
+				alert(msg);
 			}
-			alert(msg);
+			
 		});
 
 	}
@@ -177,27 +187,27 @@ function checkclickall()  {
 				<h3 id="order_item_h3">상품 정보</h3>
 				<hr>
 				<div id="order_item">
-					<img id="order_img_item" src="images/item_1.jpg" alt="상품이미지">
-					<div id="order_item_name">
-						해변 투어<br>
+					<img id="order_img_item" th:src="@{images/}+${item.item_img}" alt="상품이미지">
+					<div id="order_item_name" th:text="${item.item_name}"><br>
 						<time datetime="2023-12-31">2023년 12월 31일까지</time>
 					</div>
 					<br>
-					<div id="order_item_option">
-						<div id="order_item_option_info">옵션 1.어쩌고 저쩌고 &nbsp;&nbsp;
-							수량 3</div>
+					<div id="order_item_option" th:each="o:${olist}">
+						<div id="order_item_option_info"><span th:text="${o.opt_code}+'.'+${o.opt_name}"></span>&nbsp;&nbsp;<span>수량 3</span>
+							</div>
 						<div id="order_item_option_price">30,000원</div>
 					</div>
-					<div id="order_item_price">
-						<div id="order_item_price_han">총 상품 금액</div>
-						<div id="order_item_price_int">30,000원</div>
-					</div>
 				</div>
+				
+				<div id="order_item_price">
+						<div id="order_item_price_han">총 상품 금액</div>
+						<div id="order_item_price_int">60,000원</div>
+					</div>
 			</div>
 			<div id="order_article_bottom">
 				<h3 id="order_book_h3">예약자 정보</h3>
 				<div id="order_book_data">
-					<input type='checkbox' name='order_book_data'
+					<input type='checkbox' name='order_book_data' checked="checked"
 						onclick='checkOnlyOne(this)' /> 주문자의 정보와 동일
 				</div>
 				<div id="order_book_data">
@@ -206,6 +216,7 @@ function checkclickall()  {
 				</div>
 				<hr>
 				<div id="order_book">
+				<form id="bookregister_form">
 					<div>
 						<div>예약자 이름</div>
 						<input type="text" name="book_name" id="book_name">
@@ -218,6 +229,7 @@ function checkclickall()  {
 						<div>예약자 이메일</div>
 						<input type="text" name="book_email" id="book_email">
 					</div>
+				</form>
 				</div>
 			</div>
 		</div>
@@ -227,7 +239,7 @@ function checkclickall()  {
 				<hr>
 				<div id="order_pay_div">
 					<div>총 결제 금액</div>
-					<div>30,000원</div>
+					<div>60,000원</div>
 				</div>
 			</div>
 			<div id="order_terms">
