@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.WishMapper">
+	
+	<select id="select" parameterType="Integer" resultType="WishDTO">
+		SELECT wish_code, item_code, mem_code
+		FROM wish WHERE wish_code=#{wish_code}
+	</select>
+	
+	<select id="selectall" resultType="WishDTO">
+		SELECT * FROM wish
+	</select>
+	
+	<insert id="insert" parameterType="WishDTO">
+		INSERT INTO wish VALUES (#{item_code}, #{mem_code})
+	</insert>
+	
+	<update id="update" parameterType="WishDTO">
+		UPDATE wish SET item_code=#{item_code} WHERE wish_code=#{wish_code}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM wish WHERE wish_code=#{wish_code}
+	</delete>
+	
+</mapper>
