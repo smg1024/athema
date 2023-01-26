@@ -86,8 +86,15 @@ public class MainController {
 	}
 
 	@RequestMapping("/single_listing")
-	public String single_listing(Model model) {
-		model.addAttribute("content", "single_listing");
+	public String single_listing(Model model, int item_code) {
+		ItemDTO item = null;
+		try {
+			item = iservice.get(item_code);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("item", item);
 		return "main";
 	}
 	
