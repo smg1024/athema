@@ -2,6 +2,8 @@ package com.athema.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,6 @@ public class MainController {
 	
 	@Autowired
 	ReviewService rservice;
-	
 	
 	@RequestMapping("")
 	public String main(Model model) {
@@ -42,6 +43,15 @@ public class MainController {
 	@RequestMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("content", "login");
+		return "main";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session, Model model) {
+		if(session != null) {
+			session.invalidate();
+		}
+		model.addAttribute("content", "index");
 		return "main";
 	}
 	

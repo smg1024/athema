@@ -66,9 +66,14 @@
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="user_box ml-auto">
+						<div class="user_box ml-auto" th:if="${session.loginMember == null}">
 							<div class="user_box_login user_box_link"><a th:href="@{/login}">login</a></div>
 							<div class="user_box_register user_box_link"><a th:href="@{/register}">register</a></div>
+							<div class="user_box_cscenter user_box_link"><a th:href="@{/contact}">CS center</a></div>
+						</div>
+						<div class="user_box ml-auto" th:if="${session.loginMember != null}">
+							<div class="user_box_login user_box_link"><a onclick="return confirm('로그아웃 하시겠습니까?');" th:href="@{/logout}">logout</a></div>
+							<div class="user_box_register user_box_link"><a th:href="@{/register}">My page</a></div>
 							<div class="user_box_cscenter user_box_link"><a th:href="@{/contact}">CS center</a></div>
 						</div>
 					</div>
