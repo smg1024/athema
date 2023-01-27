@@ -52,6 +52,52 @@
 <script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 <script src="plugins/parallax-js-master/parallax.min.js"></script>
 
+<!-- Websocket -->
+<script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
+<script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
+
+<script>
+	function chatbot(){
+		var divQ = document.createElement('div');
+		divQ.innerHTML = '<div style="display:inline-block;margin:2px;float:right;background-color:#FF8F00;color:white; border-radius:10px;"><div style="margin:5px;">'+$('#quest').val()+'</div></div><br>';
+		document.getElementById('addAnswer').appendChild(divQ);
+		$.ajax({
+			url:'[[@{/chatbot}]]',
+			data:{
+				quest:$('#quest').val()
+			},
+			success:function(data){
+				var divA = document.createElement('div');
+				divA.innerHTML = '<div style="display:inline-block;background-color:#708238;color:white; border-radius:10px;max-width:70%;"><div style="margin:5px;">'+data+'</div></div>';
+				document.getElementById('addAnswer').appendChild(divA);
+				var chat = document.querySelector('#chatBasic');
+		        chat.scrollTop = chat.scrollHeight;
+			}
+		});
+		
+		var chat = document.querySelector('#chatBasic');
+        chat.scrollTop = chat.scrollHeight;
+	};
+	
+	$('#chatEnter').click(function(){
+		if(document.getElementById('quest').value == '')
+			return;
+		chatbot();
+		document.getElementById('quest').value = null;
+	});
+	$('#chatform').keypress(function(e){
+		if(document.getElementById('quest').value == '')
+			return;
+		if(e.keyCode == 13){
+			chatbot();
+			document.getElementById('quest').value = null;
+		}
+	});
+	$('.close').click(function(){
+		document.getElementById('addAnswer').remove();
+	});
+	
+</script>
 </head>
 
 <body>
@@ -156,8 +202,34 @@
 	<section>
 		<aside id="content_aside" th:include="${content} ? ${content} : content"></aside>
 	</section>
-
-
+	
+	<a id="chatbot" href="#" data-toggle="modal" data-target="#modal_chatbot" class="img" style="position: fixed; right: 3%; bottom: 5%; z-index: 10; width:70px; height:70px;"><img th:src="@{/images/chatbot.png}" style="filter: drop-shadow(2px 2px 2px gray); position:fixed; right:3%; bottom:3%; width:70px; z-index:10;"></a>
+	
+	<div class="modal fade" id="modal_chatbot" role="dialog" data-backdrop="static" data-keyboard="false">
+	    <div class="modal-dialog modal-2sm">
+	      <div class="modal-content" style="width:100%;">
+	        <div class="modal-header">
+	          <div class="modal-desc">👾 ATHEMA에게 궁금한 점을 물어보세요!</div>
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title"></h4>
+	        </div>
+	        
+	        <div id="chatBasic" class="modal-body" style="height:500px;overflow:scroll;">
+	        	<div style="display:inline-block;background-color:#55287A;color:white; border-radius:10px;max-width:62%;">
+	        		<div style="margin:10px;">안녕하세요. <span style="font-weight:bold">ATHEMA</span>입니다.<br>오늘도 방문해주셔서 감사합니다. 👻<br><br><span style="font-weight:bold; font-style: oblique;">'문의'</span> 라고 입력하시면 답변 가능한 예시 질문 목록을 확인하실 수 있습니다.</div>
+	        	</div>
+		        <div id="addAnswer"></div>
+	        </div>
+	        <div class="modal-footer" style="justify-content: flex-start;">
+				<div class="col-md-10" style="float:left;" id="chatform">
+					<input id="quest" type="text" style="width:100%;">
+				</div>
+				<button type="button" class="btn btn-primary" id="chatEnter" style="float: right;">Enter</button>
+	        </div>
+	      </div>
+	    </div>
+	</div>  
+	
 	<!-- Footer -->
 
 	<footer class="footer">
