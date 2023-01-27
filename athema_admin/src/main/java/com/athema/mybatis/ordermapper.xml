@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.OrderMapper">
+	<select id="select" parameterType="Integer" resultType="OrderDTO">
+		SELECT * FROM `order` WHERE order_code=#{order_code}
+	</select>
+	<select id="selectall" resultType="OrderDTO">
+		SELECT * FROM `order`
+	</select>
+	<insert id="insert" parameterType="OrderDTO">
+		INSERT INTO `order` VALUES (NULL, #{mem_code}, #{tot_price}, now(),#{pay_code},#{book_name},#{book_hp},#{book_email})
+	</insert>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM `order` WHERE order_code=#{order_code}
+	</delete>
+	<update id="update" parameterType="OrderDTO">
+		UPDATE `order` set book_name=#{book_name}, book_hp=#{book_hp}, book_email=#{book_email} WHERE order_code =#{order_code}
+	</update>
+	
+<!-- 	<select id="totprice" parameterType="Order">
+		select (opt.item_price*ord.cnt) AS tot_price from ord_detail ord INNER JOIN `option` opt ON
+		ord.opt_code = opt.opt_code where opt.item_code=opt.opt_code
+	</select> -->
+</mapper>
