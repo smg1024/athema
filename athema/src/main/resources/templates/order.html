@@ -147,11 +147,11 @@ function checkclickall()  {
 		}, function(rsp) {
 			console.log(rsp);
 			if (rsp.success) {
-				var msg = '결제가 성공하셨습니다.';/* 
+				var msg = '결제가 성공하셨습니다.';
 				msg += '고유ID : ' + rsp.imp_uid;
 				msg += '상점 거래ID : ' + rsp.merchant_uid;
 				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num; */
+				msg += '카드 승인번호 : ' + rsp.apply_num;
 				$('#bookregister_form').attr({//결제 성공하면 예약자 정보 update
 					'method':'post',
 					'action':'[[@{/order/bookregister}]]'
@@ -198,10 +198,21 @@ function checkclickall()  {
 						<div id="order_item_option_price">30,000원</div>
 					</div>
 				</div>
-				
+				<div id="order_item">
+ 					<img id="order_img_item" src="/images/item_1.jpg" alt="상품이미지">
+					<div id="order_item_name">해변투어(dbx)<br>
+						<time datetime="2023-12-31">2023년 12월 31일까지</time>
+					</div>
+					<br>
+					<div id="order_item_option">
+						<div id="order_item_option_info"><span>옵션 1.성인</span>&nbsp;&nbsp;<span>수량 3</span>
+							</div>
+						<div id="order_item_option_price">30,000원</div>
+					</div>
+				</div>
 				<div id="order_item_price">
 						<div id="order_item_price_han">총 상품 금액</div>
-						<div id="order_item_price_int">60,000원</div>
+						<div id="order_item_price_int">30,000원</div>
 					</div>
 			</div>
 			<div id="order_article_bottom">
