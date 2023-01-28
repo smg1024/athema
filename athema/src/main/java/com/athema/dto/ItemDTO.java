@@ -33,4 +33,7 @@ public class ItemDTO {
 	
 	// 상품의 평균 평점
 	private double avg_rating;
+	
+	// 유효기간
+	private Date exp_day;
 }
