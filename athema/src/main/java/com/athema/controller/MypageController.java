@@ -13,7 +13,8 @@ public class MypageController {
 	@RequestMapping("")
 	public String mypage(Model model) {
 		model.addAttribute("content", "mypage");
-
+		model.addAttribute("mypageleft", "mypageleft");
+		model.addAttribute("mypagecenter", "mypagecenter");
 		return "main";
 	}
 	

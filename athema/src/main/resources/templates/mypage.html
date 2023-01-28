@@ -4,3 +4,8 @@
 	}
 </style>
 <h1 id="top">마이페이지</h1>
+
+<section>
+		<aside id="left_aside" th:include="${mypageleft} ? ${mypageleft} : mypageleft"></aside>
+		<aside id="center_aside" th:include="${mypagecenter} ? ${mypagecenter} : mypagecenter"></aside>
+</section>
