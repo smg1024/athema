@@ -189,8 +189,8 @@ function checkclickall()  {
 				<hr>
 				<div id="order_item">
  					<img id="order_img_item" th:src="@{/images/}+${item.item_img}" alt="상품이미지">
-					<div id="order_item_name" th:text="${item.item_name}"></div>
-					<div id="order_item_name" th:text="'유효기간 '+${#dates.format(day.exp_day, 'yyyy-MM-dd')}"></div>
+					<span id="order_item_name" th:text="${item.item_name}"></span>
+					<span id="order_item_exp" th:text="'유효기간 '+${#dates.format(day.exp_day, 'yyyy-MM-dd')}"></span>
 
 					<div id="order_item_option" th:each="o:${olist}">
 						<div id="order_item_option_info"><span th:text="${o.opt_code}+'.'+${o.opt_name}"></span>&nbsp;&nbsp;<span>수량 3</span>
@@ -198,21 +198,9 @@ function checkclickall()  {
 						<div id="order_item_option_price">30,000원</div>
 					</div>
 				</div>
-				<div id="order_item">
- 					<img id="order_img_item" src="/images/item_1.jpg" alt="상품이미지">
-					<div id="order_item_name">해변투어(dbx)<br>
-						<time datetime="2023-12-31">2023년 12월 31일까지</time>
-					</div>
-					<br>
-					<div id="order_item_option">
-						<div id="order_item_option_info"><span>옵션 1.성인</span>&nbsp;&nbsp;<span>수량 3</span>
-							</div>
-						<div id="order_item_option_price">30,000원</div>
-					</div>
-				</div>
 				<div id="order_item_price">
 						<div id="order_item_price_han">총 상품 금액</div>
-						<div id="order_item_price_int">30,000원</div>
+						<div id="order_item_price_int">60,000원</div>
 					</div>
 			</div>
 			<div id="order_article_bottom">
