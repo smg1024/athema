@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Athema 관리자 페이지</title>
 
     <!-- Custom fonts for this template-->
     <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
@@ -69,14 +69,14 @@
                 메뉴
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - 회원관리 Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMember"
+                    aria-expanded="true" aria-controls="collapseMember">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>회원관리</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseMember" class="collapse" aria-labelledby="headingMember" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">회원 정보:</h6>
                         <a class="collapse-item" th:href="@{/member/add}">추가</a>
@@ -85,27 +85,25 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - 여행 상품 Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseItem"
+                    aria-expanded="true" aria-controls="collapseItem">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>여행 상품</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseItem" class="collapse" aria-labelledby="headingItem"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">상품 정보:</h6>
+                        <a class="collapse-item" th:href="@{/item/add}">등록</a>
                         <a class="collapse-item" th:href="@{/item/getall}">목록</a>
-                        <a class="collapse-item" th:href="@{/item/}">등록</a>
-                        <a class="collapse-item" th:href="@{/item/}">수정</a>
-                        <a class="collapse-item" th:href="@{/item/}">삭제</a>
                     </div>
                 </div>
             </li>
             
             
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - 주문 관리 Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">

@@ -48,18 +48,28 @@ public class ItemController {
 		return "main";
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(Model model, int item_code) {
-		ItemDTO item = null;
+	@RequestMapping("/editimpl")
+	public String editimpl(Model model, ItemDTO item) {
 		
 		try {
-			item = iservice.get(item_code);
+			iservice.modify(item);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		model.addAttribute("item", item);
-		model.addAttribute("center", dir+"delete");
-		return "main";
+		return "redirect:getall";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(Model model, int item_code) {
+		int result = 0;
+		
+		try {
+			iservice.remove(item_code);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:getall";
 	}
 }

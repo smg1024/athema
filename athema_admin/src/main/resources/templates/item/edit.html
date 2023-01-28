@@ -1,3 +1,18 @@
+<script>
+	$(document).ready(function(){
+		$('#edit_form > button').click(function(){
+			var c = confirm('수정하시겠습니까?');
+			if(c==true){
+				$('#edit_form').attr({
+					'method':'get',
+					'action':'[[@{/item/editimpl}]]'
+				});
+				$('#register_form').submit();
+			}
+		});
+	});
+</script>
+
 <!-- attribute : item -->
 <h1>여행상품</h1>
 <!-- Begin Page Content -->
@@ -13,13 +28,13 @@
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
-				<form method="get" action="">
-					이름 <input th:value="${item.item_name}"><br>
-					위치 <input th:value="${item.item_loc}"><br>
-					설명 <input th:value="${item.item_detail}"><br>
-					등록일 <input th:value="${item.rdate}" disabled><br>
-					유효기간 <input th:value="${item.exp_days}"><br>
-					<button onclick="submit"></button>
+				<form id="edit_form">
+					이름 <input type="text" id="item_name" th:value="${item.item_name}"><br>
+					위치 <input type="text" id="item_loc" th:value="${item.item_loc}"><br>
+					설명 <input type="text" id="item_detail" th:value="${item.item_detail}"><br>
+					등록일 <input type="text" id="rdate" th:value="${item.rdate}" disabled><br>
+					유효기간 <input type="number" id="exp_days" th:value="${item.exp_days}"><br>
+					<button>수정하기</button>
 				</form>
 				<table class="table table-bordered" id="dataTable" width="100%"
 					cellspacing="0">
