@@ -1,11 +1,60 @@
 <style>
-	#top{
-	margin-top: 180px;
-	}
-</style>
-<h1 id="top">마이페이지</h1>
+	.mypage{width:78%; overflow: hidden; margin: 50px auto; margin-top:180px; color:black; border: 1px solid gray;}
+	.mypage_menu{float: left; font-weight: 500; border: 1px solid gray;}
+	.center{width:75%; padding:10px 0; float: left; margin-left: 5%; border: 1px solid gray;}
+	
+	
+.mypage_menu > ul{
+padding: 10px 0;
+}
+.mypage_menu > ul>li{
+padding: 4px 0;
+}
+a{text-decoration:none;color:inherit;}
 
-<section>
-		<aside id="left_aside" th:include="${mypageleft} ? ${mypageleft} : mypageleft"></aside>
-		<aside id="center_aside" th:include="${mypagecenter} ? ${mypagecenter} : mypagecenter"></aside>
-</section>
+#mypage_menu_title{
+	color:#969696;
+	font-size: 16px;
+}
+.mypage_menu>ul>li:hover>a{
+	color :#8d4fff;
+	font-weight:800;
+}
+.mypage_menu > ul > li > a{
+	color:#282828;
+	font-size: 18px;
+}
+
+#travel_menu{
+position: relative;
+ z-index: 597;
+ }
+#submenu{
+border:5px solid red;
+width:130px;
+display: none; 
+position: absolute;
+border: 3px solid #8d4fff;
+border-radius:10px;
+top:5px;
+ font-size: 18px;
+ padding: 10px 10px;
+ color:#505050;
+ z-index: 599;
+  background: #ffffff;
+}
+
+#travel_menu:hover > #submenu{display: inline-block;}
+#submenu > li >a:hover {
+	color :#8d4fff;
+	font-weight:800;
+}
+</style>
+
+
+<div class="mypage">
+<h1 id="top">마이페이지</h1>
+<div class="mypage_menu" th:include="${left} ? ${left} : mypageleft"> </div>
+<div class="center" th:include="${center} ? ${center} : mypagecenter"></div>
+
+</div>
