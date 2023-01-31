@@ -31,4 +31,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="search_theme" parameterType="Integer" resultType="ItemDTO">
 	SELECT * FROM item i INNER JOIN category c ON i.cate_code=c.cate_code WHERE c.up_cate_code=${up_cate_code}
 	</select>
+	
+	<select id="search_loc" parameterType="String" resultType="ItemDTO">
+	SELECT * FROM item i INNER JOIN category c ON i.cate_code=c.cate_code WHERE c.cate_name=#{cate_name}
+	</select>
 </mapper>

@@ -51,5 +51,9 @@ public class ItemService implements AthemaService<Integer, ItemDTO> {
 	public List<ItemDTO> search_theme(Integer k) throws Exception{
 		return mapper.search_theme(k);
 	}
+	
+	public List<ItemDTO> search_loc(String cate_name) throws Exception {
+		return mapper.search_loc(cate_name);
+	}
 
 }

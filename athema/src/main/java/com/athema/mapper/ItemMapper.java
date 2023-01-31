@@ -14,4 +14,5 @@ public interface ItemMapper extends AthemaMapper<Integer, ItemDTO>{
 	public List<ItemDTO> options(Integer k) throws Exception;
 	public ItemDTO dayselect(Integer k) throws Exception;
 	public List<ItemDTO> search_theme(Integer k) throws Exception;
+	public List<ItemDTO> search_loc(String cate_name) throws Exception;
 }

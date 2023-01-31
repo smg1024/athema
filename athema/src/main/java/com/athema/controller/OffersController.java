@@ -37,4 +37,25 @@ public class OffersController {
 		model.addAttribute("content", "offers");
 		return "main";
 	}
+	
+	@RequestMapping("/search_loc")
+	public String search_loc(Model model, @RequestParam List<String> loc_names) {
+		List<ItemDTO> list = new ArrayList<ItemDTO>();
+		
+		try {
+			for(String cate_name : loc_names) {
+				List<ItemDTO> temp = null;
+				temp = iservice.search_loc(cate_name);
+				for(ItemDTO item : temp) {
+					list.add(item);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("itemlist", list);
+		model.addAttribute("content", "offers");
+		return "main";
+	}
 }

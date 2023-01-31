@@ -13,6 +13,20 @@
 			});
 			$('#search_form_1').submit();
 		});
+		
+		$('#search_form_2 > button').click(function(){
+			var array = new Array();
+			$('input:checkbox[name=cate_name]:checked').each(function(){
+				array.push(this.value);
+			});
+			$('#loc_names').val(array);
+			
+			$('#search_form_2').attr({
+				'method':'get',
+				'action':'[[@{/search_loc}]]'
+			});
+			$('#search_form_2').submit();
+		});
 	});
 </script>
 
@@ -104,7 +118,7 @@
 						<!-- Search Panel -->
 
 						<div class="search_panel">
-							<form action="/offers/search" id="search_form_2" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+							<form id="search_form_2" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 								<div class="extras">
 									<div class="search_item"><div><b>지역을 선택하세요</b></div></div>
 									<ul class="search_extras clearfix">
@@ -188,6 +202,7 @@
 										</li>
 									</ul>
 								</div>
+								<input type="hidden" id="loc_names" name="loc_names">
 								<button class="button search_button">검색</button>
 							</form>
 						</div>
