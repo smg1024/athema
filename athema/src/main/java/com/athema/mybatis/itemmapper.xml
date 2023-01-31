@@ -27,4 +27,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="dayselect" parameterType="Integer" resultType="ItemDTO">
 		SELECT date_add(now(), INTERVAL #{exp_days} day) as exp_day from item where item_code=#{item_code}
 	</select>
+	
+	<select id="search_theme" parameterType="Integer" resultType="ItemDTO">
+	SELECT * FROM item i INNER JOIN category c ON i.cate_code=c.cate_code WHERE c.up_cate_code=${up_cate_code}
+	</select>
 </mapper>

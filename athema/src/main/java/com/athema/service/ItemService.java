@@ -47,5 +47,9 @@ public class ItemService implements AthemaService<Integer, ItemDTO> {
 	public ItemDTO dayselect(Integer k) throws Exception {
 		return mapper.dayselect(k);
 	}
+	
+	public List<ItemDTO> search_theme(Integer k) throws Exception{
+		return mapper.search_theme(k);
+	}
 
 }

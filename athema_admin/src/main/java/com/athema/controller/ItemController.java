@@ -41,7 +41,6 @@ public class ItemController {
 	
 	@RequestMapping("/addimpl")
 	public String addimpl(Model model, ItemDTO item) {
-		System.out.println(item);
 		try {
 			iservice.register(item);
 		} catch (Exception e) {

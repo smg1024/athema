@@ -815,7 +815,7 @@ section
 	color: #FFFFFF;
 	text-transform: uppercase;
 }
-.home_slider_content h1:nth-child(2)
+.home_slider_content h1:last-child
 {
 	font-family: 'Beyond';
 	font-size: 100px;
@@ -1135,6 +1135,87 @@ section
 .search_button:hover
 {
 	opacity: 0.8;
+}
+
+/*********************************
+5.1 Search Extras
+*********************************/
+
+.extras
+{
+	width: 100%;
+	margin-top: 42px;
+}
+.search_extras_item
+{
+	width: 20%;
+	float: left;
+	margin-bottom: 10px;
+}
+.search_extras_item:nth-child(even)
+{
+	padding-left: 0px;
+}
+.search_extras_item div
+{
+	display: inline-block;
+	cursor: pointer;
+}
+.search_extras_item div:hover .search_features_cb
+{
+	border: 1px solid #fd784f;
+}
+.search_extras_checkbox
+{
+	cursor: pointer;
+}
+.search_extras_cb
+{
+	display: block;
+	position: relative;
+	width: 15px;
+	height: 15px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	background-color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+	padding: 9px;
+	margin-top: 8px;
+	border-radius: 0px;
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	float: left;
+}
+.search_extras_cb:focus
+{
+	outline: none;
+	border: 1px solid #fd784f;
+}
+.search_extras_cb:checked::after
+{
+	display: block;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: calc(100% - 4px);
+	height: calc(100% - 4px);
+	content: '';
+	background: #fa9e1b;
+}
+.search_extras label
+{
+	display: block;
+	position: relative;
+	font-size: 20px;
+	font-weight: 400;
+	padding-left: 31px;
+	margin-bottom: 0px;
+	cursor: pointer;
+	color: #FFFFFF;
 }
 
 /*********************************

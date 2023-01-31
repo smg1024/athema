@@ -1,3 +1,21 @@
+<script>
+	$(document).ready(function(){
+		$('#search_form_1 > button').click(function(){
+			var array = new Array();
+			$('input:checkbox[name=up_cate_code]:checked').each(function(){
+				array.push(this.value);
+			});
+			$('#theme_codes').val(array);
+			
+			$('#search_form_1').attr({
+				'method':'get',
+				'action':'[[@{/search_theme}]]'
+			});
+			$('#search_form_1').submit();
+		});
+	});
+</script>
+
 <!-- attribute : itemlist -->
 
 <!-- OFFERS -->
@@ -42,70 +60,43 @@
 						<!-- Search Panel -->
 
 						<div class="search_panel active">
-							<form action="#" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-								<!-- <div class="search_item">
-									<div>destination</div>
-									<input type="text" class="destination search_input" required="required">
-								</div>
-								<div class="search_item">
-									<div>check in</div>
-									<input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>check out</div>
-									<input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>adults</div>
-									<select name="adults" id="adults_1" class="dropdown_item_select search_input">
-										<option>01</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<div class="search_item">
-									<div>children</div>
-									<select name="children" id="children_1" class="dropdown_item_select search_input">
-										<option>0</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div> -->
+							<form id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 								<div class="extras">
 									<div class="search_item"><div><b>테마를 선택하세요</b></div></div>
 									<ul class="search_extras clearfix">
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">가족</label>
+												<input type="checkbox" id="search_extras_1" class="search_extras_cb" name="up_cate_code" value="1">
+												<label for="search_extras_1">혼자</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_2" class="search_extras_cb">
-												<label for="search_extras_2">우정</label>
+												<input type="checkbox" id="search_extras_2" class="search_extras_cb" name="up_cate_code" value="2">
+												<label for="search_extras_2">커플</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_3" class="search_extras_cb">
-												<label for="search_extras_3">효도</label>
+												<input type="checkbox" id="search_extras_3" class="search_extras_cb" name="up_cate_code" value="3">
+												<label for="search_extras_3">가족</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_4" class="search_extras_cb">
-												<label for="search_extras_4">커플</label>
+												<input type="checkbox" id="search_extras_4" class="search_extras_cb" name="up_cate_code" value="4">
+												<label for="search_extras_4">효도</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_5" class="search_extras_cb">
-												<label for="search_extras_5">솔로</label>
+												<input type="checkbox" id="search_extras_5" class="search_extras_cb" name="up_cate_code" value="5">
+												<label for="search_extras_5">우정</label>
 											</div>
 										</li>
 									</ul>
 								</div>
+								<input type="hidden" id="theme_codes" name="theme_codes">
 								<button class="button search_button">검색</button>
 							</form>
 						</div>
@@ -113,100 +104,90 @@
 						<!-- Search Panel -->
 
 						<div class="search_panel">
-							<form action="#" id="search_form_2" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+							<form action="/offers/search" id="search_form_2" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 								<div class="extras">
 									<div class="search_item"><div><b>지역을 선택하세요</b></div></div>
 									<ul class="search_extras clearfix">
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
+												<input type="checkbox" id="search_extras_1" class="search_extras_cb" name="cate_name" value="서울">
 												<label for="search_extras_1">서울</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_2" class="search_extras_cb">
+												<input type="checkbox" id="search_extras_2" class="search_extras_cb" name="cate_name" value="인천">
 												<label for="search_extras_2">인천</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">부산</label>
+												<input type="checkbox" id="search_extras_3" class="search_extras_cb" name="cate_name" value="부산">
+												<label for="search_extras_3">부산</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">광주</label>
+												<input type="checkbox" id="search_extras_4" class="search_extras_cb" name="cate_name" value="광주">
+												<label for="search_extras_4">광주</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">제주</label>
+												<input type="checkbox" id="search_extras_5" class="search_extras_cb" name="cate_name" value="제주">
+												<label for="search_extras_5">제주</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">경기도</label>
+												<input type="checkbox" id="search_extras_6" class="search_extras_cb" name="cate_name" value="경기">
+												<label for="search_extras_6">경기</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_3" class="search_extras_cb">
-												<label for="search_extras_3">강원도</label>
+												<input type="checkbox" id="search_extras_7" class="search_extras_cb" name="cate_name" value="강원">
+												<label for="search_extras_7">강원</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_4" class="search_extras_cb">
-												<label for="search_extras_4">충청도</label>
+												<input type="checkbox" id="search_extras_8" class="search_extras_cb" name="cate_name" value="충북">
+												<label for="search_extras_8">충북</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_5" class="search_extras_cb">
-												<label for="search_extras_5">전라도</label>
+												<input type="checkbox" id="search_extras_9" class="search_extras_cb" name="cate_name" value="충남">
+												<label for="search_extras_9">충남</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">경상도</label>
+												<input type="checkbox" id="search_extras_10" class="search_extras_cb" name="cate_name" value="전북">
+												<label for="search_extras_10">전북</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_11" class="search_extras_cb" name="cate_name" value="전남">
+												<label for="search_extras_11">전남</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_12" class="search_extras_cb" name="cate_name" value="경북">
+												<label for="search_extras_12">경북</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_13" class="search_extras_cb" name="cate_name" value="경북">
+												<label for="search_extras_13">경남</label>
 											</div>	
 										</li>
 									</ul>
 								</div>
-								<!-- <div class="search_item">
-									<div>destination</div>
-									<input type="text" class="destination search_input" required="required">
-								</div>
-								<div class="search_item">
-									<div>check in</div>
-									<input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>check out</div>
-									<input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>adults</div>
-									<select name="adults" id="adults_2" class="dropdown_item_select search_input">
-										<option>01</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<div class="search_item">
-									<div>children</div>
-									<select name="children" id="children_2" class="dropdown_item_select search_input">
-										<option>0</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div> -->
 								<button class="button search_button">검색</button>
 							</form>
 						</div>
@@ -325,182 +306,6 @@
 						</div>
 					</div>
 					</th:block>
-
-					<!-- Offers Item -->
-
-					<div class="offers_item rating_3">
-						<div class="row">
-							<div class="col-lg-1 temp_col"></div>
-							<div class="col-lg-3 col-1680-4">
-								<div class="offers_image_container">
-									<!-- Image by https://unsplash.com/@thoughtcatalog -->
-									<div class="offers_image_background" style="background-image:url(images/offer_5.jpg)"></div>
-									<div class="offer_name"><a href="single_listing">대관령 투어 패키지</a></div>
-								</div>
-							</div>
-							<div class="col-lg-8">
-								<div class="offers_content">
-									<div class="offers_price">₩180000<span>1박2일</span></div>
-									<div class="rating_r rating_r_1 offers_rating" data-rating="1">
-										<i></i>
-										<i></i>
-										<i></i>
-										<i></i>
-										<i></i>
-									</div>
-									<p class="offers_text">드라마틱한 강원여행을 아름다운 ATHEMA와 함께 하세요~</p>
-									<div class="offers_icons">
-										<ul class="offers_icons_list">
-											<li class="offers_icons_item"><img src="images/post.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/compass.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/bicycle.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/sailboat.png" alt=""></li>
-										</ul>
-									</div>
-									<div class="button book_button"><a href="#">예약하기<span></span><span></span><span></span></a></div>
-									<div class="offer_reviews">
-										<div class="offer_reviews_content">
-											<div class="offer_reviews_title">very good</div>
-											<div class="offer_reviews_subtitle">100 reviews</div>
-										</div>
-										<div class="offer_reviews_rating text-center">8.1</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Offers Item -->
-
-					<div class="offers_item rating_5">
-						<div class="row">
-							<div class="col-lg-1 temp_col"></div>
-							<div class="col-lg-3 col-1680-4">
-								<div class="offers_image_container">
-									<!-- Image by https://unsplash.com/@mindaugas -->
-									<div class="offers_image_background" style="background-image:url(images/offer_6.jpg)"></div>
-									<div class="offer_name"><a href="single_listing">부여 열기구 하늘날기</a></div>
-								</div>
-							</div>
-							<div class="col-lg-8">
-								<div class="offers_content">
-									<div class="offers_price">₩1900000<span>당일</span></div>
-									<div class="rating_r rating_r_5 offers_rating"  data-rating="5">
-										<i></i>
-										<i></i>
-										<i></i>
-										<i></i>
-										<i></i>
-									</div>
-									<p class="offers_text">부여를 즐기는 특별한 방법 열기구 체험</p>
-									<div class="offers_icons">
-										<ul class="offers_icons_list">
-											<li class="offers_icons_item"><img src="images/post.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/compass.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/bicycle.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/sailboat.png" alt=""></li>
-										</ul>
-									</div>
-									<div class="button book_button"><a href="#">예약하기<span></span><span></span><span></span></a></div>
-									<div class="offer_reviews">
-										<div class="offer_reviews_content">
-											<div class="offer_reviews_title">very good</div>
-											<div class="offer_reviews_subtitle">100 reviews</div>
-										</div>
-										<div class="offer_reviews_rating text-center">8.1</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Offers Item -->
-
-					<div class="offers_item rating_4">
-						<div class="row">
-							<div class="col-lg-1 temp_col"></div>
-							<div class="col-lg-3 col-1680-4">
-								<div class="offers_image_container">
-									<!-- Image by https://unsplash.com/@rktkn -->
-									<div class="offers_image_background" style="background-image:url(images/offer_7.jpg)"></div>
-									<div class="offer_name"><a href="single_listing">로컬리안 트래블 포항 택시투어</a></div>
-								</div>
-							</div>
-							<div class="col-lg-8">
-								<div class="offers_content">
-									<div class="offers_price">₩100000<span>당일</span></div>
-									<div class="rating_r rating_r_2 offers_rating" data-rating="2">
-										<i></i>
-										<i></i>
-										<i></i>
-										<i></i>
-										<i></i>
-									</div>
-									<p class="offers_text">뚜벅러를 위한 프라이빗한 포항 자유여행</p>
-									<div class="offers_icons">
-										<ul class="offers_icons_list">
-											<li class="offers_icons_item"><img src="images/post.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/compass.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/bicycle.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/sailboat.png" alt=""></li>
-										</ul>
-									</div>
-									<div class="button book_button"><a href="#">예약하기<span></span><span></span><span></span></a></div>
-									<div class="offer_reviews">
-										<div class="offer_reviews_content">
-											<div class="offer_reviews_title">very good</div>
-											<div class="offer_reviews_subtitle">100 reviews</div>
-										</div>
-										<div class="offer_reviews_rating text-center">8.1</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Offers Item -->
-
-					<div class="offers_item rating_3">
-						<div class="row">
-							<div class="col-lg-1 temp_col"></div>
-							<div class="col-lg-3 col-1680-4">
-								<div class="offers_image_container">
-									<!-- Image by https://unsplash.com/@itsnwa -->
-									<div class="offers_image_background" style="background-image:url(images/offer_8.jpg)"></div>
-									<div class="offer_name"><a href="single_listing">경주 불국사 석굴암 세계문화유산 투어</a></div>
-								</div>
-							</div>
-							<div class="col-lg-8">
-								<div class="offers_content">
-									<div class="offers_price">₩40000<span>당일</span></div>
-									<div class="rating_r rating_r_3 offers_rating" data-rating="3">
-										<i></i>
-										<i></i>
-										<i></i>
-										<i></i>
-										<i></i>
-									</div>
-									<p class="offers_text">알고보니 재미있는 신라유적의 백미 여행</p>
-									<div class="offers_icons">
-										<ul class="offers_icons_list">
-											<li class="offers_icons_item"><img src="images/post.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/compass.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/bicycle.png" alt=""></li>
-											<li class="offers_icons_item"><img src="images/sailboat.png" alt=""></li>
-										</ul>
-									</div>
-									<div class="button book_button"><a href="#">예약하기<span></span><span></span><span></span></a></div>
-									<div class="offer_reviews">
-										<div class="offer_reviews_content">
-											<div class="offer_reviews_title">very good</div>
-											<div class="offer_reviews_subtitle">100 reviews</div>
-										</div>
-										<div class="offer_reviews_rating text-center">8.1</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 
 				</div>
 			</div>
