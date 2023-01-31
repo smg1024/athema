@@ -16,7 +16,7 @@ class UpdateTests {
 
 	@Test
 	void contextLoads() {
-		WishDTO wish = new WishDTO();
+		WishDTO wish = new WishDTO(5, 3);
 
 		try {
 			service.modify(wish);

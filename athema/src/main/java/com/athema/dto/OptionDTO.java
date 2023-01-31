@@ -18,4 +18,5 @@ public class OptionDTO {
 	private int item_code;
 	private String opt_name;
 	private int item_price;
+	
 }

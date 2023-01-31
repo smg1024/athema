@@ -15,7 +15,7 @@ class UpdateTests {
 
 	@Test
 	void contextLoads() {
-		CategoryDTO cateup = new CategoryDTO();
+		CategoryDTO cateup = new CategoryDTO(72, "경북", 7);
 
 		try {
 			service.modify(cateup);

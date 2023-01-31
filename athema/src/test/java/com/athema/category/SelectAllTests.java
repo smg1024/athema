@@ -6,23 +6,23 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.athema.dto.OptionDTO;
-import com.athema.service.OptionService;
+import com.athema.dto.CategoryDTO;
+import com.athema.service.CategoryService;
 
 
 @SpringBootTest
 class SelectAllTests {
 
 	@Autowired
-	OptionService service;
+	CategoryService service;
 
 	@Test
 	void contextLoads() {
-		List<OptionDTO> opts = null;
+		List<CategoryDTO> cates = null;
 
 		try {
-			opts = service.getall();
-			for (OptionDTO r : opts) {
+			cates = service.getall();
+			for (CategoryDTO r : cates) {
 				System.out.println(r);
 			}
 			System.out.println("OK");

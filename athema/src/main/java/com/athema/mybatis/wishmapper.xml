@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert" parameterType="WishDTO">
-		INSERT INTO wish VALUES (#{item_code}, #{mem_code})
+		INSERT INTO wish VALUES (wish_code, #{item_code}, #{mem_code})
 	</insert>
 	
 	<update id="update" parameterType="WishDTO">

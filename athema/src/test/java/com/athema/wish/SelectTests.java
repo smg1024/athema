@@ -17,7 +17,7 @@ class SelectTests {
 	void contextLoads() {
 		WishDTO wish = null;
 		try {
-			wish = service.get(1);
+			wish = service.get(5);
 			System.out.println(wish);
 			System.out.println("OK");
 		} catch (Exception e) {

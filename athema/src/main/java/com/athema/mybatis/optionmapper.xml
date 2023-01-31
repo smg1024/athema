@@ -3,21 +3,21 @@
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.athema.mapper.OptionMapper">
+
 	<select id="select" parameterType="Integer" resultType="OptionDTO">
-		SELECT opt_code, item_code, opt_name, item_price
-		FROM option where opt_code=#{opt_code} 
+		SELECT * FROM `option` where opt_code=${opt_code} 
 	</select>
 	<select id="selectall" resultType="OptionDTO">
-		SELECT * FROM option
+		SELECT * FROM `option`
 	</select>
 	<insert id="insert" parameterType="OptionDTO">
-		INSERT INTO option VALUES (opt_code, #{item_code}, #{opt_name}, #{item_price})
+		INSERT INTO `option` VALUES (opt_code, #{item_code}, #{opt_name}, #{item_price})
 	</insert>
 	<update id="update" parameterType="OptionDTO">
-		UPDATE option SET item_code=#{item_code}, option_name=#{option_name}, item_price=#{item_price}
+		UPDATE `option` SET item_code=#{item_code}, opt_name=#{opt_name}, item_price=#{item_price}
 		WHERE opt_code=#{opt_code}
 	</update>
 	<delete id="delete" parameterType="Integer">
-		DELETE FROM option WHERE opt_code=#{opt_code}
+		DELETE FROM `option` WHERE opt_code=${opt_code}
 	</delete>
 </mapper>

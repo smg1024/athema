@@ -15,7 +15,7 @@ class DeleteTests {
 	@Test
 	void contextLoads() {
 		try {
-			service.remove(1);
+			service.remove(71);
 			System.out.println("등록된 카테고리 삭제 성공");
 		} catch (Exception e) {
 			e.printStackTrace();

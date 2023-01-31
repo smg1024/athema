@@ -17,8 +17,8 @@ class InsertTests {
 	void contextLoads() {
 		WishDTO wish = new WishDTO();
 		wish.setWish_code(0);
-		wish.setItem_code(1);
-		wish.setMem_code(1);
+		wish.setItem_code(5);
+		wish.setMem_code(2);
 		
 		try {
 			service.register(wish);

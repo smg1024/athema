@@ -17,17 +17,12 @@
 	4.2 Home Slider Nav
 	4.3 Home Slider Dots
 5. Search
-6. Section Title
-7. Rating
-8. Stats
-9. Add
-10. Milestones
-11. Footer
-	11.1 Footer - About
-	11.2 Footer - Blog
-	11.3 Footer - Tags
-	11.4 Footer - Contact Info
-12. Copyright
+6. Footer
+	6.1 Footer - About
+	6.2 Footer - Blog
+	6.3 Footer - Tags
+	6.4 Footer - Contact Info
+7. Copyright
 
 
 ******************************/
@@ -840,7 +835,7 @@ section
 
 
 /*********************************
-11. Footer
+6. Footer
 *********************************/
 
 .footer
@@ -859,7 +854,7 @@ section
 }
 
 /*********************************
-11.1 Footer - About
+6.1 Footer - About
 *********************************/
 
 .footer_about
@@ -932,7 +927,7 @@ section
 }
 
 /*********************************
-11.2 Footer - Blog
+6.2 Footer - Blog
 *********************************/
 
 .footer_blog
@@ -985,7 +980,7 @@ section
 }
 
 /*********************************
-11.3 Footer - Tags
+6.3 Footer - Tags
 *********************************/
 
 .footer_tags
@@ -1021,7 +1016,7 @@ section
 }
 
 /*********************************
-11.4 Footer - Contact Info
+6.4 Footer - Contact Info
 *********************************/
 
 .contact_info_list
@@ -1057,7 +1052,7 @@ section
 }
 
 /*********************************
-12. Copyright
+7. Copyright
 *********************************/
 
 .copyright
