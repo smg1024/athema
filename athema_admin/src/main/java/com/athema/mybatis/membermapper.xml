@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.MemberMapper">
+	
+<!-- 	회원 조회 -->
+	<select id="select" parameterType="int" resultType="MemberDTO">
+		SELECT * FROM member WHERE mem_code=#{mem_code}
+	</select>
+	
+<!-- 	이메일로 찾기 -->
+	<select id="searchemail" parameterType="String" resultType="MemberDTO">
+		SELECT * FROM member WHERE mem_email=#{mem_email}
+	</select>
+	
+<!-- 	전체 목록 -->
+	<select id="selectall" resultType="MemberDTO">
+	SELECT * FROM member
+	</select>
+	
+<!-- 	회원 등록 (자사 회원만 가능). 관리자 A 회원 M -->
+	<insert id="insert" parameterType="MemberDTO">
+		INSERT INTO member VALUES (mem_code,#{mem_email},#{mem_pwd},#{mem_name},#{mem_hp},#{mem_nick},#{mem_birth},#{mem_date},#{mem_auth},0,null,null)
+	</insert>
+	
+	<update id="update" parameterType="MemberDTO">
+	</update>
+
+<!-- 	관리자 or 회원으로 변경 -->
+	<update id="updateAuth" parameterType="MemberDTO">
+		UPDATE member SET mem_auth=#{mem_auth} WHERE mem_code=#{mem_code}
+	</update>
+
+<!-- 	탈퇴 or 계정 복구처리, 1이 탈퇴회원, 0이 일반회원 -->
+	<update id="delchange" parameterType="int">
+		UPDATE member SET mem_del=1, mem_deldate=NOW(), mem_pwd=null, mem_birth=null WHERE mem_code=#{mem_code}
+	</update>
+<!-- 	DB에서 완전 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM member WHERE mem_code=#{mem_code}
+	</delete>
+	
+</mapper>

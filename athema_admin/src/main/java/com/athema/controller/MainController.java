@@ -12,6 +12,11 @@ public class MainController {
 		return "main";
 	}
 	
+	@RequestMapping("/index")
+	public String index() {
+		return "main";
+	}
+	
 	@RequestMapping("/login")
 	public String login() {
 		return "login";

@@ -1,0 +1,145 @@
+<style>
+.member_align_center { text-align: center; }
+</style>
+
+<script>
+function edit(mem_code, mem_auth){
+	var c = confirm("관리자 권한을 수정하시겠습니까?");
+	if(c==true) {
+		$.ajax({
+			url:'[[@{/updateAuth}]]',
+			data: {mem_code, mem_auth},
+			success: function(data) {
+				alert('관리자 권한이 변경되었습니다.');
+				location.reload();
+			},
+			error:function(){
+				alert('관리자 권한 변경에 실패하였습니다.');
+			}
+		});
+	}
+}
+function delchg(mem_code, mem_del) {
+	var dc = confirm("해당 회원을 탈퇴처리 하시겠습니까?\n주의, 해당 동작 실행 후 복구가 불가능합니다.");
+	if(dc==true) {
+		if(mem_del==1) {
+			alert("해당 회원은 이미 탈퇴처리 되어 영구 삭제만 가능합니다.");
+			return false;
+		} else {
+			$.ajax({
+				url:'[[@{/delchange}]]',
+				data: {mem_code, mem_del},
+				success: function(data) {
+					alert("탈퇴 처리 되었습니다.");
+					location.reload();
+				},
+				error: function(){
+					alert("탈퇴 처리 실패하였습니다.");
+				}
+			});
+		}
+	}
+}
+function del_per(mem_code) {
+	$.ajax({
+		url:'[[@{/del}]]',
+		data: {'mem_code':mem_code},
+		success: function(data) {
+			alert("데이터가 영구히 삭제 처리 되었습니다. \n새로고침 하시기 바랍니다.");
+		},
+		error: function(){
+			alert("영구 삭제 처리에 실패하였습니다.");
+		}
+	});
+}
+function del(mem_code, mem_del) {
+	var d = confirm("해당 회원 정보를 영구히 삭제하시겠습니까?\n주의, 해당 동작 실행 후 복구가 불가능합니다.");
+	if(d==true) {
+		if(mem_del==0) {
+			var dzero = confirm("해당 회원은 탈퇴처리가 진행되지 않은 회원입니다.\n계속 하시겠습니까?");
+			if (dzero == true) {
+				del_per(mem_code);
+			} else {
+				return false;
+			}
+		} else {
+			del_per(mem_code)
+		}
+	}
+}
+
+</script>
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+	<!-- DataTales Example -->
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+			<h6 class="m-0 font-weight-bold text-primary">회원 목록</h6>
+		</div>
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<thead class="member_align_center">
+						<tr>
+							<th>회원코드</th>
+							<th>이메일주소</th>
+							<th>이름</th>
+							<th>전화번호</th>
+							<th>닉네임</th>
+							<th>생년월일</th>
+							<th>가입일</th>
+							<th>관리자권한</th>
+							<th>탈퇴여부</th>
+							<th>탈퇴일</th>
+							<th>외부서비스</th>
+							<th>🗑️</th>
+						</tr>
+					</thead>
+					<tfoot class="member_align_center">
+						<tr>
+							<th>회원코드</th>
+							<th>이메일주소</th>
+							<th>이름</th>
+							<th>전화번호</th>
+							<th>닉네임</th>
+							<th>생년월일</th>
+							<th>가입일</th>
+							<th>관리자권한</th>
+							<th>탈퇴여부</th>
+							<th>탈퇴일</th>
+							<th>외부서비스</th>
+							<th>🗑️</th>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr th:each="member:${mem_list}">
+							<td class="member_align_center" th:text="${member.mem_code}"></td>
+							<td style="padding-left:15px;" th:text="${member.mem_email}"></td>
+							<td class="member_align_center" th:text="${member.mem_name}"></td>
+							<td style="padding-left:15px;" th:text="${member.mem_hp}"></td>
+							<td class="member_align_center" th:text="${member.mem_nick}"></td>
+							<td class="member_align_center" th:text="${member.mem_birth}"></td>
+							<td class="member_align_center" th:text="${#dates.format(member.mem_date, 'YYYY-MM-dd')}"></td>
+							<td class="member_align_center" id="auth_change_td"><a id="auth_change" th:onclick="edit([[${member.mem_code}]],[[${member.mem_auth}]])" href="#">[[${member.mem_auth}]]</a></td>
+							<td class="member_align_center"><a th:onclick="delchg([[${member.mem_code}]], [[${member.mem_del}]])" href="#">[[${member.mem_del}]]</a></td>
+							<td class="member_align_center" th:text="${#dates.format(member.mem_deldate, 'Y-MM-dd')}"></td>
+							<td class="member_align_center" th:text="${member.provider}"></td>
+							<td class="member_align_center" ><a th:onclick="del([[${member.mem_code}]], [[${member.mem_del}]])" href="#">삭제</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- /.container-fluid -->
+
+<!-- Page level plugins -->
+<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<!-- Page level custom scripts -->
+<script th:src="@{/js/demo/datatables-demo.js}"></script>
