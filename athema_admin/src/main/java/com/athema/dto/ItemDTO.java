@@ -33,4 +33,8 @@ public class ItemDTO {
 	
 	// 상품의 평균 평점
 	private double avg_rating;
+	
+	// 상품 등록 시 테마 및 지역
+	private int theme;
+	private String location;
 }

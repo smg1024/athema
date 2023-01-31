@@ -29,46 +29,14 @@
 		<div class="card-body">
 			<div class="table-responsive">
 				<form id="edit_form">
-					이름 <input type="text" id="item_name" th:value="${item.item_name}"><br>
-					위치 <input type="text" id="item_loc" th:value="${item.item_loc}"><br>
-					설명 <input type="text" id="item_detail" th:value="${item.item_detail}"><br>
-					등록일 <input type="text" id="rdate" th:value="${item.rdate}" disabled><br>
-					유효기간 <input type="number" id="exp_days" th:value="${item.exp_days}"><br>
+					<input type="hidden" name="item_code" th:value="${item.item_code}">
+					이름 <input type="text" name="item_name" th:value="${item.item_name}"><br>
+					위치 <input type="text" name="item_loc" th:value="${item.item_loc}"><br>
+					설명 <input type="text" name="item_detail" th:value="${item.item_detail}"><br>
+					등록일 <input type="text" name="rdate" th:value="${item.rdate}" disabled><br>
+					유효기간 <input type="number" name="exp_days" th:value="${item.exp_days}"><br>
 					<button>수정하기</button>
 				</form>
-				<table class="table table-bordered" id="dataTable" width="100%"
-					cellspacing="0">
-					<thead>
-						<tr>
-							<th>이름</th>
-							<th>위치</th>
-							<th>설명</th>
-							<th>등록일</th>
-							<th>유효기간</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tfoot>
-						<tr>
-							<th>이름</th>
-							<th>위치</th>
-							<th>설명</th>
-							<th>등록일</th>
-							<th>유효기간</th>
-							<th></th>
-						</tr>
-					</tfoot>
-					<tbody>
-						<tr>
-							<td th:text="${item.item_name}"></td>
-							<td th:text="${item.item_loc}"></td>
-							<td th:text="${item.item_detail}"></td>
-							<td th:text="${item.rdate}"></td>
-							<td th:text="${item.exp_days}"></td>
-							<td><button id="edit" th:myName="${item.item_code}" onclick="edit(this.getAttribute('myName'))">수정</button> <button id="delete" th:onclick="|location.href='@{/item/delete}'|">삭제</button></td>
-						</tr>
-					</tbody>
-				</table>
 			</div>
 		</div>
 	</div>

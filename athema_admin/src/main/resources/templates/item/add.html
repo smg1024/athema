@@ -1,59 +1,68 @@
+<script>
+	$(document).ready(function(){
+		$('#add_form > button').click(function(){
+			var c = confirm('등록하시겠습니까?');
+			if(c==true){
+				$('#add_form').attr({
+					'method':'get',
+					'action':'[[@{/item/addimpl}]]'
+				});
+				$('#add_form').submit();
+			}
+		});
+	});
+</script>
+
 <!-- attribute : item -->
 <h1>여행상품</h1>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-	<h1 class="h3 mb-2 text-gray-800">상품 수정</h1>
+	<h1 class="h3 mb-2 text-gray-800">상품 등록</h1>
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">수정</h6>
+			<h6 class="m-0 font-weight-bold text-primary">등록</h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
-				<form method="get" action="">
-					이름 <input id="name" th:value="${item.item_name}"><br>
-					위치 <input id="loc" th:value="${item.item_loc}"><br>
-					설명 <input id="detail" th:value="${item.item_detail}"><br>
-					등록일 <input id="rdate" th:value="${item.rdate}" disabled><br>
-					유효기간 <input id="exp_days" th:value="${item.exp_days}"><br>
-					<button onclick="submit"></button>
+				<form id="add_form">
+					이름 <input type="text" name="item_name"><br>
+					위치 <input type="text" name="item_loc"><br>
+					설명 <input type="text" name="item_detail"><br>
+					테마 
+					<select name="theme">
+						<option value="">테마를 선택해주세요</option>
+						<option value="1">혼자</option>
+						<option value="2">커플</option>
+						<option value="3">가족</option>
+						<option value="4">효도</option>
+						<option value="5">우정</option>
+					</select><br>
+					지역 
+					<select name="location">
+						<option value="">지역을 선택해주세요</option>
+						<option value="서울">서울</option>
+						<option value="인천">인천</option>
+						<option value="부산">부산</option>
+						<option value="광주">광주</option>
+						<option value="제주">제주</option>
+						<option value="경기">경기</option>
+						<option value="강원">강원</option>
+						<option value="충북">충북</option>
+						<option value="충남">충남</option>
+						<option value="전북">전북</option>
+						<option value="전남">전남</option>
+						<option value="경북">경북</option>
+						<option value="경남">경남</option>
+					</select><br>
+					좌표:<br>
+					경도 <input type="number" name="lat" step="0.0001"> 위도 <input type="number" name="lng" step="0.0001"><br>
+					유효기간 <input type="number" name="exp_days"><br>
+					<button>등록하기</button>
 				</form>
-				<table class="table table-bordered" id="dataTable" width="100%"
-					cellspacing="0">
-					<thead>
-						<tr>
-							<th>이름</th>
-							<th>위치</th>
-							<th>설명</th>
-							<th>등록일</th>
-							<th>유효기간</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tfoot>
-						<tr>
-							<th>이름</th>
-							<th>위치</th>
-							<th>설명</th>
-							<th>등록일</th>
-							<th>유효기간</th>
-							<th></th>
-						</tr>
-					</tfoot>
-					<tbody>
-						<tr>
-							<td th:text="${item.item_name}"></td>
-							<td th:text="${item.item_loc}"></td>
-							<td th:text="${item.item_detail}"></td>
-							<td th:text="${item.rdate}"></td>
-							<td th:text="${item.exp_days}"></td>
-							<td><button id="edit" th:myName="${item.item_code}" onclick="edit(this.getAttribute('myName'))">수정</button> <button id="delete" th:onclick="|location.href='@{/item/delete}'|">삭제</button></td>
-						</tr>
-					</tbody>
-				</table>
 			</div>
 		</div>
 	</div>

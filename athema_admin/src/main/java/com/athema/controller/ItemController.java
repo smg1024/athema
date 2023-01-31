@@ -33,6 +33,24 @@ public class ItemController {
 		return "main";
 	}
 	
+	@RequestMapping("/add")
+	public String add(Model model) {
+		model.addAttribute("center", dir+"add");
+		return "main";
+	}
+	
+	@RequestMapping("/addimpl")
+	public String addimpl(Model model, ItemDTO item) {
+		System.out.println(item);
+		try {
+			iservice.register(item);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:getall";
+	}
+	
 	@RequestMapping("/edit")
 	public String edit(Model model, int item_code) {
 		ItemDTO item = null;
@@ -50,7 +68,6 @@ public class ItemController {
 	
 	@RequestMapping("/editimpl")
 	public String editimpl(Model model, ItemDTO item) {
-		
 		try {
 			iservice.modify(item);
 		} catch (Exception e) {
@@ -62,7 +79,6 @@ public class ItemController {
 	
 	@RequestMapping("/delete")
 	public String delete(Model model, int item_code) {
-		int result = 0;
 		
 		try {
 			iservice.remove(item_code);

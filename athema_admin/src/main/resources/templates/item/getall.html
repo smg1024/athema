@@ -4,7 +4,10 @@ function edit(item_code){
 }
 
 function del(item_code){
-	location.href='[[@{/item/delete}]]?item_code='+item_code;
+	var c = confirm('삭제하시겠습니까?');
+	if(c==true){
+		location.href='[[@{/item/delete}]]?item_code='+item_code;
+	}
 }
 </script>
 
