@@ -178,7 +178,7 @@ $(document).ready(function(){
 		if (($('#mem_pwd').val()) != ($('#mem_pwd_confirm').val())) {
 			alert("비밀번호를 확인하세요");
 			$('#mem_pwd_confirm').focus();
-			return ralse;
+			return false;
 		}
 		
 		// 닉네임 비어있을 시 알림창 띄우고 focus 이동
