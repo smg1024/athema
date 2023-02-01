@@ -3,12 +3,16 @@
 <link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
 </head>
 
+
+
 <style>
-	.mypage{width:78%; overflow: hidden; margin: 50px auto; margin-top:180px; color:black; border: 1px solid gray;}
+*{ list-style:none;}
+	.mypage{width:78%; overflow: hidden; margin:0 auto; color:black; border: 1px solid gray;}
+	.mypage2{margin:50px 10%; margin-top: 180px;}
 	.mypage_menu{float: left; font-weight: 500; border: 1px solid gray;}
 	.center{width:75%; padding:10px 0; float: left; margin-left: 5%; border: 1px solid gray;}
 	
-	
+
 .mypage_menu > ul{
 padding: 10px 0;
 }
@@ -55,14 +59,13 @@ top:5px;
 	font-weight:800;
 }
 </style>
-
-
 <div class="mypage">
-<h1 id="top">마이페이지</h1>
+<div class="mypage2">
+<h1 id="mypagetop">마이페이지</h1>
 <div class="mypage_menu">
 		<ul>
 			<li id="mypage_menu_title">설정</li>
-			<li><a th:href="@{/mypage/userpage}">계정 정보</a></li>
+			<li><a th:href="@{/mypage/userpage(mem_email=${session.loginMember.mem_email})}">계정 정보</a></li>
 		</ul>
 		<ul>
 			<li id="mypage_menu_title">여행 관리</li>
@@ -81,5 +84,5 @@ top:5px;
 		</ul>
 	</div>
 <div class="center" th:include="${mypagecenter} ? ${mypagecenter} : mypagecenter"></div>
-
+</div>
 </div>

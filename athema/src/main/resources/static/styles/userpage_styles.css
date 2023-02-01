@@ -1,0 +1,55 @@
+.userpage_content{
+	padding:0 5% 5% 0;
+	}
+	.userpage_content div{
+		margin: 10px auto;
+	}
+	/* input box 사이즈 조절 */
+	input{
+		margin-left:4%;
+		width:65%;
+	}
+	#mem_name{
+		margin-left: 15.5%;
+	}
+	#mem_email{
+		margin-left: 13.5%;
+	}
+	#mem_pwd{
+		margin-left: 11.5%;
+	}
+	#mem_pwd_confirm{
+		margin-left: 7%;
+	}
+	#mem_nick{
+		margin-left: 13.5%;
+	}
+	#mem_hp{
+		margin-left: 7.5%;
+	}
+	/* 수정/탈퇴 버튼 스타일 */
+	#userpage_btn{
+		text-align: center;
+		color:white;
+		font-size: 16px;
+		margin-top:30px;
+	}
+	#userpage_btn a{
+		padding: 10px;
+		border-radius:8px;
+		margin:0 3px; 
+		text-decoration : none;
+	}
+	#update{
+		background: #54BD54;
+		border:2px solid #54BD54;
+	}
+	#delete{
+		background:#FF0000;
+		border:2px solid #FF0000;
+	}
+	#userpage_btn a:hover{
+		border:2px solid black;
+		font-weight: 600;
+		color: black;
+	}
