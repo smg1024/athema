@@ -1,6 +1,6 @@
 <style>
 h1 {
-	margin: 30px 0 20px 10px;
+	margin: 20px 0 10px 10px;
 	color: #4763DF;
 	font-weight: bold;
 }
@@ -15,7 +15,7 @@ h1 {
 <!-- Content Row -->
 <div class="row">
 	
-	<!-- 이번주 가입자 수 -->
+	<!-- 오늘 가입자 수 -->
 	<div class="col-xl-3 col-md-6 mb-4">
 		<div class="card border-left-primary shadow h-100 py-2">
 			<div class="card-body">
@@ -53,21 +53,20 @@ h1 {
 					<div class="col mr-2">
 						<div class="text-xs font-weight-bold text-info text-uppercase mb-1">
 							당월 가입자 수</div>
-						<div id="content2" class="h5 mb-0 font-weight-bold text-gray-800" th:text="${monthMem}"></div>
+						<div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${monthMem}"></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Pending Requests Card Example -->
+	<!-- 총 누적 가입자 수 (탈퇴회원 포함) -->
 	<div class="col-xl-3 col-md-6 mb-4">
 		<div class="card border-left-warning shadow h-100 py-2">
 			<div class="card-body">
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
-						<div
-							class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+						<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
 							총 누적 가입자 수 (탈퇴회원 포함)</div>
 						<div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${totMem}"></div>
 					</div>
@@ -75,6 +74,72 @@ h1 {
 			</div>
 		</div>
 	</div>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+	<!-- 오늘 탈퇴한 회원 -->
+	<div class="col-xl-3 col-md-6 mb-4">
+		<div class="card border-left-primary2 shadow h-100 py-2">
+			<div class="card-body">
+				<div class="row no-gutters align-items-center">
+					<div class="col mr-2">
+						<div class="text-xs font-weight-bold text-uppercase mb-1" style="color:#78499B;">
+							오늘 탈퇴한 회원 수</div>
+						<div id="content2" class="h5 mb-0 font-weight-bold text-gray-800" th:text="${todayWithdraw}"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 당월 탈퇴한 회원 수 -->
+	<div class="col-xl-3 col-md-6 mb-4">
+		<div class="card border-left-info2 shadow h-100 py-2" style="border-left: 0.25rem solid #D5398B !important;">
+			<div class="card-body">
+				<div class="row no-gutters align-items-center">
+					<div class="col mr-2">
+						<div class="text-xs font-weight-bold text-uppercase mb-1" style="color:#D5398B;">
+							당월 탈퇴한 회원 수</div>
+						<div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${monthWithdraw}"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 총 탈퇴 회원 수 -->
+	<div class="col-xl-3 col-md-6 mb-4">
+		<div class="card border-left-warning2 shadow h-100 py-2" style="border-left: 0.25rem solid #9B84DC !important;">
+			<div class="card-body">
+				<div class="row no-gutters align-items-center">
+					<div class="col mr-2">
+						<div class="text-xs font-weight-bold text-uppercase mb-1" style="color:#9B84DC;">
+							총 탈퇴 회원 수</div>
+						<div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${totWithdraw}"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 전일 대비 증감율 -->
+	<div class="col-xl-3 col-md-6 mb-4">
+		<div class="card border-left-success2 shadow h-100 py-2">
+			<div class="card-body">
+				<div class="row no-gutters align-items-center">
+					<div class="col mr-2">
+						<div class="text-xs font-weight-bold text-success2 text-uppercase mb-1" style="color:#E4781D;">
+							가입자 수 전일 대비 증감율</div>
+						<div id="content1" class="h5 mb-0 font-weight-bold text-gray-800" th:if="${perday}>=0" th:text="${perday}+'% 증가'"></div>
+						<div id="content1" class="h5 mb-0 font-weight-bold text-gray-800" th:if="${perday}<0" th:text="${perday}+'% 감소'"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </div>
 
 <!-- Content Row -->

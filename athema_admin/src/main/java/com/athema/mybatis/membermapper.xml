@@ -46,21 +46,40 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <!-- 	오늘 가입한 회원 수 구하기 -->
 	<select id="getTodayMember" resultType="int">
 		SELECT (SELECT count(*) FROM member 
-		WHERE <![CDATA[ DATE_FORMAT(mem_date,'%Y-%m-%d') = DATE_FORMAT(CURDATE(),'%Y-%m-%d')]]>) FROM dual
+		WHERE DATE_FORMAT(mem_date,'%Y-%m-%d') = DATE_FORMAT(CURDATE(),'%Y-%m-%d')) FROM dual
+	</select>
+<!-- 	어제 가입한 회원 수 구하기 -->
+	<select id="getYesterdayMember" resultType="int">
+		SELECT (SELECT count(*) FROM member 
+		WHERE DATE_FORMAT(DATE_SUB(mem_date, INTERVAL 1 DAY),'%Y-%m-%d') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'%Y-%m-%d')) FROM dual
+	</select>
+<!-- 	오늘 탈퇴한 회원 수 구하기 -->
+	<select id="getTodayWithdraw" resultType="int">
+		SELECT (SELECT count(*) FROM member 
+		WHERE DATE_FORMAT(mem_deldate,'%Y-%m-%d') = DATE_FORMAT(CURDATE(),'%Y-%m-%d')) FROM dual
 	</select>
 <!-- 	이번주 가입자 수 구하기 -->
 	<select id="getWeekMember" resultType="int">
 		SELECT (SELECT count(*) FROM member 
-		WHERE <![CDATA[YEARWEEK(mem_date, 7) = YEARWEEK(CURDATE(), 7)]]>) FROM dual
+		WHERE YEARWEEK(mem_date, 7) = YEARWEEK(CURDATE(), 7)) FROM dual
 	</select>
 <!-- 	이번달 가입자 수 구하기 -->
 	<select id="getMonthMember" resultType="int">
 		SELECT (SELECT count(*) FROM member 
-		WHERE <![CDATA[DATE_FORMAT(mem_date,'%Y-%m') = DATE_FORMAT(CURDATE(),'%Y-%m')]]>) FROM dual
+		WHERE DATE_FORMAT(mem_date,'%Y-%m') = DATE_FORMAT(CURDATE(),'%Y-%m')) FROM dual
+	</select>
+<!-- 	이번달 탈퇴회원 수 구하기 -->
+	<select id="getMonthWithdraw" resultType="int">
+		SELECT (SELECT count(*) FROM member 
+		WHERE DATE_FORMAT(mem_deldate,'%Y-%m') = DATE_FORMAT(CURDATE(),'%Y-%m')) FROM dual
 	</select>
 <!-- 	전체 회원 수 구하기 -->
 	<select id="getTotMember" resultType="int">
 		SELECT count(*) FROM member
+	</select>
+<!-- 	총 탈퇴 회원 수 구하기 -->
+	<select id="getTotWithdraw" resultType="int">
+		SELECT count(*) FROM member WHERE mem_del=1
 	</select>
 	
 </mapper>

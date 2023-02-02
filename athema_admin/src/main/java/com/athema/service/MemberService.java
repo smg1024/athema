@@ -56,6 +56,10 @@ public class MemberService implements AthemaService<Integer, MemberDTO> {
 		return mapper.getTodayMember();
 	}
 
+	public int getYesterdayMember() throws Exception {
+		return mapper.getYesterdayMember();
+	}
+
 	public int getWeekMember() throws Exception {
 		return mapper.getWeekMember();
 	}
@@ -66,6 +70,18 @@ public class MemberService implements AthemaService<Integer, MemberDTO> {
 	
 	public int getTotMember() throws Exception {
 		return mapper.getTotMember();
+	}
+
+	public int getTodayWithdraw() throws Exception {
+		return mapper.getTodayWithdraw();
+	}
+	
+	public int getMonthWithdraw() throws Exception {
+		return mapper.getMonthWithdraw();
+	}
+	
+	public int getTotWithdraw() throws Exception {
+		return mapper.getTotWithdraw();
 	}
 	
 }
