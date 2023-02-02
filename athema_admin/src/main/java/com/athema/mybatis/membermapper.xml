@@ -40,5 +40,27 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		DELETE FROM member WHERE mem_code=#{mem_code}
 	</delete>
+
+	
+<!-- 	Dashboard -->
+<!-- 	오늘 가입한 회원 수 구하기 -->
+	<select id="getTodayMember" resultType="int">
+		SELECT (SELECT count(*) FROM member 
+		WHERE <![CDATA[ DATE_FORMAT(mem_date,'%Y-%m-%d') = DATE_FORMAT(CURDATE(),'%Y-%m-%d')]]>) FROM dual
+	</select>
+<!-- 	이번주 가입자 수 구하기 -->
+	<select id="getWeekMember" resultType="int">
+		SELECT (SELECT count(*) FROM member 
+		WHERE <![CDATA[YEARWEEK(mem_date, 7) = YEARWEEK(CURDATE(), 7)]]>) FROM dual
+	</select>
+<!-- 	이번달 가입자 수 구하기 -->
+	<select id="getMonthMember" resultType="int">
+		SELECT (SELECT count(*) FROM member 
+		WHERE <![CDATA[DATE_FORMAT(mem_date,'%Y-%m') = DATE_FORMAT(CURDATE(),'%Y-%m')]]>) FROM dual
+	</select>
+<!-- 	전체 회원 수 구하기 -->
+	<select id="getTotMember" resultType="int">
+		SELECT count(*) FROM member
+	</select>
 	
 </mapper>

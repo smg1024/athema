@@ -36,12 +36,21 @@ public class MemberController {
 	@RequestMapping("/add")
 	public String add(Model model) {
 		int todayMem = 0;
+		int weekMem = 0;
+		int monthMem = 0;
+		int totMem = 0;
 		try {
 			todayMem = mservice.getTodayMember();
+			weekMem = mservice.getWeekMember();
+			monthMem = mservice.getMonthMember();
+			totMem = mservice.getTotMember();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("todayMem", todayMem);
+		model.addAttribute("weekMem", weekMem);
+		model.addAttribute("monthMem", monthMem);
+		model.addAttribute("totMem", totMem);
 		model.addAttribute("center", dir+"add");
 		return "main";
 	}

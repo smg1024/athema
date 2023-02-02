@@ -52,4 +52,20 @@ public class MemberService implements AthemaService<Integer, MemberDTO> {
 		mapper.updateAuth(v);
 	}
 	
+	public int getTodayMember() throws Exception {
+		return mapper.getTodayMember();
+	}
+
+	public int getWeekMember() throws Exception {
+		return mapper.getWeekMember();
+	}
+	
+	public int getMonthMember() throws Exception {
+		return mapper.getMonthMember();
+	}
+	
+	public int getTotMember() throws Exception {
+		return mapper.getTotMember();
+	}
+	
 }

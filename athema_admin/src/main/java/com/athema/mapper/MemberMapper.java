@@ -12,4 +12,8 @@ public interface MemberMapper extends AthemaMapper<Integer, MemberDTO>{
 	public void delchange(Integer k) throws Exception;
 	public MemberDTO searchemail(String email) throws Exception; 
 	public void updateAuth(MemberDTO member) throws Exception;
+	public int getTodayMember() throws Exception;
+	public int getWeekMember() throws Exception;
+	public int getMonthMember() throws Exception;
+	public int getTotMember() throws Exception;
 }
