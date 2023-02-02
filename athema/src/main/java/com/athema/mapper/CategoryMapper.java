@@ -9,5 +9,5 @@ import com.athema.frame.AthemaMapper;
 @Repository
 @Mapper
 public interface CategoryMapper extends AthemaMapper<Integer, CategoryDTO> {
-	
+	public String search_theme_name(Integer k) throws Exception;
 }

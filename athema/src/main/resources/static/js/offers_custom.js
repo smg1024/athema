@@ -209,13 +209,25 @@ $(document).ready(function()
 		{
 			$('.offers_search_tab').on('click', function()
 			{
-				$('.offers_search_tab').removeClass('active');
-				$(this).addClass('active');
 				var clickedIndex = $('.offers_search_tab').index(this);
 
 				var panels = $('.search_panel');
-				panels.removeClass('active');
-				$(panels[clickedIndex]).addClass('active');
+				
+				if($(this).hasClass('active')==true)
+				{
+					$(this).removeClass('active');
+					$(panels[clickedIndex]).removeClass('active');
+				}else{
+					$(this).addClass('active');
+					$(panels[clickedIndex]).addClass('active');
+				}
+				
+				if($('.search_panel').hasClass('active')!=true)
+				{
+					$('.search_button').hide();
+				}else{
+					$('.search_button').show();
+				}
 			});
 		}
 	}

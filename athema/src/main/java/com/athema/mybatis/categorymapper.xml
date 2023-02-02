@@ -19,4 +19,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM category WHERE cate_code=#{cate_code}
 	</delete>
+	<select id="search_theme_name" parameterType="Integer" resultType="String">
+		SELECT cate_name FROM category WHERE cate_code=${up_cate_code}
+	</select>
 </mapper>

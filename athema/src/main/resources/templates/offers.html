@@ -1,6 +1,27 @@
 <script>
 	$(document).ready(function(){
-		$('#search_form_1 > button').click(function(){
+		$('.search_button').click(function(){
+			var theme_array = new Array();
+			$('input:checkbox[name=up_cate_code]:checked').each(function(){
+				theme_array.push(this.value);
+			});
+			$('#theme_codes').val(theme_array);
+			
+			var loc_array = new Array();
+			$('input:checkbox[name=cate_name]:checked').each(function(){
+				loc_array.push(this.value);
+			});
+			$('#loc_names').val(loc_array);
+			
+			$('#search_form_1').attr({
+				'method':'get',
+				'action':'[[@{/search}]]'
+			});
+			
+			$('#search_form_1').submit();
+		});
+		
+		/* $('#search_form_1 > button').click(function(){
 			var array = new Array();
 			$('input:checkbox[name=up_cate_code]:checked').each(function(){
 				array.push(this.value);
@@ -26,11 +47,11 @@
 				'action':'[[@{/search_loc}]]'
 			});
 			$('#search_form_2').submit();
-		});
+		}); */
 	});
 </script>
 
-<!-- attribute : itemlist -->
+<!-- attribute : itemlist, theme_names, loc_names -->
 
 <!-- OFFERS -->
 <link rel="stylesheet" type="text/css" href="styles/offers_styles.css">
@@ -73,8 +94,9 @@
 
 						<!-- Search Panel -->
 
+						<form id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 						<div class="search_panel active">
-							<form id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+							
 								<div class="extras">
 									<div class="search_item"><div><b>테마를 선택하세요</b></div></div>
 									<ul class="search_extras clearfix">
@@ -111,101 +133,98 @@
 									</ul>
 								</div>
 								<input type="hidden" id="theme_codes" name="theme_codes">
-								<button class="button search_button">검색</button>
-							</form>
 						</div>
 
 						<!-- Search Panel -->
 
 						<div class="search_panel">
-							<form id="search_form_2" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 								<div class="extras">
 									<div class="search_item"><div><b>지역을 선택하세요</b></div></div>
 									<ul class="search_extras clearfix">
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb" name="cate_name" value="서울">
-												<label for="search_extras_1">서울</label>
+												<input type="checkbox" id="search_extras_6" class="search_extras_cb" name="cate_name" value="서울">
+												<label for="search_extras_6">서울</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_2" class="search_extras_cb" name="cate_name" value="인천">
-												<label for="search_extras_2">인천</label>
+												<input type="checkbox" id="search_extras_7" class="search_extras_cb" name="cate_name" value="인천">
+												<label for="search_extras_7">인천</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_3" class="search_extras_cb" name="cate_name" value="부산">
-												<label for="search_extras_3">부산</label>
+												<input type="checkbox" id="search_extras_8" class="search_extras_cb" name="cate_name" value="부산">
+												<label for="search_extras_8">부산</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_4" class="search_extras_cb" name="cate_name" value="광주">
-												<label for="search_extras_4">광주</label>
+												<input type="checkbox" id="search_extras_9" class="search_extras_cb" name="cate_name" value="광주">
+												<label for="search_extras_9">광주</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_5" class="search_extras_cb" name="cate_name" value="제주">
-												<label for="search_extras_5">제주</label>
+												<input type="checkbox" id="search_extras_10" class="search_extras_cb" name="cate_name" value="제주">
+												<label for="search_extras_10">제주</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_6" class="search_extras_cb" name="cate_name" value="경기">
-												<label for="search_extras_6">경기</label>
+												<input type="checkbox" id="search_extras_11" class="search_extras_cb" name="cate_name" value="경기">
+												<label for="search_extras_11">경기</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_7" class="search_extras_cb" name="cate_name" value="강원">
-												<label for="search_extras_7">강원</label>
+												<input type="checkbox" id="search_extras_12" class="search_extras_cb" name="cate_name" value="강원">
+												<label for="search_extras_12">강원</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_8" class="search_extras_cb" name="cate_name" value="충북">
-												<label for="search_extras_8">충북</label>
+												<input type="checkbox" id="search_extras_13" class="search_extras_cb" name="cate_name" value="충북">
+												<label for="search_extras_13">충북</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_9" class="search_extras_cb" name="cate_name" value="충남">
-												<label for="search_extras_9">충남</label>
+												<input type="checkbox" id="search_extras_14" class="search_extras_cb" name="cate_name" value="충남">
+												<label for="search_extras_14">충남</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_10" class="search_extras_cb" name="cate_name" value="전북">
-												<label for="search_extras_10">전북</label>
+												<input type="checkbox" id="search_extras_15" class="search_extras_cb" name="cate_name" value="전북">
+												<label for="search_extras_15">전북</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_11" class="search_extras_cb" name="cate_name" value="전남">
-												<label for="search_extras_11">전남</label>
+												<input type="checkbox" id="search_extras_16" class="search_extras_cb" name="cate_name" value="전남">
+												<label for="search_extras_16">전남</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_12" class="search_extras_cb" name="cate_name" value="경북">
-												<label for="search_extras_12">경북</label>
+												<input type="checkbox" id="search_extras_17" class="search_extras_cb" name="cate_name" value="경북">
+												<label for="search_extras_17">경북</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_13" class="search_extras_cb" name="cate_name" value="경북">
-												<label for="search_extras_13">경남</label>
+												<input type="checkbox" id="search_extras_18" class="search_extras_cb" name="cate_name" value="경북">
+												<label for="search_extras_18">경남</label>
 											</div>	
 										</li>
 									</ul>
 								</div>
 								<input type="hidden" id="loc_names" name="loc_names">
-								<button class="button search_button">검색</button>
-							</form>
 						</div>
+						</form>
+						<button class="button search_button">검색</button>
 					</div>
 				</div>
 			</div>	
@@ -215,6 +234,16 @@
 	<!-- Offers -->
 
 	<div class="container">
+		<div style="text-align:center;">테마:
+			<th:block th:each="theme:${theme_names}">
+				<span class="theme_name" th:text="${theme}"></span> 
+			</th:block>
+		</div>
+		<div style="text-align:center;">지역:
+			<th:block th:each="loc:${loc_names}">
+				<span class="loc_name" th:text="${loc}"></span> 
+			</th:block>
+		</div>
 		<div class="row">
 			<div class="col-lg-1 temp_col"></div>
 			<div class="col-lg-11">
@@ -291,7 +320,7 @@
 							</div>
 							<div class="col-lg-8">
 								<div class="offers_content">
-									<div class="offers_price">₩40000<span>당일</span></div>
+									<div class="offers_price" th:text="₩+${list.item_price}"></div>
 									<div class="rating_r rating_r_2 offers_rating" data-rating="2">
 										<i></i>
 										<i></i>

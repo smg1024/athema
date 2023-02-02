@@ -42,4 +42,8 @@ public class CategoryService implements AthemaService<Integer, CategoryDTO> {
 	public List<CategoryDTO> getall() throws Exception {
 		return mapper.selectall();
 	}
+	
+	public String search_theme_name(Integer k) throws Exception{
+		return mapper.search_theme_name(k);
+	}
 }
