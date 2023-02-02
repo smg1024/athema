@@ -33,4 +33,17 @@ public class MemberController {
 		return "main";
 	}
 
+	@RequestMapping("/add")
+	public String add(Model model) {
+		int todayMem = 0;
+		try {
+			todayMem = mservice.getTodayMember();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("todayMem", todayMem);
+		model.addAttribute("center", dir+"add");
+		return "main";
+	}
+
 }

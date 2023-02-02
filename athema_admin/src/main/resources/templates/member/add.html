@@ -1,30 +1,15 @@
-<script>
-	var stompClient = null;
-	var id = 'admin';
-	// 서버소켓에 연결
-	function connect() {
-		var socket = new SockJS('http://127.0.0.1:8080/shopadmin/wss');
-		stompClient = Stomp.over(socket);
+<style>
+h1 {
+	margin: 30px 0 20px 10px;
+	color: #4763DF;
+	font-weight: bold;
+}
 
-		stompClient.connect({}, function(frame) { 
-			console.log('Connected: ' + frame);
-			stompClient.subscribe('/broadcast', function(msg) { 
-				$("#content1").text(JSON.parse(msg.body).content1);
-				$("#content2").text(JSON.parse(msg.body).content2);
-			});
-		});
-	}
-	$(document).ready(function(){
-		connect();
-	});
-</script>
+</style>
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-	<a href="#"
-		class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-		class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+	<h1>회원 수 증감 현황</h1>
 </div>
 
 <!-- Content Row -->
@@ -36,10 +21,9 @@
 			<div class="card-body">
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
-						<div
-							class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-							당해년도 매출액</div>
-						<div id="content1" class="h5 mb-0 font-weight-bold text-gray-800">₩ 1,240,000</div>
+						<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+							총 누적 회원 수</div>
+						<div id="content1" class="h5 mb-0 font-weight-bold text-gray-800" th:text="${todayMem}"></div>
 					</div>
 					<div class="col-auto">
 						<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -57,7 +41,7 @@
 					<div class="col mr-2">
 						<div
 							class="text-xs font-weight-bold text-success text-uppercase mb-1">
-							당월 매출액</div>
+							이번주 가입자 수</div>
 						<div id="content2" class="h5 mb-0 font-weight-bold text-gray-800">₩ 215,000</div>
 					</div>
 					<div class="col-auto">
@@ -75,7 +59,7 @@
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div
-							class="text-xs font-weight-bold text-info text-uppercase mb-1">누적 회원수
+							class="text-xs font-weight-bold text-info text-uppercase mb-1">오늘 가입자 수
 						</div>
 						<div class="row no-gutters align-items-center">
 							<div class="col-auto">

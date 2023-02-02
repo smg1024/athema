@@ -33,6 +33,7 @@
 	<script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
 	<script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
 	
+
 </head>
 
 <body id="page-top">
@@ -56,8 +57,16 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/qna}">
+                <a class="nav-link" th:href="@{/}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Nav Item - 1:1 고객 문의 -->
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/qna}">
+<!--                     <i class="fas fa-fw fa-tachometer-alt"></i> -->
+                	<i class="fas fa-comments fa-2x text-gray-300"></i>
                     <span>1:1 고객 문의</span></a>
             </li>
 
@@ -65,8 +74,8 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading" style="text-align: center; font-size: 1em;">
-                메뉴
+            <div class="sidebar-heading" style="text-align: center; font-size: 1em; margin: 5px 0 10px 0;">
+                관리자 메뉴
             </div>
 
             <!-- Nav Item - 회원관리 Collapse Menu -->
@@ -107,7 +116,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
+                    <i class="fas fa-dollar-sign" style="margin:0 9px 0 4px;"></i>
                     <span>주문 관리</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
@@ -188,7 +197,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter">1</span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -203,8 +212,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                        <div class="small text-gray-500">2023년 2월 1일</div>
+                                        <span class="font-weight-bold">월간 리포트 다운로드가 준비되었습니다.</span>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -214,8 +223,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
+                                        <div class="small text-gray-500">2023년 1월 26일</div>
+                                        탈퇴 회원 업데이트하기
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -225,8 +234,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
+                                        <div class="small text-gray-500">2023년 1월 19일</div>
+                                        상품 목록 업데이트가 예기치 못한 오류로 중단되었습니다.
                                     </div>
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
@@ -239,7 +248,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
+                                <span class="badge badge-danger badge-counter">1+</span>
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
