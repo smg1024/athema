@@ -18,9 +18,18 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<update id="update" parameterType="OrderDTO">
 		UPDATE `order` set book_name=#{book_name}, book_hp=#{book_hp}, book_email=#{book_email} WHERE order_code =#{order_code}
 	</update>
-	
-<!-- 	<select id="totprice" parameterType="Order">
-		select (opt.item_price*ord.cnt) AS tot_price from ord_detail ord INNER JOIN `option` opt ON
-		ord.opt_code = opt.opt_code where opt.item_code=opt.opt_code
-	</select> -->
+	<!-- 주문목록 -->
+	<select id="listall" resultType="OrderDTO">
+		SELECT ord.detail_code, m.mem_name as mem_name, i.item_name as item_name, opt.opt_name as opt_name, ord.cnt as cnt, o.tot_price as tot_price,
+ 		o.book_name, o.book_hp, o.book_email, o.order_date, ord.exp_date, ord.used FROM `member` m join `order` o on m.mem_code=o.mem_code
+ 		join ord_detail ord on o.order_code = ord.order_code
+ 		join `option` opt on ord.opt_code = opt.opt_code
+ 		join item i on i.item_code=opt.item_code;
+	</select>
+	<update id="updateused" parameterType="OrderDTO">
+	UPDATE ord_detail set used=#{used} WHERE detail_code=#{detail_code};
+	</update>
+	<delete id="deletecode" parameterType="Integer">
+	DELETE from ord_detail where detail_code=#{detail_code};
+	</delete>
 </mapper>
