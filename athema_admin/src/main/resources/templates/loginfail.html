@@ -4,16 +4,10 @@ background-color: #f8f9fc;
 }
 .wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
 }
 .content {
   padding: 3rem;
-}
-
-#fail_inner{
-	text-align: center;
 }
 
 #login_button{
@@ -29,15 +23,17 @@ a
 {
 	text-decoration: none;
 }
+p
+{
+	margin-top: 20px;
+}
 </style>
-
-
 
 <div class="wrapper">
 	<div class="content">
 		<div id="fail_inner">
-			<h2 style="color:#db5246; font-weight:bold">⛔ 로그인에 실패하였습니다 ⛔</h4>
-			<p>&#128679; 로그인 정보 확인 후 다시 시도하시기 바랍니다.
+			<h2 style="color:#4D6FDC; font-weight:bold">😱 회원 정보 오류 😱</h4>
+			<p>&#128679; 비밀번호 혹은 관리자 권한 확인 후 다시 시도하시기 바랍니다.</p>
 			<p><button id="login_button"><a th:href="@{/login}">&#128281; 다시 로그인하기</a></button></p>
 		</div>
 	</div>

@@ -22,13 +22,14 @@ public class MemberController {
 	MemberService mservice;
 	
 	@RequestMapping("/get")
-	public String get(Model model) {
+	public String get(Model model) throws Exception {
 		List<MemberDTO> mem_list = null;
 		try {
 			mem_list = mservice.getall();
 		} catch (Exception e) {
 			System.out.println("Controller 동작 실패");
 			e.printStackTrace();
+			throw new Exception("회원 조회 에러");
 		}
 		model.addAttribute("mem_list", mem_list);
 		model.addAttribute("center", dir+"get");
@@ -36,7 +37,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/add")
-	public String add(Model model) {
+	public String add(Model model) throws Exception  {
 		int todayMem = 0;
 		int weekMem = 0;
 		int monthMem = 0;
@@ -59,6 +60,7 @@ public class MemberController {
 			totWithdraw = mservice.getTotWithdraw();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new Exception("회원 조회 실패");
 		}
 		
 		// 증감율 계산
@@ -81,7 +83,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/adloginimpl")
-	public String loginimpl(HttpSession session, String mem_email, String mem_pwd, Model model) {
+	public String loginimpl (HttpSession session, String mem_email, String mem_pwd, Model model) throws Exception{
 		MemberDTO member = null;
 		String result = "loginfail";
 		try {
@@ -102,7 +104,7 @@ public class MemberController {
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage()+" : 사용자 정보 조회 실패");
-			return result;
+			throw new Exception("회원 정보가 없습니다.");
 		}
 		model.addAttribute("center", result);
 		return "main";
