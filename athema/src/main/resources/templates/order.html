@@ -105,21 +105,25 @@ function checkclickall()  {
 	  
 	  if(checkboxes.length === checked.length)  {
 		 clickall.checked = true;
-		 $(target).prop("disabled", false);//활성
+		 $(target).prop("disabled", false);//활성 jQuery
 	  }else {
 		 clickall.checked = false;
 		 $(target).prop("disabled", true);//비활성
 	  }
 
 	}
-	function clickall(clickall){//약관안내 체크박스
+	
+//약관안내 체크박스
+	function clickall(clickall){
 		const checkboxes = document.getElementsByName('order_terms_box');
 	  
 	  checkboxes.forEach((checkbox) => {
 	    checkbox.checked = clickall.checked;
 	  });
 	};
-	function checkOnlyOne(element){//
+	
+	//예약정보 체크박스
+	function checkOnlyOne(element){
 		const checkboxes = document.getElementsByName("order_book_data");
 	  
 	  checkboxes.forEach((cb) => {
@@ -128,7 +132,11 @@ function checkclickall()  {
 	  
 	  element.checked = true;
 	};
-
+	
+	//예약자 정보 새로입력 클릭시 input 값 없애기
+	$('#new_book_data').chlick(function(){
+		$("#book_name").val('');
+	});
 
 	function requestPay(data) {
 		var IMP = window.IMP; // 생략가능
@@ -209,26 +217,26 @@ function checkclickall()  {
 				<h3 id="order_book_h3">예약자 정보</h3>
 				<div id="order_book_data">
 					<input type='checkbox' name='order_book_data' checked="checked"
-						onclick='checkOnlyOne(this)' /> 주문자의 정보와 동일
+						onclick='checkOnlyOne(this)' id="old_book_data"/> 주문자의 정보와 동일
 				</div>
 				<div id="order_book_data">
 					<input type='checkbox' name='order_book_data'
-						onclick='checkOnlyOne(this)' /> 새로 입력
+						onclick='checkOnlyOne(this)' id="new_book_data"/> 새로 입력
 				</div>
 				<hr>
 				<div id="order_book">
 				<form id="bookregister_form">
 					<div>
 						<div>예약자 이름</div>
-						<input type="text" name="book_name" id="book_name">
+						<input type="text" name="book_name" id="book_name" th:value="${member.mem_name}">
 					</div>
 					<div>
 						<div>예약자 전화번호</div>
-						<input type="text" name="book_hp" id="book_hp">
+						<input type="text" name="book_hp" id="book_hp" th:value="${member.mem_hp}">
 					</div>
 					<div>
 						<div>예약자 이메일</div>
-						<input type="text" name="book_email" id="book_email">
+						<input type="text" name="book_email" id="book_email" th:value="${member.mem_email}">
 					</div>
 				</form>
 				</div>
