@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	SELECT * FROM item WHERE item_code=${item_code}
 	</select>
 	<select id="selectall" resultType="ItemDTO">
-	SELECT * FROM item
+	SELECT * FROM item ORDER BY item_code
 	</select>
 	<insert id="insert" parameterType="ItemDTO">
 	INSERT INTO item VALUES(null, #{item_name}, #{item_loc}, #{item_detail}, (SELECT cate_code FROM category WHERE cate_name=#{location} and UP_cate_code=${theme}), #{lat}, #{lng}, #{item_img}, current_date(), #{exp_days})

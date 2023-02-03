@@ -243,7 +243,16 @@
 								<div class="hotel_location" th:text=${item.item_loc}></div>
 							</div>
 							<div class="hotel_title_button ml-lg-auto text-lg-right">
-								<div class="button book_button trans_200"><a href="#">예약하기<span></span><span></span><span></span></a></div>
+								<form>
+									<select name="opt_name">
+										<th:block th:each="opt:${options}">
+										<option th:value="${opt.opt_code}" th:text="${opt.opt_name}"></option>
+										</th:block>
+									</select>
+									<input type="number" name="opt_quantity">
+									<div class="opt_price"></div>
+								</form>
+								<div class="button book_button trans_200">예약하기<span></span><span></span><span></span></div>
 								<div class="hotel_map_link_container">
 									<div class="hotel_map_link">See Location on Map</div>
 								</div>

@@ -59,5 +59,9 @@ public class ItemService implements AthemaService<Integer, ItemDTO> {
 	public List<ItemDTO> search_item(Integer k, String cate_name) throws Exception {
 		return mapper.search_item(k, cate_name);
 	}
+	
+	public int min_price(Integer k) throws Exception{
+		return mapper.min_price(k);
+	}
 
 }

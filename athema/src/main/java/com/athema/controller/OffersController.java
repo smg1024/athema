@@ -57,6 +57,11 @@ public class OffersController {
 							list.add(item);
 						}
 					}
+				}else {
+					list = iservice.getall();
+					for(ItemDTO item : list) {
+						item.setItem_price(iservice.min_price(item.getItem_code()));
+					}
 				}
 			}
 		} catch (Exception e) {

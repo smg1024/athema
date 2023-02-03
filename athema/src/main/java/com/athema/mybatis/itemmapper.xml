@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	SELECT * FROM item WHERE item_code=${item_code}
 	</select>
 	<select id="selectall" resultType="ItemDTO">
-	SELECT * FROM item i INNER JOIN `option` o ON i.item_code=o.item_code
+	SELECT * FROM item i
 	</select>
 	<insert id="insert" parameterType="ItemDTO">
 	INSERT INTO item VALUES(null, #{item_name}, #{item_loc}, #{item_detail}, #{cate_code}, #{lat}, #{lng}, null, current_date(), #{exp_days})
@@ -40,5 +40,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	SELECT * FROM (
 	SELECT i.item_code, i.item_name, i.item_loc, i.item_detail, i.cate_code, i.lat, i.lng, i.item_img, i.rdate, i.exp_days, c.cate_name, c.up_cate_code FROM item i INNER JOIN category c ON i.cate_code=c.cate_code WHERE c.up_cate_code=${param1}) AS theme
 	WHERE cate_name=#{param2}
+	</select>
+	
+	<select id="min_price" parameterType="Integer" resultType="Integer">
+	SELECT min(item_price) FROM item i INNER JOIN `option` o on i.item_code=o.item_code WHERE i.item_code=${item_code};
 	</select>
 </mapper>
