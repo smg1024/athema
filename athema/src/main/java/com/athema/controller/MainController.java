@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.athema.dto.ItemDTO;
+import com.athema.dto.MemberDTO;
 import com.athema.service.ItemService;
+import com.athema.service.MemberService;
 import com.athema.service.ReviewService;
 
 @Controller
@@ -21,6 +23,9 @@ public class MainController {
 	
 	@Autowired
 	ReviewService rservice;
+	
+	@Autowired
+	MemberService mservice;
 	
 	@RequestMapping("")
 	public String main(Model model) {
@@ -119,17 +124,20 @@ public class MainController {
 	}
 	
 	@RequestMapping("/order")
-	public String order(Model model, int item_code) {
+	public String order(Model model, int item_code, int mem_code) {
 		ItemDTO item = null;
 		ItemDTO day = null;
 		List<ItemDTO> options = null;
+		MemberDTO member = null;
 		try {
 			item = iservice.get(item_code);
 			options = iservice.options(item_code);
 			day = iservice.dayselect(item_code);
+			member = mservice.get(mem_code);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		model.addAttribute("member", member);
 		model.addAttribute("item", item);
 		model.addAttribute("olist", options);
 		model.addAttribute("day", day);

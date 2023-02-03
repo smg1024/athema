@@ -21,8 +21,8 @@ public class MypageController {
 	
 	@RequestMapping("")
 	public String mypage(Model model) {
-		model.addAttribute("content", "mypage");	
-		model.addAttribute("mypagecenter", "mypagecenter");
+		model.addAttribute("content", dir+"mypage");	
+		model.addAttribute("mypagecenter",dir+ "mypagecenter");
 		return "main";
 	}
 	//http://127.0.0.1/mypage/userpage
@@ -38,7 +38,7 @@ public class MypageController {
 		}
 		model.addAttribute("obj",member);
 		System.out.println(member);
-		model.addAttribute("content", "mypage");	
+		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"userpage");
 		return "main";
 	}
@@ -68,7 +68,7 @@ public class MypageController {
 		}
 		System.out.println("수정된 값"+member);
 		model.addAttribute("obj",member);
-		model.addAttribute("content", "mypage");	
+		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"userpage");
 		return "redirect:userpage?mem_email="+member.getMem_email();
 	}
@@ -89,35 +89,35 @@ public class MypageController {
 	
 	@RequestMapping("/travel_list")
 	public String travel_list(Model model) {	
-		model.addAttribute("content", "mypage");	
+		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"travel_list");
 		return "main";
 	}
 	
 	@RequestMapping("/travel_plan")
 	public String travel_plan(Model model) {	
-		model.addAttribute("content", "mypage");	
+		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"travel_plan");
 		return "main";
 	}
 	
 	@RequestMapping("/travel_past")
 	public String travel_past(Model model) {	
-		model.addAttribute("content", "mypage");	
+		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"travel_past");
 		return "main";
 	}
 	
 	@RequestMapping("/myreview")
 	public String myreview(Model model) {	
-		model.addAttribute("content", "mypage");	
+		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"myreview");
 		return "main";
 	}
 	
 	@RequestMapping("/mywishlist")
 	public String mywishlist(Model model) {	
-		model.addAttribute("content", "mypage");	
+		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"mywishlist");
 		return "main";
 	}
