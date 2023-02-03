@@ -84,4 +84,9 @@ public class MemberService implements AthemaService<Integer, MemberDTO> {
 		return mapper.getTotWithdraw();
 	}
 	
+//	public List<MemberDTO> getLastMonth() throws Exception {
+//		return mapper.getLastMonth();
+//	}
+
+	
 }

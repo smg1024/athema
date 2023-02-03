@@ -1,0 +1,44 @@
+<style>
+body {
+background-color: #f8f9fc;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.content {
+  padding: 3rem;
+}
+
+#fail_inner{
+	text-align: center;
+}
+
+#login_button{
+	border: none;
+	padding : 6px;
+}
+
+#login_button:hover{
+	background-color: #EAEFFF;
+}
+
+a
+{
+	text-decoration: none;
+}
+</style>
+
+
+
+<div class="wrapper">
+	<div class="content">
+		<div id="fail_inner">
+			<h2 style="color:#db5246; font-weight:bold">⛔ 로그인에 실패하였습니다 ⛔</h4>
+			<p>&#128679; 로그인 정보 확인 후 다시 시도하시기 바랍니다.
+			<p><button id="login_button"><a th:href="@{/login}">&#128281; 다시 로그인하기</a></button></p>
+		</div>
+	</div>
+</div>

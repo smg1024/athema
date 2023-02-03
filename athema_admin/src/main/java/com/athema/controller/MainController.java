@@ -1,5 +1,7 @@
 package com.athema.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,15 @@ public class MainController {
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session, Model model) {
+		if(session != null) {
+			session.invalidate();
+		}
+		model.addAttribute("content", "center");
+		return "main";
 	}
 	
 	@RequestMapping("/qna")

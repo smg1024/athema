@@ -17,7 +17,6 @@
 
 <!-- Custom styles for this template-->
 <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
-
 </head>
 
 <body class="bg-gradient-primary">
@@ -36,14 +35,14 @@
 							<div class="text-center">
 								<h1 class="h4 text-gray-900 mb-4">ADMIN LOGIN</h1>
 							</div>
-							<form class="user">
+							<form class="user" id="admin_login_form">
 								<div class="form-group">
-									<input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address">
+									<input type="email" class="form-control form-control-user" id="mem_email" name="mem_email" aria-describedby="emailHelp" placeholder="Enter Email Address" onkeyup="enterkey()">
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+									<input type="password" class="form-control form-control-user" id="mem_pwd" name="mem_pwd" placeholder="Password" onkeyup="enterkey()">
 								</div>
-								<a th:href="@{/index}" class="btn btn-primary btn-user btn-block"> Login </a>
+								<a href="#" id="admin_login_submit" class="btn btn-primary btn-user btn-block"> Login </a>
 							</form>
 						</div>
 					</div>
@@ -64,5 +63,35 @@
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
 </body>
+<script>
 
+function enterkey() {
+    if (window.event.keyCode == 13) {
+         // 엔터키가 눌렸을 때 submit
+         $('#admin_login_form').attr({
+			method:'post',
+			action:'[[@{/member/adloginimpl}]]'
+		});
+		$('#admin_login_form').submit(); 
+    }
+}
+
+$(document).ready(function(){
+	$('#admin_login_submit').click(function(){
+		if ($('#mem_email').val() == '') {
+			alert("이메일을 입력하세요");
+			return false;
+		} else if ($('#mem_pwd').val() == '') {
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
+				
+		$('#admin_login_form').attr({
+			method:'post',
+			action:'[[@{/member/adloginimpl}]]'
+		});
+		$('#admin_login_form').submit(); 
+	});
+});
+</script>
 </html>

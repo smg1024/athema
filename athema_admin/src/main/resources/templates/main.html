@@ -311,7 +311,8 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                        	<a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal"><span>LOGIN</span></a>
+                        	<a th:href="@{/login}" class="nav-link" th:if="${session.loginAdmin==null}"><span>LOGIN</span></a>
+                        	<a th:href="@{/logout}" class="nav-link" onclick="return confirm('로그아웃 하시겠습니까?');" th:if="${session.loginAdmin!=null}"><span>LOGOUT</span></a>
                             <!-- <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>

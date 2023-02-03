@@ -81,5 +81,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="getTotWithdraw" resultType="int">
 		SELECT count(*) FROM member WHERE mem_del=1
 	</select>
+
+<!-- 	지난 주 가입한 회원 전체 데이터 -->
+<!-- 	<select id="getLastMonth" resultType="MemberDTO"> -->
+<!-- 		SELECT mem_date, count(mem_email) AS cnt FROM member  -->
+<!-- 		WHERE mem_date BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW() -->
+<!-- 		GROUP BY mem_date; -->
+<!-- 	</select> -->
 	
 </mapper>

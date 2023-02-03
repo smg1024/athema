@@ -1,5 +1,7 @@
 package com.athema.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -20,4 +22,5 @@ public interface MemberMapper extends AthemaMapper<Integer, MemberDTO>{
 	public int getTodayWithdraw() throws Exception;
 	public int getMonthWithdraw() throws Exception;
 	public int getTotWithdraw() throws Exception;
+//	public List<MemberDTO> getLastMonth() throws Exception;
 }
