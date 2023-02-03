@@ -115,7 +115,7 @@ public class MainController {
 		try {
 			item = iservice.get(item_code);
 			options = iservice.options(item_code);
-			item.setAvg_rating(rservice.avg_rating(item_code));
+//			item.setAvg_rating(rservice.avg_rating(item_code));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

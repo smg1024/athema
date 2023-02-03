@@ -20,4 +20,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM `option` WHERE opt_code=${opt_code}
 	</delete>
+	
+	<select id="getprice" parameterType="Integer" resultType="Integer">
+		SELECT ${opt_quantity}*item_price FROM (SELECT opt_code, item_price FROM `option` o INNER JOIN item i ON o.item_code=i.item_code WHERE i.item_code=${item_code}) opt where opt.opt_code=${opt_code};
+	</select>
 </mapper>

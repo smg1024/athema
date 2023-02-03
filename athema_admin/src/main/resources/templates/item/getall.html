@@ -9,6 +9,10 @@ function del(item_code){
 		location.href='[[@{/item/delete}]]?item_code='+item_code;
 	}
 }
+
+function add(){
+	location.href='[[@{/item/add}]]';
+}
 </script>
 
 <!-- attribute : list -->
@@ -23,7 +27,7 @@ function del(item_code){
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
 			<div style="float:left"><h6 class="m-0 font-weight-bold text-primary">상품 목록</h6></div>
-			<div style="float:right"><button>등록하기</button></div>
+			<div style="float:right"><button onclick='add()'>등록하기</button></div>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">

@@ -15,7 +15,7 @@ class UpdateTests {
 
 	@Test
 	void contextLoads() {
-		OptionDTO optup = new OptionDTO(1, 1, "성인", 500);
+		OptionDTO optup = new OptionDTO(1, 1, "성인", 500, 0);
 
 		try {
 			service.modify(optup);

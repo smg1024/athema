@@ -19,4 +19,7 @@ public class OptionDTO {
 	private String opt_name;
 	private int item_price;
 	
+	// 옵션 수량
+	private int opt_quantity;
+	
 }

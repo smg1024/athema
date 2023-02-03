@@ -1,3 +1,34 @@
+<script>
+function getprice(item_code, opt_code, opt_quantity){
+	$.ajax({
+		url:'[[@{/getprice}]]',
+		data: {"item_code":item_code, "opt_code":opt_code, "opt_quantity":opt_quantity},
+		success:function(price){
+			$('#opt_price').text(price);
+		},
+		error:function(){
+			alert('error');
+		}
+	});
+}
+
+$(document).ready(function(){
+	var item_code = $('input[name=item_code]').val();
+	
+	$('input[name=opt_quantity]').change(function(){
+		var opt_code = $('select[name=opt_code]').val();
+		var opt_quantity = $(this).val();
+		getprice(item_code, opt_code, opt_quantity);
+	});
+	
+	$('select[name=opt_code]').change(function(){
+		var opt_code = $(this).val();
+		var opt_quantity = $('input[name=opt_quantity]').val();
+		getprice(item_code, opt_code, opt_quantity);
+	});
+});
+</script>
+
 <!-- attribute : item, options -->
 
 <!-- SINGLE_LISTING -->
@@ -181,34 +212,6 @@
 										</li>
 									</ul>
 								</div>
-								<!-- <div class="search_item">
-									<div>destination</div>
-									<input type="text" class="destination search_input" required="required">
-								</div>
-								<div class="search_item">
-									<div>check in</div>
-									<input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>check out</div>
-									<input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>adults</div>
-									<select name="adults" id="adults_2" class="dropdown_item_select search_input">
-										<option>01</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<div class="search_item">
-									<div>children</div>
-									<select name="children" id="children_2" class="dropdown_item_select search_input">
-										<option>0</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div> -->
 								<button class="button search_button">검색</button>
 							</form>
 						</div>
@@ -242,16 +245,20 @@
 								</div>
 								<div class="hotel_location" th:text=${item.item_loc}></div>
 							</div>
-							<div class="hotel_title_button ml-lg-auto text-lg-right">
-								<form>
-									<select name="opt_name">
+							<div style="margin:auto;">
+								<form class="option_submit_form">
+									<input type="hidden" name="item_code" th:value="${item.item_code}">
+									<legend>옵션 선택</legend>
+									<select name="opt_code" id="opt_code">
 										<th:block th:each="opt:${options}">
 										<option th:value="${opt.opt_code}" th:text="${opt.opt_name}"></option>
 										</th:block>
-									</select>
-									<input type="number" name="opt_quantity">
-									<div class="opt_price"></div>
+									</select>&nbsp;
+									인원: <input type="number" name="opt_quantity" id="opt_quantity" value="0"> 명<br>
+									가격: <div id="opt_price"></div>
 								</form>
+							</div>
+							<div class="hotel_title_button ml-lg-auto text-lg-right">
 								<div class="button book_button trans_200">예약하기<span></span><span></span><span></span></div>
 								<div class="hotel_map_link_container">
 									<div class="hotel_map_link">See Location on Map</div>
