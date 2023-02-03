@@ -42,9 +42,17 @@ public class OrderService implements AthemaService<Integer, OrderDTO>{
 	public List<OrderDTO> getall() throws Exception {
 		return mapper.selectall();
 	}
-	
-	
-	/*
-	 * public void totprice(OrderDTO v) throws Exception{ mapper.totprice(v); }
-	 */
+	//주문 목록
+	public List<OrderDTO> listall() throws Exception{
+		return mapper.listall();
+	}
+	//사용 여부
+	public void updateused(OrderDTO v) throws Exception{
+		mapper.updateused(v);
+	}
+	//주문 내역 삭제
+	public void deletecode(Integer k) throws Exception {
+		mapper.deletecode(k);
+		
+	}
 }

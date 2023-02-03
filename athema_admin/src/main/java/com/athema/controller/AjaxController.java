@@ -5,13 +5,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.athema.dto.MemberDTO;
+import com.athema.dto.OrderDTO;
 import com.athema.service.MemberService;
+import com.athema.service.OrderService;
 
 @RestController
 public class AjaxController {
 	
 	@Autowired
 	MemberService mservice;
+	
+	@Autowired
+	OrderService oservice;
 	
 	// 관리자 <-> 일반 회원 수정
 	@RequestMapping("/updateAuth")
@@ -61,5 +66,36 @@ public class AjaxController {
 			e.printStackTrace();
 		}
 	}
+	
+	// 사용 여부 0<->1
+		@RequestMapping("/updateused")
+		public void updateAuth(OrderDTO order, int detail_code, int used) {
+			try {
+			if (used == 0) {
+				order.setUsed(1);
+				oservice.updateused(order);
+				}
+			if (used == 1) {
+				order.setUsed(0);
+				oservice.updateused(order);
+			}
+			} catch (Exception e) {
+				System.out.println("수정 실패");
+				e.printStackTrace();
+			}
+		}
+		
+		//주문내역 삭제
+		@RequestMapping("/deleteord")
+		public void deleteord(int detail_code) {
+			try {
+				oservice.deletecode(detail_code);
+				System.out.println("삭제 완료");
+			} catch (Exception e) {
+				System.out.println("삭제 실패");
+				e.printStackTrace();
+			}
+		}
+		
 	
 }
