@@ -9,10 +9,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PreferselectController {
 	String dir = "preferselect/";
 	
-	@RequestMapping("")
-	public String main(Model model) {
-		model.addAttribute("left", dir+"left");
-		model.addAttribute("center", dir+"center");
-		return "preferselect";
-	}
+	
 }

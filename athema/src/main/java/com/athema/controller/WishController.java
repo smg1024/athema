@@ -9,10 +9,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WishController {
 	String dir = "wish/";
 	
-	@RequestMapping("")
-	public String main(Model model) {
-		model.addAttribute("left", dir+"left");
-		model.addAttribute("center", dir+"center");
-		return "wish";
-	}
+	
 }
