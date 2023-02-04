@@ -36,20 +36,10 @@ public class OrderController {
 			return "main";
 		}
 		
-		
-		
-		@RequestMapping("/delete")
-		public String delete(Model model) {
-			List<OrderDTO> list = null;
-			try {
-				list = oservice.listall();
-				/* System.out.println("주문목록 출력 성공"); */
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			model.addAttribute("list",list);
-			model.addAttribute("center", dir+"delete");
+		@RequestMapping("/sales")
+		public String sales(Model model) {
+			model.addAttribute("center", dir+"sales");
 			return "main";
 		}
+		
 }

@@ -15,6 +15,22 @@ function edit(detail_code, used){
 		});
 	}
 }
+function deletebtn(detail_code){
+	var c = confirm("주문 내역을 삭제하시겠습니까?");
+	if(c==true) {
+		$.ajax({
+			url:'[[@{/deleteord}]]',
+			data: {detail_code},
+			success: function(data) {
+				alert('삭제되었습니다.');
+				location.reload();
+			},
+			error:function(){
+				alert('삭제실패하였습니다.');
+			}
+		});
+	}
+}
 </script>
 <div class="order_list">
     <!-- DataTales Example -->
@@ -39,6 +55,7 @@ function edit(detail_code, used){
                             <th>결제일</th>
                             <th>유효날짜</th>
                             <th>사용여부</th>
+                            <th>삭제</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -55,6 +72,7 @@ function edit(detail_code, used){
                             <th>결제일</th>
                             <th>유효날짜</th>
                             <th>사용여부</th>
+                            <th>삭제</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -71,6 +89,7 @@ function edit(detail_code, used){
                             <td th:text="${#dates.format(o.order_date, 'YYYY-MM-dd')}"></td>
                             <td th:text="${#dates.format(o.exp_date, 'YYYY-MM-dd')}"></td>
                             <td><a href="#" th:onclick="edit([[${o.detail_code}]],[[${o.used}]])">[[${o.used}]]</a></td>
+                            <td><button th:onclick='deletebtn([[${o.detail_code}]]);'>삭제</button></td>
                         </tr>
                     </tbody>
                 </table>
