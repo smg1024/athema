@@ -15,16 +15,52 @@ function getprice(item_code, opt_code, opt_quantity){
 $(document).ready(function(){
 	var item_code = $('input[name=item_code]').val();
 	
-	$('input[name=opt_quantity]').change(function(){
-		var opt_code = $('select[name=opt_code]').val();
+	$('input[id=add_quantity]').change(function(){
+		var opt_code = $('select[id=add_opt_code]').val();
 		var opt_quantity = $(this).val();
 		getprice(item_code, opt_code, opt_quantity);
 	});
 	
-	$('select[name=opt_code]').change(function(){
+	$('select[id=add_opt_code]').change(function(){
+		$('input[id=add_quantity]').val(0);
+		$('#opt_price').text(0);
 		var opt_code = $(this).val();
-		var opt_quantity = $('input[name=opt_quantity]').val();
+		var opt_quantity = $('input[id=add_quantity]').val();
 		getprice(item_code, opt_code, opt_quantity);
+	});
+	
+	// 담기버튼 누르면 옵션 및 가격 표시
+	$('#add_option').on('click', function(){
+		var opt_code = $('select[id=add_opt_code]').val();
+		var opt_quantity = $('input[id=add_quantity]').val();
+		var price = $('#opt_price').text();
+		
+		$('.option_submit_form #opt_quantity_'+opt_code+'').text(opt_quantity);
+		$('.option_submit_form #opt_quantity_'+opt_code+'').next().val(opt_quantity);
+		$('.option_submit_form #price_'+opt_code+'').val(price);
+		
+		var prices = document.getElementsByClassName("price");
+		var sum = 0;
+		for (var i = 0; i < prices.length; i++) {
+			var p = prices[i];
+			
+			var value = parseInt(p.value)
+			if (isNaN(value)) {
+			    value = 0;
+			  }
+			
+			sum += value;
+		}
+		
+		$('.option_submit_form #tot_price').text(sum);
+	});
+	
+	$('.book_button').onclick(function(){
+		$('.option_submit_form').attr({
+			'method':'get',
+			'action':''
+		});
+		$('.option_submit_form').submit();
 	});
 });
 </script>
@@ -245,24 +281,34 @@ $(document).ready(function(){
 								</div>
 								<div class="hotel_location" th:text=${item.item_loc}></div>
 							</div>
-							<div style="margin:auto;">
-								<form class="option_submit_form">
-									<input type="hidden" name="item_code" th:value="${item.item_code}">
+							<div style="margin:auto;" id="select_option">
 									<legend>옵션 선택</legend>
-									<select name="opt_code" id="opt_code">
+									<select name="opt_code" id="add_opt_code">
 										<th:block th:each="opt:${options}">
-										<option th:value="${opt.opt_code}" th:text="${opt.opt_name}"></option>
+										<option class="selected_option" th:value="${opt.opt_code}" th:text="${opt.opt_name}"></option>
 										</th:block>
 									</select>&nbsp;
-									인원: <input type="number" name="opt_quantity" id="opt_quantity" value="0"> 명<br>
-									가격: <div id="opt_price"></div>
+									인원: <input type="number" name="opt_quantity" id="add_quantity" value="0" min="0"> 명<br>
+									가격: <span id="opt_price"></span>원&nbsp;<button id="add_option" style="float:right">담기</button>
+							</div>
+							<div style="margin:auto;" id="ord_option">
+								<form class="option_submit_form">
+									<input type="hidden" name="mem_code" th:value="${session.loginMember.mem_code}">
+									<input type="hidden" name="item_code" th:value="${item.item_code}">
+									<legend>담은 상품</legend>
+									<th:block th:each="opt:${options}">
+									<div class="order_options">
+										<span th:id="opt_code_+${opt.opt_code}" th:text="${opt.opt_name}+': '"></span><span th:id="opt_quantity_+${opt.opt_code}"></span>
+										<input type="hidden" name="opt_quantity">
+										<input type="hidden" name="opt_code" th:value="${opt.opt_code}" >
+										<input type="hidden" class="price" th:id="price_+${opt.opt_code}"><hr>
+									</div>
+									</th:block>
+									<span><b>총 가격: <span id="tot_price"></span>원</b></span>
 								</form>
 							</div>
 							<div class="hotel_title_button ml-lg-auto text-lg-right">
-								<div class="button book_button trans_200">예약하기<span></span><span></span><span></span></div>
-								<div class="hotel_map_link_container">
-									<div class="hotel_map_link">See Location on Map</div>
-								</div>
+								<div class="button book_button trans_200">예약하기</div>
 							</div>
 						</div>
 
