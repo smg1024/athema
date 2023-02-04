@@ -10,11 +10,22 @@
 function enterkey() {
     if (window.event.keyCode == 13) {
          // 엔터키가 눌렸을 때 submit
+		if ($('#mem_email').val() == '') {
+			alert("이메일을 입력하세요");
+			$('#mem_email').focus();
+			return false;
+		} else if ($('#mem_pwd').val() == '') {
+			alert("비밀번호를 입력하세요");
+			$('#mem_pwd').focus();
+			return false;
+		} else {
+         
          $('#login_submit').attr({
 			method:'post',
 			action:'[[@{/member/loginimpl}]]'
 		});
-		$('#login_submit').submit(); 
+		$('#login_submit').submit();
+		}
     }
 }
 
@@ -22,17 +33,21 @@ $(document).ready(function(){
 	$('#login_submit').click(function(){
 		if ($('#mem_email').val() == '') {
 			alert("이메일을 입력하세요");
+			$('#mem_email').focus();
 			return false;
 		} else if ($('#mem_pwd').val() == '') {
 			alert("비밀번호를 입력하세요");
+			$('#mem_pwd').focus();
 			return false;
-		}
+		} else {
 				
 		$('#login_form').attr({
 			method:'post',
 			action:'[[@{/member/loginimpl}]]'
 		});
-		$('#login_form').submit(); 
+		$('#login_form').submit();
+		
+		}
 	});
 });
 </script>
@@ -53,7 +68,7 @@ $(document).ready(function(){
 				</div>
 				<div class="button login_add_button">
 					<div class="button_bcg"></div>
-					<a href="#" id="login_submit">login</a>
+					<a id="login_submit" style="cursor:pointer; color:#fff">login</a>
 				</div>
 				<div class="sns_login_txt">SNS로 로그인하기</div>
 				<div class="sns_login">

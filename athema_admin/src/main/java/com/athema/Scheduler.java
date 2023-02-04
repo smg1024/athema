@@ -7,7 +7,7 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.athema.dto.Msg;
+import com.athema.dto.MsgDTO;
 
 @Component
 public class Scheduler {
@@ -16,7 +16,7 @@ public class Scheduler {
 
     @Scheduled(cron = "*/5 * * * * *")
     public void cronJobDailyUpdate() {
-    	Msg msg = new Msg();
+    	MsgDTO msg = new MsgDTO();
     	
     	Random r = new Random();
     	int i = r.nextInt(100)+1;
