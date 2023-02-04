@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.athema.dto.MemberDTO;
+import com.athema.dto.ReviewDTO;
 import com.athema.service.MemberService;
+import com.athema.service.ReviewService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -18,6 +20,9 @@ public class MypageController {
 	
 	@Autowired
 	MemberService mservice;
+	
+	@Autowired
+	ReviewService rservice;
 	
 	@RequestMapping("")
 	public String mypage(Model model) {
@@ -108,13 +113,24 @@ public class MypageController {
 		return "main";
 	}
 	
-	@RequestMapping("/insert")
-	public String insert(Model model) {	
-		model.addAttribute("content", dir+"mypage");	
-		model.addAttribute("mypagecenter",dir+"travel_past");
-		return "main";
-	}
-	
+	// 리뷰 등록
+		@RequestMapping("/insert")
+		public String insert(Model model, ReviewDTO review) {
+			System.out.println(review);
+			try {
+				rservice.register(review);	
+				System.out.println("등록 성공");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("등록 실패");
+			}
+			
+			model.addAttribute("content", dir+"mypage");	
+			model.addAttribute("mypagecenter",dir+"travel_past");
+			return "main";
+		}
+		
 	@RequestMapping("/myreview")
 	public String myreview(Model model) {	
 		model.addAttribute("content", dir+"mypage");	
