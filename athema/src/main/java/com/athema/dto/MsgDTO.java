@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class Msg {
+public class MsgDTO {
 	private String sendid;
 	private String receiveid;
 	private String content1;

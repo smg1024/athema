@@ -153,7 +153,13 @@ public class MainController {
 		model.addAttribute("content", "order_detail");
 		return "main";
 	}
-	
+
+	@RequestMapping("/qnachat")
+	public String qnachat(Model model) {
+		model.addAttribute("content", "qnachat");
+		return "main";
+	}
+
 	@RequestMapping("/preferselect")
 	public String preferselect(Model model) {
 		model.addAttribute("content", "preferselect");

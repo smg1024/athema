@@ -126,7 +126,7 @@
 						<div class="user_box ml-auto" th:if="${session.loginMember != null}">
 							<div class="user_box_login user_box_link"><a onclick="return confirm('로그아웃 하시겠습니까?');" th:href="@{/logout}">logout</a></div>
 							<div class="user_box_register user_box_link"><a th:href="@{/mypage(mem_email=${session.loginMember.mem_email})}">My page</a></div>
-							<div class="user_box_cscenter user_box_link"><a th:href="@{/contact}">CS center</a></div>
+							<div class="user_box_cscenter user_box_link"><a th:href="@{/qnachat}">1:1 QnA</a></div>
 						</div>
 					</div>
 				</div>
@@ -146,8 +146,8 @@
 							<ul class="main_nav_list">
 								<li class="main_nav_item"><a th:href="@{/about}">여행상품 둘러보기</a></li>
 								<li class="main_nav_item"><a th:href="@{/offers}">테마여행 찾기</a></li>
-								<li class="main_nav_item"><a th:href="@{/blog}">지역여행 찾기</a></li>
-<!-- 								<li class="main_nav_item"><a th:href="@{/contact}">고객지원</a></li> -->
+<!-- 								<li class="main_nav_item"><a th:href="@{/blog}">지역여행 찾기</a></li> -->
+								<li class="main_nav_item"><a th:href="@{/contact}">고객지원</a></li>
 							</ul>
 						</div>
 						<div class="content_search ml-lg-0 ml-auto">
@@ -195,8 +195,8 @@
 			<ul>
 				<li class="menu_item"><a th:href="@{/about}">여행상품 둘러보기</a></li>
 				<li class="menu_item"><a th:href="@{/offers}">테마여행 찾기</a></li>
-				<li class="menu_item"><a th:href="@{/blog}">지역여행 찾기</a></li>
-<!-- 				<li class="menu_item"><a th:href="@{/contact}">고객지원</a></li> -->
+<!-- 				<li class="menu_item"><a th:href="@{/blog}">지역여행 찾기</a></li> -->
+				<li class="menu_item"><a th:href="@{/contact}">고객지원</a></li>
 			</ul>
 		</div>
 	</div>
@@ -245,16 +245,8 @@
 					<div class="footer_col">
 						<div class="footer_content footer_about">
 							<div class="logo_container footer_logo">
-								<div class="logo"><a href="#"><img th:src="@{/images/logo.png}" alt="">travelix</a></div>
+								<div class="logo" style="margin-top:10px;"><a href="#"><img th:src="@{/images/logo.png}" alt="">athema</a></div>
 							</div>
-							<p class="footer_about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis vu lputate eros, iaculis consequat nisl. Nunc et suscipit urna. Integer eleme ntum orci eu vehicula pretium.</p>
-							<ul class="footer_social_list">
-								<li class="footer_social_item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-								<li class="footer_social_item"><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-								<li class="footer_social_item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li class="footer_social_item"><a href="#"><i class="fa fa-dribbble"></i></a></li>
-								<li class="footer_social_item"><a href="#"><i class="fa fa-behance"></i></a></li>
-							</ul>
 						</div>
 					</div>
 				</div>
@@ -262,15 +254,15 @@
 				<!-- Footer Column -->
 				<div class="col-lg-3 footer_column">
 					<div class="footer_col">
-						<div class="footer_title">blog posts</div>
+						<div class="footer_title">에디터의 글</div>
 						<div class="footer_content footer_blog">
 							
 							<!-- Footer blog item -->
 							<div class="footer_blog_item clearfix">
 								<div class="footer_blog_image"><img th:src="@{/images/footer_blog_1.jpg}" alt="https://unsplash.com/@avidenov"></div>
 								<div class="footer_blog_content">
-									<div class="footer_blog_title"><a href="#">Travel with us this year</a></div>
-									<div class="footer_blog_date">Jan 29, 2023</div>
+									<div class="footer_blog_title"><a th:href="@{/blog}">제주도 핫플레이스 TOP5</a></div>
+									<div class="footer_blog_date">2023/01/29</div>
 								</div>
 							</div>
 							
@@ -278,8 +270,8 @@
 							<div class="footer_blog_item clearfix">
 								<div class="footer_blog_image"><img th:src="@{/images/footer_blog_2.jpg}"  alt="https://unsplash.com/@deannaritchie"></div>
 								<div class="footer_blog_content">
-									<div class="footer_blog_title"><a href="#">New destinations for you</a></div>
-									<div class="footer_blog_date">Nov 29, 2022</div>
+									<div class="footer_blog_title"><a th:href="@{/blog}">우리가 여행을 떠나는 이유</a></div>
+									<div class="footer_blog_date">2023/02/01</div>
 								</div>
 							</div>
 
@@ -287,8 +279,8 @@
 							<div class="footer_blog_item clearfix">
 								<div class="footer_blog_image"><img th:src="@{/images/footer_blog_3.jpg}"  alt="https://unsplash.com/@bergeryap87"></div>
 								<div class="footer_blog_content">
-									<div class="footer_blog_title"><a href="#">Travel with us this year</a></div>
-									<div class="footer_blog_date">Nov 29, 2019</div>
+									<div class="footer_blog_title"><a th:href="@{/blog}">2022년의 인기 여행지</a></div>
+									<div class="footer_blog_date">2023/02/06</div>
 								</div>
 							</div>
 
@@ -299,17 +291,17 @@
 				<!-- Footer Column -->
 				<div class="col-lg-3 footer_column">
 					<div class="footer_col">
-						<div class="footer_title">tags</div>
+						<div class="footer_title">해시태그로 찾기</div>
 						<div class="footer_content footer_tags">
 							<ul class="tags_list clearfix">
-								<li class="tag_item"><a href="#">design</a></li>
-								<li class="tag_item"><a href="#">fashion</a></li>
-								<li class="tag_item"><a href="#">music</a></li>
-								<li class="tag_item"><a href="#">video</a></li>
-								<li class="tag_item"><a href="#">party</a></li>
-								<li class="tag_item"><a href="#">photography</a></li>
-								<li class="tag_item"><a href="#">adventure</a></li>
-								<li class="tag_item"><a href="#">travel</a></li>
+								<li class="tag_item"><a href="#">사진명소</a></li>
+								<li class="tag_item"><a href="#">가족</a></li>
+								<li class="tag_item"><a href="#">음악</a></li>
+								<li class="tag_item"><a href="#">촬영지</a></li>
+								<li class="tag_item"><a href="#">파티</a></li>
+								<li class="tag_item"><a href="#">신나는</a></li>
+								<li class="tag_item"><a href="#">한적한</a></li>
+								<li class="tag_item"><a href="#">티켓</a></li>
 							</ul>
 						</div>
 					</div>
