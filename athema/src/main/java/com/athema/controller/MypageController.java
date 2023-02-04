@@ -108,6 +108,13 @@ public class MypageController {
 		return "main";
 	}
 	
+	@RequestMapping("/insert")
+	public String insert(Model model) {	
+		model.addAttribute("content", dir+"mypage");	
+		model.addAttribute("mypagecenter",dir+"travel_past");
+		return "main";
+	}
+	
 	@RequestMapping("/myreview")
 	public String myreview(Model model) {	
 		model.addAttribute("content", dir+"mypage");	

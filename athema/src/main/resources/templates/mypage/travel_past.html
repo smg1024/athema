@@ -1,1 +1,208 @@
-<h1>지난 여행 리스트</h1>
+<style>
+h3 {
+   font-size: 30px;
+   font-weight: 800;
+   color: #2d2c2c;
+   
+}
+.view_detail{
+   z-index: 596;
+   padding:4px 18px;
+   border-radius: 10px;
+   border:0px;
+   float: right;
+   margin: 0 10px 10px;
+   background-color:#C8D7FF;
+   border: 2px solid #BECDFF;
+   cursor: pointer;
+}
+.view_detail:hover {
+   background-color: #7B68EE;
+   color:white;
+   border: 2px solid #7B68EE;
+}
+.close_detail{
+   display:none;
+   padding:4px 18px;
+   border:0px;
+   border-radius: 10px;
+   float: right;
+   margin: 0 10px 10px;
+   background-color:#C8D7FF;
+   border: 2px solid #BECDFF;
+   cursor: pointer;
+}
+.close_detail:hover {
+   background-color: #7B68EE;
+   border: 2px solid #7B68EE;
+   color:white;
+}
+#past_day{
+   font-size: 16px;
+   font-weight: 600;
+   padding : 5px 20px;
+   display: inline-block;
+   margin-left: 10px;
+}
+.past_content{
+   width:80%;
+   margin: 0 0 35px 30px;
+   border: 2px solid ;
+   border-radius: 10px;
+   overflow: auto;
+}
+
+.past_hidden{
+   display: none;
+   padding: 15px 0 5px 0;
+   font-weight: 500;
+}
+#past_title{
+   margin:auto;
+   text-align: center;
+   font-size: 18px;
+   padding: 20px 0 0 0;
+   font-weight: 600;
+}
+   #img_item{
+      position: relative;
+      display: inline-block;
+       width: 150px;
+       height: 150px;
+       border-radius:8px;
+       margin: 0 10px 10px; 
+       vertical-align:top;
+       float: left;
+   }
+   #img_item img{
+      position: absolute;
+       top: 0;
+       left: 0;
+       transform: translate(50, 50);
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       margin: auto;
+   }
+#w_r_register {
+   cursor: pointer;
+}   
+   
+</style>
+
+<link rel="stylesheet" type="text/css" href="/styles/write_review.css">
+
+
+<div class="past">
+   <div class="past_main">
+   <h3>지난 여행</h3>
+      <div id="div_line">
+      <div id="past_day"><time datetime="2022-12-15">2022년 12월 15일</time></div>
+      </div>      
+      <div class="past_content">
+         <div id="past_title">경주 여행</div>
+            <div class="past_hidden">   
+               <div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
+               <div id="past_div">상품명 해변 투어</div>
+               <div id="past_div">옵션 1.어쩌고 저쩌고 &nbsp;&nbsp;수량 3</div>
+               <div id="past_div">유효기간 <time datetime="2023-12-31">2023년 12월 31일까지</time></div>
+               <div id="past_div">결제 정보 신용카드</div>
+            </div>   
+            <div><button class="view_detail">상세보기</button></div>
+            <div><button class="close_detail">상세닫기</button></div>
+            <div id="clear"></div>
+      </div>
+      
+      
+      <details>
+          <summary>리뷰 쓰기</summary>
+            <div class="w_r_detail">   
+            
+            <form method="post" id="write_r_form">
+            
+            <div class="w_r">
+            
+               <div class="w_r_g">
+                  <div class="w_r_q">여행은 어떠셨나요?</div>
+                  <div class="w_r_g_box">
+                     <div class="w_r_grade"> 여행 점수: 
+                     <input type="text" id="w_r_grade" name="score" placeholder="0.0">
+                     </div>
+                     <div class="w_r_guide">
+                     * 점수는 최대 5점까지 입력 가능하며 소수점 첫번째 자리까지만 입력 가능합니다.
+                     </div>
+                 
+                 </div>
+                 <hr id="hr1"> 
+               </div>
+      
+               <div class="w_r_box">
+                  <div class="w_r_title">제목: 
+                  <input type="text" id="write_title" name="title" placeholder="제목을 입력해주세요">
+                  </div>
+               <hr>
+                  <div class="w_r_c">여행 리뷰 작성하기
+                     <div class="w_r_content">
+                     <textarea id="write_content" name="content" placeholder="내용을 입력하세요...&#13;&#10;&#13;&#10;"></textarea>
+                     </div>
+                  </div>
+               <hr>
+                  <!--  <div class="w_r_photo">사진
+                  <input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
+                    <div class="upload">사진 등록</div>
+                     <ul class="image-preview"></ul>
+                    
+                  </div>   -->
+                  <input name="mem_code" id="mem_code" type="hidden" value="1">
+                  <input name="item_code" id="item_code" type="hidden" value="1">
+                  <input name="review_code" id="review_code" type="hidden" value="0">
+               </div>
+            </div>
+            <a id="w_r_register">등록</a>
+            </form>
+            
+            </div>
+         </div>
+      </details>
+ 
+   </div>
+   
+   <script>
+	$(document).ready(function(){
+	   var hiddens = document.getElementsByClassName("past_hidden");
+	   var open_btns = document.getElementsByClassName("view_detail");
+	   var close_btns = document.getElementsByClassName("close_detail");
+	   var funcs = []
+	   function hide(num) {
+	      return function() {
+	          open_btns[num].onclick = function() {
+	             hiddens[num].style.display = "block";
+	             open_btns[num].style.display = "none";
+	             close_btns[num].style.display = "block";
+	          };
+	          close_btns[num].onclick = function() {
+	             hiddens[num].style.display = "none";
+	             close_btns[num].style.display = "none";
+	             open_btns[num].style.display = "block";
+	          };
+	      };
+	   };   
+	   for (var i = 0; i < open_btns.length; i++) {
+	     funcs[i] = hide(i);
+	}
+	
+	   for (var j = 0; j < open_btns.length; j++) {
+	     funcs[j]();
+	}
+	});
+	   $('#w_r_register').click(function() {
+	      var c=confirm('등록하시겠습니까?');
+	      if(c==true) {
+	         $('#write_r_form').attr({
+	            'method': 'post',
+	            'action': '[[@{/mypage/insert}]]'
+	         });
+	         $('#write_r_form').submit();
+	      }
+	   });
+</script>

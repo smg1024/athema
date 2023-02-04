@@ -17,12 +17,12 @@ class UpdateTests {
 	@Test
 	void contextLoads() {
 		ReviewDTO review = new ReviewDTO();
-			review.setReview_code(3);
-			review.setMem_code(02);
-			review.setItem_code(100);
+			review.setReview_code(2);
+			review.setMem_code(2);
+			review.setItem_code(4);
 			review.setTitle("가족여행");
-			review.setContent("라라라라라와하하");
-			review.setScore(3);
+			review.setContent("에버랜드 와하하하하");
+			review.setScore((float)4.5);
 			review.setReview_date(null);
 			review.setReview_img("rphoto2.jpg");
 		try {

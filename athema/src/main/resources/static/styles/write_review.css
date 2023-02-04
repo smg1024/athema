@@ -1,0 +1,142 @@
+@charset "UTF-8";
+.w_r_detail {
+	width: 80%;
+	height: 700px;
+	margin-left: 10%;
+	padding: 20px 60px;
+	background-color: #fefefe;
+	border: 1px solid #888;
+	border-radius: 3px;
+	
+	text-align:center;
+	overflow: scroll;
+	overflow-x: none;
+}
+
+/* 리뷰 스크롤 디자인*/
+.w_r_detail::-webkit-scrollbar {
+	height: 15px;
+}
+.w_r_detail::-webkit-scrollbar-thumb {
+    background-color: #fbb53d;
+    border-radius: 100px;
+}	
+
+.w_r {
+	border: 2px solid rgb(253, 231, 162);
+	background-color: rgb(253, 231, 162);
+	
+	border-radius: 10px;
+	padding: 3% 0;
+	margin-left: 3%;
+	margin-bottom: 2%;
+	width: 95%;
+	height: auto;
+}
+
+.w_r_q {
+	width: 90%;
+	padding: 5% 2%;
+	margin: 0% 5% 3% 5%;
+	
+	font-size: 22px;
+	font-weight: 700;
+	background-color: #ffffff;
+	border-radius: 10px;
+}
+
+.w_r_g_box {
+	/* border: 3px solid gray; */
+	width: 70%;
+	margin: 0 15%;
+}
+.w_r_grade {
+	font-size: 18px;
+	font-weight: 600; 
+}
+#w_r_grade {
+	width: 100px;
+	margin-left: 5%;
+	font-size: 16px;
+	font-weight: 600; 
+	/* border: 2px solid red; */
+}
+
+.w_r_guide {
+	font-size: 14px;
+	font-weight: 500;
+	color: gray;
+	/* border: 2px solid green; */
+}
+.w_r_box {
+	/* border: 2px solid purple; */
+	width: 95%;
+	margin-left: 2%;
+	
+	font-size: 18px;
+	font-weight: 600;
+}
+.w_r_title,.w_r_photo {
+	/*border: 2px solid purple; */
+	width: 80%;
+}
+
+.w_r_title{
+	margin-left: 2%;
+}
+#write_title {
+	width: 80%;
+	margin-left: 2%;
+	padding: 2px 2px;
+	white-space: normal;
+	font-size: 18px;
+    font-weight: 500;
+}
+
+.w_r_c {
+	margin-top: 10px; 
+}
+
+#write_content {
+	margin-left: 2%;
+}
+
+#write_content {
+	width: 90%;
+	
+	margin-top: 2%;
+	height: 300px;
+	padding: 10px 10px;
+	white-space: normal;
+	font-size: 18px;
+    font-weight: 500;
+}
+.w_r_photo {
+	border: 2px solid purple;
+	margin-top: 2%;
+}
+
+#hr1 {
+	width: 95%
+}
+#w_r_register {	/* 등록 버튼 */
+	background: #b99fdf;
+	color: white;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 600;
+    
+    padding: 10px 15px;
+    display: inline-block;
+    border-radius: 15px;
+    transition: all 0.1s;
+    border: none;
+	border-bottom: 5px solid #846fac;
+}
+#w_r_register:hover{
+	cursor: pointer;
+}
+#w_r_reister:active {
+	border: none;
+    border-bottom: 5px solid #8d4fff;    
+}

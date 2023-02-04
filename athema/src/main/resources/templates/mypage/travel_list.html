@@ -33,8 +33,34 @@ z-index: 596;
 	border: 2px solid #7B68EE;
 	color:white;
 }
+h3 {
+	font-size: 30px;
+	font-weight: 800;
+	color: #2d2c2c;
+}
+.ord_list_name {
+	font-size: 20px;
+	font-weight: 700;
+	color: #2d2c2c;
+	
+	border: 3px solid #fed46b;
+	border-radius: 10px;
+	width: 20%;
+	text-align: center;
+}
+#div_line {
+	margin-left: 10%;
+	margin-top: 3%;
+}
+hr {
+	width: 90%;
+	margin-left: 5%;
+	border: none;
+	border: 0.5px double lightgray;
+}
 #day{
 	font-size: 18px;
+	font-weight: 600;
 	padding : 5px 20px;
 	display: inline-block;
 	margin-left: 10px;
@@ -116,6 +142,41 @@ $(document).ready(function(){
 	<div class="ord_main">
 		<h3>여행리스트</h3>
 		<div id="div_line">
+		<div class="ord_list_name">예정된 여행</div>
+		<div id="day"><time datetime="2023-03-31">2023년 3월 31일</time></div>
+		<div class="ord_content">
+			<div id="ord_title">경주 여행</div>
+				<div class="ord_hidden">	
+					<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
+					<div id="ord_div">상품명 해변 투어</div>
+					<div id="ord_div">옵션 1.어쩌고 저쩌고 &nbsp;&nbsp;수량 3</div>
+					<div id="ord_div">유효기간 <time datetime="2023-12-31">2023년 12월 31일까지</time></div>
+					<div id="ord_div">결제 정보 신용카드</div>
+				</div>	
+				<div><button class="view_detail">상세보기</button></div>
+				<div><button class="close_detail">상세닫기</button></div>
+				<div id="clear"></div>
+		</div>
+		<div id="day"><time datetime="2023-03-31">2023년 3월 31일</time></div>
+		<div class="ord_content">
+			<div id="ord_title">경주 여행</div>
+				<div class="ord_hidden">	
+					<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
+					<div id="ord_div">상품명 해변 투어</div>
+					<div id="ord_div">옵션 1.어쩌고 저쩌고 &nbsp;&nbsp;수량 3</div>
+					<div id="ord_div">유효기간 <time datetime="2023-12-31">2023년 12월 31일까지</time></div>
+					<div id="ord_div">결제 정보 카카오페이</div>
+				</div>	
+				<div><button class="view_detail">상세보기</button></div>
+				<div><button class="close_detail">상세닫기</button></div>
+				<div id="clear"></div>
+		</div>
+		</div>
+		
+		<hr>
+		
+		<div id="div_line">
+		<div class="ord_list_name">지난 여행</div>
 		<div id="day"><time datetime="2023-03-31">2023년 3월 31일</time></div>
 		<div class="ord_content">
 			<div id="ord_title">경주 여행</div>
