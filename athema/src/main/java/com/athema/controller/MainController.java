@@ -154,4 +154,15 @@ public class MainController {
 		return "main";
 	}
 	
+	@RequestMapping("/preferselect")
+	public String preferselect(Model model) {
+		model.addAttribute("content", "preferselect");
+		return "main";
+	}
+	
+	@RequestMapping("/wish")
+	public String wish(Model model) {
+		model.addAttribute("content", "wish");
+		return "main";
+	}
 }
