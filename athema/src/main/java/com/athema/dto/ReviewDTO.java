@@ -20,7 +20,7 @@ public class ReviewDTO {
 	private int item_code;
 	private String title;
 	private String content;
-	private int score;
+	private float score;
 	private Date review_date;
 	private String review_img;
 }

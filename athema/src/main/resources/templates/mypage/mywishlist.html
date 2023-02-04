@@ -1,1 +1,177 @@
-<h1>위시 리스트</h1>
+<style>
+h3 {
+	margin: 0px;
+	padding: 0px;
+	font-size: 30px;
+	font-weight: 800;
+	color: #2d2c2c;
+}
+.wish {
+	/* border: 2px solid red;	*/
+}
+
+.wish_box{
+	border: 1px solid gray;	
+	display: flex; 
+	flex-direction: column;
+	margin-bottom: 5%;
+	margin-top: 3%;
+	border-radius: 10px;
+}
+
+.w_pthoto {
+	position: relative;
+	/* border: 3px solid orange; */
+}
+
+#wish_image {
+    width: 70%;
+    height: 30%;
+    border-radius:8px;
+   /* border: 3px solid green; */
+   margin-top: 5%;
+    margin-left: 15%;
+	
+}
+
+.intro_rating{
+	margin-top: 8%;
+	margin-left: 17%;
+	display: inline-block;
+	padding-left: 25px;
+	padding-right: 25px;
+	width: 100px;
+	height: 50px;
+	
+	position: absolute;
+	left: 1px;
+	z-index: 1;
+	
+	font-size: 24px;
+	font-weight: 700;
+	color: #FFFFFF;
+	background: #fa9e1b;
+	text-align:center;
+	line-height: 50px;
+	border-radius: 22px;
+	
+}
+
+.wish_content{
+	width: 90%;
+	padding: 3% 1%;
+	/* border: 2px solid green; */
+	margin-left: 5%;
+	border-radius: 10px;
+}
+
+.intro_title
+{
+	font-size: 30px;
+	font-weight: 700;
+	color: #2d2c2c;
+}
+
+.intro_text{
+	font-size: 18px;
+	font-weight: 600;
+	color: black;
+	margin: 1% 0 1% 0;
+	
+}
+#intro_text{
+	/* border: 2px solid red; */
+	font-size: 16px;
+	font-weight: 500;
+	color: black;
+	
+	margin-right: 5%;
+}
+
+/* 버튼 */
+div .intro_button {
+	padding: 2% 7%;
+	border-radius: 20px;
+	height: 50px;
+	
+	position: relative;
+	left: 35%;
+	
+	font-size: 18px;
+	font-weight: 700;
+	background-color: #fa9e1b;
+	border: 2px solid #ef910a;
+	color: #ffffff;
+}
+.intro_button:hover {
+	background-color: rgb(169, 123, 255);
+	color: #ffffff;
+	border: 2px solid #8d4fff;
+	cursor: pointer;
+} 
+</style>
+
+<div class="wish">
+	<div class="wish_main">
+		<h3>나의 위시리스트</h3>
+			<div class="wish_box">
+				<div class="w_pthoto">
+					<img id="wish_image" th:src="@{/images/LW.JPG}" alt="상품이미지">
+					<div class="intro_rating">4.5</div> <!-- 평균 구해서 넣어야 함 -->
+				</div>
+				<div class="wish_content">
+					<div class="intro_title">[QR바로입장]롯데월드 자유이용권</div>
+					<hr>
+					<ul>
+						<li class="intro_text">[이용 안내]</li>
+						<li id="intro_text">
+						- 모험과 신비의 나라 롯데월드 어드벤처 이용권<br>
+						- 실내 어드벤처와 야외 매직아일랜드 놀이기구를 모두 이용할 수 있는 입장권<br>
+						- athema를 통해 예매한 내용은 현장에서 티켓으로 교환하여 사용할 수 있습니다.
+						- 카카오 알림톡 또는 문자로 발송된 URL을 통해서 입장 가능합니다.
+						- 예매 후에는 반드시 예약 내역을 통해 구매하신 티켓의 내용을 확인해주시 바랍니다.
+						- 상품의 유효 기간을 확인해주시기 바랍니다. 
+						</li>
+						<li class="intro_text">[이용 시간]</li>
+						<li id="intro_text">- 주중 영업시간 10:00~21:00</li>
+						<li id="intro_text">- 주말(토,일,공휴일) 10:00~22:00</li>
+						<li id="intro_text">※ 이용시간은 현장 상황에 따라 상이할 수 있으며, 방문 전 롯데월드 홈페이지에서 이용시간을 확인해주시기 바랍니다.</li>
+						<li id="intro_text">42000원 / 1명</li>
+					</ul>
+					<hr>
+					<div><button class="intro_button">지금 구매하기</button></div>
+				</div>
+			</div>
+			
+			<div class="wish_box">
+				<div class="w_pthoto">
+					<img id="wish_image" th:src="@{/images/LW.JPG}" alt="상품이미지">
+					<div class="intro_rating">4.5</div> <!-- 평균 구해서 넣어야 함 -->
+				</div>
+				<div class="wish_content">
+					<div class="intro_title">[QR바로입장]롯데월드 자유이용권</div>
+					<hr>
+					<ul>
+						<li class="intro_text">이용 안내</li>
+						<li id="intro_text">
+						- 모험과 신비의 나라 롯데월드 어드벤처 이용권<br>
+						- 실내 어드벤처와 야외 매직아일랜드 놀이기구를 모두 이용할 수 있는 입장권<br>
+						- athema를 통해 예매한 내용은 현장에서 티켓으로 교환하여 사용할 수 있습니다.
+						- 카카오 알림톡 또는 문자로 발송된 URL을 통해서 입장 가능합니다.
+						- 예매 후에는 반드시 예약 내역을 통해 구매하신 티켓의 내용을 확인해주시 바랍니다.
+						- 상품의 유효 기간을 확인해주시기 바랍니다. 
+						</li>
+						<li class="intro_text">이용 시간</li>
+						<li id="intro_text">- 주중 영업시간 10:00~21:00</li>
+						<li id="intro_text">- 주말(토,일,공휴일) 10:00~22:00</li>
+						<li id="intro_text">※ 이용시간은 현장 상황에 따라 상이할 수 있으며, 방문 전 롯데월드 홈페이지에서 이용시간을 확인해주시기 바랍니다.</li>
+						<li id="intro_text">42000원 / 1명</li>
+					</ul>
+					<hr>
+					<div><button class="intro_button">지금 구매하기</button></div>
+				</div>
+			</div>
+				
+
+	</div>
+</div>
