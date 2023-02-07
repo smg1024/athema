@@ -47,7 +47,6 @@ public class OffersController {
 						}
 					}
 				}
-				System.out.println(list);
 			}else {
 				if(!loc_names.isEmpty()) {
 					for(String cate_name : loc_names) {

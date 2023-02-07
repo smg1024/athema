@@ -1,26 +1,27 @@
 <script>
-	$(document).ready(function(){
-		$('.search_button').click(function(){
-			var theme_array = new Array();
-			$('input:checkbox[name=up_cate_code]:checked').each(function(){
-				theme_array.push(this.value);
-			});
-			$('#theme_codes').val(theme_array);
-			
-			var loc_array = new Array();
-			$('input:checkbox[name=cate_name]:checked').each(function(){
-				loc_array.push(this.value);
-			});
-			$('#loc_names').val(loc_array);
-			
-			$('#search_form_1').attr({
-				'method':'get',
-				'action':'[[@{/search}]]'
-			});
-			
-			$('#search_form_1').submit();
+$(document).ready(function(){
+	// 테마-지역 검색
+	$('.search_button').click(function(){
+		var theme_array = new Array();
+		$('input:checkbox[name=up_cate_code]:checked').each(function(){
+			theme_array.push(this.value);
 		});
+		$('#theme_codes').val(theme_array);
+		
+		var loc_array = new Array();
+		$('input:checkbox[name=cate_name]:checked').each(function(){
+			loc_array.push(this.value);
+		});
+		$('#loc_names').val(loc_array);
+		
+		$('#search_form_1').attr({
+			'method':'get',
+			'action':'[[@{/search}]]'
+		});
+		
+		$('#search_form_1').submit();
 	});
+});
 </script>
 
 <!-- attribute : itemlist, theme_names, loc_names -->

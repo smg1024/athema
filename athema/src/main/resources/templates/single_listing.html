@@ -13,6 +13,28 @@ function getprice(item_code, opt_code, opt_quantity){
 }
 
 $(document).ready(function(){
+	// 테마-지역 검색
+	$('.search_button').click(function(){
+		var theme_array = new Array();
+		$('input:checkbox[name=up_cate_code]:checked').each(function(){
+			theme_array.push(this.value);
+		});
+		$('#theme_codes').val(theme_array);
+		
+		var loc_array = new Array();
+		$('input:checkbox[name=cate_name]:checked').each(function(){
+			loc_array.push(this.value);
+		});
+		$('#loc_names').val(loc_array);
+		
+		$('#search_form_1').attr({
+			'method':'get',
+			'action':'[[@{/search}]]'
+		});
+		
+		$('#search_form_1').submit();
+	});
+	
 	var item_code = $('input[name=item_code]').val();
 	
 	$('input[id=add_quantity]').change(function(){
@@ -124,147 +146,137 @@ $(document).ready(function(){
 
 						<!-- Search Panel -->
 
+						<form id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 						<div class="search_panel active">
-							<form action="#" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-								<!-- <div class="search_item">
-									<div>destination</div>
-									<input type="text" class="destination search_input" required="required">
-								</div>
-								<div class="search_item">
-									<div>check in</div>
-									<input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>check out</div>
-									<input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-								</div>
-								<div class="search_item">
-									<div>adults</div>
-									<select name="adults" id="adults_1" class="dropdown_item_select search_input">
-										<option>01</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div>
-								<div class="search_item">
-									<div>children</div>
-									<select name="children" id="children_1" class="dropdown_item_select search_input">
-										<option>0</option>
-										<option>02</option>
-										<option>03</option>
-									</select>
-								</div> -->
+							
 								<div class="extras">
 									<div class="search_item"><div><b>테마를 선택하세요</b></div></div>
 									<ul class="search_extras clearfix">
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">가족</label>
+												<input type="checkbox" id="search_extras_1" class="search_extras_cb" name="up_cate_code" value="1">
+												<label for="search_extras_1">혼자</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_2" class="search_extras_cb">
-												<label for="search_extras_2">우정</label>
+												<input type="checkbox" id="search_extras_2" class="search_extras_cb" name="up_cate_code" value="2">
+												<label for="search_extras_2">커플</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_3" class="search_extras_cb">
-												<label for="search_extras_3">효도</label>
+												<input type="checkbox" id="search_extras_3" class="search_extras_cb" name="up_cate_code" value="3">
+												<label for="search_extras_3">가족</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_4" class="search_extras_cb">
-												<label for="search_extras_4">커플</label>
+												<input type="checkbox" id="search_extras_4" class="search_extras_cb" name="up_cate_code" value="4">
+												<label for="search_extras_4">효도</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_5" class="search_extras_cb">
-												<label for="search_extras_5">솔로</label>
+												<input type="checkbox" id="search_extras_5" class="search_extras_cb" name="up_cate_code" value="5">
+												<label for="search_extras_5">우정</label>
 											</div>
 										</li>
 									</ul>
 								</div>
-								<button class="button search_button">검색</button>
-							</form>
+								<input type="hidden" id="theme_codes" name="theme_codes">
 						</div>
 
 						<!-- Search Panel -->
 
 						<div class="search_panel">
-							<form action="#" id="search_form_2" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 								<div class="extras">
 									<div class="search_item"><div><b>지역을 선택하세요</b></div></div>
 									<ul class="search_extras clearfix">
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">서울</label>
+												<input type="checkbox" id="search_extras_6" class="search_extras_cb" name="cate_name" value="서울">
+												<label for="search_extras_6">서울</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_2" class="search_extras_cb">
-												<label for="search_extras_2">인천</label>
+												<input type="checkbox" id="search_extras_7" class="search_extras_cb" name="cate_name" value="인천">
+												<label for="search_extras_7">인천</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">부산</label>
+												<input type="checkbox" id="search_extras_8" class="search_extras_cb" name="cate_name" value="부산">
+												<label for="search_extras_8">부산</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">광주</label>
+												<input type="checkbox" id="search_extras_9" class="search_extras_cb" name="cate_name" value="광주">
+												<label for="search_extras_9">광주</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">제주</label>
+												<input type="checkbox" id="search_extras_10" class="search_extras_cb" name="cate_name" value="제주">
+												<label for="search_extras_10">제주</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">경기도</label>
+												<input type="checkbox" id="search_extras_11" class="search_extras_cb" name="cate_name" value="경기">
+												<label for="search_extras_11">경기</label>
 											</div>	
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_3" class="search_extras_cb">
-												<label for="search_extras_3">강원도</label>
+												<input type="checkbox" id="search_extras_12" class="search_extras_cb" name="cate_name" value="강원">
+												<label for="search_extras_12">강원</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_4" class="search_extras_cb">
-												<label for="search_extras_4">충청도</label>
+												<input type="checkbox" id="search_extras_13" class="search_extras_cb" name="cate_name" value="충북">
+												<label for="search_extras_13">충북</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_5" class="search_extras_cb">
-												<label for="search_extras_5">전라도</label>
+												<input type="checkbox" id="search_extras_14" class="search_extras_cb" name="cate_name" value="충남">
+												<label for="search_extras_14">충남</label>
 											</div>
 										</li>
 										<li class="search_extras_item">
 											<div class="clearfix">
-												<input type="checkbox" id="search_extras_1" class="search_extras_cb">
-												<label for="search_extras_1">경상도</label>
+												<input type="checkbox" id="search_extras_15" class="search_extras_cb" name="cate_name" value="전북">
+												<label for="search_extras_15">전북</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_16" class="search_extras_cb" name="cate_name" value="전남">
+												<label for="search_extras_16">전남</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_17" class="search_extras_cb" name="cate_name" value="경북">
+												<label for="search_extras_17">경북</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_18" class="search_extras_cb" name="cate_name" value="경북">
+												<label for="search_extras_18">경남</label>
 											</div>	
 										</li>
 									</ul>
 								</div>
-								<button class="button search_button">검색</button>
-							</form>
+								<input type="hidden" id="loc_names" name="loc_names">
 						</div>
+						</form>
+						<button class="button search_button">검색</button>
 					</div>
 				</div>
 			</div>	
