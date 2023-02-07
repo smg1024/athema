@@ -836,6 +836,19 @@ section
 	padding-bottom: 20px;
 	color: gray;
 }
+.qna_header
+{
+	margin-left: 10px;
+}
+.qna_category
+{
+	display: block;
+	color: gray;
+}
+.qna_info
+{
+	margin: 20px 0 20px 10px;
+}
 .faq_table_header
 {
 	padding-top: 20px;

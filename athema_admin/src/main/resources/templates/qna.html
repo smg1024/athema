@@ -1,57 +1,217 @@
 <style>
-#all {
-	width: 400px;
-	height: 200px;
-	overflow: auto;
-	border: 2px solid red;
+body {
+	color: black;
+	
 }
 
-#me {
-	width: 400px;
-	height: 200px;
-	overflow: auto;
-	border: 2px solid blue;
+.contact_form_container {
+	padding: 30px;
+	margin-bottom: 60px;
+	justify-content: center;
+}
+.qna_header {
+	padding: 20px;
+}
+.qna_header .qna_info {
+	display: flex;
+	flex-direction: column;
+}
+.qna_info{
+	margin: 10px 0;
+}
+.faq_title {
+	font-size: 30px;
+	font-weight: bold;
+}
+.qna_category {
+	margin-bottom: 10px;
+}
+.qna_category:hover {
+	text-decoration: none;
+}
+#todiv::-webkit-scrollbar {
+	display: none;
+}
+#totext::-webkit-scrollbar {
+	display: none;
 }
 
 #to {
-	width: 400px;
-	height: 200px;
-	overflow: auto;
-	border: 2px solid green;
+	width: 600px;
+	height: 500px;
+	border: 3px solid lightgray;
+	border-radius: 30px;
+	margin: 20px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #dde6ee;
+}
+#todiv {
+	overflow: scroll;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 520px;
+	height: 420px;
+}
+.input_send{
+	display: flex;
+	width: 600px;
+}
+#totext {
+	flex: 7;
+	margin-left: 3px;
+	padding: 13px;
+	border-radius: 10px 0 0 10px;
+	border: 3px solid lightgray;
+	border-right: none;
+	background-color: #fff;
+	align-self: center;
+	white-space: nowrap;
+	color: black;
+	overflow: scroll;
+}
+#tocode{
+	flex: 1;
+	padding: 13px 17px;
+	border-radius: 10px;
+	text-align: center;
+	margin-left: 3px;
+	margin-right:5px;
+	border: 3px solid lightgray;
+	background-color: #fff;
+	white-space: nowrap;
+	color: black;
+	overflow: hidden;
+}
+#totext:focus
+{
+	border: 3px solid lightgray;
+	border-right: none;
+	outline: none;
+}
+#sendto {
+	flex: 1;
+	border-radius: 0 10px 10px 0;
+	font-size:1.7em;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 3px solid lightgray;
+	border-left: none;
+	background-color: #fff;
+	margin-right: 5px;
+}
+	
+#sendto:focus
+{
+	border: 3px solid lightgray;
+	border-left: none;
+	outline: none;
+}
+#disconnect
+{
+	color: #fff;
+	background-color: #002080;
+	padding: 5px 10px;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+}
+.appendli {
+	margin-bottom: 15px;
+	padding: 7px 13px;
+	color: #674188;
+	border-radius: 10px;
+}
+.appendli2 {
+	margin-bottom: 15px;
+	padding: 7px 13px;
+	color: #674188;
+	border-radius: 10px;
+}
+.appenddis {
+	margin-bottom: 15px;
+	padding: 7px 13px;
+	color: #21516C;
+	border-radius: 10px;
+}
+.reid {
+	float: left;
+	clear: both;
+	align-items: right;
+	color: #6096B4;
+	margin-bottom:5px;
+}
+#append_cust {
+	background-color : #93BFCF;
+	color: black;
+	max-width: 55%;
+	text-align: left;
+	float: left;
+	clear: both;
+}
+#appendto{
+	float: right;
+	clear: both;
+	background-color: #6096B4;
+	color: white;
+ 	max-width: 55%;
+	align-items: right;
+}
+#discon_chat {
+	float: left;
+	clear: both;
+}
+#status {
+	color: #748DA6;
+	font-weight: bold;
+ 	background-color: #F5EBE0;
+	padding: 10px 20px;
+	border: 2px dashed #748DA6;
+ 	margin-bottom: 15px; 
+ 	border-radius: 20px; 
+ 	float: left;
+ 	clear: left;
 }
 </style>
-
 <script>
 var stompClient = null;
 var id = 'admin';
-// 서버소켓에 연결
-function connect() {
-	var socket = new SockJS('http://127.0.0.1:8080/shopadmin/ws');
+
+$(document).ready(function() {
+	
+	var socket = new SockJS('http://127.0.0.1:8080/admin/ws');
 	stompClient = Stomp.over(socket);
 
 	stompClient.connect({}, function(frame) { 
 		setConnected(true);
 		console.log('Connected: ' + frame);
-		stompClient.subscribe('/send', function(msg) { 
-			$("#all").prepend(
-					"<h4>" + JSON.parse(msg.body).sendid +":"+
-					JSON.parse(msg.body).content1
-							+ "</h4>");
-		});
-		stompClient.subscribe('/send/'+id, function(msg) { 
-			$("#me").prepend(
-					"<h4>" + JSON.parse(msg.body).sendid +":"+
-					JSON.parse(msg.body).content1+":"+
-					JSON.parse(msg.body).content2
-							+ "</h4>");
-		});
 		stompClient.subscribe('/send/to/'+id, function(msg) { 
-			$("#to").prepend(
-					"<h4>" + JSON.parse(msg.body).sendid +":"+
-					JSON.parse(msg.body).content1
-							+ "</h4>");
+			$("#todiv").append(
+					"<div class='reid'>" + JSON.parse(msg.body).sendid +"번 사용자 </div>");		// sendid 뽑아내기
+			$("#todiv").append(		// 고객이 보낸 메시지 (왼쪽 float)
+					"<div class='appendli2' id='append_cust'>" + JSON.parse(msg.body).content1 +"</div>");
+
+			let chat = document.querySelector("#todiv");	// 스크롤 자동 내리기
+			chat.scrollTop = chat.scrollHeight;
 		});
 	});
+	
+	$("#disconnect").click(function() {
+		disconnect();
+	});
+	$("#sendto").click(function() {
+		sendTo();
+	});
+});
+
+// 엔터키 눌렸을 때 send
+function enterkey() {
+    if (window.event.keyCode == 13) {
+		sendTo();    	
+    }
 }
 
 // 서버소켓에 연결끊기
@@ -63,78 +223,87 @@ function disconnect() {
 	console.log("Disconnected");
 }
 
-// connect&disconnect버턴 활성화/비활성화
+// connect & disconnect 버튼 활성화/비활성화
 function setConnected(connected) {
 	if (connected) {
-		$("#status").text("Connected");
+		$("#status").text("연결되었습니다.");
 	} else {
+		$("#todiv").append(
+		"<div class='appenddis' id='discon_chat'>채팅이 종료되었습니다.</br>채팅을 다시 시작하려면 페이지를 새로고침 하시기 바랍니다.</div>");
 		$("#status").text("Disconnected");
+		
 	}
-	
 }
 
 // 서버에 메세지 요청 메서드
-function sendAll() {
-	var msg = JSON.stringify({
-		'sendid' : id,
-		'content1' : $("#alltext").val()
-	});
-	stompClient.send("/receiveall", {}, msg);
-}
-function sendMe() {
-	var msg = JSON.stringify({
-		'sendid' : id,
-		'content1' : $('#metext').val()
-	});
-	stompClient.send("/receiveme", {}, msg);
-}
 function sendTo() {
 	var msg = JSON.stringify({
 		'sendid' : id,
-		'receiveid' : $('#target').val(),
-		'content1' : $('#totext').val()
+		'receiveid' : $('#tocode').text(),
+		'content1' : $('#totext').text()
 	});
-	stompClient.send('/receiveto', {}, msg);
+	
+	// 공백 아닐 때만 보내고 입력창 비우기
+	if($("#totext").text() != "") {
+		stompClient.send('/receiveto', {}, msg);
+	}
+		$("#totext").text('');
+	
+	// div 채팅창에 띄우기
+	var msgc = JSON.parse(msg)	// 문자열 처리된 json parse해서
+	if (msgc.content1 == "") {	// 공백 false 처리
+		return false;
+	}
+	$("#todiv").append(
+		"<div class='appendli' id='appendto'>" + msgc.content1 + "</div>");		// content1 뽑아내기
+	
+	// 채팅방 스크롤 자동으로 내리기 (사용자 -> 관리자)
+	let chat = document.querySelector('#todiv');
+    chat.scrollTop = chat.scrollHeight;
+	
 }
-$(document).ready(function() {
-	$("#connect").click(function() {
-		connect();
-	});
-	$("#disconnect").click(function() {
-		disconnect();
-	});
-	$("#sendall").click(function() {
-		sendAll();
-	});
-	$("#sendme").click(function() {
-		sendMe();
-	});
-	$("#sendto").click(function() {
-		sendTo();
-	});
-});
 </script>
 
-
-<div class="container">
-	<div class="col-sm-5">
-	<H1>ADMIN</H1>
-	<H1 id="status">Status</H1>
-	<button id="connect">Connect</button>
-	<button id="disconnect">Disconnect</button>
-	
-	<h3>All</h3>
-	<input type="text" id="alltext"><button id="sendall">Send</button>
-	<div id="all"></div>
-	
-	<h3>Me</h3>
-	<input type="text" id="metext"><button id="sendme">Send</button>
-	<div id="me"></div>
-	
-	<h3>To</h3>
-	<input type="text" id="target">
-	<input type="text" id="totext"><button id="sendto">Send</button>
-	<div id="to"></div>
-
+	<!-- Contact Form -->
+	<div class="contact_form_container" id="faq_container">
+		<div class="qna_header">
+			<div class="faq_title">1:1 실시간 상담 문의</div>
+			<div class="qna_info">
+				<a class="qna_category">👉 운영시간 : 평일 10시 ~ 17시 </a>
+				<a class="qna_category">👉 페이지 방문 시 자동으로 connect로 전환</a>
+				<a class="qna_category">👉 disconnect 사용하지 않는 것을 원칙으로 함</a>
+			</div>
+		</div>
+		<div class="msg-container">
+			<div class="col-sm-5">
+				<button id="disconnect" type="button">disconnect</button>
+				<!-- To-chat -->
+				<div id="to">
+					<div id="todiv">
+						<div id="status"></div>
+					</div>
+				</div>
+				<div class="input_send">
+					<div id="tocode" class="target" contenteditable="true" disabled="true" autofocus></div>
+					<div id="totext" class="text-box" contenteditable="true" disabled="true" onkeyup="enterkey()"></div>
+					<button id="sendto" type="button"><img th:src="@{/img/paper-plane-icon.png}" style="width:40%;"></button>
+				</div>
+			</div>
+		</div>				
 	</div>
-</div>
+	
+<!-- <div class="container"> -->
+<!-- 	<H1>1:1 실시간 상담 문의</H1> -->
+<!-- 	<h5>평일 오전 10시부터 오후 5시까지 운영</h5> -->
+<!-- 	<div class="col-sm-5"> -->
+<!-- 	<H1 id="status">연결 전</H1> -->
+<!-- 	<button id="connect">Connect</button> -->
+<!-- 	<button id="disconnect">Disconnect</button> -->
+	
+<!-- 	<h3>To</h3> -->
+<!-- 	<input type="text" id="target">번 회원에게 -->
+<!-- 	<input type="text" id="totext"><button id="sendto">전송하기</button> -->
+<!-- 	<div id="to"></div> -->
+
+<!-- 	</div> -->
+<!-- </div> -->
