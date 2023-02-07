@@ -1,5 +1,6 @@
 package com.athema.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.athema.dto.ItemDTO;
 import com.athema.dto.MemberDTO;
@@ -171,4 +173,5 @@ public class MainController {
 		model.addAttribute("content", "wish");
 		return "main";
 	}
+	
 }

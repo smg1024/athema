@@ -55,13 +55,27 @@ $(document).ready(function(){
 		$('.option_submit_form #tot_price').text(sum);
 	});
 	
-	$('.book_button').onclick(function(){
+	$('.option_submit_button').click(function(){
+		var opt_codes = new Array();
+		$('input[name=opt_code]').each(function(){
+			opt_codes.push(this.value);
+		});
+		$('#opt_codes').val(opt_codes);
+		console.log(opt_codes);
+		
+		var opt_quantities = new Array();
+		$('input[name=opt_quantity]').each(function(){
+			opt_quantities.push(this.value);
+		});
+		$('#opt_quantities').val(opt_quantities);
+		
 		$('.option_submit_form').attr({
 			'method':'get',
-			'action':''
+			'action':'[[@{/order/book_options}]]'
 		});
 		$('.option_submit_form').submit();
 	});
+	
 });
 </script>
 
@@ -283,17 +297,17 @@ $(document).ready(function(){
 							</div>
 							<div style="margin:auto;" id="select_option">
 									<legend>옵션 선택</legend>
-									<select name="opt_code" id="add_opt_code">
+									<select id="add_opt_code">
 										<th:block th:each="opt:${options}">
 										<option class="selected_option" th:value="${opt.opt_code}" th:text="${opt.opt_name}"></option>
 										</th:block>
 									</select>&nbsp;
-									인원: <input type="number" name="opt_quantity" id="add_quantity" value="0" min="0"> 명<br>
+									인원: <input type="number" id="add_quantity" value="0" min="0"> 명<br>
 									가격: <span id="opt_price"></span>원&nbsp;<button id="add_option" style="float:right">담기</button>
 							</div>
 							<div style="margin:auto;" id="ord_option">
 								<form class="option_submit_form">
-									<input type="hidden" name="mem_code" th:value="${session.loginMember.mem_code}">
+									<input th:if="${session.loginMember != null}" type="hidden" name="mem_code" th:value="${session.loginMember.mem_code}">
 									<input type="hidden" name="item_code" th:value="${item.item_code}">
 									<legend>담은 상품</legend>
 									<th:block th:each="opt:${options}">
@@ -304,11 +318,11 @@ $(document).ready(function(){
 										<input type="hidden" class="price" th:id="price_+${opt.opt_code}"><hr>
 									</div>
 									</th:block>
+									<input type="hidden" name="opt_codes" id="opt_codes">
+									<input type="hidden" name="opt_quantities" id="opt_quantities">
 									<span><b>총 가격: <span id="tot_price"></span>원</b></span>
 								</form>
-							</div>
-							<div class="hotel_title_button ml-lg-auto text-lg-right">
-								<div class="button book_button trans_200">예약하기</div>
+								<button class="button option_submit_button">예약</button>
 							</div>
 						</div>
 
