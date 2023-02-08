@@ -881,15 +881,23 @@ section
 }
 .faq_content_subject
 {
-	padding-left: 10px;
+	padding-left: 30px;
+}
+.faq_content_date
+{
+	text-align: center;
 }
 .faq_table_category
 {
-	flex: 1;
+	flex: 2;
 }
 .faq_table_subject
 {
 	flex: 5;
+}
+.faq_table_date
+{
+	flex: 2;
 }
 .contact_title
 {

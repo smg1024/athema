@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.BoardMapper">
+	
+	<select id="select" parameterType="Integer" resultType="BoardDTO">
+		SELECT * FROM board WHERE board_code=${board_code}
+	</select>
+	<select id="selectall" resultType="BoardDTO">
+		SELECT * FROM board
+	</select>
+	<insert id="insert" parameterType="BoardDTO">
+		INSERT INTO board(mem_code, board_cate, board_subject, board_content, board_filename) 
+		VALUES(${mem_code}, #{board_cate}, #{board_subject}, #{board_content}, #{board_filename})
+	</insert>
+	<update id="update" parameterType="BoardDTO">
+		UPDATE board SET 
+		board_subject=#{board_subject}, 
+		board_content=#{board_content}, 
+		board_filename=#{board_filename} 
+		WHERE board_code=${board_code} AND mem_code=${mem_code}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM board where board_code=#{board_code}
+	</delete>
+	
+	<select id="avg_rating" parameterType="Integer" resultType="Double">
+		SELECT AVG(score) avg_rating FROM board WHERE item_code=${item_code}
+	</select>
+	
+</mapper>

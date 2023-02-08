@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.athema.dto.BoardDTO;
 import com.athema.dto.ItemDTO;
 import com.athema.dto.MemberDTO;
+import com.athema.service.BoardService;
 import com.athema.service.ItemService;
 import com.athema.service.MemberService;
 import com.athema.service.ReviewService;
@@ -30,6 +32,9 @@ public class MainController {
 	
 	@Autowired
 	WishService wservice;
+	
+	@Autowired
+	BoardService bservice;
 	
 	@RequestMapping("")
 	public String main(Model model) {
@@ -102,6 +107,15 @@ public class MainController {
 	
 	@RequestMapping("/contact")
 	public String contact(Model model) {
+		List<BoardDTO> boardlist = null;
+		
+		try {
+			boardlist = bservice.getall();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("boardlist", boardlist);
 		model.addAttribute("content", "contact");
 		return "main";
 	}

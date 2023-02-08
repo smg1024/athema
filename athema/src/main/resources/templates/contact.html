@@ -1,3 +1,4 @@
+<!-- attribute : boardlist -->
 <!-- CONTACT -->
 <link rel="stylesheet" type="text/css" th:href="@{/styles/contact_styles.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/styles/contact_responsive.css}">
@@ -30,21 +31,20 @@
 						<div class="faq_table_header">
 							<p class="faq_table_category">구분</p>
 							<p class="faq_table_subject">제목</p>
+							<p class="faq_table_date">날짜</p>
 						</div>
 						<div class="faq_body_box">
 							<!-- JS Active로 접었다 폈다 기능 들어갈 예정 -->
 							<div class="faq_table_body">
-								<div class="faq_table_body_list">
-									<p class="faq_table_category faq_content_category">로그인/정보</p>
-									<p class="faq_table_subject faq_content_subject">소셜 로그인은 어떻게 하나요?</p>
-								</div>
-								<div class="faq_table_body_list">
-									<p class="faq_table_category faq_content_category">탈퇴/기타</p>
-									<p class="faq_table_subject faq_content_subject">비회원으로 구매할 수 있나요?</p>
+								<div class="faq_table_body_list" th:each="board:${boardlist}">
+									<p class="faq_table_category faq_content_category" th:text="${board.board_cate}">로그인/정보</p>
+									<p class="faq_table_subject faq_content_subject" th:text="${board.board_subject}">소셜 로그인은 어떻게 하나요?</p>
+									<p class="faq_table_date faq_content_date" th:text="${board.board_rdate}">2022년 12월 24일</p>
 								</div>
 							</div>
 						</div>
 					</div>
+					<button>글 등록</button>
 				</div>
 				
 				<!-- Contact Form
