@@ -62,15 +62,11 @@ public class AjaxController {
 	
 	// 위시리스트 빼기
 	@RequestMapping("/del_wishlist")
-	public int del_wishlist(int item_code, int mem_code) {
-		int result = 0;
-		
+	public void del_wishlist(int item_code, int mem_code) {
 		try {
 			wservice.del_wishlist(item_code, mem_code);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return result;
 	}
 }
