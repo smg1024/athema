@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.athema.dto.BoardDTO;
 import com.athema.dto.ItemDTO;
@@ -160,24 +161,40 @@ public class MainController {
 	}
 	
 	@RequestMapping("/order")
-	public String order(Model model, int item_code, int mem_code) {
-		ItemDTO item = null;
-		ItemDTO day = null;
-		List<ItemDTO> options = null;
-		MemberDTO member = null;
-		try {
-			item = iservice.get(item_code);
-			options = iservice.options(item_code);
-			day = iservice.dayselect(item_code);
-			member = mservice.get(mem_code);
-		} catch (Exception e) {
-			e.printStackTrace();
+	public String order(Model model, Integer mem_code, int item_code, 
+			@RequestParam List<Integer> opt_codes, 
+			@RequestParam List<Integer> opt_quantities) {
+		
+		if(mem_code==null){
+			return "redirect:login";
+			
+		}else {
+			ItemDTO item = null;
+			ItemDTO day = null;
+			List<ItemDTO> options = null;
+			MemberDTO member = null;
+			
+			try {
+				item = iservice.get(item_code);
+				options = iservice.options(item_code);
+				day = iservice.dayselect(item_code);
+				member = mservice.get(mem_code);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			model.addAttribute("member", member);
+			model.addAttribute("item", item);
+			model.addAttribute("olist", options);
+			model.addAttribute("day", day);
+			model.addAttribute("content", "order");
+			model.addAttribute("cnt",opt_quantities);
 		}
-		model.addAttribute("member", member);
-		model.addAttribute("item", item);
-		model.addAttribute("olist", options);
-		model.addAttribute("day", day);
-		model.addAttribute("content", "order");
+		System.out.println(mem_code);
+		System.out.println(item_code);
+		System.out.println(opt_codes);
+		System.out.println(opt_quantities);
 		return "main";
 	}
 	

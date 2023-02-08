@@ -12,9 +12,16 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 
-<script>
+<script th:inline="javascript">
 $(document).ready(function() {
-	
+	//상품 총 금액 구하기
+	let totalPrice=0;
+	$('.price').each(function(){
+		const price = $(this).text();
+
+		totalPrice += parseInt(price);
+		$('.totalprice').text(totalPrice+'원');
+	});
 	// Modal을 가져옴
 	var modals = document.getElementsByClassName("modal-overlay");
 	// Modal을 띄우는 클래스 이름을 가져옴
@@ -53,7 +60,24 @@ $(document).ready(function() {
 	  funcs[j]();
 	}
 
-	
+	//예약자 정보 가져오기 or 값 없애기
+	 $('input[type="checkbox"][name="order_book_data"]').click(function(){//jquery
+		 if($(this).prop('checked')){//체크박스가 클릭되어있으면
+		 	
+			 //checkbox 전체를 checked 해제 후
+		     $('input[type="checkbox"][name="order_book_data"]').prop('checked',false);
+		  	
+		 	//click한 요소만 true 지정
+		     $(this).prop('checked',true);
+		     if($('#new_book_data').prop('checked')){
+		    	$('#book_name').val('');
+		      	$('#book_hp').val('');
+		      	$('#book_email').val('');
+		     }
+		    }
+		  
+		   });
+	 
 	//전체 체크 클릭 시, 나머지 체크 
 	$("#order2_chk").click(function(){
 	var order2Chk=$("#order2_chk").prop("checked");
@@ -121,22 +145,6 @@ function checkclickall()  {
 	    checkbox.checked = clickall.checked;
 	  });
 	};
-	
-	//예약정보 체크박스
-	function checkOnlyOne(element){
-		const checkboxes = document.getElementsByName("order_book_data");
-	  
-	  checkboxes.forEach((cb) => {
-	    cb.checked = false;
-	  });
-	  
-	  element.checked = true;
-	};
-	
-	//예약자 정보 새로입력 클릭시 input 값 없애기
-	$('#new_book_data').chlick(function(){
-		$("#book_name").val('');
-	});
 
 	function requestPay(data) {
 		var IMP = window.IMP; // 생략가능
@@ -145,7 +153,7 @@ function checkclickall()  {
 		// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 		//IMP.request_pay(param, callback) 결제창 호출
 		IMP.request_pay({ // param
-			pg : "html5_inicis.INIpayTest",
+			pg : "kakaopay.TC0ONETIME",
 			pay_method : "card",
 			merchant_uid : 'merchant_' + new Date().getTime(),
 			name : "노르웨이 회전 의자",
@@ -163,13 +171,13 @@ function checkclickall()  {
 				msg += '상점 거래ID : ' + rsp.merchant_uid;
 				msg += '결제 금액 : ' + rsp.paid_amount;
 				msg += '카드 승인번호 : ' + rsp.apply_num;
-				$('#bookregister_form').attr({//결제 성공하면 예약자 정보 update
-					'method':'post',
+				$('#bookregister_form').attr({//결제 성공하면 예약자 정보 insert
+					'method':'GET',
 					'action':'[[@{/order/bookregister}]]'
 				});
 				var confirmclick = confirm(msg+'예약 상세 페이지로 이동하시겠습니까?');
 				if(confirmclick){
-					location.href='http://127.0.0.1/order_detail';
+					location.href='http://127.0.0.1/mypage/travel_list';
 				}else{
 					location.href='http://127.0.0.1';
 				}
@@ -180,7 +188,7 @@ function checkclickall()  {
 			}
 			
 		});
-		
+
 	}
 </script>
 
@@ -191,7 +199,9 @@ function checkclickall()  {
 		<div class="order_home_title">order</div>
 	</div>
 </div>
+<form id="bookregister_form">
 <div id="order_content">
+
 	<div id="content">
 		<div class="section_title" id="main_section">
 			<div id="order_article_top">
@@ -202,43 +212,39 @@ function checkclickall()  {
 					<span id="order_item_name" th:text="${item.item_name}"></span>
 					<span id="order_item_exp" th:text="'유효기간 '+${#dates.format(day.exp_day, 'yyyy-MM-dd')}"></span>
 
-					<div id="order_item_option" th:each="o:${olist}">
-						<div id="order_item_option_info"><span th:text="${o.opt_code}+'.'+${o.opt_name}"></span>&nbsp;&nbsp;<span>수량 3</span>
+					<div id="order_item_option" th:each="o:${olist}">							<!-- oStat.index->	현재 반복 인덱스 (0부터 시작) -->
+						<div id="order_item_option_info"><span th:text="${o.opt_code}+'.'+${o.opt_name}"></span>&nbsp;&nbsp;<span th:text="'수량 : '+${cnt.get(oStat.index)}"></span>
 							</div>
-						<div id="order_item_option_price">30,000원</div>
+						<div class ="price" id="order_item_option_price" th:text="${o.item_price}*${cnt.get(oStat.index)}"></div>
 					</div>
 				</div>
 				<div id="order_item_price">
-						<div id="order_item_price_han">총 상품 금액</div>
-						<div id="order_item_price_int">60,000원</div>
-					</div>
+					<div id="order_item_price_han">총 상품 금액</div>
+					<div class="totalprice" id="order_item_price_int"></div>
+				</div>
 			</div>
 			<div id="order_article_bottom">
 				<h3 id="order_book_h3">예약자 정보</h3>
 				<div id="order_book_data">
-					<input type='checkbox' name='order_book_data' checked="checked"
-						onclick='checkOnlyOne(this)' id="old_book_data"/> 주문자의 정보와 동일
-				</div>
-				<div id="order_book_data">
 					<input type='checkbox' name='order_book_data'
-						onclick='checkOnlyOne(this)' id="new_book_data"/> 새로 입력
+						 id="new_book_data"/> 새로 입력
 				</div>
 				<hr>
 				<div id="order_book">
-				<form id="bookregister_form">
+				
 					<div>
 						<div>예약자 이름</div>
-						<input type="text" name="book_name" id="book_name" th:value="${member.mem_name}">
+						<input type="text" name="book_name" id="book_name" th:value="${member.mem_name}"/>
 					</div>
 					<div>
 						<div>예약자 전화번호</div>
-						<input type="text" name="book_hp" id="book_hp" th:value="${member.mem_hp}">
+						<input type="text" name="book_hp" id="book_hp" th:value="${member.mem_hp}"/>
 					</div>
 					<div>
 						<div>예약자 이메일</div>
-						<input type="text" name="book_email" id="book_email" th:value="${member.mem_email}">
+						<input type="text" name="book_email" id="book_email" th:value="${member.mem_email}"/>
 					</div>
-				</form>
+				
 				</div>
 			</div>
 		</div>
@@ -248,7 +254,7 @@ function checkclickall()  {
 				<hr>
 				<div id="order_pay_div">
 					<div>총 결제 금액</div>
-					<div>60,000원</div>
+					<div class="totalprice"></div>
 				</div>
 			</div>
 			<div id="order_terms">
@@ -286,6 +292,7 @@ function checkclickall()  {
 
 	</div>
 </div>
+</form>
 <div class="modal-overlay">
 	<div class="modal-window">
 	<span class="close-area">X</span>
