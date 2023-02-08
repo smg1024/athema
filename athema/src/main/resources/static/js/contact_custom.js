@@ -7,7 +7,6 @@
 1. Vars and Inits
 2. Set Header
 3. Init Menu
-4. Init Google Map
 5. Init Search Form
 
 
@@ -42,7 +41,6 @@ $(document).ready(function()
 	});
 
 	initMenu();
-	initGoogleMap();
 	initSearchForm();
 
 	/* 
@@ -130,49 +128,6 @@ $(document).ready(function()
 	{
 		menu.removeClass('active');
 		menuActive = false;
-	}
-
-	/* 
-
-	4. Init Google Map
-
-	*/
-
-	function initGoogleMap()
-	{
-		var myLatlng = new google.maps.LatLng(36.132229, -5.351153);
-    	var mapOptions = 
-    	{
-    		center: myLatlng,
-	       	zoom: 17,
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			draggable: true,
-			scrollwheel: false,
-			zoomControl: true,
-			zoomControlOptions:
-			{
-				position: google.maps.ControlPosition.RIGHT_CENTER
-			},
-			mapTypeControl: false,
-			scaleControl: false,
-			streetViewControl: false,
-			rotateControl: false,
-			fullscreenControl: true,
-			styles:[]
-    	}
-
-    	// Initialize a map with options
-    	map = new google.maps.Map(document.getElementById('map'), mapOptions);
-   
-		// Re-center map after window resize
-		google.maps.event.addDomListener(window, 'resize', function()
-		{
-			setTimeout(function()
-			{
-				google.maps.event.trigger(map, "resize");
-				map.setCenter(myLatlng);
-			}, 1400);
-		});
 	}
 
 	/* 

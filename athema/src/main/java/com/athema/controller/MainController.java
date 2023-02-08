@@ -1,6 +1,5 @@
 package com.athema.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.athema.dto.ItemDTO;
 import com.athema.dto.MemberDTO;
 import com.athema.service.ItemService;
 import com.athema.service.MemberService;
 import com.athema.service.ReviewService;
+import com.athema.service.WishService;
 
 @Controller
 public class MainController {
@@ -28,6 +27,9 @@ public class MainController {
 	
 	@Autowired
 	MemberService mservice;
+	
+	@Autowired
+	WishService wservice;
 	
 	@RequestMapping("")
 	public String main(Model model) {
@@ -111,9 +113,12 @@ public class MainController {
 	}
 
 	@RequestMapping("/single_listing")
-	public String single_listing(Model model, int item_code) {
+	public String single_listing(HttpSession session, Model model, int item_code) {
 		ItemDTO item = null;
 		List<ItemDTO> options = null;
+		int wishlist = 0;
+		int mem_code = 0;
+		
 		try {
 			item = iservice.get(item_code);
 			options = iservice.options(item_code);
@@ -122,6 +127,18 @@ public class MainController {
 			e.printStackTrace();
 		}
 		
+		if(session.getAttribute("loginMember") != null) {
+			MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
+			mem_code = member.getMem_code();
+			try {
+				wishlist = wservice.wishlist(mem_code, item.getItem_code());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		model.addAttribute("mem_code", mem_code);
+		model.addAttribute("wishlist", wishlist);
 		model.addAttribute("item", item);
 		model.addAttribute("options", options);
 		model.addAttribute("content", "single_listing");

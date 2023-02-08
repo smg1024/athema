@@ -40,5 +40,11 @@ public class WishService implements AthemaService<Integer, WishDTO> {
 		return mapper.selectall();
 	}
 	
+	public int wishlist(Integer mem_code, Integer item_code) throws Exception {
+		return mapper.wishlist(mem_code, item_code);
+	}
 	
+	public void del_wishlist(Integer item_code, Integer mem_code) throws Exception {
+		mapper.del_wishlist(item_code, mem_code);
+	}
 }

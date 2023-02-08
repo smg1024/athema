@@ -18,8 +18,8 @@ public class WishDTO {
 	private int item_code;
 	private int mem_code;
 	
-	public WishDTO(int wish_code, int item_code) {
-		this.wish_code = wish_code;
+	public WishDTO(int item_code, int mem_code) {
 		this.item_code = item_code;
+		this.mem_code = mem_code;
 	}
 }
