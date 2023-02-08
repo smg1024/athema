@@ -6,27 +6,10 @@
 	}
 	/* input box 사이즈 조절 */
 	input{
-		margin-left:4%;
 		width:65%;
+		display: flex;
 	}
-	#mem_name{
-		margin-left: 15.5%;
-	}
-	#mem_email{
-		margin-left: 13.5%;
-	}
-	#mem_pwd{
-		margin-left: 11.5%;
-	}
-	#mem_pwd_confirm{
-		margin-left: 7%;
-	}
-	#mem_nick{
-		margin-left: 13.5%;
-	}
-	#mem_hp{
-		margin-left: 7.5%;
-	}
+	
 	/* 수정/탈퇴 버튼 스타일 */
 	#userpage_btn{
 		text-align: center;
@@ -35,6 +18,7 @@
 		margin-top:30px;
 	}
 	#userpage_btn a{
+		float:right;
 		padding: 10px;
 		border-radius:8px;
 		margin:0 3px; 
