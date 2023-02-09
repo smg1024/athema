@@ -115,7 +115,7 @@ div .intro_button {
 	<div class="wish_main">
 		<h3>나의 위시리스트</h3>
 			<div class="wish_box">
-				<div class="w_pthoto">
+				<div class="w_pthoto">			<!-- "${roomimg1}" -->
 					<img id="wish_image" th:src="@{/images/LW.JPG}" alt="상품이미지">
 					<div class="intro_rating">4.5</div> <!-- 평균 구해서 넣어야 함 -->
 				</div>
@@ -139,7 +139,9 @@ div .intro_button {
 						<li id="intro_text">42000원 / 1명</li>
 					</ul>
 					<hr>
-					<div><button class="intro_button">지금 구매하기</button></div>
+					<div><button class="intro_button" th:href="@{/item_code=${}}">지금 구매하기</button></div>
+											<!-- @{/single_listing(item_code=1)} -->
+											<!-- th:href="@{/reservationlist(custid=${order.custid})}" 예약 리스트 중 커스트 아이디가 ?인거 -->
 				</div>
 			</div>
 			

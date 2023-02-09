@@ -112,8 +112,9 @@
     font-weight: 500;
 }
 .w_r_photo {
-	border: 2px solid purple;
+	/* border: 2px solid purple;*/
 	margin-top: 2%;
+	margin-left: 10%;
 }
 
 #hr1 {
@@ -139,4 +140,15 @@
 #w_r_reister:active {
 	border: none;
     border-bottom: 5px solid #8d4fff;    
+}
+
+/* 사진 업로드 */
+.insert .file-list .filebox p {
+    font-size: 14px;
+    margin-top: 10px;
+    display: inline-block;
+}
+.insert .file-list .filebox .delete i{
+    color: #ff5353;
+    margin-left: 5px;
 }
