@@ -313,10 +313,9 @@ $(document).ready(function(){
 									<div class="button book_button"><a href="#">예약하기<span></span><span></span><span></span></a></div>
 									<div class="offer_reviews">
 										<div class="offer_reviews_content">
-											<div class="offer_reviews_title">very good</div>
 											<div class="offer_reviews_subtitle">100 reviews</div>
 										</div>
-										<div class="offer_reviews_rating text-center">8.1</div>
+										<div class="offer_reviews_rating text-center" th:text="${list.avg_rating}"></div>
 									</div>
 								</div>
 							</div>

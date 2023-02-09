@@ -32,7 +32,7 @@
 					<input type="hidden" name="item_code" th:value="${item.item_code}">
 					이름 <input type="text" name="item_name" th:value="${item.item_name}"><br>
 					위치 <input type="text" name="item_loc" th:value="${item.item_loc}"><br>
-					설명 <input type="text" name="item_detail" th:value="${item.item_detail}"><br>
+					설명 <textarea type="text" name="item_detail" th:value="${item.item_detail}" cols="30" rows="5"></textarea><br>
 					등록일 <input type="text" name="rdate" th:value="${item.rdate}" disabled><br>
 					유효기간 <input type="number" name="exp_days" th:value="${item.exp_days}"><br>
 					<button>수정하기</button>

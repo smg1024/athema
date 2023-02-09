@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="avg_rating" parameterType="Integer" resultType="Double">
-		SELECT AVG(score) avg_rating FROM review WHERE item_code=${item_code}
+		SELECT ROUND(AVG(score),1) avg_rating FROM review WHERE item_code=${item_code}
 	</select>
 	
 </mapper>
