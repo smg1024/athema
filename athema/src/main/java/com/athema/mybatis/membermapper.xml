@@ -38,6 +38,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		UPDATE member SET mem_hp=#{mem_hp},mem_nick=#{mem_nick},mem_birth=#{mem_birth} WHERE mem_code=#{mem_code}
 	</update>
 	
+<!-- 	카카오 가입 추가정보 -->
+	<update id="updatekakao" parameterType="MemberDTO">
+		UPDATE member SET mem_name=#{mem_name},mem_hp=#{mem_hp},mem_birth=#{mem_birth} WHERE mem_code=#{mem_code}
+	</update>
+	
 <!-- 	탈퇴 처리 -->
 	<update id="delete" parameterType="int">
 		UPDATE member SET mem_del=1, mem_deldate=NOW(), mem_pwd=null, mem_birth=null WHERE mem_code=#{mem_code}

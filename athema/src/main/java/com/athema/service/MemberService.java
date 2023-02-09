@@ -55,4 +55,8 @@ public class MemberService implements AthemaService<Integer, MemberDTO> {
 	public MemberDTO searchemail(String email) throws Exception {
 		return mapper.searchemail(email);
 	}
+	
+	public void modifykakao(MemberDTO v) throws Exception {
+		mapper.updatekakao(v);
+	}
 }

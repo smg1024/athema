@@ -66,4 +66,21 @@ public class MemberController {
 		return "main";
 	}
 	
+	@RequestMapping("/kakaomember")
+	public String kakaomember(Model model, MemberDTO member) {
+		System.out.println(member.getMem_name());
+		System.out.println(member.getMem_email());
+		try {
+			mservice.modifykakao(member);
+			model.addAttribute("content", "registerok");	/*registerok 페이지로 넘긴다*/
+			model.addAttribute("remail", member.getMem_email());	/*입력된 이메일주소를 remail로 넘긴다*/
+			model.addAttribute("rnick", member.getMem_nick()); 		/*입력된 닉네임을 rnick으로 넘긴다*/
+		} catch (Exception e) {
+			model.addAttribute("content", "registerfail");	/*registerok 페이지로 넘긴다*/
+			model.addAttribute("femail", member.getMem_email());	/*입력된 이메일주소를 remail로 넘긴다*/
+			e.printStackTrace();
+		}
+		return "main";
+	}
+	
 }

@@ -1,0 +1,129 @@
+<head>
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" th:href="@{/styles/register_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/register_responsive.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+
+<!-- JavaScript -->
+
+<script>
+/* 프론트단의 유효성검사
+: 이메일 중복확인 후 속성변경 및 체크완료 이미지 띄우기 */
+function getdata(email) {
+	$.ajax({
+		type: 'POST',
+		url:'[[@{/checkemail}]]',
+		data: {'email':email},
+		success: function(data){
+			if(data > 0) {
+				alert("이미 가입된 회원입니다.");
+				$('#mem_email').focus();
+			} else {
+				if($('#mem_email').val()=='') {
+					alert("이메일을 입력하세요");
+				} else {
+					alert("사용 가능합니다.");
+					$('#email_hiddenChk').attr("value", "Y"); /*submit할때 N인지 Y인지 확인*/
+					$('#email_check').hide(); /*keyup있으면 다시 show*/
+					$('#id_check').show(); /*중복체크 완료되면 show*/
+				}
+			}
+		}
+	});
+};
+
+
+$(document).ready(function(){
+	
+// 	이름 입력해야만 다른 input창에 focus 가능하게 함
+	$('#mem_name').blur(function(){
+		var name = $(this).val();
+		if (name == '') {
+			$(this).focus();
+			$('#span_name').text("이름을 입력하세요");
+		} else {
+// 			한글, 영문자만 입력 가능하도록 정규표현식 작성
+			var reg = /[0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+			if (reg.test(name)) {
+			/*허용된 문자 이외의 글자 들어오면 blur시 공백으로 replace'*/
+				$('#mem_name').val(name.replace(reg,''));
+				$(this).focus();
+			}
+			$('#span_name').text('');			
+		}
+	});
+	
+	// 휴대폰 번호 입력 제한
+	// 0-9 이외의 글자 들어오면 공백으로 replace, 11자 입력시 자동으로 (3-4-4)로 하이픈 입력되록 함
+	$('#mem_hp').keyup(function() {
+		$(this).val($(this).val().replace(/[^0-9]/g,"").replace(/([0-9]{3})+([0-9]{4})+([0-9]{4})/, "$1-$2-$3").replace("--","-"))
+	});
+	
+	
+	// submit 버튼 클릭 > 유효성 검사 시작
+	$('#register_submit').click(function(){
+		
+		// 이름 비어있거나 1글자만 있을 시 알림창 띄우고 focus 이동
+		if($('#mem_name').val() == '' || $('#mem_name').val().length < 2) {
+			alert("2글자 이상 이름을 입력하세요");
+			$('#mem_name').focus();
+			return false;
+		}
+		
+		// 전화번호 11자 미만일 시 알림창 띄우고 focus 이동
+		if ($('#mem_hp').val().length < 11) {
+			alert("올바른 전화번호를 입력하세요");
+			$('#mem_hp').focus();
+			return false;
+		}
+
+		// 유효성검사 전체 항목 통과시 form > submit > addmember로 이동 (MemberController)
+		$('#register_form').attr({
+			method:'post',
+			action:'[[@{/member/kakaomember}]]'
+		});
+		$('#register_form').submit(); 
+	});
+});
+	
+</script>
+</head>
+
+
+<!-- login_home -->
+
+<div class="register_home">
+	<div class="register_content">
+		<div class="title_desc" style="font-weight:bold;">나를 위한 여행테마 추천, Athema</div>
+        <!-- 회원가입 폼 -->
+		<form method="post" id="register_form">
+			<input type="hidden" name="redirectUrl" value="register">
+			<div class="box_register" >
+				<h5 th:text="${obj.mem_nick}+'님, 추가 정보를 입력해주세요.'"></h5>
+				<input name="mem_code" id="mem_code" type="hidden" th:value="${obj.mem_code}">
+				<input name="mem_nick" id="mem_nick" type="hidden" th:value="${obj.mem_nick}">
+				<input name="mem_email" id="mem_email" type="hidden" th:value="${obj.mem_email}">
+		        <!-- 이름 -->
+				<div class="field">
+        			<b>이름</b>
+           			<input name="mem_name" id="mem_name" type="text" placeholder="한글, 영문만 입력">
+           			<span id="span_name"></span>
+     			</div>
+		        <!-- 전화번호 -->
+		        <div class="field tel-number">
+		            <b>휴대전화번호</b>
+		            <input id="mem_hp" name="mem_hp" type="tel" maxlength="13" placeholder="숫자만 입력">
+		        </div>
+		        <!-- 생년월일 -->
+		        <div class="field birth">
+					<b>생년월일<span style="color:#808080; font-size:0.75em;"> (선택사항)</span></b>
+					<input type="date" name="mem_birth" id="mem_birth" data-placeholder="날짜 선택" required
+					aria-required="true"></input>
+				</div>
+		        <!-- 확인 버튼 -->
+		        <a href="#" id="register_submit">가입 완료하기</a>
+			</div>
+		</form>
+	</div>
+</div>

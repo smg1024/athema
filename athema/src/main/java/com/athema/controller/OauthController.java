@@ -81,7 +81,8 @@ public class OauthController {
 				} else {
 					System.out.println("null값 DB 저장 방지용..");
 					model.addAttribute("content", "index");
-					return "main";				}
+					return "main";				
+				}
 				
 				// 프린트 찍어보기
 				MemberDTO newKakaoMem = mservice.searchemail(mem_email);
@@ -89,11 +90,11 @@ public class OauthController {
 				
 				// session에 로그인 정보 저장
 				session.setAttribute("loginMember", newKakaoMem);
-				
+				String reemail = member.getMem_email();
+				member = mservice.searchemail(reemail);
 				// 나중에 추가폼 페이지 만들어지면 수정할 것
-				model.addAttribute("content", "registerok");
-				model.addAttribute("rnick", mem_nick);
-				model.addAttribute("remail", mem_email);
+				model.addAttribute("content", "registerkakao");
+				model.addAttribute("obj", member);
 				return "main";
 			}
 		} catch (Exception e) {
