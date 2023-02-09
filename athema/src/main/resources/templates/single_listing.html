@@ -411,8 +411,8 @@ $(document).ready(function(){
 									<legend>담은 상품</legend>
 									<th:block th:each="opt:${options}">
 									<div class="order_options">
-										<span th:id="opt_code_+${opt.opt_code}" th:text="${opt.opt_name}+': '"></span><span th:id="opt_quantity_+${opt.opt_code}"></span>
-										<input type="hidden" name="opt_quantity">
+										<span th:id="opt_code_+${opt.opt_code}" th:text="${opt.opt_name}+': '"></span><span th:id="opt_quantity_+${opt.opt_code}">0</span>
+										<input type="hidden" name="opt_quantity" value="0">
 										<input type="hidden" name="opt_code" th:value="${opt.opt_code}" >
 										<input type="hidden" class="price" th:id="price_+${opt.opt_code}"><hr>
 									</div>

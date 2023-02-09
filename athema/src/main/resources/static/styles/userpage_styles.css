@@ -12,13 +12,12 @@
 	
 	/* 수정/탈퇴 버튼 스타일 */
 	#userpage_btn{
-		text-align: center;
+		text-align: right;
 		color:white;
 		font-size: 16px;
 		margin-top:30px;
 	}
 	#userpage_btn a{
-		float:right;
 		padding: 10px;
 		border-radius:8px;
 		margin:0 3px; 

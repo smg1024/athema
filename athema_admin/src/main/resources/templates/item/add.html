@@ -29,6 +29,7 @@
 		<div class="card-body">
 			<div class="table-responsive">
 				<form id="add_form">
+					<h5>상품 정보</h5>
 					이름 <input type="text" name="item_name"><br>
 					위치 <input type="text" name="item_loc"><br>
 					설명 <textarea type="text" name="item_detail" cols="30" rows="5"></textarea><br>
@@ -60,9 +61,15 @@
 					</select><br>
 					좌표:<br>
 					경도 <input type="number" name="lat" step="0.0001"> 위도 <input type="number" name="lng" step="0.0001"><br>
-					유효기간 <input type="number" name="exp_days"><br>
-					<button>등록하기</button>
+					유효기간 <input type="number" name="exp_days"><hr>
 				</form>
+				<form>
+					<h5>옵션 정보</h5>
+					옵션 이름 <input type="text" name="opt_name"><br>
+					가격 <input type="number" name="item_price"><br>
+					<span><a href="#">옵션 추가하기</a></span><br>
+				</form>
+				<button>등록하기</button>
 			</div>
 		</div>
 	</div>
