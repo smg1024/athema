@@ -51,7 +51,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <!-- 	어제 가입한 회원 수 구하기 -->
 	<select id="getYesterdayMember" resultType="int">
 		SELECT (SELECT count(*) FROM member 
-		WHERE DATE_FORMAT(DATE_SUB(mem_date, INTERVAL 1 DAY),'%Y-%m-%d') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'%Y-%m-%d')) FROM dual
+		WHERE DATE_FORMAT(mem_date,'%Y-%m-%d') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'%Y-%m-%d')) FROM dual
 	</select>
 <!-- 	오늘 탈퇴한 회원 수 구하기 -->
 	<select id="getTodayWithdraw" resultType="int">

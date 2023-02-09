@@ -64,10 +64,12 @@ public class MemberController {
 		}
 		
 		// 증감율 계산
-		if (todayMem == yesterMem) {
+		if (yesterMem == 0) {
+			perday = todayMem * 100;
+		} else if (todayMem == yesterMem) {
 			perday = 0;
 		} else {
-			perday = (todayMem - yesterMem)/yesterMem;
+			perday = (todayMem - yesterMem)/yesterMem * 100;
 		}
 		
 		model.addAttribute("totWithdraw", totWithdraw);
