@@ -162,14 +162,16 @@ public class MainController {
 	}
 	
 	@RequestMapping("/order")
-	public String order(Model model, Integer mem_code, int item_code, 
-			@RequestParam List<Integer> opt_codes, 
-			@RequestParam List<Integer> opt_quantities) {
+	public String order(Model model, Integer mem_code, Integer item_code, 
+			@RequestParam (value ="opt_codes", required=false) List<Integer> opt_codes, 
+			@RequestParam (value="opt_quantities",required=false) List<Integer> opt_quantities) {
 		
-		if(mem_code==null){
+		
+		if(mem_code==null){ 
 			return "redirect:login";
-			
-		}else {
+		 
+		 }else {
+		 
 			ItemDTO item = null;
 			ItemDTO day = null;
 			List<ItemDTO> options = null;
@@ -191,7 +193,7 @@ public class MainController {
 			model.addAttribute("day", day);
 			model.addAttribute("content", "order");
 			model.addAttribute("cnt",opt_quantities);
-		}
+		 }
 		System.out.println(mem_code);
 		System.out.println(item_code);
 		System.out.println(opt_codes);

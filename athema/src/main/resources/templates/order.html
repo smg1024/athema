@@ -22,6 +22,7 @@ $(document).ready(function() {
 		totalPrice += parseInt(price);
 		$('.totalprice').text(totalPrice+'원');
 	});
+	
 	// Modal을 가져옴
 	var modals = document.getElementsByClassName("modal-overlay");
 	// Modal을 띄우는 클래스 이름을 가져옴
@@ -172,7 +173,7 @@ function checkclickall()  {
 				msg += '결제 금액 : ' + rsp.paid_amount;
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 				$('#bookregister_form').attr({//결제 성공하면 예약자 정보 insert
-					'method':'GET',
+					'method':'POST',
 					'action':'[[@{/order/bookregister}]]'
 				});
 				var confirmclick = confirm(msg+'예약 상세 페이지로 이동하시겠습니까?');
@@ -199,7 +200,7 @@ function checkclickall()  {
 		<div class="order_home_title">order</div>
 	</div>
 </div>
-<form id="bookregister_form">
+
 <div id="order_content">
 
 	<div id="content">
@@ -231,7 +232,7 @@ function checkclickall()  {
 				</div>
 				<hr>
 				<div id="order_book">
-				
+				<form id="bookregister_form">
 					<div>
 						<div>예약자 이름</div>
 						<input type="text" name="book_name" id="book_name" th:value="${member.mem_name}"/>
@@ -244,7 +245,7 @@ function checkclickall()  {
 						<div>예약자 이메일</div>
 						<input type="text" name="book_email" id="book_email" th:value="${member.mem_email}"/>
 					</div>
-				
+				</form>
 				</div>
 			</div>
 		</div>
@@ -292,7 +293,7 @@ function checkclickall()  {
 
 	</div>
 </div>
-</form>
+
 <div class="modal-overlay">
 	<div class="modal-window">
 	<span class="close-area">X</span>
