@@ -45,7 +45,8 @@ function del_per(mem_code) {
 		url:'[[@{/del}]]',
 		data: {'mem_code':mem_code},
 		success: function(data) {
-			alert("데이터가 영구히 삭제 처리 되었습니다. \n새로고침 하시기 바랍니다.");
+			alert("데이터가 영구히 삭제 처리 되었습니다.");
+			location.reload();
 		},
 		error: function(){
 			alert("영구 삭제 처리에 실패하였습니다.");
