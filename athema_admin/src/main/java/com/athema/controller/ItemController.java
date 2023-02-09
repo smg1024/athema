@@ -2,6 +2,8 @@ package com.athema.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,10 @@ public class ItemController {
 	ItemService iservice;
 	
 	@RequestMapping("/getall")
-	public String getall(Model model){
+	public String getall(Model model, HttpSession session){
+		if(session.getAttribute("loginAdmin").equals(null)) {
+			return "login";
+		}
 		List<ItemDTO> list = null;
 		
 		try {
@@ -34,7 +39,10 @@ public class ItemController {
 	}
 	
 	@RequestMapping("/add")
-	public String add(Model model) {
+	public String add(Model model, HttpSession session) {
+		if(session.getAttribute("loginAdmin").equals(null)) {
+			return "login";
+		}
 		model.addAttribute("center", dir+"add");
 		return "main";
 	}
