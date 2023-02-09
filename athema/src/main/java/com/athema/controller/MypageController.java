@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.athema.dto.MemberDTO;
@@ -125,19 +126,44 @@ public class MypageController {
 				e.printStackTrace();
 				System.out.println("등록 실패");
 			}
-			
 			model.addAttribute("content", dir+"mypage");	
 			model.addAttribute("mypagecenter",dir+"travel_past");
 			return "main";
 		}
-		
+	
+	// 작성한 리뷰 보기
 	@RequestMapping("/myreview")
-	public String myreview(Model model) {	
+	public String myreview(Model model, int review_code) {	
+		ReviewDTO review = null;
+		try {
+			review=rservice.get(review_code);
+			System.out.println("성공");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("실패");
+		}
+		model.addAttribute(review);
 		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"myreview");
+		
 		return "main";
 	}
 	
+	// 리뷰 삭제
+	@RequestMapping("/rremove")
+	public void rremove(Model model, int review_code) {
+		try {
+			rservice.remove(review_code);
+			System.out.println("삭제 성공");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("삭제 실패");
+		}
+	}
+	
+	// 나의 위시리스트
 	@RequestMapping("/mywishlist")
 	public String mywishlist(Model model) {	
 		model.addAttribute("content", dir+"mypage");	
