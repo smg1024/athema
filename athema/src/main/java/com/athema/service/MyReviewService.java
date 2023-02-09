@@ -11,7 +11,7 @@ import com.athema.mapper.ReviewMapper;
 
 
 @Service
-public class ReviewService implements AthemaService<Integer, ReviewDTO>{
+public class MyReviewService implements AthemaService<Integer, ReviewDTO>{
 	
 	@Autowired
 	ReviewMapper mapper;
@@ -44,9 +44,5 @@ public class ReviewService implements AthemaService<Integer, ReviewDTO>{
 	public Double avg_rating(Integer k) throws Exception {
 		return mapper.avg_rating(k);
 	}
-	
-	// 특정 회원 리뷰 보기
-	public List<ReviewDTO> getReviewByMem(int mem_code) throws Exception {
-		return mapper.getReviewByMem(mem_code);
-	}
+
 }

@@ -75,7 +75,7 @@ top:5px;
 				<li><a th:href="@{/mypage/travel_plan}">예정된 여행</a></li>
 				<li><a th:href="@{/mypage/travel_past}">지난 여행</a></li>
 			</ul></li>
-			<li><a th:href="@{/mypage/myreview}">나의 후기</a></li>
+			<li><a th:href="@{/mypage/myreview(mem_code=${session.loginMember.mem_code})}">나의 후기</a></li>
 			<li><a th:href="@{/mypage/mywishlist}">위시리스트</a></li>
 		</ul>
 		<ul>

@@ -23,4 +23,5 @@ public class ReviewDTO {
 	private float score;
 	private Date review_date;
 	private String review_img;
+	
 }

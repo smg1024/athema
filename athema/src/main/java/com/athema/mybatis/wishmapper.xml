@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectall" resultType="WishDTO">
-		SELECT * FROM wish
+		SELECT * FROM wish WHERE mem_code=#{mem_code}
 	</select>
 	
 	<insert id="insert" parameterType="WishDTO">

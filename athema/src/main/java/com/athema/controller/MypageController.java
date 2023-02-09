@@ -1,6 +1,9 @@
 package com.athema.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.athema.dto.MemberDTO;
+import com.athema.dto.OrderDTO;
 import com.athema.dto.ReviewDTO;
+import com.athema.dto.WishDTO;
 import com.athema.service.MemberService;
 import com.athema.service.ReviewService;
+import com.athema.service.WishService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -24,6 +30,9 @@ public class MypageController {
 	
 	@Autowired
 	ReviewService rservice;
+	
+	@Autowired
+	WishService wservice;
 	
 	@RequestMapping("")
 	public String mypage(Model model) {
@@ -133,17 +142,22 @@ public class MypageController {
 	
 	// 작성한 리뷰 보기
 	@RequestMapping("/myreview")
-	public String myreview(Model model, int review_code) {	
-		ReviewDTO review = null;
+	public String myreview(Model model, int mem_code, String mem_ema) {
+		List<ReviewDTO> reviews=null;
+		OrderDTO order=null;
+
 		try {
-			review=rservice.get(review_code);
+			reviews=rservice.getReviewByMem(mem_code);
 			System.out.println("성공");
+			System.out.println(reviews);
+			model.addAttribute("reviews", reviews);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("실패");
 		}
-		model.addAttribute(review);
+		
+		
 		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"myreview");
 		
@@ -165,7 +179,19 @@ public class MypageController {
 	
 	// 나의 위시리스트
 	@RequestMapping("/mywishlist")
-	public String mywishlist(Model model) {	
+	public String mywishlist(Model model, int wish_code) {	
+		List<WishDTO> wishs = null;
+		
+		try {
+			wishs = wservice.getall();
+			for (WishDTO r : wishs) {
+				System.out.println(r);
+			} System.out.println("OK");
+		}	catch (Exception e) {
+			System.out.println("Failed");
+			e.printStackTrace();
+		}
+	
 		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"mywishlist");
 		return "main";

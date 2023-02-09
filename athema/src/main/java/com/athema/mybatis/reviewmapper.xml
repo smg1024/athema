@@ -8,9 +8,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT review_code, mem_code, item_code, title, content, score
 		FROM review WHERE review_code=#{review_code}
 	</select>
+	
 	<select id="selectall" resultType="ReviewDTO">
-		SELECT * FROM review
+		SELECT * FROM review 
 	</select>
+	
 	<insert id="insert" parameterType="ReviewDTO">
 		INSERT INTO review VALUES (#{review_code}, #{mem_code}, #{item_code}, #{title}, #{content}, #{score}, NOW(), #{review_img})
 	</insert>
@@ -26,4 +28,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT ROUND(AVG(score),1) avg_rating FROM review WHERE item_code=${item_code}
 	</select>
 	
+	<select id="getReviewByMem" resultType="ReviewDTO">
+		SELECT * FROM review r
+		INNER JOIN member m ON r.mem_code = m.mem_code
+		INNER JOIN item i ON r.item_code = i.item_code
+		where r.mem_code = #{mem_code};
+	</select>
 </mapper>

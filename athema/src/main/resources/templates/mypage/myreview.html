@@ -102,81 +102,28 @@ ul {
 <div class="my_r">
 	<div class="my_r_main">
 		<h3>나의 리뷰</h3>
-		<div id="my_r_top">						<!-- 1로 지정하지 않고 가는 방법 -->
-			<div class="my_r_item"><a th:href="@{/single_listing(item_code=1)}">경주 여행</a></div>
+		 <div id="my_r_top" th:each="review:${reviews}" >						<!-- 1로 지정하지 않고 가는 방법 -->
+			<div class="my_r_item">경주 여행</div>
 			<div class="my_r_box">
-			 	<div id="my_r_title" th:text="${review.title}">  </div>
-				<!--<div id="my_r_t_day" th:text=${order.order_date}>예약 날짜: 2022년 10월 15일</time></div>
-				<div id="my_r_day" th:text=${review.date}>작성 날짜: 2022년 11월 23일</time></div>
-				<div class="my_r_rating" th:text=${review.score}>평점: 3.5</div> -->
+			 	<div id="my_r_title">제목: <span th:text="${review.title}"></span></div>
+				<div id="my_r_day">작성 날짜: <time th:text="${review.review_date}"></time></div>
+				<div class="my_r_rating">평점: <div th:text="${review.score}"></div></div>
 					<div class="my_r_content">	
-						<span>경주에 가족들이랑 다녀왔습니다. 즐거운 시간이었어요. 다만 활동 내용이 다양하지는 않아서 알차게 경주를 즐기다 오진 못한 것 같아 아쉽습니다. </span>
+						<span th:text="${review.content}">경주에 가족들이랑 다녀왔습니다. 즐거운 시간이었어요. 다만 활동 내용이 다양하지는 않아서 알차게 경주를 즐기다 오진 못한 것 같아 아쉽습니다. </span>
 					</div>	
-					<div class="my_r_photo"><span>리뷰 사진</span>
-						<ul>
-							<li><img id="my_r_1" th:src="@{/images/offer_1.jpg}" alt="리뷰사진1" ></li>
-							<li><img id="my_r_2" th:src="@{/images/offer_2.jpg}" alt="리뷰사진2" ></li>
-							<li><img id="my_r_3" th:src="@{/images/offer_3.jpg}" alt="리뷰사진3" ></li>
-							<li><img id="my_r_4" th:src="@{/images/offer_4.jpg}" alt="리뷰사진4" ></li>
-							<li><img id="my_r_5" th:src="@{/images/offer_5.jpg}" alt="리뷰사진5" ></li> 
-					    </ul> 
-					</div>
 				<form method="post" id="my_r_form">
 					<a id="w_r_r">삭제</a>
 					<input name="review_code" id="review_code" type="hidden" value="1">
 				</form>
 			</div>
-		</div>
+		</div> 
 		
-		<div id="my_r_top">
-			<div class="my_r_item"><a href="#">경주 여행</a></div>
-			<div class="my_r_box">
-				<div id="my_r_title">제목: 경주 여행 다녀온 후기입니다!!</div>
-				<div id="my_r_t_day"><time datetime="2022-10-15">예약 날짜: 2022년 10월 15일</time></div>
-				<div id="my_r_day"><time datetime="2022-12-15">작성 날짜: 2022년 11월 23일</time></div>
-				<div class="my_r_rating">평점: 3.5</div>
-					<div class="my_r_content">	
-						<span>경주에 가족들이랑 다녀왔습니다. 즐거운 시간이었어요. 다만 활동 내용이 다양하지는 않아서 알차게 경주를 즐기다 오진 못한 것 같아 아쉽습니다. </span>
-					</div>	
-					<div class="my_r_photo"><span>리뷰 사진</span>
-						<ul>
-							<li><img id="my_r_1" th:src="@{/images/offer_1.jpg}" alt="리뷰사진1" ></li>
-							<li><img id="my_r_2" th:src="@{/images/offer_2.jpg}" alt="리뷰사진2" ></li>
-							<li><img id="my_r_3" th:src="@{/images/offer_3.jpg}" alt="리뷰사진3" ></li>
-							<li><img id="my_r_4" th:src="@{/images/offer_4.jpg}" alt="리뷰사진4" ></li>
-							<li><img id="my_r_5" th:src="@{/images/offer_5.jpg}" alt="리뷰사진5" ></li> 
-					    </ul> 
-					</div>
-			</div>
-		</div>
 		
-		<div id="my_r_top">
-			<div class="my_r_item"><a href="#">경주 여행</a></div>
-			<div class="my_r_box">
-				<div id="my_r_title">제목: 경주 여행 다녀온 후기입니다!!</div>
-				<div id="my_r_t_day"><time datetime="2022-10-15">예약 날짜: 2022년 10월 15일</time></div>
-				<div id="my_r_day"><time datetime="2022-12-15">작성 날짜: 2022년 11월 23일</time></div>
-				<div class="my_r_rating">평점: 3.5</div>
-					<div class="my_r_content">	
-						<span>경주에 가족들이랑 다녀왔습니다. 즐거운 시간이었어요. 다만 활동 내용이 다양하지는 않아서 알차게 경주를 즐기다 오진 못한 것 같아 아쉽습니다. </span>
-					</div>	
-					<div class="my_r_photo"><span>리뷰 사진</span>
-						<ul>
-							<li><img id="my_r_1" th:src="@{/images/offer_1.jpg}" alt="리뷰사진1" ></li>
-							<li><img id="my_r_2" th:src="@{/images/offer_2.jpg}" alt="리뷰사진2" ></li>
-							<li><img id="my_r_3" th:src="@{/images/offer_3.jpg}" alt="리뷰사진3" ></li>
-							<li><img id="my_r_4" th:src="@{/images/offer_4.jpg}" alt="리뷰사진4" ></li>
-							<li><img id="my_r_5" th:src="@{/images/offer_5.jpg}" alt="리뷰사진5" ></li> 
-					    </ul> 
-					</div>
-			</div>
-		</div>
-	</div>
-</div>
+		
 
 <script>
 //리뷰 삭제
-$('#w_r_r').click(function() {
+/* $('#w_r_r').click(function() {
    var c=confirm('삭제하시겠습니까?');
    if(c==true) {
       $('#my_r_form').attr({
@@ -185,17 +132,6 @@ $('#w_r_r').click(function() {
       });
       $('#my_r_form').submit();
    }
-});
+}); */
 
-//리뷰 삭제
-/*$('#w_r_register').click(function() {
-   var c=confirm('등록하시겠습니까?');
-   if(c==true) {
-      $('#write_r_form').attr({
-         'method': 'post',
-         'action': '[[@{/mypage/insert}]]'
-      });
-      $('#write_r_form').submit();
-   }
-});*/
 </script>
