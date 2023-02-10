@@ -3,6 +3,7 @@ package com.athema.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,9 @@ public class MemberController {
 	@Autowired
 	MemberService mservice;
 	
+	@Autowired
+	private PasswordEncoder encoder;
+	
 	@RequestMapping("/loginimpl")
 	public String loginimpl(HttpSession session, String mem_email, String mem_pwd, Model model) {
 		MemberDTO member = null;
@@ -24,7 +28,8 @@ public class MemberController {
 		try {
 			member = mservice.searchemail(mem_email);
 			// 비밀번호 일치
-			if (mem_pwd.equals(member.getMem_pwd())) {
+			if((encoder.matches(mem_pwd, member.getMem_pwd())) || (mem_pwd.equals(member.getMem_pwd()))) {
+//			if (mem_pwd.equals(member.getMem_pwd())) {
 				// 탈퇴하지 않은 멤버
 				if (member.getMem_del() == 0) {
 					// 소셜로그인이 아니어야 함
@@ -53,6 +58,8 @@ public class MemberController {
 				model.addAttribute("content", "registerfail");	/*registerfail 페이지로 넘긴다*/
 				model.addAttribute("femail", member.getMem_email()); 	/*입력된 이메일주소를 femail로 넘긴다*/
 			} else {
+				String encodedPassword = encoder.encode(member.getMem_pwd());
+				member.setMem_pwd(encodedPassword);
 				mservice.register(member);
 				model.addAttribute("content", "registerok");	/*registerok 페이지로 넘긴다*/
 				model.addAttribute("remail", member.getMem_email());	/*입력된 이메일주소를 remail로 넘긴다*/
