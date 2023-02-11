@@ -103,9 +103,9 @@ hr {
 
 
 <div class="past">
-   <div class="past_main">
+   <div class="past_main" th:each="order:${porder}">
    <h3>지난 여행</h3>
-      <div id="div_line" th:each="order:${porder}">
+      <div id="div_line" >
       <div id="past_day"><time th:text="${#dates.format(order.used_date,'yyyy-MM-dd')}">사용일</time></div>
       </div>      
       <div class="past_content">
@@ -128,7 +128,8 @@ hr {
             <div><button class="close_detail">상세닫기</button></div>
             <div id="clear"></div>
       </div>
-      
+      </div>
+</div>     
       
       <details>
           <summary>리뷰 쓰기</summary>

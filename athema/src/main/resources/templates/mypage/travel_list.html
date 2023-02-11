@@ -141,8 +141,8 @@ $(document).ready(function(){
 <div class="ord">
 	<div class="ord_main">
 		<h3>여행리스트</h3>
-		<div id="div_line">
-		<div class="ord_list_name" th:each="order:${orders}">예정된 여행</div>
+		<div id="div_line" th:each="order:${orders}">
+		<div class="ord_list_name">예정된 여행</div>
 		<div id="day"><time th:text="${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 3월 31일</time></div>
 		<div class="ord_content">
 			<div id="ord_title" th:text="${order.item_name}">경주 여행</div>
@@ -169,9 +169,9 @@ $(document).ready(function(){
 		
 		<hr>
 		
-		<div id="div_line">
+		<div id="div_line" th:each="order:${porder}">
 		<div class="ord_list_name">지난 여행</div>
-		<div id="day"><time datetime="2023-03-31">2023년 3월 31일</time></div>
+		<div id="day"><time th:text="${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 3월 31일</time></div>
 		<div class="ord_content">
 			<div id="ord_title">경주 여행</div>
 				<div class="ord_hidden">	

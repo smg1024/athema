@@ -32,4 +32,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="del_wishlist" parameterType="Integer">
 		DELETE FROM wish WHERE item_code=${param1} AND mem_code=${param2}
 	</delete>
+	
+	<select id="getWishByMem" resultType="WishDTO">
+		SELECT * FROM wish w
+		INNER JOIN member m ON m.mem_code = w.mem_code
+		INNER JOIN item i ON w.item_code = i.item_code
+		where w.mem_code = #{mem_code}
+	</select>
 </mapper>

@@ -109,12 +109,18 @@ public class MypageController {
 	@RequestMapping("/travel_list")
 	public String travel_list(Model model, int mem_code) {	
 		List<OrderDTO> orders=null;
+		List<OrderDTO> porder=null;
 
 		try {
 			orders=oservice.getTravelPlan(mem_code);
 			System.out.println("예정된 여행성공");
 			System.out.println(orders);
 			model.addAttribute("orders", orders);
+			
+			porder=oservice.getTravelPast(mem_code);
+			System.out.println("지난여행 성공");
+			System.out.println(porder);
+			model.addAttribute("porder", porder);
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -223,19 +229,19 @@ public class MypageController {
 	
 	// 나의 위시리스트
 	@RequestMapping("/mywishlist")
-	public String mywishlist(Model model, int wish_code) {	
-		List<WishDTO> wishs = null;
-		
+	public String mywishlist(Model model, int mem_code) {	
+		List<WishDTO> wishs=null;
+
 		try {
-			wishs = wservice.getall();
-			for (WishDTO r : wishs) {
-				System.out.println(r);
-			} System.out.println("OK");
-		}	catch (Exception e) {
-			System.out.println("Failed");
+			wishs=wservice.getWishByMem(mem_code);
+			System.out.println("성공");
+			System.out.println(wishs);
+			model.addAttribute("wishs", wishs);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("실패");
 		}
-	
 		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"mywishlist");
 		return "main";
