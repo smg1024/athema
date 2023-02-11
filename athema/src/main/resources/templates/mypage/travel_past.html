@@ -113,15 +113,16 @@ hr {
             <div class="past_hidden">   
                <div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
                <div id="past_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
-               <div id="past_div" th:text="'상품 옵션:'+${order.opt_name}">옵션</div>
-               <div id="plan_div" th:text="'수량:'+${order.cnt}"></div>
+               <div id="past_div" th:text="'상품 옵션: '+${order.opt_name}">옵션</div>
+               <div id="past_div" th:text="'수량: '+${order.cnt}"></div>
                <div id="past_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}"></time></div>
-               <div id="plan_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
+               <div id="past_div" th:text="'사용일: '+${#dates.format(order.used_date,'yyyy-MM-dd')}"></div>
+               <div id="past_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
                <hr>
                <div id="book">
-               		<div id="plan_div" th:text="'예약자:'+${order.book_name}"></div>
-					<div id="plan_div" th:text="'예약자 전화번호:'+${order.book_hp}"></div>
-					<div id="plan_div" th:text="'예약자 이메일:'+${order.book_email}"></div>
+               		<div id="past_div" th:text="'예약자: '+${order.book_name}"></div>
+					<div id="past_div" th:text="'예약자 전화번호: '+${order.book_hp}"></div>
+					<div id="past_div" th:text="'예약자 이메일: '+${order.book_email}"></div>
 				</div>
             </div>   
             <div><button class="view_detail">상세보기</button></div>

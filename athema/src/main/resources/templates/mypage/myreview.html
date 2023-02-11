@@ -13,12 +13,18 @@ h3 {
 .my_r_item, .my_r_box {
 	margin: 0 10%;
 }
-.my_r_item a{
+/*페이지 이동*/
+.my_r_item a, .my_r_item a:hover {
+	text-decoration: none;
+	color: #ffffff;
+}
+.my_r_item {
 	border: 2px solid #ef910a;
 	border-radius: 10px;
-	width: 20%;
+	width: 30%;
 	padding: 5px 30px;
 	
+	text-align:center;
 	text-decoration: none;
 	font-size: 18px;
 	font-weight: 600;
@@ -27,7 +33,7 @@ h3 {
 	
 }
 
-.my_r_item a:hover {
+.my_r_item:hover {
 	color: #ffffff;
 	font-weight: 800;
 	background-color: rgb(169, 123, 255);
@@ -102,8 +108,8 @@ ul {
 <div class="my_r">
 	<div class="my_r_main">
 		<h3>나의 리뷰</h3>
-		 <div id="my_r_top" th:each="review:${reviews}" >						<!-- 1로 지정하지 않고 가는 방법 -->
-			<div class="my_r_item">경주 여행</div>
+		 <div id="my_r_top" th:each="review:${reviews}" >					
+			<div class="my_r_item"><a th:href="@{/single_listing(item_code=${review.item_code})}"><div th:text="${review.item_name}"></div></a></div>
 			<div class="my_r_box">
 			 	<div id="my_r_title">제목: <span th:text="${review.title}"></span></div>
 				<div id="my_r_day">작성 날짜: <time th:text="${#dates.format(review.review_date,'yyyy-MM-dd')}"></time></div>
@@ -111,27 +117,9 @@ ul {
 					<div class="my_r_content">	
 						<span th:text="${review.content}">경주에 가족들이랑 다녀왔습니다. 즐거운 시간이었어요. 다만 활동 내용이 다양하지는 않아서 알차게 경주를 즐기다 오진 못한 것 같아 아쉽습니다. </span>
 					</div>	
-				<form method="post" id="my_r_form">
-					<a id="w_r_r">삭제</a>
-					<input name="review_code" id="review_code" type="hidden" value="1">
-				</form>
 			</div>
 		</div> 
-		
-		
+	</div>
+</div>
 		
 
-<script>
-//리뷰 삭제
-/* $('#w_r_r').click(function() {
-   var c=confirm('삭제하시겠습니까?');
-   if(c==true) {
-      $('#my_r_form').attr({
-         'method': 'post',
-         'action': '[[@{/mypage/rremove}]]'
-      });
-      $('#my_r_form').submit();
-   }
-}); */
-
-</script>

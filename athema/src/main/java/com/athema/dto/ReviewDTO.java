@@ -25,6 +25,7 @@ public class ReviewDTO {
 	private String review_img;
 	
 	private String mem_nick;
+	private String item_name;
 	
 	public ReviewDTO(int review_code, int mem_code, int item_code, String title, String content, float score, Date review_date, String review_img){
 		this.review_code = review_code;

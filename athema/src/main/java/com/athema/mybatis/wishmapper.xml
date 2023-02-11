@@ -35,8 +35,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	<select id="getWishByMem" resultType="WishDTO">
 		SELECT * FROM wish w
-		INNER JOIN member m ON m.mem_code = w.mem_code
+		INNER JOIN `member` m ON m.mem_code = w.mem_code
 		INNER JOIN item i ON w.item_code = i.item_code
+		INNER JOIN category c ON c.cate_code = i.cate_code
 		where w.mem_code = #{mem_code}
 	</select>
 </mapper>

@@ -190,9 +190,9 @@ public class MypageController {
 	
 	// 작성한 리뷰 보기
 	@RequestMapping("/myreview")					
-	public String myreview(Model model, int mem_code, String mem_email) {
+	public String myreview(Model model, int mem_code) {
 		List<ReviewDTO> reviews=null;
-
+		
 		try {
 			reviews=rservice.getReviewByMem(mem_code);
 			System.out.println("성공");
@@ -210,22 +210,6 @@ public class MypageController {
 		return "main";
 	}
 	
-	// 리뷰 삭제
-	@RequestMapping("/rremove")
-	public void rremove(Model model, int review_code) {
-		try {
-			rservice.remove(review_code);
-			System.out.println("삭제 성공");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("삭제 실패");
-		}
-		model.addAttribute("content", dir+"mypage");	
-		model.addAttribute("mypagecenter",dir+"myreview");
-		
-		return;
-	}
 	
 	// 나의 위시리스트
 	@RequestMapping("/mywishlist")
