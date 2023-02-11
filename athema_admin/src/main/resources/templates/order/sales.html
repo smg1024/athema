@@ -10,7 +10,7 @@
 <!-- Content Row -->
 <div class="row">
 	
-	<!-- Earnings (Monthly) Card Example -->
+	<!-- 월 주문 건수 -->
 	<div class="col-xl-3 col-md-6 mb-4">
 		<div class="card border-left-primary shadow h-100 py-2">
 			<div class="card-body">
@@ -18,8 +18,8 @@
 					<div class="col mr-2">
 						<div
 							class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-							당해년도 매출액</div>
-						<div id="content1" class="h5 mb-0 font-weight-bold text-gray-800">₩ 1,240,000</div>
+							월 주문건수</div>
+						<div id="content1" class="h5 mb-0 font-weight-bold text-gray-800" th:text="${getMonthOrder}"></div>
 					</div>
 					<div class="col-auto">
 						<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -29,7 +29,7 @@
 		</div>
 	</div>
 
-	<!-- Earnings (Monthly) Card Example -->
+	<!-- 일 주문건수 -->
 	<div class="col-xl-3 col-md-6 mb-4">
 		<div class="card border-left-success shadow h-100 py-2">
 			<div class="card-body">
@@ -37,29 +37,29 @@
 					<div class="col mr-2">
 						<div
 							class="text-xs font-weight-bold text-success text-uppercase mb-1">
-							당월 매출액</div>
-						<div id="content2" class="h5 mb-0 font-weight-bold text-gray-800">₩ 215,000</div>
+							일 주문건수</div>
+						<div id="content2" class="h5 mb-0 font-weight-bold text-gray-800" th:text="${getDayOrder}"></div>
 					</div>
 					<div class="col-auto">
-						<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+						<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Earnings (Monthly) Card Example -->
+	<!-- 일 매출액 -->
 	<div class="col-xl-3 col-md-6 mb-4">
 		<div class="card border-left-info shadow h-100 py-2">
 			<div class="card-body">
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div
-							class="text-xs font-weight-bold text-info text-uppercase mb-1">당일 매출액
+							class="text-xs font-weight-bold text-info text-uppercase mb-1">일 매출액
 						</div>
 						<div class="row no-gutters align-items-center">
 							<div class="col-auto">
-								<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">22000</div>
+								<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" th:text="${getDaySales}"></div>
 							</div>
 							<div class="col">
 								<div class="progress progress-sm mr-2">
@@ -71,14 +71,14 @@
 						</div>
 					</div>
 					<div class="col-auto">
-						<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+						<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Pending Requests Card Example -->
+	<!-- 월 매출액 -->
 	<div class="col-xl-3 col-md-6 mb-4">
 		<div class="card border-left-warning shadow h-100 py-2">
 			<div class="card-body">
@@ -86,8 +86,28 @@
 					<div class="col mr-2">
 						<div
 							class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-							주문 체결건수</div>
-						<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+							월 매출액</div>
+						<div class="h5 mb-0 font-weight-bold text-gray-800"th:text="${getMonthSales}"></div>
+					</div>
+					<div class="col-auto">
+						<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<!-- 연 매출액 -->
+	<div class="col-xl-3 col-md-6 mb-4">
+		<div class="card border-left-warning shadow h-100 py-2">
+			<div class="card-body">
+				<div class="row no-gutters align-items-center">
+					<div class="col mr-2">
+						<div
+							class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+							연 매출액</div>
+						<div class="h5 mb-0 font-weight-bold text-gray-800"th:text="${getYearSales}"></div>
 					</div>
 					<div class="col-auto">
 						<i class="fas fa-comments fa-2x text-gray-300"></i>

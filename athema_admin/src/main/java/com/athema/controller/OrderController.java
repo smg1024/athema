@@ -38,6 +38,30 @@ public class OrderController {
 		
 		@RequestMapping("/sales")
 		public String sales(Model model) {
+			int getMonthOrder=0; // 월 주문건수
+			int getDayOrder=0;	// 일 주문건수
+			int getYearSales=0;		// 연 매출
+			int getMonthSales=0;	// 월 매출
+			int getDaySales=0;		// 일 매출
+			
+			try {
+				getMonthOrder=oservice.getMonthOrder();
+				getDayOrder=oservice.getDayOrder();
+				getYearSales=oservice.getYearSales();
+				getMonthSales=oservice.getMonthSales();
+				getDaySales=oservice.getDaySales();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			model.addAttribute("getMonthOrder", getMonthOrder);
+			model.addAttribute("getDayOrder", getDayOrder);
+			model.addAttribute("getYearSales", getYearSales);
+			model.addAttribute("getMonthSales", getMonthSales);
+			model.addAttribute("getDaySales", getDaySales);
 			model.addAttribute("center", dir+"sales");
 			return "main";
 		}

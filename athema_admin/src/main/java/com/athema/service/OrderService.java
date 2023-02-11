@@ -55,4 +55,25 @@ public class OrderService implements AthemaService<Integer, OrderDTO>{
 		mapper.deletecode(k);
 		
 	}
+	
+	// 주문건수, 매출
+	public int getMonthOrder() throws Exception {
+		return mapper.getMonthOrder();
+	}
+	
+	public int getDayOrder() throws Exception {
+		return mapper.getDayOrder();
+	}
+	
+	public int getYearSales() throws Exception {
+		return mapper.getYearSales();
+	}
+	
+	public int getMonthSales() throws Exception {
+		return mapper.getMonthSales();
+	}
+	
+	public int getDaySales() throws Exception {
+		return mapper.getDaySales();
+	}
 }

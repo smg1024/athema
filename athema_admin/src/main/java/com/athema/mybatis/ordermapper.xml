@@ -32,4 +32,30 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="deletecode" parameterType="Integer">
 	DELETE from ord_detail where detail_code=#{detail_code};
 	</delete>
+	
+	<!-- 월 주문건수 -->
+	<select id="getMonthOrder" resultType="Integer">
+	SELECT (SELECT count(order_code) FROM `order` 
+	WHERE DATE_FORMAT(order_date,'%Y-%m') = DATE_FORMAT(CURDATE(),'%Y-%m')) FROM dual
+	</select>
+	<!-- 일 주문건수 -->
+	<select id="getDayOrder" resultType="Integer">
+	SELECT (SELECT count(order_code) FROM `order` 
+	WHERE DATE_FORMAT(order_date,'%Y-%m') = DATE_FORMAT(CURDATE(),'%Y-%m')) FROM dual
+	</select>
+	<!-- 연 매출 -->
+	<select id="getYearSales" resultType="Integer">
+	SELECT (SELECT sum(tot_price) FROM `order` 
+	WHERE DATE_FORMAT(order_date,'%Y') = DATE_FORMAT(CURDATE(),'%Y')) FROM dual
+	</select>
+	<!-- 월 매출 -->
+	<select id="getMonthSales" resultType="Integer">
+	SELECT (SELECT sum(tot_price) FROM `order` 
+	WHERE DATE_FORMAT(order_date,'%Y-%m') = DATE_FORMAT(CURDATE(),'%Y-%m')) FROM dual
+	</select>
+	<!-- 일 매출 -->
+	<select id="getDaySales" resultType="Integer">
+	SELECT (SELECT sum(tot_price) FROM `order` 
+WHERE DATE_FORMAT(order_date,'%Y-%m-%d') = DATE_FORMAT(CURDATE(),'%Y-%m-%d')) FROM dual
+	</select>
 </mapper>
