@@ -38,8 +38,8 @@ h3 {
    color:white;
 }
 #past_day{
-   font-size: 16px;
-   font-weight: 600;
+   font-size: 18px;
+   font-weight: 700;
    padding : 5px 20px;
    display: inline-block;
    margin-left: 10px;
@@ -56,6 +56,7 @@ h3 {
    display: none;
    padding: 15px 0 5px 0;
    font-weight: 500;
+   font-size: 16px;
 }
 #past_title{
    margin:auto;
@@ -67,8 +68,8 @@ h3 {
    #img_item{
       position: relative;
       display: inline-block;
-       width: 150px;
-       height: 150px;
+       width: 200px;
+       height: 200px;
        border-radius:8px;
        margin: 0 10px 10px; 
        vertical-align:top;
@@ -88,6 +89,14 @@ h3 {
    cursor: pointer;
 }   
 
+#book {
+	margin-top: 3%;
+}
+hr {
+	width: 90%;
+	border-top: 1px dashed #bbb;
+}
+
 </style>
 
 <link rel="stylesheet" type="text/css" href="/styles/write_review.css">
@@ -96,17 +105,24 @@ h3 {
 <div class="past">
    <div class="past_main">
    <h3>지난 여행</h3>
-      <div id="div_line">
-      <div id="past_day"><time datetime="2022-12-15">2022년 12월 15일</time></div>
+      <div id="div_line" th:each="order:${porder}">
+      <div id="past_day"><time th:text="${#dates.format(order.used_date,'yyyy-MM-dd')}">사용일</time></div>
       </div>      
       <div class="past_content">
-         <div id="past_title">경주 여행</div>
+         <div id="past_title" th:text="${order.item_name}">경주 여행</div>
             <div class="past_hidden">   
                <div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
-               <div id="past_div">상품명 해변 투어</div>
-               <div id="past_div">옵션 1.어쩌고 저쩌고 &nbsp;&nbsp;수량 3</div>
-               <div id="past_div">유효기간 <time datetime="2023-12-31">2023년 12월 31일까지</time></div>
-               <div id="past_div">결제 정보 신용카드</div>
+               <div id="past_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
+               <div id="past_div" th:text="'상품 옵션:'+${order.opt_name}">옵션</div>
+               <div id="plan_div" th:text="'수량:'+${order.cnt}"></div>
+               <div id="past_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}"></time></div>
+               <div id="plan_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
+               <hr>
+               <div id="book">
+               		<div id="plan_div" th:text="'예약자:'+${order.book_name}"></div>
+					<div id="plan_div" th:text="'예약자 전화번호:'+${order.book_hp}"></div>
+					<div id="plan_div" th:text="'예약자 이메일:'+${order.book_email}"></div>
+				</div>
             </div>   
             <div><button class="view_detail">상세보기</button></div>
             <div><button class="close_detail">상세닫기</button></div>
@@ -164,7 +180,7 @@ h3 {
             <a id="w_r_register">등록</a>
             </form>
             
-            <form th:action="@{/upload}" method="POST" enctype="multipart/form-data">
+            <!-- <form th:action="@{/upload}" method="POST" enctype="multipart/form-data">
 			    <div>
 			        <span>파일 1</span>
 			        <input type="file" name="img1" accept="image/png, image/gif, image/jpeg">
@@ -177,7 +193,7 @@ h3 {
 			        <span>업로드</span>
 			        <input type="submit" value="전송">
 			    </div>
-			</form>
+			</form> -->
             
             </div>
          </div>
@@ -229,104 +245,4 @@ h3 {
 	
 	   
 // 사진 업로드	   
-
-var filesArr = new Array();
-
-/* 첨부파일 추가 */
-function addFile(obj){
-    var maxFileCnt = 5;   // 첨부파일 최대 개수
-    var attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수
-    var remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수
-    var curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수
-
-    // 첨부파일 개수 확인
-    if (curFileCnt > remainFileCnt) {
-        alert("첨부파일은 최대 " + maxFileCnt + "개 까지 첨부 가능합니다.");
-    }
-
-    for (var i = 0; i < Math.min(curFileCnt, remainFileCnt); i++) {
-
-        const file = obj.files[i];
-
-        // 첨부파일 검증
-        if (validation(file)) {
-            // 파일 배열에 담기
-            var reader = new FileReader();
-            reader.onload = function () {
-                filesArr.push(file);
-            };
-            reader.readAsDataURL(file)
-
-            // 목록 추가
-            let htmlData = '';
-            htmlData += '<div id="file' + fileNo + '" class="filebox">';
-            htmlData += '   <p class="name">' + file.name + '</p>';
-            htmlData += '   <a class="delete" onclick="deleteFile(' + fileNo + ');"><i class="far fa-minus-square"></i></a>';
-            htmlData += '</div>';
-            $('.file-list').append(htmlData);
-            fileNo++;
-        } else {
-            continue;
-        }
-    }
-    // 초기화
-    document.querySelector("input[type=file]").value = "";
-}
-
-/* 첨부파일 검증 */
-function validation(obj){
-    const fileTypes = ['application/pdf', 'image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif', 'application/haansofthwp', 'application/x-hwp'];
-    if (obj.name.length > 100) {
-        alert("파일명이 100자 이상인 파일은 제외되었습니다.");
-        return false;
-    } else if (obj.size > (100 * 1024 * 1024)) {
-        alert("최대 파일 용량인 100MB를 초과한 파일은 제외되었습니다.");
-        return false;
-    } else if (obj.name.lastIndexOf('.') == -1) {
-        alert("확장자가 없는 파일은 제외되었습니다.");
-        return false;
-    } else if (!fileTypes.includes(obj.type)) {
-        alert("첨부가 불가능한 파일은 제외되었습니다.");
-        return false;
-    } else {
-        return true;
-    }
-}
-
-/* 첨부파일 삭제 */
-function deleteFile(num) {
-    document.querySelector("#file" + num).remove();
-    filesArr[num].is_delete = true;
-}
-
-/* 폼 전송 */
-function submitForm() {
-    // 폼데이터 담기
-    var form = document.querySelector("form");
-    var formData = new FormData(form);
-    for (var i = 0; i < filesArr.length; i++) {
-        // 삭제되지 않은 파일만 폼데이터에 담기
-        if (!filesArr[i].is_delete) {
-            formData.append("attach_file", filesArr[i]);
-        }
-    }
-
-    $.ajax({
-        method: 'POST',
-        url: 'mypage/insert',
-        dataType: 'json',
-        data: formData,
-        async: true,
-        timeout: 30000,
-        cache: false,
-        headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
-        success: function () {
-            alert("파일업로드 성공");
-        },
-        error: function (xhr, desc, err) {
-            alert('에러가 발생 하였습니다.');
-            return;
-        }
-    })
-}
 </script>

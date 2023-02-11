@@ -24,4 +24,16 @@ public class ReviewDTO {
 	private Date review_date;
 	private String review_img;
 	
+	private String mem_nick;
+	
+	public ReviewDTO(int review_code, int mem_code, int item_code, String title, String content, float score, Date review_date, String review_img){
+		this.review_code = review_code;
+		this.mem_code = mem_code;
+		this.item_code = item_code;
+		this.title = title;
+		this.content = content;
+		this.score = score;
+		this.review_date = review_date;
+		this.review_img = review_img;
+	}
 }

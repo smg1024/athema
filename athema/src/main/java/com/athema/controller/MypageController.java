@@ -16,6 +16,7 @@ import com.athema.dto.OrderDTO;
 import com.athema.dto.ReviewDTO;
 import com.athema.dto.WishDTO;
 import com.athema.service.MemberService;
+import com.athema.service.OrderService;
 import com.athema.service.ReviewService;
 import com.athema.service.WishService;
 
@@ -33,6 +34,9 @@ public class MypageController {
 	
 	@Autowired
 	WishService wservice;
+	
+	@Autowired
+	OrderService oservice;
 	
 	@RequestMapping("")
 	public String mypage(Model model) {
@@ -103,21 +107,59 @@ public class MypageController {
 	 
 	
 	@RequestMapping("/travel_list")
-	public String travel_list(Model model) {	
+	public String travel_list(Model model, int mem_code) {	
+		List<OrderDTO> orders=null;
+
+		try {
+			orders=oservice.getTravelPlan(mem_code);
+			System.out.println("예정된 여행성공");
+			System.out.println(orders);
+			model.addAttribute("orders", orders);
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("실패");
+		}
 		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"travel_list");
 		return "main";
 	}
 	
 	@RequestMapping("/travel_plan")
-	public String travel_plan(Model model) {	
+	public String travel_plan(Model model, int mem_code) {	
+		List<OrderDTO> orders=null;
+
+		try {
+			orders=oservice.getTravelPlan(mem_code);
+			System.out.println("성공");
+			System.out.println(orders);
+			model.addAttribute("orders", orders);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("실패");
+		}
+		
 		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"travel_plan");
 		return "main";
 	}
 	
 	@RequestMapping("/travel_past")
-	public String travel_past(Model model) {	
+	public String travel_past(Model model, int mem_code) {	
+		List<OrderDTO> porder=null;
+
+		try {
+			porder=oservice.getTravelPast(mem_code);
+			System.out.println("성공");
+			System.out.println(porder);
+			model.addAttribute("porder", porder);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("실패");
+		}
 		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"travel_past");
 		return "main";
@@ -141,10 +183,9 @@ public class MypageController {
 		}
 	
 	// 작성한 리뷰 보기
-	@RequestMapping("/myreview")
-	public String myreview(Model model, int mem_code, String mem_ema) {
+	@RequestMapping("/myreview")					
+	public String myreview(Model model, int mem_code, String mem_email) {
 		List<ReviewDTO> reviews=null;
-		OrderDTO order=null;
 
 		try {
 			reviews=rservice.getReviewByMem(mem_code);
@@ -156,7 +197,6 @@ public class MypageController {
 			e.printStackTrace();
 			System.out.println("실패");
 		}
-		
 		
 		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"myreview");
@@ -175,6 +215,10 @@ public class MypageController {
 			e.printStackTrace();
 			System.out.println("삭제 실패");
 		}
+		model.addAttribute("content", dir+"mypage");	
+		model.addAttribute("mypagecenter",dir+"myreview");
+		
+		return;
 	}
 	
 	// 나의 위시리스트

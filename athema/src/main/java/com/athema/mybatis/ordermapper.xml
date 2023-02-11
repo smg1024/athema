@@ -19,6 +19,24 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		UPDATE `order` set book_name=#{book_name}, book_hp=#{book_hp}, book_email=#{book_email} WHERE order_code =#{order_code}
 	</update>
 	
+	<select id="getTravelPlan" resultType="OrderDTO">
+		SELECT * FROM `order` o
+		INNER JOIN ord_detail od ON o.order_code = od.order_code
+		INNER JOIN `option` op ON op.opt_code = od.opt_code
+		INNER JOIN item i ON i.item_code = op.item_code
+		WHERE used=0 AND <![CDATA[o.order_date < od.exp_date]]>
+		AND o.mem_code = #{mem_code}
+	</select>
+	
+	<select id="getTravelPast" resultType="OrderDTO">
+		SELECT * FROM `order` o
+		INNER JOIN ord_detail od ON o.order_code = od.order_code
+		INNER JOIN `option` op ON op.opt_code = od.opt_code
+		INNER JOIN item i ON i.item_code = op.item_code
+		where used=1 OR <![CDATA[od.exp_date < now()]]>
+		AND o.mem_code = #{mem_code}
+	</select>
+	
 <!-- 	<select id="totprice" parameterType="Order">
 		select (opt.item_price*ord.cnt) AS tot_price from ord_detail ord INNER JOIN `option` opt ON
 		ord.opt_code = opt.opt_code where opt.item_code=opt.opt_code

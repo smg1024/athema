@@ -70,10 +70,10 @@ top:5px;
 		</ul>
 		<ul>
 			<li id="mypage_menu_title">여행 관리</li>
-			<li id="travel_menu"><a th:href="@{/mypage/travel_list}">여행 관리</a>
+			<li id="travel_menu"><a th:href="@{/mypage/travel_list(mem_code=${session.loginMember.mem_code})}">여행 관리</a>
 			<ul id="submenu">
-				<li><a th:href="@{/mypage/travel_plan}">예정된 여행</a></li>
-				<li><a th:href="@{/mypage/travel_past}">지난 여행</a></li>
+				<li><a th:href="@{/mypage/travel_plan(mem_code=${session.loginMember.mem_code})}">예정된 여행</a></li>
+				<li><a th:href="@{/mypage/travel_past(mem_code=${session.loginMember.mem_code})}">지난 여행</a></li>
 			</ul></li>
 			<li><a th:href="@{/mypage/myreview(mem_code=${session.loginMember.mem_code})}">나의 후기</a></li>
 			<li><a th:href="@{/mypage/mywishlist}">위시리스트</a></li>

@@ -14,4 +14,6 @@ public interface ReviewMapper extends AthemaMapper<Integer, ReviewDTO>{
 	public Double avg_rating(Integer k) throws Exception;
 	
 	public List<ReviewDTO> getReviewByMem(int mem_code);
+	
+	public List<ReviewDTO> getReviewByItem(int item_code);
 }

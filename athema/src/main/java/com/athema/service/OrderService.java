@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.athema.dto.OrderDTO;
+import com.athema.dto.ReviewDTO;
 import com.athema.frame.AthemaService;
 import com.athema.mapper.OrderMapper;
 
@@ -43,6 +44,15 @@ public class OrderService implements AthemaService<Integer, OrderDTO>{
 		return mapper.selectall();
 	}
 	
+	// 예정된 여행 
+	public List<OrderDTO> getTravelPlan(int mem_code) throws Exception {
+		return mapper.getTravelPlan(mem_code);
+	}
+	
+	// 지난 여행 
+		public List<OrderDTO> getTravelPast(int mem_code) throws Exception {
+			return mapper.getTravelPast(mem_code);
+		}
 	
 	/*
 	 * public void totprice(OrderDTO v) throws Exception{ mapper.totprice(v); }

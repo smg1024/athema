@@ -106,8 +106,8 @@ ul {
 			<div class="my_r_item">경주 여행</div>
 			<div class="my_r_box">
 			 	<div id="my_r_title">제목: <span th:text="${review.title}"></span></div>
-				<div id="my_r_day">작성 날짜: <time th:text="${review.review_date}"></time></div>
-				<div class="my_r_rating">평점: <div th:text="${review.score}"></div></div>
+				<div id="my_r_day">작성 날짜: <time th:text="${#dates.format(review.review_date,'yyyy-MM-dd')}"></time></div>
+            	<div class="my_r_rating" th:text="'평점: '+${review.score}"></div>
 					<div class="my_r_content">	
 						<span th:text="${review.content}">경주에 가족들이랑 다녀왔습니다. 즐거운 시간이었어요. 다만 활동 내용이 다양하지는 않아서 알차게 경주를 즐기다 오진 못한 것 같아 아쉽습니다. </span>
 					</div>	

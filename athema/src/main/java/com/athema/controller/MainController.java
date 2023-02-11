@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.athema.dto.BoardDTO;
 import com.athema.dto.ItemDTO;
 import com.athema.dto.MemberDTO;
+import com.athema.dto.ReviewDTO;
 import com.athema.service.BoardService;
 import com.athema.service.ItemService;
 import com.athema.service.MemberService;
@@ -135,10 +136,19 @@ public class MainController {
 		int wishlist = 0;
 		int mem_code = 0;
 		
+		List<ReviewDTO> reviews=null;
+		MemberDTO mem=null;
+		
 		try {
 			item = iservice.get(item_code);
 			options = iservice.options(item_code);
 			item.setAvg_rating(rservice.avg_rating(item_code));
+			
+			reviews=rservice.getReviewByItem(item_code);
+			System.out.println("리뷰 불러오기 성공");
+			System.out.println(reviews);
+			model.addAttribute("reviews", reviews);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -160,6 +170,7 @@ public class MainController {
 		model.addAttribute("content", "single_listing");
 		return "main";
 	}
+	
 	
 	@RequestMapping("/order")
 	public String order(Model model, Integer mem_code, Integer item_code, 

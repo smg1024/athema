@@ -34,4 +34,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INNER JOIN item i ON r.item_code = i.item_code
 		where r.mem_code = #{mem_code};
 	</select>
+	
+	<select id="getReviewByItem" resultType="ReviewDTO">
+		SELECT * FROM review r
+		INNER JOIN member m ON r.mem_code = m.mem_code
+		INNER JOIN item i ON r.item_code = i.item_code
+		where r.item_code = #{item_code};
+	</select>
 </mapper>

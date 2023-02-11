@@ -38,8 +38,8 @@ h3 {
 	color:white;
 }
 #plan_day{
-	font-size: 16px;
-	font-weight: 600;
+	font-size: 18px;
+	font-weight: 700;
 	padding : 5px 20px;
 	display: inline-block;
 	margin-left: 10px;
@@ -55,7 +55,8 @@ h3 {
 .plan_hidden{
 	display: none;
 	padding: 15px 0 5px 0;
-	font-weight: 500;
+	font-weight: 600;
+	font-size: 16px;
 }
 #plan_title{
 	margin:auto;
@@ -67,8 +68,8 @@ h3 {
 	#img_item{
 		position: relative;
 		display: inline-block;
-	    width: 150px;
-	    height: 150px;
+	    width: 200px;
+	    height: 200px;
 	    border-radius:8px;
 	    margin: 0 10px 10px; 
 	    vertical-align:top;
@@ -84,6 +85,13 @@ h3 {
 	    object-fit: cover;
 	    margin: auto;
 	}
+#book {
+	margin-top: 3%;
+}
+hr {
+	width: 90%;
+	border-top: 1px dashed #bbb;
+}
 
 </style>
 <script>
@@ -119,45 +127,23 @@ $(document).ready(function(){
 <div class="paln">
 	<div class="plan_main">
 		<h3>예정된 여행</h3>
-		<div id="div_line">
-		<div id="plan_day"><time datetime="2023-03-31">2023년 3월 31일</time></div>
+		<div id="div_line" th:each="order:${orders}">
+		<div id="plan_day"><time th:text="${#dates.format(order.exp_date,'yyyy-MM-dd')}">여행 예정일</time></div>
 		<div class="plan_content">
-			<div id="plan_title">경주 여행</div>
+			<div id="plan_title" th:text="${order.item_name}">경주 여행</div>
 				<div class="plan_hidden">	
 					<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
-					<div id="plan_div">상품명 해변 투어</div>
-					<div id="plan_div">옵션 1.어쩌고 저쩌고 &nbsp;&nbsp;수량 3</div>
-					<div id="plan_div">유효기간 <time datetime="2023-12-31">2023년 12월 31일까지</time></div>
-					<div id="plan_div">결제 정보 신용카드</div>
-				</div>	
-				<div><button class="view_detail">상세보기</button></div>
-				<div><button class="close_detail">상세닫기</button></div>
-				<div id="clear"></div>
-		</div>
-		<div id="plan_day"><time datetime="2023-04-30">2023년 4월 30일</time></div>
-		<div class="plan_content">
-			<div id="plan_title">부산 여행</div>
-				<div class="plan_hidden">	
-					<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
-					<div id="plan_div">상품명 해변 투어</div>
-					<div id="plan_div">옵션 1.어쩌고 저쩌고 &nbsp;&nbsp;수량 3</div>
-					<div id="plan_div">유효기간 <time datetime="2023-12-31">2023년 12월 31일까지</time></div>
-					<div id="plan_div">결제 정보 카카오페이</div>
-				</div>	
-				<div><button class="view_detail">상세보기</button></div>
-				<div><button class="close_detail">상세닫기</button></div>
-				<div id="clear"></div>
-		</div>
-		
-		<div id="plan_day"><time datetime="2023-10-01">2023년 10월 01일</time></div>
-		<div class="plan_content">
-			<div id="plan_title">포항 여행</div>
-				<div class="plan_hidden">	
-					<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
-					<div id="plan_div">상품명 해변 투어</div>
-					<div id="plan_div">옵션 1.어쩌고 저쩌고 &nbsp;&nbsp;수량 3</div>
-					<div id="plan_div">유효기간 <time datetime="2023-12-31">2023년 12월 31일까지</time></div>
-					<div id="plan_div">결제 정보 신용카드</div>
+					<div id="plan_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
+					<div id="plan_div" th:text="'상품 옵션:'+${order.opt_name}"></div>
+					<div id="plan_div" th:text="'수량:'+${order.cnt}"></div>
+					<div id="plan_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 12월 31일까지</time></div>
+					<div id="plan_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
+					<hr>
+					<div id="book">
+						<div id="plan_div" th:text="'예약자:'+${order.book_name}"></div>
+						<div id="plan_div" th:text="'예약자 전화번호:'+${order.book_hp}"></div>
+						<div id="plan_div" th:text="'예약자 이메일:'+${order.book_email}"></div>
+					</div>
 				</div>	
 				<div><button class="view_detail">상세보기</button></div>
 				<div><button class="close_detail">상세닫기</button></div>
