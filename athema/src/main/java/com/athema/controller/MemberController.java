@@ -64,6 +64,7 @@ public class MemberController {
 				model.addAttribute("content", "registerok");	/*registerok 페이지로 넘긴다*/
 				model.addAttribute("remail", member.getMem_email());	/*입력된 이메일주소를 remail로 넘긴다*/
 				model.addAttribute("rnick", member.getMem_nick()); 		/*입력된 닉네임을 rnick으로 넘긴다*/
+				model.addAttribute("obj", member);
 			}
 		} catch (Exception e) {
 			model.addAttribute("content", "registerfail");

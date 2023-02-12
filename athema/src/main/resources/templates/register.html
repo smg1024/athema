@@ -137,6 +137,7 @@ $(document).ready(function(){
 	
 	// submit 버튼 클릭 > 유효성 검사 시작
 	$('#register_submit').click(function(){
+		confirm("완료하시겠습니까?");
 		
 		// 이름 비어있거나 1글자만 있을 시 알림창 띄우고 focus 이동
 		if($('#mem_name').val() == '' || $('#mem_name').val().length < 2) {
@@ -210,6 +211,7 @@ $(document).ready(function(){
 			action:'[[@{/member/addmember}]]'
 		});
 		$('#register_form').submit(); 
+		alert("가입이 완료되었습니다.");
 	});
 });
 	
