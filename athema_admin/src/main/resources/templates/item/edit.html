@@ -1,42 +1,92 @@
 <script>
-	$(document).ready(function(){
-		$('#edit_form > button').click(function(){
-			var c = confirm('수정하시겠습니까?');
-			if(c==true){
-				$('#edit_form').attr({
-					'method':'get',
-					'action':'[[@{/item/editimpl}]]'
-				});
-				$('#register_form').submit();
-			}
+$(document).ready(function(){
+	$('#edit_item_btn').click(function(){
+		var opt_name_array = new Array();
+		$('input[name=opt_name]').each(function(){
+			opt_name_array.push(this.value);
 		});
+		$('input[name=opt_names]').val(opt_name_array);
+		
+		var item_price_array = new Array();
+		$('input[name=item_price]').each(function(){
+			item_price_array.push(this.value);
+		});
+		$('input[name=item_prices]').val(item_price_array);
+		
+		$('#edit_form').attr({
+			'method':'get',
+			'action':'[[@{/item/editimpl}]]'
+		});
+		$('#edit_form').submit();
 	});
+	
+	$('#add_option_tags').click(function(){
+		var option_tags = '<div id="option_tags">옵션 이름 <input type="text" name="opt_name"><br>가격 <input type="number" name="item_price"><br></div>';
+		$('#append_tags').append(option_tags);
+	});
+});
 </script>
 
-<!-- attribute : item -->
+<!-- attribute : item, theme, location, options -->
 <h1>여행상품</h1>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-	<h1 class="h3 mb-2 text-gray-800">상품 수정</h1>
+	<h1 class="h3 mb-2 text-gray-800">상품 등록</h1>
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">수정</h6>
+			<h6 class="m-0 font-weight-bold text-primary">등록</h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
 				<form id="edit_form">
-					<input type="hidden" name="item_code" th:value="${item.item_code}">
+					<h5>상품 정보</h5>
 					이름 <input type="text" name="item_name" th:value="${item.item_name}"><br>
 					위치 <input type="text" name="item_loc" th:value="${item.item_loc}"><br>
-					설명 <textarea type="text" name="item_detail" th:value="${item.item_detail}" cols="30" rows="5"></textarea><br>
-					등록일 <input type="text" name="rdate" th:value="${item.rdate}" disabled><br>
-					유효기간 <input type="number" name="exp_days" th:value="${item.exp_days}"><br>
-					<button>수정하기</button>
+					설명 <textarea type="text" name="item_detail" cols="30" rows="5" th:text="${item.item_detail}"></textarea><br>
+					테마 
+					<select name="theme">
+						<option th:value="${theme}" th:text="|기존:${theme}|" selected></option>
+						<option value="1">혼자</option>
+						<option value="2">커플</option>
+						<option value="3">가족</option>
+						<option value="4">효도</option>
+						<option value="5">우정</option>
+					</select><br>
+					지역 
+					<select name="location">
+						<option th:value="${location}" th:text="|기존:${location}|" selected></option>
+						<option value="서울">서울</option>
+						<option value="인천">인천</option>
+						<option value="부산">부산</option>
+						<option value="광주">광주</option>
+						<option value="제주">제주</option>
+						<option value="경기">경기</option>
+						<option value="강원">강원</option>
+						<option value="충북">충북</option>
+						<option value="충남">충남</option>
+						<option value="전북">전북</option>
+						<option value="전남">전남</option>
+						<option value="경북">경북</option>
+						<option value="경남">경남</option>
+					</select><br>
+					좌표:<br>
+					경도 <input type="number" name="lat" step="0.0001" th:value="${#numbers.formatDecimal(item.lat, 1, 4)}"> 위도 <input type="number" name="lng" step="0.0001" th:value="${#numbers.formatDecimal(item.lng, 1, 4)}"><br>
+					유효기간 <input type="number" name="exp_days" th:value="${item.exp_days}"><hr>
+					<h5>옵션 정보</h5>
+					<input type="hidden" name="opt_names">
+					<input type="hidden" name="item_prices">
+					<div id="option_tags" th:each="option:${options}">
+					옵션 이름 <input type="text" name="opt_name" th:value="${option.opt_name}"><br>
+					가격 <input type="number" name="item_price" th:value="${option.item_price}"><br>
+					</div>
+					<div id="append_tags"></div>
+					<a href="#" id="add_option_tags">옵션 추가하기</a><br>
 				</form>
+				<button id="edit_item_btn">등록하기</button>
 			</div>
 		</div>
 	</div>

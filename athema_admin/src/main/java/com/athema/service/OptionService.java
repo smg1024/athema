@@ -42,4 +42,8 @@ public class OptionService implements AthemaService<Integer, OptionDTO> {
 	public List<OptionDTO> getall() throws Exception {
 		return mapper.selectall();
 	}
+	
+	public List<OptionDTO> getoptions(Integer item_code) throws Exception {
+		return mapper.getoptions(item_code);
+	}
 }

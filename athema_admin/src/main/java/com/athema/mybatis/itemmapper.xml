@@ -20,7 +20,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	DELETE FROM item WHERE item_code=${item_code}
 	</delete>
 	
-	<select id="options" parameterType="Integer" resultType="ItemDTO">
-	SELECT * FROM item i INNER JOIN `option` o ON i.item_code=o.item_code WHERE i.item_code=${item_code}
+	<select id="getitem_code" parameterType="String" resultType="Integer">
+	SELECT item_code FROM item WHERE item_name=#{item_name}
+	</select>
+	
+	<select id="theme" parameterType="Integer" resultType="String">
+	SELECT cate_name FROM category 
+	WHERE cate_code=(SELECT up_cate_code FROM category 
+	WHERE cate_code=(SELECT cate_code FROM item WHERE item_code=${item_code}))
+	</select>
+	<select id="location" parameterType="Integer" resultType="String">
+	SELECT cate_name FROM category WHERE cate_code=(SELECT cate_code FROM item WHERE item_code=${item_code})
 	</select>
 </mapper>

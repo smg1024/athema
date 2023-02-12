@@ -40,8 +40,14 @@ public class ItemService implements AthemaService<Integer, ItemDTO> {
 		return mapper.selectall();
 	}
 	
-	public List<ItemDTO> options(Integer k) throws Exception {
-		return mapper.options(k);
+	public Integer getitem_code(String item_name) throws Exception {
+		return mapper.getitem_code(item_name);
 	}
-
+	
+	public String theme(Integer k) throws Exception {
+		return mapper.theme(k);
+	}
+	public String location(Integer k) throws Exception {
+		return mapper.location(k);
+	}
 }
