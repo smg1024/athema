@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.PreferMapper">
+	
+	<insert id="insert" parameterType="PreferDTO">
+		INSERT INTO prefer VALUES(#{cate_code}, #{mem_code}, #{cate_code2})
+	</insert>
+	
+	<update id="update" parameterType="PreferDTO">
+		UPDATE prefer SET cate_code=#{cate_code}, cate_code2=#{cate_code2}
+		WHERE mem_code=#{mem_code}
+	</update>
+	
+</mapper>

@@ -4,23 +4,98 @@
 <link rel="stylesheet" type="text/css" th:href="@{/styles/register_result_responsive.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
-
+<style>
+.prefersel_ul {
+	display: flex; flex-wrap: nowrap; justify-content: space-between; width:90%;
+	margin: 30px auto 30px auto;
+	color: black;
+}
+.button_bcg {
+	padding: 10px 17px;
+	font-size: 1.3em;
+	border-radius: 5px;
+}
+.button_bcg:hover {
+	color:#1FB73B;
+}
+.loginbutton {
+	width: 200px;
+	padding: 20px;
+	background: #9257BC;
+	margin: 30px auto 30px auto;
+	display: block;
+	font-size: 1.3em;
+	border-radius: 5px;
+}
+.theme {
+	margin:100px auto 50px auto;
+	background: #F9F9F9;
+	width: 80%;
+	border-radius: 10px;
+	padding: 50px;
+}
+</style>
 <!-- JS -->
 <script>
 	function gotomain() {
 		location.href = "[[@{/login}]]"
 	}
+	
+	$(document).ready(function(){
+		// 체크박스 2개 이상 제한
+		$("input[type='checkbox']").on("click", function(){
+			var cnt = $("input[type='checkbox']:checked").length;
+			if (cnt > 2) {
+				$(this).prop("checked", false);
+				alert("선택할 수 있는 테마의 갯수는 최대 2개입니다.")
+				return false;
+			}
+		});
+		$('#psubmit').click(function(){
+			confirm("저장하시겠습니까?");
+			$('#pform').attr({
+				method:'post',
+				action:'[[@{/prefer/addprefer}]]'
+			});
+			$('#pform').submit();
+			alert("저장완료. 로그인 화면으로 돌아갑니다.");
+		});
+	});
 </script>
 </head>
 
 <div class="register_result">
 	<div class="result_ok_content">
-		<div id="rcontainer">
-			<h5 th:text="${rnick}+'님, Athema 회원이 되신 것을 환영합니다!'"></h5>
+		<div id="rcontainer"  style="text-align: center; margin-top:40px;">
+			<h3 style="font-weight:bold; display:inline-block;" th:text="${rnick}+'djkf'"></h3><h3 style="display:inline-block; color:black;">님, Athema 회원이 되신 것을 환영합니다! 👋</h3>
 			<div id="registerok">
-				<p th:text="'가입 이메일 : '+${remail}">가입 email</p>
+				<h4 style="margin-top:20px; display:inline-block">가입 이메일 주소 👉 &nbsp;</h4><h4 style="margin-top:20px; display:inline-block; color:#9257BC;" th:text="${remail}+'chghghg@ksndfnc.mcom'"></h4>
+			<a href="#" class="loginbutton" style="color:white;"th:onclick="gotomain()">로그인하기</a>
 			</div>
-			<p><a href="#" th:onclick="gotomain()" class="button_bcg">&#128681; LOG into ATHEMA</a></p>
+			<div class="theme">
+				<h4 style="color:black;">✅ 선호하는 테마를 선택하시면 맞춤형 여행을 추천해드립니다.<span style="font-size:0.85em; color:gray;"> (최대 2개, 선택사항)</span></h4>
+				<form id="pform">
+					<input name="mem_email" th:value=${remail} hidden>
+					<ul class="prefersel_ul">
+						<li class="prefersel_item">
+							<label for="1"><input type="checkbox" id="prefersel" name="cate" value="1"> &nbsp;혼자</label>
+						</li>
+						<li class="prefersel_item">
+							<label for="2"><input type="checkbox" id="prefersel" name="cate" value="2"> &nbsp;커플</label>
+						</li>
+						<li class="prefersel_item">
+							<label for="3"><input type="checkbox" id="prefersel" name="cate" value="3"> &nbsp;가족</label>
+						</li>
+						<li class="prefersel_item">
+							<label for="4"><input type="checkbox" id="prefersel" name="cate" value="4"> &nbsp;효도</label>
+						</li>
+						<li class="prefersel_item">
+							<label for="5"><input type="checkbox" id="prefersel" name="cate" value="5"> &nbsp;우정</label>
+						</li>
+					</ul>
+						<a href="#" id="psubmit" class="button_bcg">✔ 저장하기 ✔</a>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>

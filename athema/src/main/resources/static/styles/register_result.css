@@ -102,10 +102,10 @@ p::selection
 {
 	
 }
-h1{font-size: 48px;}
-h2{font-size: 36px;}
-h3{font-size: 24px;}
-h4{font-size: 18px;}
+h1{font-size: 48px; color: #9257BC}
+h2{font-size: 36px; color: #9257BC; font-weight:bold;}
+h3{font-size: 24px; color: #9257BC}
+h4{font-size: 18px; color: gray}
 h5{font-size: 14px; color: #9257BC}
 h1, h2, h3, h4, h5, h6
 {
@@ -1004,7 +1004,7 @@ section
 .register_result
 {
 	width: 100%;
-	height: 500px;
+	height: 1000px;
 	background: transparent;
 }
 
