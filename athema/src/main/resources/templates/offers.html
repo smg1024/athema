@@ -294,7 +294,7 @@ $(document).ready(function(){
 							<div class="col-lg-8">
 								<div class="offers_content">
 									<div class="offers_price" th:text="₩+${list.item_price}"></div>
-									<div class="rating_r rating_r_2 offers_rating" data-rating="2">
+									<div class="rating_r offers_rating" th:classappend="rating_r_+${#numbers.formatDecimal(list.avg_rating,0,0)}">
 										<i></i>
 										<i></i>
 										<i></i>
@@ -313,7 +313,7 @@ $(document).ready(function(){
 									<div class="button book_button"><a href="#">예약하기<span></span><span></span><span></span></a></div>
 									<div class="offer_reviews">
 										<div class="offer_reviews_content">
-											<div class="offer_reviews_subtitle">100 reviews</div>
+											<div class="offer_reviews_subtitle" th:text="'후기'"></div>
 										</div>
 										<div class="offer_reviews_rating text-center" th:text="${list.avg_rating}"></div>
 									</div>
