@@ -1,0 +1,84 @@
+<script>
+function board_edit(){
+	var board_code = [[${board.board_code}]];
+	location.href = '/board_edit?board_code='+board_code;
+}
+function board_del(){
+	var board_code = [[${board.board_code}]];
+	location.href = '/board_del_impl?board_code='+board_code;
+}
+$(document).ready(function(){
+	$('#comment_submit_btn').click(function(){
+		$('#faq_comment_form').attr({
+			'method':'get',
+			'action':'[[@{/comment_impl}]]'
+		});
+		$('#faq_comment_form').submit();
+	});
+});
+</script>
+<!-- attribute : board, author, comments -->
+<!-- CONTACT -->
+<link rel="stylesheet" type="text/css" th:href="@{/styles/contact_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/contact_responsive.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+
+<!-- Home -->
+
+<div class="home">
+	<div class="home_background parallax-window" data-parallax="scroll" th:data-image-src="@{/images/contact_background.jpg}"></div>
+	<div class="home_content">
+		<div class="home_title">CS Center</div>
+	</div>
+</div>
+
+<!-- Contact -->
+
+<div class="contact_form_section">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+
+				<!-- Contact Form -->
+				<div class="contact_form_container" id="faq_container">
+					<div class="faq_header">
+						제목: <span class="faq_title" th:text="${board.board_subject}"></span><br>
+						글쓴이: <span class="faq_author" th:text="${author.mem_nick}"></span><br>
+						작성일: <span class="faq_date" th:text="${#dates.format(board.board_rdate, 'yyyy-MM-dd')}"></span>
+					</div>
+					<div class="faq_table">
+						<div class="faq_body_box">
+							<div class="faq_table_body">
+								<div class="faq_content" th:text="${board.board_content}"></div>
+							</div>
+						</div>
+					</div>
+					<div class="faq_comment">
+						<div class="faq_comment_box">
+						<h3>댓글</h3><hr>
+							<div class="faq_comment_body" th:if="${session.loginMember!=null}">
+								<form id="faq_comment_form">
+									<input type="hidden" name="mem_code" th:value="${session.loginMember.mem_code}">
+									<input type="hidden" name="up_board_code" th:value="${board.board_code}">
+									<div style="margin:5px 10px 5px 0; float:left;">댓글: </div>
+									<textarea name="board_content" cols="100" rows="3"></textarea>
+									<button id="comment_submit_btn">댓글 작성</button>
+								</form>
+							</div>
+							<div class="faq_comment_body" th:unless="${session.loginMember!=null}">
+								<a th:href="@{/login}">로그인 후 사용 가능합니다.</a>
+							</div><hr>
+							<div class="faq_comment_list" th:each="comment:${comments}">
+								<b><div th:text="${comment.mem_nick}"></div></b>
+								<div th:text="${comment.board_content}" style="float:left;"></div><div th:text="${#dates.format(comment.board_rdate, 'yyyy-MM-dd')}" style="text-align:right;"></div><hr>
+							</div>
+						</div>
+					</div>
+					<button th:if="${session.loginMember!=null ? session.loginMember.mem_code==author.mem_code : false}" id="board_edit" onclick="board_edit()">글 수정</button>
+					<button th:if="${session.loginMember!=null ? session.loginMember.mem_code==author.mem_code : false}" id="board_del" onclick="board_del()">글 삭제</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

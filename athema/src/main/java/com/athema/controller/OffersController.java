@@ -42,7 +42,6 @@ public class OffersController {
 //							if(!avg_rating.equals(null)) item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
 							list.add(item);
 						}
-						theme_names.add(cservice.search_theme_name(up_cate_code));
 					}else {
 						for(String cate_name : loc_names) {
 							List<ItemDTO> temp = null;
@@ -53,9 +52,9 @@ public class OffersController {
 //								if(!avg_rating.equals(null)) item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
 								list.add(item);
 							}
-							theme_names.add(cservice.search_theme_name(up_cate_code));
 						}
 					}
+					theme_names.add(cservice.search_theme_name(up_cate_code));
 				}
 			}else {
 				if(!loc_names.isEmpty()) {

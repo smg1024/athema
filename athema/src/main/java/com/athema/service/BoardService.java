@@ -41,4 +41,15 @@ public class BoardService implements AthemaService<Integer, BoardDTO>{
 		return mapper.selectall();
 	}
 	
+	public int getboard_code(BoardDTO v) throws Exception {
+		return mapper.getboard_code(v);
+	}
+	
+	public List<BoardDTO> getcomments(Integer k) throws Exception {
+		return mapper.getcomments(k);
+	}
+	
+	public void comment(BoardDTO v) throws Exception {
+		mapper.comment(v);
+	}
 }

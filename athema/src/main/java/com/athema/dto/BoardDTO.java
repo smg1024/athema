@@ -14,7 +14,6 @@ import lombok.ToString;
 @Getter
 @ToString
 public class BoardDTO {
-	// review code
 	private int board_code;
 	private int mem_code;
 	private String board_cate;
@@ -23,4 +22,7 @@ public class BoardDTO {
 	private String board_filename;
 	private int up_board_code;
 	private Date board_rdate;
+	
+	// 작성자 닉네임
+	private String mem_nick;
 }

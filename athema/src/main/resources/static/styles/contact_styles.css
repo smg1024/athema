@@ -827,6 +827,11 @@ section
 	border-top: solid black 3px;
 	border-bottom: solid lightgray 2px;
 }
+.faq_comment
+{
+	border-top: solid black 3px;
+	border-bottom: solid lightgray 2px;
+}
 .faq_category
 {
 	display: inline-block;
@@ -875,6 +880,16 @@ section
 {
 	color: black;
 }
+.faq_comment_box
+{
+	margin: 2em;
+}
+.faq_content
+{
+	font-size: 17px;
+	font-weight: 500;
+	color: black;
+}
 .faq_content_category
 {
 	text-align: center;
@@ -882,6 +897,10 @@ section
 .faq_content_subject
 {
 	padding-left: 30px;
+}
+.faq_content_author
+{
+	text-align: center;
 }
 .faq_content_date
 {
@@ -895,9 +914,13 @@ section
 {
 	flex: 5;
 }
+.faq_table_author
+{
+	flex: 1;
+}
 .faq_table_date
 {
-	flex: 2;
+	flex: 1;
 }
 .contact_title
 {
@@ -912,6 +935,19 @@ section
 	font-weight: 700;
 	color: black;
 	text-transform: uppercase;
+}
+.faq_author
+{
+	font-size: 15px;
+	font-weight: 700;
+	color: black;
+}
+.faq_date
+{
+	font-size: 15px;
+	font-weight: 700;
+	color: black;
+	text-align: left;
 }
 .contact_form
 {
@@ -940,7 +976,13 @@ section
 }
 .contact_form_subject
 {
-	width: 100%;
+	width: calc((100% - 30px) * 3 / 4);
+	margin-right: 30px;
+	margin-top: 11px;
+}
+.contact_form_cate
+{
+	width: calc((100% - 30px) / 4);
 	margin-top: 11px;
 }
 .contact_form_message

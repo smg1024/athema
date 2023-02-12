@@ -3,12 +3,13 @@ $(document).ready(function(){
 	$('#form_submit_button').click(function(){
 		$('#contact_form').attr({
 			'method':'get',
-			'action':'[[@{/board_post_impl}]]'
+			'action':'[[@{/board_edit_impl}]]'
 		});
 		$('#contact_form').submit();
 	});
 });
 </script>
+<!-- attritube : board -->
 <!-- CONTACT -->
 <link rel="stylesheet" type="text/css" th:href="@{/styles/contact_styles.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/styles/contact_responsive.css}">
@@ -33,18 +34,16 @@ $(document).ready(function(){
 			
 				<!-- Contact Form  -->
 				<div class="contact_form_container" id="qna_container">
-					<div class="contact_title text-center">1:1 문의 남기기</div>
-					<form action="/board_post_impl" id="contact_form" class="contact_form text-center">
+					<div class="contact_title text-center">1:1 문의 수정하기</div>
+					<form id="contact_form" class="contact_form text-center">
+						<input name="board_code" type="hidden" th:value="${board.board_code}">
 						<input name="mem_nick" type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="이름" required="required" data-error="이름을 입력하세요." th:value="${session.loginMember.mem_nick}">
 						<input name="mem_email" type="text" id="contact_form_email" class="contact_form_email input_field" placeholder="이메일" required="required" data-error="이메일 주소를 입력하세요." th:value="${session.loginMember.mem_email}">
-						<input name="board_subject" type="text" id="contact_form_subject" class="contact_form_subject input_field" placeholder="제목" required="required" data-error="제목을 입력하세요.">
-						<select name="board_cate" id="contact_form_cate" class="contact_form_cate input_field">
-							<option value="공지사항">공지사항</option>
-							<option value="FAQ">FAQ</option>
-							<option value="문의사항" selected>문의사항</option>
-							<option value="건의사항">건의사항</option>
+						<input name="board_subject" type="text" id="contact_form_subject" class="contact_form_subject input_field" placeholder="제목" required="required" data-error="제목을 입력하세요." th:value="${board.board_subject}">
+						<select name="board_cate" id="contact_form_cate" class="contact_form_cate input_field" disabled>
+							<option th:text="${board.board_cate}"></option>
 						</select>
-						<textarea name="board_content" id="contact_form_message" class="text_field contact_form_message" rows="4" placeholder="문의 내용" required="required" data-error="본문 내용을 입력하세요."></textarea>
+						<textarea name="board_content" id="contact_form_message" class="text_field contact_form_message" rows="4" placeholder="문의 내용" required="required" data-error="본문 내용을 입력하세요." th:text="${board.board_content}"></textarea>
 						<button type="reset" id="form_reset_button" class="form_reset_button button trans_200">취소<span id="cancel"></span><span id="cancel"></span><span id="cancel"></span></button>
 						<button id="form_submit_button" class="form_submit_button button trans_200">작성하기<span></span><span></span><span></span></button>
 					</form>
