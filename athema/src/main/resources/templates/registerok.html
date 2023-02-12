@@ -67,9 +67,9 @@
 <div class="register_result">
 	<div class="result_ok_content">
 		<div id="rcontainer"  style="text-align: center; margin-top:40px;">
-			<h3 style="font-weight:bold; display:inline-block;" th:text="${rnick}+'djkf'"></h3><h3 style="display:inline-block; color:black;">님, Athema 회원이 되신 것을 환영합니다! 👋</h3>
+			<h3 style="font-weight:bold; display:inline-block;" th:text="${rnick}"></h3><h3 style="display:inline-block; color:black;">님, Athema 회원이 되신 것을 환영합니다! 👋</h3>
 			<div id="registerok">
-				<h4 style="margin-top:20px; display:inline-block">가입 이메일 주소 👉 &nbsp;</h4><h4 style="margin-top:20px; display:inline-block; color:#9257BC;" th:text="${remail}+'chghghg@ksndfnc.mcom'"></h4>
+				<h4 style="margin-top:20px; display:inline-block">가입 이메일 주소 👉 &nbsp;</h4><h4 style="margin-top:20px; display:inline-block; color:#9257BC;" th:text="${remail}"></h4>
 			<a href="#" class="loginbutton" style="color:white;"th:onclick="gotomain()">로그인하기</a>
 			</div>
 			<div class="theme">
@@ -78,19 +78,19 @@
 					<input name="mem_email" th:value=${remail} hidden>
 					<ul class="prefersel_ul">
 						<li class="prefersel_item">
-							<label for="1"><input type="checkbox" id="prefersel" name="cate" value="1"> &nbsp;혼자</label>
+							<label for="1"><input type="checkbox" id="prefersel" name="cate_code" value="1"> &nbsp;혼자</label>
 						</li>
 						<li class="prefersel_item">
-							<label for="2"><input type="checkbox" id="prefersel" name="cate" value="2"> &nbsp;커플</label>
+							<label for="2"><input type="checkbox" id="prefersel" name="cate_code" value="2"> &nbsp;커플</label>
 						</li>
 						<li class="prefersel_item">
-							<label for="3"><input type="checkbox" id="prefersel" name="cate" value="3"> &nbsp;가족</label>
+							<label for="3"><input type="checkbox" id="prefersel" name="cate_code" value="3"> &nbsp;가족</label>
 						</li>
 						<li class="prefersel_item">
-							<label for="4"><input type="checkbox" id="prefersel" name="cate" value="4"> &nbsp;효도</label>
+							<label for="4"><input type="checkbox" id="prefersel" name="cate_code" value="4"> &nbsp;효도</label>
 						</li>
 						<li class="prefersel_item">
-							<label for="5"><input type="checkbox" id="prefersel" name="cate" value="5"> &nbsp;우정</label>
+							<label for="5"><input type="checkbox" id="prefersel" name="cate_code" value="5"> &nbsp;우정</label>
 						</li>
 					</ul>
 						<a href="#" id="psubmit" class="button_bcg">✔ 저장하기 ✔</a>

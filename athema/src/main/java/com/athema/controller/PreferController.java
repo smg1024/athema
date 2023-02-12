@@ -21,10 +21,11 @@ public class PreferController {
 	MemberService mservice;
 	
 	@RequestMapping("/addprefer")
-	public String addprefer(Model model, int[] cate, PreferDTO dto, String mem_email) {
+	public String addprefer(Model model, int[] cate_code, PreferDTO dto, String mem_email) {
 		
 		MemberDTO mem;
 		int mem_code;
+		
 		try {
 			mem = mservice.searchemail(mem_email);	// input th:value값 이메일로 dto 불러오기
 			mem_code = mem.getMem_code();	// 
@@ -38,45 +39,84 @@ public class PreferController {
 			return "main";
 		}
 		
-		if (cate==null) {	
+		if (cate_code==null) {	
 			System.out.println("선호코드 선택 안함");
 			model.addAttribute("content", "index");
 			return "main";
 		}
-		for (int i = 0; i < cate.length; i++) {
-            System.out.println("선호코드 "+i+"번째 :"+cate[i]);	// 선호 테마 확인
+		for (int i = 0; i < cate_code.length; i++) {
+            System.out.println("선호코드 "+i+"번째 :"+cate_code[i]);	// 선호 테마 확인
+            try {
+            	dto.setCate_code(cate_code[i]);		// 배열로 cate_code 셋팅
+				pservice.register(dto);				// 한 줄씩 register
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("선호코드 등록 실패");
+			}
 	    }
-		int cate_code = 0;
-		int cate_code2 = 0;
-		if (cate.length==1) {	// 1개 선택
-			cate_code = cate[0];
-			dto.setCate_code(cate_code);
-			System.out.println("cate_code : "+cate_code);
-			try {
-				pservice.register(dto);
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("1개 등록 실패");
-			}
-			System.out.println("cate_code 1개 선택");
-		}
-		
-		if (cate.length==2) {	// 2개 선택
-			cate_code = cate[0];
-			cate_code2 = cate[1];
-			dto.setCate_code(cate_code);
-			dto.setCate_code2(cate_code2);
-			System.out.println("cate_code : "+ cate_code + ", " + cate_code2);
-			try {
-				pservice.register(dto);
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("2개 등록 실패");
-			}
-			System.out.println("cate_code 2개 선택");
-		}
 		
 		model.addAttribute("content", "login");
 		return "main";
 	}
+	
+// 	아래는 잘못 만든 Controller (mem_code 하나에 cate_code 여러개를 한 번에 넣어줘야 하는 것으로 착각함)
+//	@RequestMapping("/add")
+//	public String add(Model model, int[] cate, PreferDTO dto, String mem_email) {
+//		
+//		MemberDTO mem;
+//		int mem_code;
+//		try {
+//			mem = mservice.searchemail(mem_email);	// input th:value값 이메일로 dto 불러오기
+//			mem_code = mem.getMem_code();	// 
+//			System.out.println("멤버코드 받아오기 성공 : "+mem_code);
+//			dto.setMem_code(mem_code);	// prefer에 mem_code 입력
+//			System.out.println("prefer에 mem_code 입력 완료");
+//		} catch (Exception e1) {
+//			e1.printStackTrace();
+//			System.out.println("멤버코드 받아오기 실패");
+//			model.addAttribute("content", "index");
+//			return "main";
+//		}
+//		
+//		if (cate==null) {	
+//			System.out.println("선호코드 선택 안함");
+//			model.addAttribute("content", "index");
+//			return "main";
+//		}
+//		for (int i = 0; i < cate.length; i++) {
+//            System.out.println("선호코드 "+i+"번째 :"+cate[i]);	// 선호 테마 확인
+//	    }
+//		int cate_code = 0;
+//		int cate_code2 = 0;
+//		if (cate.length==1) {	// 1개 선택
+//			cate_code = cate[0];
+//			dto.setCate_code(cate_code);
+//			System.out.println("cate_code : "+cate_code);
+//			try {
+//				pservice.register(dto);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				System.out.println("1개 등록 실패");
+//			}
+//			System.out.println("cate_code 1개 선택");
+//		}
+//		
+//		if (cate.length==2) {	// 2개 선택
+//			cate_code = cate[0];
+//			cate_code2 = cate[1];
+//			dto.setCate_code(cate_code);
+//			dto.setCate_code2(cate_code2);
+//			System.out.println("cate_code : "+ cate_code + ", " + cate_code2);
+//			try {
+//				pservice.register(dto);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				System.out.println("2개 등록 실패");
+//			}
+//			System.out.println("cate_code 2개 선택");
+//		}
+//		
+//		model.addAttribute("content", "login");
+//		return "main";
+//	}
 }
