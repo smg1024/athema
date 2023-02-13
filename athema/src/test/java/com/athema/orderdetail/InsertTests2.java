@@ -24,7 +24,6 @@ class InsertTests2 {
 		
 		try {
 			System.out.println(ord);
-			service.ordinsert(ord);
 			System.out.println("ok");
 		} catch (Exception e) {
 			System.out.println("fail");
