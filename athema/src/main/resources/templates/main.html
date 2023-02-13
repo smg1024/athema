@@ -67,6 +67,7 @@
 			data:{
 				'quest':$('#quest').val()
 			},
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			success:function(data){
 				var divA = document.createElement('div');
 				divA.innerHTML = '<div style="display:inline-block;background-color:#55287A;color:white; border-radius:10px;max-width:70%;"><div style="margin-left:2px; margin-right:2px; padding:10px;">'+data+'</div></div>';
