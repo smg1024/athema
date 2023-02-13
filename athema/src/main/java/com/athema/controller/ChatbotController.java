@@ -122,7 +122,7 @@ public class ChatbotController {
 			
 			BufferedReader in = new BufferedReader(
 					new InputStreamReader(
-							con.getInputStream()));
+							con.getInputStream(), "UTF-8"));
 			String decodedString;
 			String jsonString = "";
 			while ((decodedString = in.readLine()) != null) {
