@@ -2,6 +2,8 @@ package com.athema.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,4 +28,8 @@ public class BoardDTO {
 	
 	// 작성자 닉네임
 	private String mem_nick;
+	
+	// 게시판 첨부파일
+	private MultipartFile file1;
+	private MultipartFile file2;
 }

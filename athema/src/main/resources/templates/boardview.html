@@ -51,6 +51,8 @@ $(document).ready(function(){
 						<div class="faq_body_box">
 							<div class="faq_table_body">
 								<div class="faq_content" th:text="${board.board_content}"></div>
+								<a class="faq_content_file" th:href="|@{/images/board}/${board.board_filename1}|" th:text="${board.board_filename1}" download></a>
+								<a class="faq_content_file" th:href="|@{/images/board}/${board.board_filename2}|" th:text="${board.board_filename2}" download></a>
 							</div>
 						</div>
 					</div>

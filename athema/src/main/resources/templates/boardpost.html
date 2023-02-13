@@ -2,7 +2,8 @@
 $(document).ready(function(){
 	$('#form_submit_button').click(function(){
 		$('#contact_form').attr({
-			'method':'get',
+			'enctype':'multipart/form-data',
+			'method':'post',
 			'action':'[[@{/board_post_impl}]]'
 		});
 		$('#contact_form').submit();
@@ -45,6 +46,7 @@ $(document).ready(function(){
 							<option value="건의사항">건의사항</option>
 						</select>
 						<textarea name="board_content" id="contact_form_message" class="text_field contact_form_message" rows="4" placeholder="문의 내용" required="required" data-error="본문 내용을 입력하세요."></textarea>
+						첨부파일<input type="file" name="file1" class="contact_form_file input_field"><input type="file" name="file2" class="contact_form_file input_field">
 						<button type="reset" id="form_reset_button" class="form_reset_button button trans_200">취소<span id="cancel"></span><span id="cancel"></span><span id="cancel"></span></button>
 						<button id="form_submit_button" class="form_submit_button button trans_200">작성하기<span></span><span></span><span></span></button>
 					</form>
