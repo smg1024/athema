@@ -2,6 +2,8 @@ package com.athema.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,4 +40,8 @@ public class ItemDTO {
 	// 상품 등록 시 테마 및 지역
 	private int theme;
 	private String location;
+	
+	// 상품 이미지 파일
+	private MultipartFile img1;
+	private MultipartFile img2;
 }

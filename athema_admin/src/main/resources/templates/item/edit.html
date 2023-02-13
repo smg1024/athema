@@ -14,6 +14,7 @@ $(document).ready(function(){
 		$('input[name=item_prices]').val(item_price_array);
 		
 		$('#edit_form').attr({
+			'enctype':'multipart/form-data',
 			'method':'post',
 			'action':'[[@{/item/editimpl}]]'
 		});
@@ -49,7 +50,7 @@ $(document).ready(function(){
 					설명 <textarea type="text" name="item_detail" cols="30" rows="5" th:text="${item.item_detail}"></textarea><br>
 					테마 
 					<select name="theme">
-						<option th:value="${theme}" th:text="|기존:${theme}|" selected></option>
+						<option th:value="${theme}" th:text="|기존:${theme}|" disabled selected></option>
 						<option value="1">혼자</option>
 						<option value="2">커플</option>
 						<option value="3">가족</option>
@@ -58,7 +59,7 @@ $(document).ready(function(){
 					</select><br>
 					지역 
 					<select name="location">
-						<option th:value="${location}" th:text="|기존:${location}|" selected></option>
+						<option th:value="${location}" th:text="|기존:${location}|" disabled selected></option>
 						<option value="서울">서울</option>
 						<option value="인천">인천</option>
 						<option value="부산">부산</option>
@@ -75,7 +76,9 @@ $(document).ready(function(){
 					</select><br>
 					좌표:<br>
 					경도 <input type="number" name="lat" step="0.0001" th:value="${#numbers.formatDecimal(item.lat, 1, 4)}"> 위도 <input type="number" name="lng" step="0.0001" th:value="${#numbers.formatDecimal(item.lng, 1, 4)}"><br>
-					유효기간 <input type="number" name="exp_days" th:value="${item.exp_days}"><hr>
+					유효기간 <input type="number" name="exp_days" th:value="${item.exp_days}"><br>
+					첨부파일1<input type="file" name="img1"><br>
+					첨부파일2<input type="file" name="img2"><hr>
 					<h5>옵션 정보</h5>
 					<input type="hidden" name="opt_names">
 					<input type="hidden" name="item_prices">

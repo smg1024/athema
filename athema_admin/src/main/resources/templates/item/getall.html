@@ -55,9 +55,9 @@ function add(){
 					</tfoot>
 					<tbody>
 						<tr th:each="item : ${list}">
-							<td th:text="${item.item_name}"></td>
+							<td th:text="${item.item_name}" style="max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"></td>
 							<td th:text="${item.item_loc}"></td>
-							<td th:text="${item.item_detail}"></td>
+							<td th:text="${item.item_detail}" style="max-width:500px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"></td>
 							<td th:text="${item.rdate}"></td>
 							<td th:text="${item.exp_days}"></td>
 							<td><button id="edit" th:myName="${item.item_code}" onclick="edit(this.getAttribute('myName'))">수정</button> <button id="delete" th:myName="${item.item_code}" onclick="del(this.getAttribute('myName'))">삭제</button></td>
