@@ -43,6 +43,10 @@ public class OrdDetailService implements AthemaService<Integer, OrdDetailDTO> {
 		return mapper.selectall();
 	}
 
+	public void ordinsert(List<OrdDetailDTO> v) throws Exception {
+		mapper.ordinsert(v);
+		
+	}
 	
 	
 	

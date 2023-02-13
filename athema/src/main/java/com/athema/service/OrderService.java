@@ -53,8 +53,10 @@ public class OrderService implements AthemaService<Integer, OrderDTO>{
 		public List<OrderDTO> getTravelPast(int mem_code) throws Exception {
 			return mapper.getTravelPast(mem_code);
 		}
+		
+		//주문 상세에 넣을 order_code
+		public OrderDTO onum(Integer k) throws Exception{
+			return mapper.onum(k);
+		}
 	
-	/*
-	 * public void totprice(OrderDTO v) throws Exception{ mapper.totprice(v); }
-	 */
 }
