@@ -5,18 +5,26 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.athema.dto.BoardDTO;
 import com.athema.dto.MemberDTO;
+import com.athema.frame.Util;
 import com.athema.service.BoardService;
 import com.athema.service.MemberService;
 
 @Controller
 public class ContactController {
 	String dir = "/contact";
+	
+	@Value("${admindir}")
+	String admindir;
+	
+	@Value("${custdir}")
+	String custdir;
 	
 	@Autowired
 	BoardService bservice;
@@ -43,9 +51,21 @@ public class ContactController {
 		
 		board.setMem_code(mem_code);
 		
+		
 		int new_board_code = 0;
 		
 		try {
+			if(!board.getFile1().isEmpty()) {
+				String file1 = board.getFile1().getOriginalFilename();
+				board.setBoard_filename1(file1);
+				Util.saveFile(board.getFile1(), admindir, custdir+"board/");
+			}
+			if(!board.getFile2().isEmpty()) {
+				String file2 = board.getFile2().getOriginalFilename();
+				board.setBoard_filename2(file2);
+				Util.saveFile(board.getFile2(), admindir, custdir+"board/");
+			}
+			System.out.println(board);
 			bservice.register(board);
 			new_board_code = bservice.getboard_code(board);
 		} catch (Exception e) {

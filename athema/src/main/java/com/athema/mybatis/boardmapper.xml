@@ -8,12 +8,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM board WHERE board_code=${board_code}
 	</select>
 	<select id="selectall" resultType="BoardDTO">
-		SELECT b.board_code, b.mem_code, b.board_cate, b.board_subject, b.board_filename, b.board_rdate, m.mem_nick 
+		SELECT b.board_code, b.mem_code, b.board_cate, b.board_subject, b.board_filename1, b.board_filename2, b.board_rdate, m.mem_nick 
 		FROM board b INNER JOIN member m ON b.mem_code=m.mem_code WHERE b.up_board_code IS NULL
 	</select>
 	<insert id="insert" parameterType="BoardDTO">
-		INSERT INTO board(mem_code, board_cate, board_subject, board_content, board_filename) 
-		VALUES(${mem_code}, #{board_cate}, #{board_subject}, #{board_content}, #{board_filename})
+		INSERT INTO board(mem_code, board_cate, board_subject, board_content, board_filename1, board_filename2) 
+		VALUES(${mem_code}, #{board_cate}, #{board_subject}, #{board_content}, #{board_filename1}, #{board_filename2})
 	</insert>
 	<update id="update" parameterType="BoardDTO">
 		UPDATE board SET board_subject=#{board_subject}, board_content=#{board_content} WHERE board_code=${board_code}
