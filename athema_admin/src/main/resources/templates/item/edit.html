@@ -14,7 +14,7 @@ $(document).ready(function(){
 		$('input[name=item_prices]').val(item_price_array);
 		
 		$('#edit_form').attr({
-			'method':'get',
+			'method':'post',
 			'action':'[[@{/item/editimpl}]]'
 		});
 		$('#edit_form').submit();

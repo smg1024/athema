@@ -22,7 +22,8 @@ public class ItemDTO {
 	private int cate_code;
 	private double lat;
 	private double lng;
-	private String item_img;
+	private String item_img1;
+	private String item_img2;
 	private Date rdate;
 	private int exp_days;
 	

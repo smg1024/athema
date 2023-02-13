@@ -19,7 +19,8 @@ public class BoardDTO {
 	private String board_cate;
 	private String board_subject;
 	private String board_content;
-	private String board_filename;
+	private String board_filename1;
+	private String board_filename2;
 	private int up_board_code;
 	private Date board_rdate;
 	
