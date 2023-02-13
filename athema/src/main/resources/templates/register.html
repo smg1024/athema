@@ -228,11 +228,12 @@ $(document).ready(function(){
 		<div class="sns_content">
 			<hr style="width:30%; display:inline-block; color: rgba(0,0,0,0.55);"><br>
 			<div class="sns_register_txt">간편 회원가입</div><br>
+<!-- 				로컬로 돌릴 시 redirect_uri는 127.0.0.1로 수정 -->
 				<div class="sns_register">
-				<a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=9740cda4f593e49b4bf7b3235435574d&redirect_uri=http://127.0.0.1/oauth/kakao&response_type=code">
+				<a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=9740cda4f593e49b4bf7b3235435574d&redirect_uri=http://49.50.166.168/oauth/kakao&response_type=code">
 	 			 <img th:src="@{/images/member/kakao_login.png}" width="222" alt="카카오 로그인 버튼" style="width:160px;"/></a>
 				<p id="kakao-token-result"></p>
-				<a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=L6VpxEtZonyyvQD8b9hZ&redirect_uri=http://127.0.0.1/oauth/naver&state=randomtxt">
+				<a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=L6VpxEtZonyyvQD8b9hZ&redirect_uri=http://49.50.166.168/oauth/naver&state=randomtxt">
 	 			 <img th:src="@{/images/member/naver_login.png}" width="222" alt="네이버 로그인 버튼" style="width:160px;"/></a>
 				<p id="naver-token-result"></p>
 			</div>

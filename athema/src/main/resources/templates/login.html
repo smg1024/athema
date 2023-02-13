@@ -72,14 +72,15 @@ $(document).ready(function(){
 				</div>
 				<div class="sns_login_txt">SNS로 로그인하기</div>
 				<div class="sns_login">
+<!-- 						로컬로 돌릴 시 아래 redirect_uri=127.0.0.1로 수정 -->
 					<ul>
 						<li>
-						<a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=9740cda4f593e49b4bf7b3235435574d&redirect_uri=http://127.0.0.1/oauth/kakao&response_type=code">
+						<a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=9740cda4f593e49b4bf7b3235435574d&redirect_uri=http://49.50.166.168/oauth/kakao&response_type=code">
 	 					<img th:src="@{/images/member/icon_kakao.png}" width="50px" alt="카카오 로그인 아이콘"/></a>
 						<p id="kakao-token-result"></p>
 						</li>
 						<li>
-						<a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=L6VpxEtZonyyvQD8b9hZ&redirect_uri=http://127.0.0.1/oauth/naver&state=randomtxt">
+						<a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=L6VpxEtZonyyvQD8b9hZ&redirect_uri=http://49.50.166.168/oauth/naver&state=randomtxt">
 	 					<img th:src="@{/images/member/icon_naver.png}" width="50px" alt="네이버 로그인 아이콘"/></a>
 						<p id="naver-token-result"></p>
 						</li>
