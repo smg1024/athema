@@ -15,9 +15,9 @@ import lombok.ToString;
 @ToString
 public class OrdDetailDTO {
 	private int detail_code;
-	private Integer cnt;
+	private int cnt;
 	private Date exp_date;
-	private Integer opt_code;
+	private int opt_code;
 	private int order_code;
 	private int used;
 	private Date user_date;

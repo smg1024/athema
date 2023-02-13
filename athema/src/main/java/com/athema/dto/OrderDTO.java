@@ -23,6 +23,11 @@ public class OrderDTO {
 	private String book_hp;
 	private String book_email;
 	
+	//주문상세로 넘겨주기 위해 필요
+	private int exp_days;
+	private int detail_code;
+	private int used;
+	
 	// 마이페이지 여행 보기 위해 필요
 	private String item_name;
 	private int opt_code; 
