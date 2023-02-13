@@ -12,9 +12,11 @@ import com.athema.frame.AthemaMapper;
 @Repository
 @Mapper
 public interface OrderMapper extends AthemaMapper<Integer, OrderDTO>{
-	/* public void totprice(OrderDTO v) throws Exception; */
 	
 	public List<OrderDTO> getTravelPlan(int mem_code);
 	
 	public List<OrderDTO> getTravelPast(int mem_code);
+	
+	//ord_detail에 넣을 order_code
+	public OrderDTO onum(Integer k) throws Exception;
 }

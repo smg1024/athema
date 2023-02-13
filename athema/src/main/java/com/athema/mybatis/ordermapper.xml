@@ -37,8 +37,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		AND o.mem_code = #{mem_code}
 	</select>
 	
-<!-- 	<select id="totprice" parameterType="Order">
-		select (opt.item_price*ord.cnt) AS tot_price from ord_detail ord INNER JOIN `option` opt ON
-		ord.opt_code = opt.opt_code where opt.item_code=opt.opt_code
-	</select> -->
+	<select id="onum" parameterType="Integer" resultType="OrderDTO">
+		SELECT order_code FROM `order` WHERE mem_code =#{mem_code} ORDER BY order_code DESC LIMIT 1;
+	</select>
+
 </mapper>

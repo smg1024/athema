@@ -21,7 +21,43 @@ $(document).ready(function() {
 
 		totalPrice += parseInt(price);
 		$('.totalprice').text(totalPrice+'원');
+		$('#tot_price').val(totalPrice);
 	});
+	
+	//주문상세에 데이터 보내기
+	function send(){
+		var dataArray=[];
+		$('order_item_option').each(function(){
+			var data = {
+				detail_code : 0,
+				cnt : $('#cnt').text(),
+				exp_days : $('#exp_days').text(),
+				opt_code : $('#opt_code').text(),
+				order_code : 0,
+				used : 0,
+			};
+			//dataArray 배열에 data를 담는다.
+			dataArray.push(data);
+			
+			var jsonData = {
+					   "paramList" : JSON.stringify(dataArray)
+			}
+/* 		    jQuery.ajaxSettings.traditional = true; */
+		 
+		    $.ajax({
+		        url : '/bookregister',
+		        type: 'POST',
+		        data: OrdDetailDTO,
+		        success: function(data) {
+		        },
+		        error: function(x, e) {
+		            //err msg 출력
+		            $.failMsg('error');
+		        }
+		    });
+		});
+	}
+	
 	
 	// Modal을 가져옴
 	var modals = document.getElementsByClassName("modal-overlay");
@@ -118,6 +154,7 @@ $(document).ready(function() {
 		});
 	$(".order_button").click(function() {
 	requestPay();
+	
 	});
 });
 function checkclickall()  {
@@ -168,20 +205,17 @@ function checkclickall()  {
 			console.log(rsp);
 			if (rsp.success) {
 				var msg = '결제가 성공하셨습니다.';
-				msg += '고유ID : ' + rsp.imp_uid;
+				/* msg += '고유ID : ' + rsp.imp_uid;
 				msg += '상점 거래ID : ' + rsp.merchant_uid;
 				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
+				msg += '카드 승인번호 : ' + rsp.apply_num; */
+				alert(msg);
 				$('#bookregister_form').attr({//결제 성공하면 예약자 정보 insert
-					'method':'POST',
-					'action':'[[@{/order/bookregister}]]'
+				'method':'post',
+				'action':'/order/bookregister'
 				});
-				var confirmclick = confirm(msg+'예약 상세 페이지로 이동하시겠습니까?');
-				if(confirmclick){
-					location.href='http://127.0.0.1/mypage/travel_list';
-				}else{
-					location.href='http://127.0.0.1';
-				}
+				$('#bookregister_form').submit();
+	
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				/* msg += '에러내용 : ' + rsp.error_msg; */
@@ -209,14 +243,15 @@ function checkclickall()  {
 				<h3 id="order_item_h3">상품 정보</h3>
 				<hr>
 				<div id="order_item">
- 					<img id="order_img_item" th:src="@{/images/}+${item.item_img}" alt="상품이미지">
+ 					<img id="order_img_item" th:src="@{/images/}+${item.item_img1}" alt="상품이미지">
 					<span id="order_item_name" th:text="${item.item_name}"></span>
 					<span id="order_item_exp" th:text="'유효기간 '+${#dates.format(day.exp_day, 'yyyy-MM-dd')}"></span>
 
 					<div id="order_item_option" th:each="o:${olist}">							<!-- oStat.index->	현재 반복 인덱스 (0부터 시작) -->
-						<div id="order_item_option_info"><span th:text="${o.opt_code}+'.'+${o.opt_name}"></span>&nbsp;&nbsp;<span th:text="'수량 : '+${cnt.get(oStat.index)}"></span>
+						<div id="order_item_option_info"><span id="opt_code" th:text="${o.opt_code}+'.'+${o.opt_name}"></span>&nbsp;&nbsp;<span id="cnt" th:text="'수량 : '+${cnt.get(oStat.index)}"></span>
 							</div>
 						<div class ="price" id="order_item_option_price" th:text="${o.item_price}*${cnt.get(oStat.index)}"></div>
+						<input type="hidden" id="exp_days" th:value="${item.exp_days}">
 					</div>
 				</div>
 				<div id="order_item_price">
@@ -225,6 +260,7 @@ function checkclickall()  {
 				</div>
 			</div>
 			<div id="order_article_bottom">
+				<form id="bookregister_form">
 				<h3 id="order_book_h3">예약자 정보</h3>
 				<div id="order_book_data">
 					<input type='checkbox' name='order_book_data'
@@ -232,8 +268,11 @@ function checkclickall()  {
 				</div>
 				<hr>
 				<div id="order_book">
-				<form id="bookregister_form">
 					<div>
+						<input type="hidden" name="mem_code" id="mem_code" th:value="${member.mem_code}"/>
+						<input type="hidden" name="tot_price" id="tot_price" value="0"/>
+						<input type="hidden" name="pay_code" id="pay_code" value="1"/>
+						<input type="hidden" name="item_code" id="item_code" th:value="${item.item_code}"/>
 						<div>예약자 이름</div>
 						<input type="text" name="book_name" id="book_name" th:value="${member.mem_name}"/>
 					</div>
@@ -245,8 +284,8 @@ function checkclickall()  {
 						<div>예약자 이메일</div>
 						<input type="text" name="book_email" id="book_email" th:value="${member.mem_email}"/>
 					</div>
-				</form>
 				</div>
+				</form>
 			</div>
 		</div>
 		<div id="order_main_aside">

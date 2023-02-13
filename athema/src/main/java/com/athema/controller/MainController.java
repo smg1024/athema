@@ -205,10 +205,10 @@ public class MainController {
 			model.addAttribute("content", "order");
 			model.addAttribute("cnt",opt_quantities);
 		 }
-		System.out.println(mem_code);
-		System.out.println(item_code);
-		System.out.println(opt_codes);
-		System.out.println(opt_quantities);
+		System.out.println("회원코드:"+mem_code);
+		System.out.println("아이템코드:"+item_code);
+		System.out.println("옵션코드:"+opt_codes);
+		System.out.println("옵션수량:"+opt_quantities);
 		return "main";
 	}
 	

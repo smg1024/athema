@@ -18,4 +18,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<update id="update" parameterType="OrdDetailDTO">
 		UPDATE ord_detail set cnt=#{cnt}, used=#{used},used_date=now() WHERE detail_code=#{detail_code}
 	</update>
+	
+	<insert id="ordinsert" parameterType="java.util.Map">
+		INSERT INTO ord_detail(detail_code, cnt, exp_date, opt_code, order_code, used, used_date)
+		 VALUES <foreach collection="list" item="item" separator=","> (NULL, #{item.cnt}, DATE_ADD(now(), INTERVAL #{item.exp_days} day), #{item.opt_code}, #{item.order_code}, #{item.used}, now())</foreach>
+	</insert>
 </mapper>
