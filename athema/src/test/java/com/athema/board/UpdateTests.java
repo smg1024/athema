@@ -21,6 +21,7 @@ class UpdateTests {
 			board.setMem_code(3);
 			board.setBoard_subject("수정문의드립니다2222");
 			board.setBoard_content("미안하다 이거 보여주려고 어그로 끌었다2222");
+			board.setBoard_filename("editfile222.jpg");
 		try {
 			service.modify(board);
 			System.out.println(board);

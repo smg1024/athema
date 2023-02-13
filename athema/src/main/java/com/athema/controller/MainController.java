@@ -91,7 +91,7 @@ public class MainController {
 			list = iservice.getall();
 			for(ItemDTO item : list) {
 				item.setItem_price(iservice.min_price(item.getItem_code()));
-				if(rservice.avg_rating(item.getItem_code())!=null) item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
+//				item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

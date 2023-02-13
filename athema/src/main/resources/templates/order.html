@@ -24,40 +24,6 @@ $(document).ready(function() {
 		$('#tot_price').val(totalPrice);
 	});
 	
-	//주문상세에 데이터 보내기
-	function send(){
-		var dataArray=[];
-		$('order_item_option').each(function(){
-			var data = {
-				detail_code : 0,
-				cnt : $('#cnt').text(),
-				exp_days : $('#exp_days').text(),
-				opt_code : $('#opt_code').text(),
-				order_code : 0,
-				used : 0,
-			};
-			//dataArray 배열에 data를 담는다.
-			dataArray.push(data);
-			
-			var jsonData = {
-					   "paramList" : JSON.stringify(dataArray)
-			}
-/* 		    jQuery.ajaxSettings.traditional = true; */
-		 
-		    $.ajax({
-		        url : '/bookregister',
-		        type: 'POST',
-		        data: OrdDetailDTO,
-		        success: function(data) {
-		        },
-		        error: function(x, e) {
-		            //err msg 출력
-		            $.failMsg('error');
-		        }
-		    });
-		});
-	}
-	
 	
 	// Modal을 가져옴
 	var modals = document.getElementsByClassName("modal-overlay");
@@ -239,6 +205,7 @@ function checkclickall()  {
 
 	<div id="content">
 		<div class="section_title" id="main_section">
+		<form id="bookregister_form">
 			<div id="order_article_top">
 				<h3 id="order_item_h3">상품 정보</h3>
 				<hr>
@@ -251,7 +218,11 @@ function checkclickall()  {
 						<div id="order_item_option_info"><span id="opt_code" th:text="${o.opt_code}+'.'+${o.opt_name}"></span>&nbsp;&nbsp;<span id="cnt" th:text="'수량 : '+${cnt.get(oStat.index)}"></span>
 							</div>
 						<div class ="price" id="order_item_option_price" th:text="${o.item_price}*${cnt.get(oStat.index)}"></div>
-						<input type="hidden" id="exp_days" th:value="${item.exp_days}">
+						<input type="hidden" name="exp_days" id="exp_days" th:value="${item.exp_days}">
+						<input type="hidden" name="detail_code" id="detail_code" value="0">
+						<input type="hidden" name="cnt" id="cnt" th:value="${cnt.get(oStat.index)}">
+						<input type="hidden" name="opt_code" id="opt_code" th:value="${o.opt_code}">
+						<input type="hidden" name="used" id="used" value="0">
 					</div>
 				</div>
 				<div id="order_item_price">
@@ -260,7 +231,7 @@ function checkclickall()  {
 				</div>
 			</div>
 			<div id="order_article_bottom">
-				<form id="bookregister_form">
+				
 				<h3 id="order_book_h3">예약자 정보</h3>
 				<div id="order_book_data">
 					<input type='checkbox' name='order_book_data'
@@ -285,8 +256,9 @@ function checkclickall()  {
 						<input type="text" name="book_email" id="book_email" th:value="${member.mem_email}"/>
 					</div>
 				</div>
-				</form>
+				
 			</div>
+			</form>
 		</div>
 		<div id="order_main_aside">
 			<div id="order_pay">

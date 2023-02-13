@@ -428,15 +428,14 @@ $(document).ready(function(){
 						<!-- Listing Image -->
 
 						<div class="hotel_image">
-							<img th:src="|@{/images/item/}${item.item_img1}|">
+							<img src="images/kyungju/kyungju_csd_main.jpg">
 							<div class="hotel_review_container d-flex flex-column align-items-center justify-content-center">
 								<div class="hotel_review">
 									<div class="hotel_review_content">
-										<div class="hotel_review_title" th:if="${item.avg_rating>=4.0}">great</div>
-										<div class="hotel_review_title" th:if="${item.avg_rating<4.0 && item.avg_rating>=2.5}">good</div>
-										<div class="hotel_review_title" th:if="${item.avg_rating<2.5}">normal</div>
+										<div class="hotel_review_title">very good</div>
+										<div class="hotel_review_subtitle">100 reviews</div>
 									</div>
-									<div class="hotel_review_rating text-center" th:text="${item.avg_rating==null ? 0.0 : item.avg_rating}"></div>
+									<div class="hotel_review_rating text-center">8.1</div><!-- review평균평점 구해서 넣기 -->
 								</div>
 							</div>
 						</div>
@@ -448,15 +447,64 @@ $(document).ready(function(){
 								<div class="owl-carousel owl-theme hotel_slider">
 
 									<div class="owl-item">
-										<a class="colorbox cboxElement" th:href="|@{/images/item/}${item.item_img1}|">
-											<img th:src="|@{/images/item/}${item.item_img1}|" alt="https://unsplash.com/@jbriscoe">
+										<a class="colorbox cboxElement" href="images/kyungju/kyungju_csd1.jpg">
+											<img src="images/kyungju/kyungju_csd1.jpg" alt="https://unsplash.com/@jbriscoe">
 										</a>
 									</div>
 
 									<!-- Hotel Gallery Slider Item -->
 									<div class="owl-item">
-										<a class="colorbox cboxElement" th:href="|@{/images/item/}${item.item_img2}|">
-											<img th:src="|@{/images/item/}${item.item_img2}|" alt="https://unsplash.com/@grovemade">
+										<a class="colorbox cboxElement" href="images/kyungju/kyungju_csd2.jpg">
+											<img src="images/kyungju/kyungju_csd2.jpg" alt="https://unsplash.com/@grovemade">
+										</a>
+									</div>
+
+									<!-- Hotel Gallery Slider Item -->
+									<div class="owl-item">
+										<a class="colorbox cboxElement" href="images/kyungju/kyungju_csd3.jpg">
+											<img src="images/kyungju/kyungju_csd3.jpg" alt="https://unsplash.com/@fransaraco">
+										</a>
+									</div>
+
+									<!-- Hotel Gallery Slider Item -->
+									<div class="owl-item">
+										<a class="colorbox cboxElement" href="images/kyungju/kyungju_csd4.jpg">
+											<img src="images/kyungju/kyungju_csd4.jpg" alt="https://unsplash.com/@workweek">
+										</a>
+									</div>
+
+									<!-- Hotel Gallery Slider Item -->
+									<div class="owl-item">
+										<a class="colorbox cboxElement" href="images/kyungju/kyungju_csd5.jpg">
+											<img src="images/kyungju/kyungju_csd5.jpg" alt="https://unsplash.com/@workweek">
+										</a>
+									</div>
+
+									<!-- Hotel Gallery Slider Item -->
+									<div class="owl-item">
+										<a class="colorbox cboxElement" href="images/kyungju/kyungju_csd6.jpg">
+											<img src="images/kyungju/kyungju_csd6.jpg" alt="https://unsplash.com/@avidenov">
+										</a>
+									</div>
+
+									<!-- Hotel Gallery Slider Item -->
+									<div class="owl-item">
+										<a class="colorbox cboxElement" href="images/kyungju/kyungju_csd7.jpg">
+											<img src="images/kyungju/kyungju_csd7.jpg" alt="https://unsplash.com/@pietruszka">
+										</a>
+									</div>
+
+									<!-- Hotel Gallery Slider Item -->
+									<div class="owl-item">
+										<a class="colorbox cboxElement" href="images/kyungju/kyungju_csd8.jpg">
+											<img src="images/kyungju/kyungju_csd8.jpg" alt="https://unsplash.com/@rktkn">
+										</a>
+									</div>
+
+									<!-- Hotel Gallery Slider Item -->
+									<div class="owl-item">
+										<a class="colorbox cboxElement" href="images/kyungju/kyungju_csd9.jpg">
+											<img src="images/kyungju/kyungju_csd9.jpg" alt="https://unsplash.com/@mindaugas">
 										</a>
 									</div>
 								</div>
@@ -503,7 +551,7 @@ $(document).ready(function(){
 						<!-- Hotel Info Text -->
 
 						<div class="hotel_info_text">
-							<h6 th:text="${item.item_detail}" style="color:black;"></h6>
+							<p th:text="${item.item_detail}"></p>
 						</div>
 
 						<!-- Hotel Info Tags -->

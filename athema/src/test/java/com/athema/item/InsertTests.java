@@ -24,6 +24,7 @@ class InsertTests {
 			item.setCate_code(6);
 			item.setLat(33.22212);
 			item.setLng(123.14141);
+			item.setItem_img("jeju_jsg.jpg");
 			item.setExp_days(14);
 			try {
 			service.register(item);

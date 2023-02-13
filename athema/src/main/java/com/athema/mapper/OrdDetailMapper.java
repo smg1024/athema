@@ -11,6 +11,5 @@ import com.athema.frame.AthemaMapper;
 @Repository
 @Mapper
 public interface OrdDetailMapper extends AthemaMapper<Integer, OrdDetailDTO>{
-	public void ordinsert(List<OrdDetailDTO> v) throws Exception;
 	
 }

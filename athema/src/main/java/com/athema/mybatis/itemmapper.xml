@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	<select id="search_item" parameterType="Integer" resultType="ItemDTO">
 	SELECT * FROM (
-	SELECT i.item_code, i.item_name, i.item_loc, i.item_detail, i.cate_code, i.lat, i.lng, i.item_img1, i.item_img2, i.rdate, i.exp_days, c.cate_name, c.up_cate_code FROM item i INNER JOIN category c ON i.cate_code=c.cate_code WHERE c.up_cate_code=${param1}) AS theme
+	SELECT i.item_code, i.item_name, i.item_loc, i.item_detail, i.cate_code, i.lat, i.lng, i.item_img, i.rdate, i.exp_days, c.cate_name, c.up_cate_code FROM item i INNER JOIN category c ON i.cate_code=c.cate_code WHERE c.up_cate_code=${param1}) AS theme
 	WHERE cate_name=#{param2}
 	</select>
 	

@@ -37,43 +37,39 @@ public class OrderController {
 	MemberService mservice;
 	
 	@RequestMapping("/bookregister")
-	public String bookregister(Model model, OrderDTO orderdto, int mem_code) {
+	public String bookregister(Model model, OrderDTO orderdto,OrdDetailDTO ordDetail, int mem_code, int[] cnt, int[] opt_code) {
 		System.out.println("주문등록");
 		System.out.println(orderdto);
 		OrderDTO obj = null;
+		int order_code;
 		try {
 			oservice.register(orderdto);
 			System.out.println("order insert ok");
 			obj = oservice.onum(mem_code);
 			System.out.println(obj);
-			return "redirect:http://49.50.166.168/";
+			order_code = obj.getOrder_code();
+			ordDetail.setOrder_code(order_code);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("order insert fail");
 		}
-		return "main";
-	}
-	@RequestMapping("/detailregister")
-	public String detailregister(Model model, @RequestParam Map<Integer, OrdDetailDTO> OrdDetailDTOs) {
-		String json = OrdDetailDTOs.get("jsonData").toString();
-	    ObjectMapper mapper = new ObjectMapper();
-	    List<Map<String, Object>> OrdDetailDTO = mapper.readValue(json, new TypeReference<ArrayList<Map<String, Object>>>(){});
-		List<OrdDetailDTO> ord = new ArrayList<OrdDetailDTO>();
-		System.out.println("주문상세등록");
-		System.out.println(OrdDetailDTOs);
-		ord.addAll(OrdDetailDTOs);
-		System.out.println(ord);
-		try {
-			
-			ordservice.ordinsert(ord);
+		
+		for(int i=0; i < cnt.length;i++) {
+			System.out.println(ordDetail);
+			System.out.println("주문상세 "+i+"번째:");
+			try {
+				ordDetail.setCnt(cnt[i]);
+				ordDetail.setOpt_code(opt_code[i]);
+				ordservice.register(ordDetail);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println("orderdetail insert ok");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("ordDetail insert fail");
 		}
+		model.addAttribute("content","index");
 		return "main";
 	}
-
 }
