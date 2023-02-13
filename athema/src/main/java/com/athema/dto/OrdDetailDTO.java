@@ -21,12 +21,12 @@ public class OrdDetailDTO {
 	private int order_code;
 	private int used;
 	private Date user_date;
-	private int exp_num;	//만료일자 mysql 방식으로 넣으면 에러나서 숫자만 해줬어요
+	private int exp_days;	//만료일자 mysql 방식으로 넣으면 에러나서 숫자만 해줬어요
 	
-	public OrdDetailDTO(int detail_code, Integer cnt,int exp_num, Integer opt_code, int order_code, int used, Date user_date) {
+	public OrdDetailDTO(int detail_code, Integer cnt,int exp_days, Integer opt_code, int order_code, int used, Date user_date) {
 		this.detail_code =detail_code;
 		this.cnt=cnt;
-		this.exp_num=exp_num;
+		this.exp_days=exp_days;
 		this.opt_code=opt_code;
 		this.order_code=order_code;
 		this.used=used;

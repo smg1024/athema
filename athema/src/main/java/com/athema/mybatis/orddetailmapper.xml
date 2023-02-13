@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM ord_detail
 	</select>
 	<insert id="insert" parameterType="OrdDetailDTO">
-		INSERT INTO ord_detail VALUES (NULL, #{cnt}, DATE_ADD(now(), INTERVAL #{exp_num} day), #{opt_code}, #{order_code}, #{used}, now())
+		INSERT INTO ord_detail VALUES (NULL, #{cnt}, DATE_ADD(now(), INTERVAL #{exp_days} day), #{opt_code}, #{order_code}, #{used}, now())
 	</insert>
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM ord_detail WHERE detail_code=#{detail_code}

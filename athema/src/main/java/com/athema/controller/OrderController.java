@@ -42,13 +42,17 @@ public class OrderController {
 		System.out.println(orderdto);
 		OrderDTO obj = null;
 		int order_code;
+		int exp_days;
 		try {
 			oservice.register(orderdto);
 			System.out.println("order insert ok");
 			obj = oservice.onum(mem_code);
 			System.out.println(obj);
 			order_code = obj.getOrder_code();
+			exp_days = orderdto.getExp_days();
 			ordDetail.setOrder_code(order_code);
+			ordDetail.setOrder_code(order_code);
+			ordDetail.setExp_days(exp_days);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
