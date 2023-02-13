@@ -136,7 +136,7 @@ hr {
           <summary>리뷰 쓰기</summary>
             <div class="w_r_detail">   
             
-            <form method="post" id="write_r_form">
+            <form method="post" id="write_r_form" enctype="multipart/form-data">
             
             <div class="w_r">
             
@@ -169,7 +169,7 @@ hr {
               	
 	              <div class="w_r_photo">사진: 
 	                <div class="insert">
-					     <input type="file" onchange="addFile(this);" multiple onsubmit="return false;"/>
+					     <input name="img" type="file" onchange="addFile(this);" multiple onsubmit="return false;" />
 					     <div class="file-list"></div>
 	    			</div>  
 	    		</div> 
@@ -182,20 +182,7 @@ hr {
             <a id="w_r_register">등록</a>
             </form>
             
-            <!-- <form th:action="@{/upload}" method="POST" enctype="multipart/form-data">
-			    <div>
-			        <span>파일 1</span>
-			        <input type="file" name="img1" accept="image/png, image/gif, image/jpeg">
-			    </div>
-					<div>
-			        <span>파일 2</span>
-			        <input type="file" name="img2" accept="image/png, image/gif, image/jpeg">
-			    </div>
-			    <div>
-			        <span>업로드</span>
-			        <input type="submit" value="전송">
-			    </div>
-			</form> -->
+            
             
             </div>
          </div>
@@ -232,6 +219,11 @@ hr {
 	}
 	});
 	
+	// 사진 업로드	
+	
+	
+	
+	
 	// 리뷰 등록
 	   $('#w_r_register').click(function() {
 	      var c=confirm('등록하시겠습니까?');
@@ -246,5 +238,5 @@ hr {
 	   });
 	
 	   
-// 사진 업로드	   
+   
 </script>

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import com.athema.dto.MemberDTO;
 import com.athema.dto.OrderDTO;
 import com.athema.dto.ReviewDTO;
 import com.athema.dto.WishDTO;
+import com.athema.frame.Util;
 import com.athema.service.MemberService;
 import com.athema.service.OrderService;
 import com.athema.service.ReviewService;
@@ -25,6 +27,12 @@ import com.athema.service.WishService;
 public class MypageController {
 	
 	String dir = "mypage/";
+	
+	@Value("${admindir}")
+	String admindir;
+	
+	@Value("${custdir}")
+	String custdir;
 	
 	@Autowired
 	MemberService mservice;
@@ -175,6 +183,11 @@ public class MypageController {
 		@RequestMapping("/insert")
 		public String insert(Model model, ReviewDTO review) {
 			System.out.println(review);
+			
+			String file1 = review.getImg().getOriginalFilename();
+			review.setReview_img(file1);
+			Util.saveFile(review.getImg(), admindir, custdir+"review/");
+			
 			try {
 				rservice.register(review);	
 				System.out.println("등록 성공");

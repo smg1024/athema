@@ -2,6 +2,8 @@ package com.athema.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,4 +39,6 @@ public class ReviewDTO {
 		this.review_date = review_date;
 		this.review_img = review_img;
 	}
+	
+	private MultipartFile img;
 }
