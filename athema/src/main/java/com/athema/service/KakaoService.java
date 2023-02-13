@@ -37,7 +37,8 @@ public class KakaoService {
 			StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");	// 필수 파라미터 (고정값)
             sb.append("&client_id=9740cda4f593e49b4bf7b3235435574d");	// 필수 파라미터 (앱 REST API키)
-            sb.append("&redirect_uri=http://127.0.0.1/oauth/kakao");	// 필수 파라미터 (redirect URI)
+            sb.append("&redirect_uri=http://49.50.166.168/oauth/kakao");	// 필수 파라미터 (redirect URI)
+//            sb.append("&redirect_uri=http://127.0.0.1/oauth/kakao");	// 필수 파라미터 (redirect URI)
             sb.append("&code=" + authorize_code);
             /* StringBuilder = grant_type=authorization_code&client_id=9740cda4f593e49b4bf7b3235435574d&redirect_uri=http://127.0.0.1/member/kakao&code=" + authorize_code */
             
