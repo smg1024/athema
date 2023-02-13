@@ -223,7 +223,6 @@ section
 }
 .fill_height
 {
-	height: 100%;
 }
 .super_container
 {
@@ -938,7 +937,7 @@ section
 .search
 {
 	width: 100%;
-	height: 192px;
+	height: 360px;
 	background: linear-gradient(to right, #fa9e1b, #8d4fff);
 	z-index: 10;
 }

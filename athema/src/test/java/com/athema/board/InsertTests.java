@@ -21,7 +21,6 @@ class InsertTests {
 		board.setBoard_cate("FAQ");
 		board.setBoard_subject("문의드립니다222222");
 		board.setBoard_content("환불좀2222222");
-		board.setBoard_filename("attachment222222.jpg");
 		try {
 			service.register(board);
 			System.out.println("[OK]");

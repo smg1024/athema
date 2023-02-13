@@ -38,8 +38,7 @@ public class OffersController {
 						temp = iservice.search_theme(up_cate_code);
 						for(ItemDTO item : temp) {
 							item.setItem_price(iservice.min_price(item.getItem_code()));
-//							Double avg_rating = rservice.avg_rating(item.getItem_code());
-//							if(!avg_rating.equals(null)) item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
+							if(rservice.avg_rating(item.getItem_code())!=null) item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
 							list.add(item);
 						}
 					}else {
@@ -48,8 +47,7 @@ public class OffersController {
 							temp = iservice.search_item(up_cate_code, cate_name);
 							for(ItemDTO item : temp) {
 								item.setItem_price(iservice.min_price(item.getItem_code()));
-//								Double avg_rating = rservice.avg_rating(item.getItem_code());
-//								if(!avg_rating.equals(null)) item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
+								if(rservice.avg_rating(item.getItem_code())!=null) item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
 								list.add(item);
 							}
 						}
@@ -63,8 +61,7 @@ public class OffersController {
 						temp = iservice.search_loc(cate_name);
 						for(ItemDTO item : temp) {
 							item.setItem_price(iservice.min_price(item.getItem_code()));
-//							Double avg_rating = rservice.avg_rating(item.getItem_code());
-//							if(!avg_rating.equals(null)) item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
+							if(rservice.avg_rating(item.getItem_code())!=null) item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
 							list.add(item);
 						}
 					}
@@ -72,8 +69,7 @@ public class OffersController {
 					list = iservice.getall();
 					for(ItemDTO item : list) {
 						item.setItem_price(iservice.min_price(item.getItem_code()));
-//						Double avg_rating = rservice.avg_rating(item.getItem_code());
-//						if(!avg_rating.equals(null)) item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
+						if(rservice.avg_rating(item.getItem_code())!=null) item.setAvg_rating(rservice.avg_rating(item.getItem_code()));
 					}
 				}
 			}
