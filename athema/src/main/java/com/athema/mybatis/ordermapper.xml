@@ -19,22 +19,36 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		UPDATE `order` set book_name=#{book_name}, book_hp=#{book_hp}, book_email=#{book_email} WHERE order_code =#{order_code}
 	</update>
 	
+	<!-- 예정된 여행 -->
 	<select id="getTravelPlan" resultType="OrderDTO">
-		SELECT * FROM `order` o
-		INNER JOIN ord_detail od ON o.order_code = od.order_code
-		INNER JOIN `option` op ON op.opt_code = od.opt_code
-		INNER JOIN item i ON i.item_code = op.item_code
-		WHERE used=0 AND <![CDATA[o.order_date < od.exp_date]]>
+		SELECT DISTINCT(o.order_code), m.mem_name, i.item_name, i.item_loc, o.tot_price, o.book_name, o.book_hp, o.book_email, o.order_date,ord.exp_date, ord.used
+		FROM `order` o JOIN `member` m ON m.mem_code=o.mem_code
+		JOIN ord_detail ord ON o.order_code = ord.order_code
+		JOIN `option` opt ON ord.opt_code = opt.opt_code
+		join item i on i.item_code=opt.item_code
+		WHERE (ord.used=0 AND <![CDATA[o.order_date < ord.exp_date]]>)
 		AND o.mem_code = #{mem_code}
 	</select>
 	
+	<!-- 다녀온 여행 -->
 	<select id="getTravelPast" resultType="OrderDTO">
-		SELECT * FROM `order` o
-		INNER JOIN ord_detail od ON o.order_code = od.order_code
-		INNER JOIN `option` op ON op.opt_code = od.opt_code
-		INNER JOIN item i ON i.item_code = op.item_code
-		where used=1 OR <![CDATA[od.exp_date < now()]]>
-		AND o.mem_code = #{mem_code}
+		SELECT DISTINCT(o.order_code), m.mem_name, i.item_name, i.item_loc, o.tot_price, o.book_name, o.book_hp, o.book_email, o.order_date,ord.exp_date, ord.used, ord.used_date
+		FROM `order` o JOIN `member` m ON m.mem_code=o.mem_code
+		JOIN ord_detail ord ON o.order_code = ord.order_code
+		JOIN `option` opt ON ord.opt_code = opt.opt_code
+		join item i on i.item_code=opt.item_code
+		WHERE ord.used=1 AND m.mem_code=#{mem_code};
+	</select>
+	
+	<!-- 지난 여행 -->
+	<select id="getTravel" resultType="OrderDTO">
+		SELECT DISTINCT(o.order_code), m.mem_name, i.item_name, i.item_loc, o.tot_price, o.book_name, o.book_hp, o.book_email, o.order_date,ord.exp_date, ord.used, ord.used_date
+		FROM `order` o JOIN `member` m ON m.mem_code=o.mem_code
+		JOIN ord_detail ord ON o.order_code = ord.order_code
+		JOIN `option` opt ON ord.opt_code = opt.opt_code
+		join item i on i.item_code=opt.item_code
+		WHERE (ord.used=1 OR <![CDATA[ord.exp_date < now()]]>)
+		AND m.mem_code=#{mem_code};
 	</select>
 	
 	<select id="onum" parameterType="Integer" resultType="OrderDTO">

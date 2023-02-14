@@ -12,14 +12,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="ReviewDTO">
 		SELECT * FROM review 
 	</select>
-	
 	<insert id="insert" parameterType="ReviewDTO">
 		INSERT INTO review VALUES (#{review_code}, #{mem_code}, #{item_code}, #{title}, #{content}, #{score}, NOW(), #{review_img})
 	</insert>
 	<update id="update" parameterType="ReviewDTO">
 		UPDATE review SET title=#{title}, content=#{content}, score=#{score}, review_date=NOW(), review_img=#{review_img} WHERE review_code=#{review_code}
 	</update>
-	
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM review where review_code=#{review_code}
 	</delete>
@@ -41,4 +39,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INNER JOIN item i ON r.item_code = i.item_code
 		where r.item_code = #{item_code};
 	</select>
+	
+	<!-- 리뷰 작성 -->
+	<select id="getReview" resultType="ReviewDTO">
+		SELECT * FROM review 
+	</select>
+	
+	
 </mapper>

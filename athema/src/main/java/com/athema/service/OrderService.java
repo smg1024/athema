@@ -49,14 +49,13 @@ public class OrderService implements AthemaService<Integer, OrderDTO>{
 		return mapper.getTravelPlan(mem_code);
 	}
 	
-	// 지난 여행 
-		public List<OrderDTO> getTravelPast(int mem_code) throws Exception {
-			return mapper.getTravelPast(mem_code);
-		}
-		
-		//주문 상세에 넣을 order_code
-		public OrderDTO onum(Integer k) throws Exception{
-			return mapper.onum(k);
-		}
+	// 다녀온 여행 
+	public List<OrderDTO> getTravelPast(int mem_code) throws Exception {
+		return mapper.getTravelPast(mem_code);
+	}
 	
+	// 지난 여행
+	public List<OrderDTO> getTravel(int mem_code) throws Exception {
+		return mapper.getTravel(mem_code);
+	}
 }

@@ -45,7 +45,7 @@ h3 {
    margin-left: 10px;
 }
 .past_content{
-   width:80%;
+   width: 90%;
    margin: 0 0 35px 30px;
    border: 2px solid ;
    border-radius: 10px;
@@ -92,48 +92,79 @@ h3 {
 #book {
 	margin-top: 3%;
 }
-hr {
+
+.test2 #line1 {
 	width: 90%;
-	border-top: 1px dashed #bbb;
+	border: none;
+	border: 0.5px dashed lightgray;
 }
 
+/* 리뷰 작성하기 버튼 */
+#summary {
+	border: 2px solid #fee39e;
+	background: #fee39e;
+	border-radius: 5px;
+	width: 100px;
+	margin-left: 75%;
+	
+	color: #4a4a4a;
+	cursor: pointer;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
+}
+#line2 {
+	margin-right: 20%;
+	width: 90%;
+	border-top: 2px solid #bbb;
+}
 </style>
 
 <link rel="stylesheet" type="text/css" href="/styles/write_review.css">
 
 
 <div class="past">
-   <div class="past_main" th:each="order:${porder}">
+   <div class="past_main">
    <h3>지난 여행</h3>
-      <div id="div_line" >
-      <div id="past_day"><time th:text="${#dates.format(order.used_date,'yyyy-MM-dd')}">사용일</time></div>
-      </div>      
-      <div class="past_content">
-         <div id="past_title" th:text="${order.item_name}">경주 여행</div>
-            <div class="past_hidden">   
-               <div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
-               <div id="past_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
-               <div id="past_div" th:text="'상품 옵션: '+${order.opt_name}">옵션</div>
-               <div id="past_div" th:text="'수량: '+${order.cnt}"></div>
-               <div id="past_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}"></time></div>
-               <div id="past_div" th:text="'사용일: '+${#dates.format(order.used_date,'yyyy-MM-dd')}"></div>
-               <div id="past_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
-               <hr>
-               <div id="book">
-               		<div id="past_div" th:text="'예약자: '+${order.book_name}"></div>
-					<div id="past_div" th:text="'예약자 전화번호: '+${order.book_hp}"></div>
-					<div id="past_div" th:text="'예약자 이메일: '+${order.book_email}"></div>
-				</div>
-            </div>   
-            <div><button class="view_detail">상세보기</button></div>
-            <div><button class="close_detail">상세닫기</button></div>
-            <div id="clear"></div>
-      </div>
-      </div>
-</div>     
-      
-      <details>
-          <summary>리뷰 쓰기</summary>
+      <div id="div_line" th:each="order:${ord}"> 
+	      <div id="past_day"><time th:text="${#dates.format(order.used_date,'yyyy-MM-dd')}">사용일</time></div>
+	          
+	      <div class="past_content">
+	         <div id="past_title" th:text="${order.item_name}">경주 여행</div> 
+	            <div class="past_hidden"> 
+	            	<div id="past_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
+			            <div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div> 
+			            <div class="test2">
+				            <div id="past_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}"></time></div>
+					        <div id="past_div"><span th:text="'위치: '+${order.item_loc}"></span></div>  
+					        <div id="past_div" th:text="'사용일: '+${#dates.format(order.used_date,'yyyy-MM-dd')}">사용일</div>
+				            <div id="past_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
+				            <hr id="#line1">
+			               
+				            <div id="book">
+				               	<div id="past_div" th:text="'예약자: '+${order.book_name}"></div>
+								<div id="past_div" th:text="'예약자 전화번호: '+${order.book_hp}"></div>
+								<div id="past_div" th:text="'예약자 이메일: '+${order.book_email}"></div>
+							</div>
+						</div>
+	            </div>   
+	            <div><button class="view_detail">상세보기</button></div>
+	            <div><button class="close_detail">상세닫기</button></div>
+	            <div id="clear"></div>
+	      </div>
+	     	
+	     <script>/* 리뷰 이미 있으면 리뷰 쓰는 버튼 안 보이게*/ 
+	     var value = "${review.item_code}";
+	       
+      	  if( value == "" || value == null || value == undefined || ( value != null && typeof value == "object" && !Object.keys(value).length ) ){
+      		  $("#details").show();
+      	  }else{
+      		  $("#details").hide();
+      	  }
+	     </script>
+	     
+	     	<details>
+          <summary id="summary">리뷰 쓰기</summary>
             <div class="w_r_detail">   
             
             <form method="post" id="write_r_form" enctype="multipart/form-data">
@@ -173,22 +204,27 @@ hr {
 					     <div class="file-list"></div>
 	    			</div>  
 	    		</div> 
-
-                  <input name="mem_code" id="mem_code" type="hidden" value="1">
-                  <input name="item_code" id="item_code" type="hidden" value="1">
-                  <input name="review_code" id="review_code" type="hidden" value="0">
+				<div th:each="review:${reviews}">
+                  <input name="mem_code" id="mem_code" type="hidden" th:value="${review.mem_code}">
+                  <input name="item_code" id="item_code" type="hidden" th:value="${review.item_code}">
+                  <input name="review_code" id="review_code" type="hidden" th:value="0">
+                </div>  
                </div>
             </div>
             <a id="w_r_register">등록</a>
             </form>
             
-            
-            
             </div>
-         </div>
       </details>
+	     	
+			<!-- <div id="write_review_button"><a th:href="@{/mypage/travel_past/rwrite(mem_code=${order.mem_code})}"><div>리뷰 쓰기</div></a></div> -->
+			<hr id="line2">
+		</div>  
+	</div>
+</div>
+
+     
  
-   </div>
    
    <script>
 	$(document).ready(function(){
@@ -219,14 +255,10 @@ hr {
 	}
 	});
 	
-	// 사진 업로드	
-	
-	
-	
-	
 	// 리뷰 등록
 	   $('#w_r_register').click(function() {
 	      var c=confirm('등록하시겠습니까?');
+	      
 	      if(c==true) {
 	         $('#write_r_form').attr({
 	            'method': 'post',
@@ -234,9 +266,7 @@ hr {
 	         });
 	         $('#write_r_form').submit();
 	         alert("정상적으로 등록되었습니다.");
-	      }
+	    }
 	   });
-	
-	   
-   
+
 </script>

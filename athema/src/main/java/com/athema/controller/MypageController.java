@@ -1,5 +1,6 @@
 package com.athema.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.athema.dto.MemberDTO;
+import com.athema.dto.OrdDetailDTO;
 import com.athema.dto.OrderDTO;
 import com.athema.dto.ReviewDTO;
 import com.athema.dto.WishDTO;
 import com.athema.frame.Util;
 import com.athema.service.MemberService;
+import com.athema.service.OrdDetailService;
 import com.athema.service.OrderService;
 import com.athema.service.ReviewService;
 import com.athema.service.WishService;
@@ -45,6 +48,9 @@ public class MypageController {
 	
 	@Autowired
 	OrderService oservice;
+	
+	@Autowired
+	OrdDetailService ordservice;
 	
 	@RequestMapping("")
 	public String mypage(Model model) {
@@ -113,19 +119,19 @@ public class MypageController {
 	 return "redirect:/logout";
 	 }
 	 
-	
+	// 여행 관리
 	@RequestMapping("/travel_list")
 	public String travel_list(Model model, int mem_code) {	
 		List<OrderDTO> orders=null;
-		List<OrderDTO> porder=null;
-
+		List<OrderDTO> porder = null;
+		
 		try {
 			orders=oservice.getTravelPlan(mem_code);
 			System.out.println("예정된 여행성공");
 			System.out.println(orders);
 			model.addAttribute("orders", orders);
 			
-			porder=oservice.getTravelPast(mem_code);
+			porder=oservice.getTravel(mem_code);
 			System.out.println("지난여행 성공");
 			System.out.println(porder);
 			model.addAttribute("porder", porder);
@@ -140,6 +146,7 @@ public class MypageController {
 		return "main";
 	}
 	
+	// 예정된 여행
 	@RequestMapping("/travel_plan")
 	public String travel_plan(Model model, int mem_code) {	
 		List<OrderDTO> orders=null;
@@ -160,37 +167,41 @@ public class MypageController {
 		return "main";
 	}
 	
+	// 다녀온 여행
 	@RequestMapping("/travel_past")
 	public String travel_past(Model model, int mem_code) {	
-		List<OrderDTO> porder=null;
-
+		List<OrderDTO> ord = null;
+		
 		try {
-			porder=oservice.getTravelPast(mem_code);
+			ord=oservice.getTravelPast(mem_code);
 			System.out.println("성공");
-			System.out.println(porder);
-			model.addAttribute("porder", porder);
+			System.out.println(ord);
+			model.addAttribute("ord", ord);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("실패");
 		}
+		 
 		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"travel_past");
 		return "main";
 	}
 	
+	
 	// 리뷰 등록
 		@RequestMapping("/insert")
-		public String insert(Model model, ReviewDTO review) {
-			System.out.println(review);
+		public String insert(Model model, ReviewDTO review, MemberDTO mem) {
 			
+			// 사진 파일 등록
 			String file1 = review.getImg().getOriginalFilename();
-			review.setReview_img(file1);
-			Util.saveFile(review.getImg(), admindir, custdir+"review/");
+			review.setReview_img(file1);	
+			Util.saveFile(review.getImg(), admindir, custdir+"review/");	// 어드민, 커스트의 review 파일에 저장하겠다
 			
 			try {
 				rservice.register(review);	
 				System.out.println("등록 성공");
+				model.addAttribute("review", review);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -198,7 +209,7 @@ public class MypageController {
 			}
 			model.addAttribute("content", dir+"mypage");	
 			model.addAttribute("mypagecenter",dir+"travel_past");
-			return "main";
+			return "redirect:travel_past?mem_email="+mem.getMem_email();
 		}
 	
 	// 작성한 리뷰 보기
@@ -243,5 +254,7 @@ public class MypageController {
 		model.addAttribute("mypagecenter",dir+"mywishlist");
 		return "main";
 	}
+	
+
 	
 }

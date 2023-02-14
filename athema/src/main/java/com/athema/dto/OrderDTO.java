@@ -30,11 +30,12 @@ public class OrderDTO {
 	
 	// 마이페이지 여행 보기 위해 필요
 	private String item_name;
-	private int opt_code; 
-	private String opt_name;
+	private String item_loc;
 	private int cnt;
 	private Date exp_date;
 	private Date used_date;
+
+	
 	
 	
 	public OrderDTO(int order_code, String book_name, String book_hp, String book_email){
@@ -54,4 +55,6 @@ public class OrderDTO {
 		this.book_hp = book_hp;
 		this.book_email = book_email;
 	}
+	
+	
 }

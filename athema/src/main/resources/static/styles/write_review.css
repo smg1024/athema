@@ -1,12 +1,12 @@
 @charset "UTF-8";
 .w_r_detail {
-	width: 80%;
+	width: 100%;
 	height: 700px;
-	margin-left: 10%;
 	padding: 20px 60px;
 	background-color: #fefefe;
 	border: 1px solid #888;
 	border-radius: 3px;
+	margin-top: 5%;
 	
 	text-align:center;
 	overflow: scroll;
@@ -117,8 +117,9 @@
 	margin-left: 10%;
 }
 
-#hr1 {
-	width: 95%
+.r_line {
+	width: 95%;
+	
 }
 #w_r_register {	/* 등록 버튼 */
 	background: #b99fdf;
@@ -142,13 +143,6 @@
     border-bottom: 5px solid #8d4fff;    
 }
 
-/* 사진 업로드 */
-.insert .file-list .filebox p {
-    font-size: 14px;
-    margin-top: 10px;
-    display: inline-block;
-}
-.insert .file-list .filebox .delete i{
-    color: #ff5353;
-    margin-left: 5px;
+#w_r_register {
+   cursor: pointer;
 }

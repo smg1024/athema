@@ -1,12 +1,9 @@
 <!-- ORDER DETAIL-->
 <style>
 .ord {
-	border: 2px solid red;
+	/* border: 2px solid red; */
 }
 
-.ord_main {
-	border: 2px solid blue;
-}
 .view_detail{
 z-index: 596;
 	padding:4px 18px;
@@ -57,7 +54,7 @@ h3 {
 #div_line {
 	margin-left: 10%;
 	margin-top: 3%;
-	border: 2px solid blue;
+	/* border: 2px solid blue; */
 }
 .test2 #line1 {
 	width: 90%;
@@ -72,7 +69,7 @@ h3 {
 	margin-left: 10px;
 }
 .ord_content{
-	width:80%;
+	width: 90%;
 	margin: 0 0 35px 30px;
 	border: 2px solid ;
 	border-radius: 10px;
@@ -106,7 +103,7 @@ h3 {
     border-radius:8px;
     margin: 0 10px 10px; 
     
-    border: 2px solid green;
+  /* border: 2px solid green;  */
 }
 #img_item img{
 	position: absolute;
@@ -151,62 +148,63 @@ $(document).ready(function(){
 </script>
 <div class="ord">
 		<h3>여행리스트</h3>
-		<div id="div_line" th:each="order:${orders}">
-		<div class="ord_list_name">예정된 여행</div>
-		<div id="day"><time th:text="${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 3월 31일</time></div>
-		<div class="ord_content">
-			<div id="ord_title" th:text="${order.item_name}">경주 여행</div>
-				<div class="ord_hidden">	
-					<div class="test">
-						<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
-							<div class="test2">
-								<div id="ord_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
-								<div id="ord_div" th:text="'상품 옵션: '+${order.opt_name}"></div>
-								<div id="ord_div" th:text="'수량: '+${order.cnt}"></div>
-								<div id="ord_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 12월 31일까지</time></div>
-								<div id="ord_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
-								<hr id="line1">
-								<div id="book">
-									<div id="ord_div" th:text="'예약자: '+${order.book_name}"></div>
-									<div id="ord_div" th:text="'예약자 전화번호: '+${order.book_hp}"></div>
-									<div id="ord_div" th:text="'예약자 이메일: '+${order.book_email}"></div>
-								</div>
-							</div>
-					</div>	
-				</div>	
-				<div><button class="view_detail">상세보기</button></div>
-				<div><button class="close_detail">상세닫기</button></div>
-				<div id="clear"></div>
-		</div>
+		<div id="div_line">
+			<div class="ord_list_name">예정된 여행</div>
+			<div th:each="order:${orders}">
+				<div id="day"><time th:text="${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 3월 31일</time></div>
+				<div class="ord_content">
+					<div id="ord_title" th:text="${order.item_name}">경주 여행</div>
+						<div class="ord_hidden">	
+							<div class="test">
+								<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
+									<div class="test2">
+										<div id="ord_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
+										<div id="ord_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 12월 31일까지</time></div>
+										<div id="ord_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
+										<hr id="line1">
+										<div id="book">
+											<div id="ord_div" th:text="'예약자: '+${order.book_name}"></div>
+											<div id="ord_div" th:text="'예약자 전화번호: '+${order.book_hp}"></div>
+											<div id="ord_div" th:text="'예약자 이메일: '+${order.book_email}"></div>
+										</div>
+									</div>
+							</div>	
+						</div>	
+						<div><button class="view_detail">상세보기</button></div>
+						<div><button class="close_detail">상세닫기</button></div>
+						<div id="clear"></div>
+				</div>
+			</div>
 		</div>	
 	
 		
 		<hr id="t_line">
 		
-		<div id="div_line" th:each="order:${porder}">
-		<div class="ord_list_name">지난 여행</div>
-		<div id="day"><time th:text="${#dates.format(order.used_date,'yyyy-MM-dd')}">2023년 3월 31일</time></div>
-		<div class="ord_content">
-			<div id="ord_title" th:text="${order.item_name}">경주 여행</div>
-				<div class="ord_hidden">	
-					<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
-					<div id="ord_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
-					<div id="ord_div" th:text="'상품 옵션: '+${order.opt_name}"></div>
-					<div id="ord_div" th:text="'수량: '+${order.cnt}"></div>
-					<div id="ord_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 12월 31일까지</time></div>
-					<div id="past_div" th:text="'사용일: '+${#dates.format(order.used_date,'yyyy-MM-dd')}"></div>
-					<div id="ord_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
-					<hr>
-					<div id="book">
-						<div id="ord_div" th:text="'예약자: '+${order.book_name}"></div>
-						<div id="ord_div" th:text="'예약자 전화번호: '+${order.book_hp}"></div>
-						<div id="ord_div" th:text="'예약자 이메일: '+${order.book_email}"></div>
-					</div>
-				</div>	
-				<div><button class="view_detail">상세보기</button></div>
-				<div><button class="close_detail">상세닫기</button></div>
-				<div id="clear"></div>
-		</div>
+		<div id="div_line">
+			<div class="ord_list_name">지난 여행</div>
+			<div th:each="order:${porder}">
+				<div id="day"><time th:text="${#dates.format(order.used_date,'yyyy-MM-dd')}">2023년 3월 31일</time></div>
+				<div class="ord_content">
+					<div id="ord_title" th:text="${order.item_name}">경주 여행</div>
+						<div class="ord_hidden">	
+							<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
+							<div id="ord_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
+							<div id="ord_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 12월 31일까지</time></div>
+							<div id="past_div"><span th:text="'위치: '+${order.item_loc}"></span></div>
+							<div id="past_div" th:text="'사용일: '+${#dates.format(order.used_date,'yyyy-MM-dd')}"></div>
+							<div id="ord_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
+							<hr>
+							<div id="book">
+								<div id="ord_div" th:text="'예약자: '+${order.book_name}"></div>
+								<div id="ord_div" th:text="'예약자 전화번호: '+${order.book_hp}"></div>
+								<div id="ord_div" th:text="'예약자 이메일: '+${order.book_email}"></div>
+							</div>
+						</div>	
+						<div><button class="view_detail">상세보기</button></div>
+						<div><button class="close_detail">상세닫기</button></div>
+						<div id="clear"></div>
+				</div>
+			</div>
 		</div>
 
 </div>

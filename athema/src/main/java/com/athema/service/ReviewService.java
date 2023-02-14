@@ -51,7 +51,12 @@ public class ReviewService implements AthemaService<Integer, ReviewDTO>{
 	}
 	
 	// 특정 아이템 리뷰 보기
-		public List<ReviewDTO> getReviewByItem(int item_code) throws Exception {
-			return mapper.getReviewByItem(item_code);
-		}
+	public List<ReviewDTO> getReviewByItem(int item_code) throws Exception {
+		return mapper.getReviewByItem(item_code);
+	}
+	
+	// 
+	public List<ReviewDTO> getReview(int mem_code) throws Exception {
+		return mapper.getReview(mem_code);
+	}
 }

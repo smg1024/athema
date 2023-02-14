@@ -16,4 +16,6 @@ public interface ReviewMapper extends AthemaMapper<Integer, ReviewDTO>{
 	public List<ReviewDTO> getReviewByMem(int mem_code);
 	
 	public List<ReviewDTO> getReviewByItem(int item_code);
+	
+	public List<ReviewDTO> getReview(int mem_code);
 }
