@@ -1018,7 +1018,6 @@ section
 {
 	display: none !important;
 	width: 100%;
-	height: 100%;
 	-webkit-animation: fadeEffect 1s;
     animation: fadeEffect 1s;
 }

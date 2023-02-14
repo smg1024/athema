@@ -114,8 +114,8 @@
 	    padding-left: 0px;
 	    padding-right: 0px;
 	    margin-top: 0px;
-	    padding-top: 57px;
-	    padding-bottom: 72px;
+	    padding-top: 17px;
+	    padding-bottom: 20px;
 	}
 	.search_item
 	{
@@ -158,6 +158,9 @@
 	.search_button
 	{
 		margin-top: 29px;
+		position: relative;
+		top: -44px;
+    	left: 480px;
 	}
 }
 

@@ -207,22 +207,22 @@ $(document).ready(function(){
 	<!-- Offers -->
 
 	<div class="container">
-		<h3 style="color:black; padding-left:4em;" th:if="${theme_names!=null}">선택한 테마:
+		<h3 th:if="${theme_names!=null}"><h3 style="color:black; padding-left:4em;" th:if="${#lists.size(theme_names)}>0">선택한 테마:
 			<th:block th:each="theme:${theme_names}">
 				<span class="theme_name" th:text="${theme}"></span> 
 			</th:block>
-		</h3>
-		<h3 style="color:black; padding-left:4em;" th:if="${loc_names!=null}">선택한 지역:
+		</h3></h3>
+		<h3 th:if="${loc_names!=null}"><h3 style="color:black; padding-left:4em;" th:if="${#lists.size(loc_names)}>0">선택한 지역:
 			<th:block th:each="loc:${loc_names}">
 				<span class="loc_name" th:text="${loc}"></span> 
 			</th:block>
-		</h3>
+		</h3></h3>
 		<div class="row">
 			<div class="col-lg-1 temp_col"></div>
 			<div class="col-lg-11">
 				
 				<!-- Offers Sorting -->
-				<div class="offers_sorting_container">
+				<!-- <div class="offers_sorting_container">
 					<ul class="offers_sorting">
 						<li>
 							<span class="sorting_text">price</span>
@@ -270,7 +270,7 @@ $(document).ready(function(){
 							</ul>
 						</li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 
 			<div class="col-lg-12">
