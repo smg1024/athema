@@ -26,12 +26,19 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
  		join `option` opt on ord.opt_code = opt.opt_code
  		join item i on i.item_code=opt.item_code;
 	</select>
+	
+	<!-- 진짜 사이트에 쓰일 주문 목록 -->
+	<select id="selectlist" resultType="OrderDTO">
+	SELECT DISTINCT(o.order_code), m.mem_name, i.item_name, o.tot_price, o.book_name, o.book_hp, o.book_email, o.order_date,ord.exp_date, ord.used  
+	 FROM `order` o JOIN `member` m ON m.mem_code=o.mem_code
+	 JOIN ord_detail ord ON o.order_code = ord.order_code
+	 JOIN `option` opt ON ord.opt_code = opt.opt_code
+	 join item i on i.item_code=opt.item_code
+	</select>
+	 
 	<update id="updateused" parameterType="OrderDTO">
-	UPDATE ord_detail set used=#{used} WHERE detail_code=#{detail_code};
+	UPDATE ord_detail set used=#{used} WHERE detail_code=#{detail_code}
 	</update>
-	<delete id="deletecode" parameterType="Integer">
-	DELETE from ord_detail where detail_code=#{detail_code};
-	</delete>
 	
 	<!-- 월 주문건수 -->
 	<select id="getMonthOrder" resultType="Integer">

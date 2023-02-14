@@ -12,6 +12,7 @@ import com.athema.frame.AthemaMapper;
 @Mapper
 public interface OrderMapper extends AthemaMapper<Integer, OrderDTO>{
 	public List<OrderDTO> listall() throws Exception;
+	public List<OrderDTO> selectlist() throws Exception;
 	public void updateused(OrderDTO order) throws Exception;
 	public void deletecode(Integer k) throws Exception;
 	

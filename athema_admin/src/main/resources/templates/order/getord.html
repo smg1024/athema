@@ -1,0 +1,25 @@
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+function edit(detail_code, used){
+	var c = confirm("사용 여부을 수정하시겠습니까?");
+	if(c==true) {
+		$.ajax({
+			url:'[[@{/updateused}]]',
+			data: {detail_code, used},
+			success: function(data) {
+				alert('사용 여부가 변경되었습니다.');
+				location.reload();
+			},
+			error:function(){
+				alert('사용 여부 변경이 실패하였습니다.');
+			}
+		});
+	}
+}
+</script>
+<p class="dsc">주문 상세입니다.</p>
+<div th:each="ord:${ordlist}">
+	옵션코드 : <span th:text="${ord.opt_code}"></span>
+	&nbsp;&nbsp;&nbsp; 수량 : <span th:text="${ord.cnt}"></span>
+	&nbsp;&nbsp;&nbsp; 사용여부 :<a href="#" th:onclick="edit([[${ord.detail_code}]],[[${ord.used}]])">[[${ord.used}]]</a>
+</div>

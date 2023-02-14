@@ -46,6 +46,9 @@ public class OrderService implements AthemaService<Integer, OrderDTO>{
 	public List<OrderDTO> listall() throws Exception{
 		return mapper.listall();
 	}
+	public List<OrderDTO> selectlist() throws Exception{
+		return mapper.selectlist();
+	}
 	//사용 여부
 	public void updateused(OrderDTO v) throws Exception{
 		mapper.updateused(v);

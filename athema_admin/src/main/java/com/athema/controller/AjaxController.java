@@ -85,17 +85,4 @@ public class AjaxController {
 			}
 		}
 		
-		//주문내역 삭제
-		@RequestMapping("/deleteord")
-		public void deleteord(int detail_code) {
-			try {
-				oservice.deletecode(detail_code);
-				System.out.println("삭제 완료");
-			} catch (Exception e) {
-				System.out.println("삭제 실패");
-				e.printStackTrace();
-			}
-		}
-		
-	
 }

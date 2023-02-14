@@ -18,4 +18,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<update id="update" parameterType="OrdDetailDTO">
 		UPDATE ord_detail set cnt=#{cnt}, used=#{used},used_date=now() WHERE detail_code=#{detail_code}
 	</update>
+	<select id="ordall" parameterType="Integer" resultType="OrdDetailDTO">
+	  SELECT * FROM ord_detail where order_code=#{param1}
+	</select>
 </mapper>

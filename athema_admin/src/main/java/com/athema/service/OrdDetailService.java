@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.athema.dto.OrdDetailDTO;
+import com.athema.dto.OrderDTO;
 import com.athema.frame.AthemaService;
 import com.athema.mapper.OrdDetailMapper;
 
@@ -42,7 +43,9 @@ public class OrdDetailService implements AthemaService<Integer, OrdDetailDTO> {
 	public List<OrdDetailDTO> getall() throws Exception {
 		return mapper.selectall();
 	}
-
+	public List<OrdDetailDTO> ordall(Integer order_code) throws Exception {
+		return mapper.ordall(order_code);
+	}
 	
 	
 	

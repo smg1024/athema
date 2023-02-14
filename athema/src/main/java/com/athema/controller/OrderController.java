@@ -1,14 +1,9 @@
 package com.athema.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.athema.dto.OrdDetailDTO;
 import com.athema.dto.OrderDTO;
@@ -16,7 +11,6 @@ import com.athema.service.ItemService;
 import com.athema.service.MemberService;
 import com.athema.service.OrdDetailService;
 import com.athema.service.OrderService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Controller
@@ -62,7 +56,7 @@ public class OrderController {
 		
 		for(int i=0; i < cnt.length;i++) {
 			System.out.println(ordDetail);
-			System.out.println("주문상세 "+i+"번째:");
+			
 			try {
 				ordDetail.setCnt(cnt[i]);
 				ordDetail.setOpt_code(opt_code[i]);
