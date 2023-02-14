@@ -7,6 +7,7 @@
 .header
 {
 	position: fixed;
+	margin-top: -24px;
 	width: 100%;
 	background: rgba(54, 19, 84, 0.6);
 	z-index: 12;
@@ -192,8 +193,9 @@
 }
 .main_nav_item a
 {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 13px;
+/* 	font-family: 'Open Sans', sans-serif; */
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 15px;
 	font-weight: 600;
 	color: #FFFFFF;
 	text-transform: uppercase;

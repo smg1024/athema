@@ -65,9 +65,9 @@ public class MainController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session, Model model) {
 		if(session != null) {
-			session.invalidate();
+			session.invalidate();		// 세션 값 삭제
 		}
-		model.addAttribute("content", "index");
+		model.addAttribute("content", "index");		// 메인으로 돌아감
 		return "main";
 	}
 	
@@ -219,8 +219,12 @@ public class MainController {
 	}
 
 	@RequestMapping("/qnachat")
-	public String qnachat(Model model) {
-		model.addAttribute("content", "qnachat");
+	public String qnachat(Model model, HttpSession session) {
+		if(session.getAttribute("loginMember") == null) {		// 로그인 이용자만 1:1 채팅 가능
+			model.addAttribute("content", "login");
+		} else {
+			model.addAttribute("content", "qnachat");
+		}
 		return "main";
 	}
 
