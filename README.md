@@ -46,4 +46,4 @@
 |이름|문제|해결 방법|
 |:--:|--|--|
 |김상민|① mybatis mapper에서 하나 이상의 parameter 종류를 사용할 때 문제가 발생함.<br> ② 스크립트 영역에서 thymeleaf 값을 불러올때 null은 불러올 수 없는 문제가 발생함.<br> ③ thymeleaf를 이용해서 session에 대한 정보 유무를 판단할 때 페이지 parsing을 진행하지 못한다는 문제가 발생함. |① param# 방식으로 넣어서 문제를 해결함.<br>② null check를 설정해서  해결함.<br> ③ session의 null 여부를 확인한 후 삼항연산자를 활용하는 방식으로 해결함.
-|임민하|① 자바스크립트에서 숫자를 더하는 경우 값을 숫자로 인식하지 못했다.<br>② git 저장소의 소스코드와 로컬의 소스코드 충돌로 pull을 할 수 없는 경우가 생겼음.<br> ③ Git에서 Pull 하는 중 오류가 발생함. |① parseInt 안에 숫자를 넣어서 해결함.<br>② 나의 코드를 무시하고 덮어쓰는 방식이지만 overwrite를 클릭한 후 mark as merged를 클릭하면 pull이 가능했다.<br> ③ [https://oingdaddy.tistory.com/270](https://oingdaddy.tistory.com/270) 이 페이지의 내용을 먼저 따라한 후 [https://ddolcat.tistory.com/1936](https://ddolcat.tistory.com/1936) 이 페이지의 내용을 따라해서 문제를 해결함.
+|임민하|① 자바스크립트에서 숫자를 더하는 경우 값을 숫자로 인식하지 못했다.<br>② git 저장소의 소스코드와 로컬의 소스코드 충돌로 pull을 할 수 없는 경우가 생겼음.<br>|① parseInt 안에 숫자를 넣어서 해결함.<br>② 나의 코드를 무시하고 덮어쓰는 방식이지만 overwrite를 클릭한 후 mark as merged를 클릭하면 pull이 가능했다.<br> 
