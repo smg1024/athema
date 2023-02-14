@@ -2,6 +2,7 @@ package com.athema.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +106,6 @@ public class ContactController {
 	
 	@RequestMapping("/board_del_impl")
 	public String board_del_impl(Model model, Integer board_code) {
-		
 		try {
 			bservice.remove(board_code);
 		} catch (Exception e) {
@@ -113,7 +113,18 @@ public class ContactController {
 		}
 		return "redirect:contact";
 	}
-
+	
+	@RequestMapping("/comment_del_impl")
+	public String board_del_impl(HttpServletRequest request, Model model, Integer board_code) {
+		
+		try {
+			bservice.remove(board_code);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String referer = request.getHeader("Referer");
+		return "redirect:"+referer;
+	}
 	
 	@RequestMapping("/boardview")
 	public String boardview(Model model, Integer board_code) {

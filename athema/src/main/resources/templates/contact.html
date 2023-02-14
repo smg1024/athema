@@ -18,7 +18,7 @@ $(document).ready(function(){
 <div class="home">
 	<div class="home_background parallax-window" data-parallax="scroll" th:data-image-src="@{/images/contact_background.jpg}"></div>
 	<div class="home_content">
-		<div class="home_title">CS Center</div>
+		<div class="home_title">CS center</div>
 	</div>
 </div>
 
@@ -32,7 +32,7 @@ $(document).ready(function(){
 				<!-- Contact Form -->
 				<div class="contact_form_container" id="faq_container">
 					<div class="faq_header">
-						<div class="faq_title">FAQ<span style="font-size: 0.5em; font-weight: normal;">&nbsp;&nbsp;자주 묻는 질문</span></div><br>
+						<div class="faq_title">Q&A<span style="font-size: 0.6em; font-weight: normal;">&nbsp;&nbsp;&nbsp;문의 게시판</span></div><br>
 					</div>
 					<div class="faq_table">
 						<div class="faq_table_header">
@@ -42,7 +42,6 @@ $(document).ready(function(){
 							<p class="faq_table_date">날짜</p>
 						</div>
 						<div class="faq_body_box">
-							<!-- JS Active로 접었다 폈다 기능 들어갈 예정 -->
 							<div class="faq_table_body">
 								<div class="faq_table_body_list" th:each="board:${boardlist}">
 									<p class="faq_table_category faq_content_category" th:text="${board.board_cate}"></p>
@@ -53,7 +52,9 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
-					<button id="board_post" onclick="board_post()">글 등록</button>
+					<div class="button_parent">
+						<button id="board_post" onclick="board_post()">글 등록</button>
+					</div>
 				</div>
 			</div>
 		</div>

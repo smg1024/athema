@@ -52,4 +52,8 @@ public class BoardService implements AthemaService<Integer, BoardDTO>{
 	public void comment(BoardDTO v) throws Exception {
 		mapper.comment(v);
 	}
+	
+	public void removeComment(Integer k) throws Exception {
+		mapper.delcomment(k);
+	}
 }

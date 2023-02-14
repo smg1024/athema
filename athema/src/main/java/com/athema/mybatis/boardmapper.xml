@@ -32,8 +32,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getcomments" parameterType="Integer" resultType="BoardDTO">
-		SELECT b.board_content, m.mem_nick, b.board_rdate FROM board b INNER JOIN member m ON b.mem_code=m.mem_code WHERE up_board_code=${param1} ORDER BY board_rdate
+		SELECT b.board_code, b.board_content, b.mem_code, m.mem_nick, b.board_rdate FROM board b INNER JOIN member m ON b.mem_code=m.mem_code WHERE up_board_code=${param1} ORDER BY board_rdate
 	</select>
+	
+	<delete id="delcomment" parameterType="Integer">
+		DELETE FROM board b INNER JOIN member m ON b.mem_code=m.mem_code WHERE board_code=${param1}
+	</delete>
 	
 	<insert id="comment" parameterType="BoardDTO">
 		INSERT INTO board(mem_code, board_content, up_board_code) 

@@ -33,7 +33,7 @@ $(document).ready(function(){
 			<div class="col">
 			
 				<!-- Contact Form  -->
-				<div class="contact_form_container" id="qna_container">
+				<div class="contact_form_container_edit" id="qna_container">
 					<div class="contact_title text-center">1:1 문의 남기기</div>
 					<form action="/board_post_impl" id="contact_form" class="contact_form text-center">
 						<input name="mem_nick" type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="이름" required="required" data-error="이름을 입력하세요." th:value="${session.loginMember.mem_nick}">
