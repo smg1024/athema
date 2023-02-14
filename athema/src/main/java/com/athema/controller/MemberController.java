@@ -1,5 +1,6 @@
 package com.athema.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class MemberController {
 	private PasswordEncoder encoder;
 	
 	@RequestMapping("/loginimpl")
-	public String loginimpl(HttpSession session, String mem_email, String mem_pwd, Model model) {
+	public String loginimpl(HttpServletRequest request, HttpSession session, String mem_email, String mem_pwd, Model model) {
 		MemberDTO member = null;
 		String result = "loginfail";
 		try {
@@ -41,9 +42,10 @@ public class MemberController {
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage()+" : 사용자 정보 조회 실패");
+			model.addAttribute("content", result);
 		}
-		model.addAttribute("content", result);
-		return "main";
+		String referer = request.getHeader("Referer");
+		return "redirect:"+referer;
 	}
 	
 	@RequestMapping("/addmember")
