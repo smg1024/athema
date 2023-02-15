@@ -137,81 +137,83 @@ $(document).ready(function(){
 	
 	// submit 버튼 클릭 > 유효성 검사 시작
 	$('#register_submit').click(function(){
-		confirm("완료하시겠습니까?");
+		var c = confirm("완료하시겠습니까?");
 		
-		// 이름 비어있거나 1글자만 있을 시 알림창 띄우고 focus 이동
-		if($('#mem_name').val() == '' || $('#mem_name').val().length < 2) {
-			alert("2글자 이상 이름을 입력하세요");
-			$('#mem_name').focus();
-			return false;
+		if (c==true) {
+			// 이름 비어있거나 1글자만 있을 시 알림창 띄우고 focus 이동
+			if($('#mem_name').val() == '' || $('#mem_name').val().length < 2) {
+				alert("2글자 이상 이름을 입력하세요");
+				$('#mem_name').focus();
+				return false;
+			}
+			
+			// 중복확인 안 했으면 알림창 띄우고 focus 이동
+			if ($('#email_hiddenChk').val() == 'N') {
+				alert("이메일 중복검사를 해주세요");
+				$('#mem_email').focus();
+				return false;
+			} 
+			
+			// 비밀번호 비어있을 시 알림창 띄우고 focus 이동
+			if ($('#mem_pwd').val() == '') {
+				alert("비밀번호를 입력하세요");
+				$('#mem_pwd').focus();
+				return false;
+			}
+			
+			// 비밀번호 확인 비어있을 시 알림창 띄우고 focus 이동
+			if ($('#mem_pwd_confirm').val() == '') {
+				alert("비밀번호를 확인하세요");
+				$('#mem_pwd_confirm').focus();
+				return false;
+			}
+			
+			// 비밀번호 형식 잘못되면 알림창 띄우고 focus 이동
+			if ($('#span_pwd').text() != '') {
+				alert("비밀번호 형식이 잘못되었습니다");
+				$('#mem_pwd').focus();
+				return false;
+			}
+			
+			// 비밀번호 확인과 비밀번호가 맞지 않으면 알림창 띄우고 focus 이동
+			if (($('#mem_pwd').val()) != ($('#mem_pwd_confirm').val())) {
+				alert("비밀번호를 확인하세요");
+				$('#mem_pwd_confirm').focus();
+				return false;
+			}
+			
+			// 닉네임 비어있을 시 알림창 띄우고 focus 이동
+			if ($('#mem_nick').val() == '') {
+				alert("닉네임을 입력하세요");
+				$('#mem_nick').focus();
+				return false;
+			}
+			
+			// 전화번호 11자 미만일 시 알림창 띄우고 focus 이동
+			if ($('#mem_hp').val().length < 11) {
+				alert("올바른 전화번호를 입력하세요");
+				$('#mem_hp').focus();
+				return false;
+			}
+			
+			// 필수항목 체크 안되어있으면 알림창 띄우고 focus 이동
+			if ($('.chkAll').is(":checked") == false) {
+				alert("개인정보 수집 동의가 필요합니다");
+				$('.chkAll').focus();
+				return false;
+			}		
+			
+			/*date 형식 YYYYMMDD로 변경해주기*/
+	// 		let datetmp = $('#mem_birth').val().replace(/-/g, '');
+	
+			// 유효성검사 전체 항목 통과시 form > submit > addmember로 이동 (MemberController)
+			$('#register_form').attr({
+				method:'post',
+				action:'[[@{/member/addmember}]]'
+			});
+			$('#register_form').submit(); 
+			alert("가입이 완료되었습니다.");
 		}
-		
-		// 중복확인 안 했으면 알림창 띄우고 focus 이동
-		if ($('#email_hiddenChk').val() == 'N') {
-			alert("이메일 중복검사를 해주세요");
-			$('#mem_email').focus();
-			return false;
-		} 
-		
-		// 비밀번호 비어있을 시 알림창 띄우고 focus 이동
-		if ($('#mem_pwd').val() == '') {
-			alert("비밀번호를 입력하세요");
-			$('#mem_pwd').focus();
-			return false;
-		}
-		
-		// 비밀번호 확인 비어있을 시 알림창 띄우고 focus 이동
-		if ($('#mem_pwd_confirm').val() == '') {
-			alert("비밀번호를 확인하세요");
-			$('#mem_pwd_confirm').focus();
-			return false;
-		}
-		
-		// 비밀번호 형식 잘못되면 알림창 띄우고 focus 이동
-		if ($('#span_pwd').text() != '') {
-			alert("비밀번호 형식이 잘못되었습니다");
-			$('#mem_pwd').focus();
-			return false;
-		}
-		
-		// 비밀번호 확인과 비밀번호가 맞지 않으면 알림창 띄우고 focus 이동
-		if (($('#mem_pwd').val()) != ($('#mem_pwd_confirm').val())) {
-			alert("비밀번호를 확인하세요");
-			$('#mem_pwd_confirm').focus();
-			return false;
-		}
-		
-		// 닉네임 비어있을 시 알림창 띄우고 focus 이동
-		if ($('#mem_nick').val() == '') {
-			alert("닉네임을 입력하세요");
-			$('#mem_nick').focus();
-			return false;
-		}
-		
-		// 전화번호 11자 미만일 시 알림창 띄우고 focus 이동
-		if ($('#mem_hp').val().length < 11) {
-			alert("올바른 전화번호를 입력하세요");
-			$('#mem_hp').focus();
-			return false;
-		}
-		
-		// 필수항목 체크 안되어있으면 알림창 띄우고 focus 이동
-		if ($('.chkAll').is(":checked") == false) {
-			alert("개인정보 수집 동의가 필요합니다");
-			$('.chkAll').focus();
-			return false;
-		}		
-		
-		/*date 형식 YYYYMMDD로 변경해주기*/
-// 		let datetmp = $('#mem_birth').val().replace(/-/g, '');
-
-		// 유효성검사 전체 항목 통과시 form > submit > addmember로 이동 (MemberController)
-		$('#register_form').attr({
-			method:'post',
-			action:'[[@{/member/addmember}]]'
-		});
-		$('#register_form').submit(); 
-		alert("가입이 완료되었습니다.");
 	});
 });
 	
@@ -221,8 +223,8 @@ $(document).ready(function(){
 
 <!-- login_home -->
 
-<div class="register_home">
-	<div class="register_content">
+<div class="register_home" style="margin-bottom:250px;">
+	<div class="register_content" >
 		<div class="register_title">회원가입</div>
 		<div class="title_desc">나를 위한 여행테마 추천, Athema</div>
 		<div class="sns_content">
@@ -322,30 +324,5 @@ $(document).ready(function(){
 		        <a href="#" id="register_submit">가입하기</a>
 			</div>
 		</form>
-	</div>
-</div>
-
-<!-- login_add -->
-
-<div class="login_add">
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<div class="login_add_container">
-					<div class="login_add_background"
-						style="background-image: url(images/add.jpg)"></div>
-					<div class="login_add_content">
-						<h1 class="login_add_title">thailand</h1>
-						<div class="login_add_subtitle">
-							From <span>$999</span>
-						</div>
-						<div class="button login_add_button">
-							<div class="button_bcg"></div>
-							<a href="#">explore now<span></span><span></span><span></span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
