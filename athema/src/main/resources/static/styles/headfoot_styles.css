@@ -974,3 +974,46 @@
   padding-right: 15px;
   padding-left: 15px;
 }
+
+/* 맨 위로 가기 버튼 */
+
+#wrap{
+  margin:0 auto;
+  width:300px;
+}
+
+#back-to-top {
+  display: inline-block;
+  background-color: #6f42c1;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border-radius: 30px;
+  position: fixed;
+  bottom: 110px;
+  right: 75px;
+  transition: background-color .3s, 
+    opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+#back-to-top::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 30px;
+  color: #fff;
+}
+#back-to-top:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#back-to-top:active {
+  background-color: #555;
+}
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}

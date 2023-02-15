@@ -25,9 +25,22 @@
 1. 1600px
 ************/
 
+@media only screen and (max-width: 1700px)
+{
+	#back-to-top {
+		right:70px;
+	}
+}
+
+/************
+1. 1600px
+************/
+
 @media only screen and (max-width: 1600px)
 {
-	
+	#back-to-top {
+		right:67px;
+	}
 }
 
 /************
@@ -45,7 +58,9 @@
 
 @media only screen and (max-width: 1380px)
 {
-	
+	#back-to-top {
+		right:60px;
+	}
 }
 
 /************
@@ -54,7 +69,9 @@
 
 @media only screen and (max-width: 1280px)
 {
-
+	#back-to-top {
+		right:57px;
+	}
 }
 
 /************
@@ -85,6 +102,9 @@
 	.footer_blog_content
 	{
 		padding-left: 74px;
+	}
+	#back-to-top {
+		right:50px;
 	}
 }
 
@@ -213,6 +233,9 @@
 	{
 		display: block;
 	}
+	#back-to-top {
+		right:43px;
+	}
 }
 
 /************
@@ -230,7 +253,9 @@
 
 @media only screen and (max-width: 880px)
 {
-	
+	#back-to-top {
+		right:37px;
+	}
 }
 
 /************
@@ -239,7 +264,9 @@
 
 @media only screen and (max-width: 768px)
 {
-	
+	#back-to-top {
+		right:40px;
+	}
 }
 
 /************
@@ -364,6 +391,9 @@
 	.footer_about_text
 	{
 		font-size: 13px;
+	}
+	#back-to-top {
+		right:32px;
 	}
 }
 

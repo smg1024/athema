@@ -103,6 +103,19 @@
 			$('.close').click(function(){
 				document.getElementById('addAnswer').remove();
 			});
+			
+			$('#back-to-top').on('click',function(e){
+			      e.preventDefault();
+			      $('html,body').animate({scrollTop:0},600);
+			  });
+			  
+			  $(window).scroll(function() {
+			    if ($(document).scrollTop() > 100) {
+			      $('#back-to-top').addClass('show');
+			    } else {
+			      $('#back-to-top').removeClass('show');
+			    }
+			  });
 	});
 	
 </script>
@@ -210,6 +223,11 @@
 	<section>
 		<aside id="content_aside" th:include="${content} ? ${content} : content"></aside>
 	</section>
+	
+	<div id="wrap">
+	<a id="back-to-top"></a>
+	<i class="fa-sharp fa-solid fa-arrow-up"></i>
+	</div>
 	
 	<a id="chatbot" href="#" data-toggle="modal" data-target="#modal_chatbot" class="img" style="position: fixed; right: 3%; bottom: 5%; z-index: 10; width:70px; height:70px;"><img th:src="@{/images/chatbot.png}" style="filter: drop-shadow(2px 2px 2px gray); position:fixed; right:3%; bottom:3%; width:70px; z-index:10;"></a>
 	
