@@ -171,18 +171,29 @@ public class MypageController {
 	@RequestMapping("/travel_past")
 	public String travel_past(Model model, int mem_code) {	
 		List<OrderDTO> ord = null;
+		List<ReviewDTO> rev=null;
 		
 		try {
 			ord=oservice.getTravelPast(mem_code);
 			System.out.println("성공");
 			System.out.println(ord);
 			model.addAttribute("ord", ord);
+			
+			rev=rservice.getReviewByMem(mem_code);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("실패");
 		}
-		 
+		List<Integer> code_list=new ArrayList<Integer>();
+		for(ReviewDTO review : rev) {
+			code_list.add(review.getItem_code());
+			}
+		System.out.println(rev);
+		System.out.println(code_list);
+		
+		model.addAttribute("code_list", code_list);
+		model.addAttribute("rev", rev);
 		model.addAttribute("content", dir+"mypage");	
 		model.addAttribute("mypagecenter",dir+"travel_past");
 		return "main";
@@ -191,7 +202,7 @@ public class MypageController {
 	
 	// 리뷰 등록
 		@RequestMapping("/insert")
-		public String insert(Model model, ReviewDTO review, MemberDTO mem) {
+		public String insert(Model model, ReviewDTO review) {
 			
 			// 사진 파일 등록
 			String file1 = review.getImg().getOriginalFilename();
@@ -209,7 +220,7 @@ public class MypageController {
 			}
 			model.addAttribute("content", dir+"mypage");	
 			model.addAttribute("mypagecenter",dir+"travel_past");
-			return "redirect:travel_past?mem_email="+mem.getMem_email();
+			return "redirect:travel_past?mem_code="+review.getMem_code();
 		}
 	
 	// 작성한 리뷰 보기

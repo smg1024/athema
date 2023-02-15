@@ -29,6 +29,7 @@ public class OrderDTO {
 	private int used;
 	
 	// 마이페이지 여행 보기 위해 필요
+	private int item_code;
 	private String item_name;
 	private String item_loc;
 	private int cnt;

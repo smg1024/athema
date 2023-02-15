@@ -16,7 +16,7 @@ class InsertTests {
 
 	@Test
 	void contextLoads() {								
-		ReviewDTO review = new ReviewDTO(4, 1, 1, "aa", "a", 1, null, null);
+		ReviewDTO review = new ReviewDTO(0, 3, 21, "test", "test~~~", 2, null, null);
 		try {
 			service.register(review);
 			System.out.println("[OK]");

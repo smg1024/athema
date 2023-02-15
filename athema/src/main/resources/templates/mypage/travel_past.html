@@ -122,7 +122,6 @@ h3 {
 
 <link rel="stylesheet" type="text/css" href="/styles/write_review.css">
 
-
 <div class="past">
    <div class="past_main">
    <h3>지난 여행</h3>
@@ -153,17 +152,9 @@ h3 {
 	            <div id="clear"></div>
 	      </div>
 	     	
-	     <script>/* 리뷰 이미 있으면 리뷰 쓰는 버튼 안 보이게*/ 
-	     var value = "${review.item_code}";
-	       
-      	  if( value == "" || value == null || value == undefined || ( value != null && typeof value == "object" && !Object.keys(value).length ) ){
-      		  $("#details").show();
-      	  }else{
-      		  $("#details").hide();
-      	  }
-	     </script>
-	     
-	     	<details>
+	     	  
+		   
+	     	<details th:if="${!#lists.contains(code_list, order.item_code)}">
           <summary id="summary">리뷰 쓰기</summary>
             <div class="w_r_detail">   
             
@@ -204,16 +195,13 @@ h3 {
 					     <div class="file-list"></div>
 	    			</div>  
 	    		</div> 
-				<div th:each="review:${reviews}">
-                  <input name="mem_code" id="mem_code" type="hidden" th:value="${review.mem_code}">
-                  <input name="item_code" id="item_code" type="hidden" th:value="${review.item_code}">
-                  <input name="review_code" id="review_code" type="hidden" th:value="0">
-                </div>  
-               </div>
-            </div>
+			 </div>
+			 </div>
+                  <input name="mem_code" id="mem_code" type="hidden" th:value="${order.mem_code}">
+                  <input name="item_code" id="item_code" type="hidden" th:value="${order.item_code}"> 
+				
             <a id="w_r_register">등록</a>
             </form>
-            
             </div>
       </details>
 	     	
@@ -223,11 +211,9 @@ h3 {
 	</div>
 </div>
 
-     
- 
-   
-   <script>
-	$(document).ready(function(){
+ <script>
+ $(document).ready(function(){
+		
 	   var hiddens = document.getElementsByClassName("past_hidden");
 	   var open_btns = document.getElementsByClassName("view_detail");
 	   var close_btns = document.getElementsByClassName("close_detail");
@@ -254,19 +240,24 @@ h3 {
 	     funcs[j]();
 	}
 	});
+ 
 	
 	// 리뷰 등록
-	   $('#w_r_register').click(function() {
-	      var c=confirm('등록하시겠습니까?');
-	      
-	      if(c==true) {
-	         $('#write_r_form').attr({
-	            'method': 'post',
-	            'action': '[[@{/mypage/insert}]]'
-	         });
-	         $('#write_r_form').submit();
-	         alert("정상적으로 등록되었습니다.");
-	    }
-	   });
+ $('#w_r_register').click(function() {
+    var c=confirm('등록하시겠습니까?');
+    
+    if(c==true) {
+       $('#write_r_form').attr({
+    	  'enctype':'multipart/form-data',
+          'method': 'post',
+          'action': '[[@{/mypage/insert}]]'
+       });
+       $('#write_r_form').submit();
+       alert("정상적으로 등록되었습니다.");
+  }
+ });	
 
-</script>
+
+	
+ </script>
+   

@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	<!-- 다녀온 여행 -->
 	<select id="getTravelPast" resultType="OrderDTO">
-		SELECT DISTINCT(o.order_code), m.mem_name, i.item_name, i.item_loc, o.tot_price, o.book_name, o.book_hp, o.book_email, o.order_date,ord.exp_date, ord.used, ord.used_date
+		SELECT DISTINCT(o.order_code), m.mem_name, m.mem_code, i.item_code, i.item_name, i.item_loc, o.tot_price, o.book_name, o.book_hp, o.book_email, o.order_date,ord.exp_date, ord.used, ord.used_date
 		FROM `order` o JOIN `member` m ON m.mem_code=o.mem_code
 		JOIN ord_detail ord ON o.order_code = ord.order_code
 		JOIN `option` opt ON ord.opt_code = opt.opt_code
