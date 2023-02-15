@@ -215,9 +215,10 @@ function checkclickall()  {
 					<span id="order_item_exp" th:text="'유효기간 '+${#dates.format(day.exp_day, 'yyyy-MM-dd')}"></span>
 
 					<div id="order_item_option" th:each="o:${olist}">							<!-- oStat.index->	현재 반복 인덱스 (0부터 시작) -->
-						<div id="order_item_option_info"><span id="opt_code" th:text="${o.opt_code}+'.'+${o.opt_name}"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="cnt" th:text="'수량 : '+${cnt.get(oStat.index)}"></span>
-							</div>
-						<div class ="price" id="order_item_option_price" th:text="${o.item_price}*${cnt.get(oStat.index)}"></div>
+						<div id="orda" th:unless="${cnt.get(oStat.index)} == '0'">
+							<div id="order_item_option_info"><span id="opt_code" th:text="${o.opt_code}+'.'+${o.opt_name}"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="cnt" th:text="'수량 : '+${cnt.get(oStat.index)}"></span></div>
+							<div class ="price" id="order_item_option_price" th:text="${o.item_price}*${cnt.get(oStat.index)}"></div>
+						</div>
 						<input type="hidden" name="exp_days" id="exp_days" th:value="${item.exp_days}">
 						<input type="hidden" name="detail_code" id="detail_code" value="0">
 						<input type="hidden" name="cnt" id="cnt" th:value="${cnt.get(oStat.index)}">

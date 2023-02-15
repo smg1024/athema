@@ -137,7 +137,7 @@ me
 	#order_item_option{
 	background: #dcdcdc;
 	}
-	#order_item_option, #order_item_price, #order_pay_div, #order_terms_div{
+	 #order_item_price, #order_pay_div, #order_terms_div, #orda{
 	display:flex;
 	justify-content:space-between;
 	}
