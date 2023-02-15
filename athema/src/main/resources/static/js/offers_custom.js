@@ -217,9 +217,21 @@ $(document).ready(function()
 				{
 					$(this).removeClass('active');
 					$(panels[clickedIndex]).removeClass('active');
+					var currentHeight = $('.offers').height();
+					if(currentHeight<1100)
+					{
+						var newHeight = currentHeight - 400;
+						$('.offers').height(newHeight);
+					}
 				}else{
 					$(this).addClass('active');
 					$(panels[clickedIndex]).addClass('active');
+					var currentHeight = $('.offers').height();
+					if(currentHeight<1100)
+					{
+						var newHeight = currentHeight + 400;
+						$('.offers').height(newHeight);
+					}
 				}
 				
 				if($('.search_panel').hasClass('active')!=true)

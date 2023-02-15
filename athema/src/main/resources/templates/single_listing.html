@@ -394,21 +394,23 @@ $(document).ready(function(){
 								</div>
 								<div class="hotel_location" th:text=${item.item_loc}></div>
 							</div>
-							<div style="margin:auto;" id="select_option">
-									<legend>옵션 선택</legend>
+							<div style="margin:0 20px auto 40px;" id="select_option">
+									<h3>옵션 선택</h3><hr>
 									<select id="add_opt_code">
 										<th:block th:each="opt:${options}">
 										<option class="selected_option" th:value="${opt.opt_code}" th:text="${opt.opt_name}"></option>
 										</th:block>
 									</select>&nbsp;
 									인원: <input type="number" id="add_quantity" value="0" min="0"> 명<br>
-									가격: <span id="opt_price"></span>원&nbsp;<button id="add_option" style="float:right">담기</button>
+									<div style="margin-top:7px;">
+										가격: <b><span id="opt_price"></span>원</b>&nbsp;<button id="add_option" class="button order_button" style="float:right">담기</button>
+									</div>
 							</div>
-							<div style="margin:auto;" id="ord_option">
+							<div style="margin:0 auto auto 20px;" id="ord_option">
 								<form class="option_submit_form">
 									<input th:if="${session.loginMember != null}" type="hidden" name="mem_code" th:value="${session.loginMember.mem_code}">
 									<input type="hidden" name="item_code" th:value="${item.item_code}">
-									<legend>담은 상품</legend>
+									<h3>담은 상품&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3><hr>
 									<th:block th:each="opt:${options}">
 									<div class="order_options">
 										<span th:id="opt_code_+${opt.opt_code}" th:text="${opt.opt_name}+': '"></span><span th:id="opt_quantity_+${opt.opt_code}">0</span>
@@ -421,7 +423,7 @@ $(document).ready(function(){
 									<input type="hidden" name="opt_quantities" id="opt_quantities">
 									<span><b>총 가격: <span id="tot_price"></span>원</b></span>
 								</form>
-								<button class="button option_submit_button">예약</button>
+								<button class="button option_submit_button order_button" style="float:right">예약</button>
 							</div>
 						</div>
 
@@ -524,18 +526,17 @@ $(document).ready(function(){
 					<div class="box">
 						<div class="tab" >
 							<div class="rv_box" th:each="review:${reviews}"> 
-								<div class="rv_title" th:text="${review.title}">가족여행 다녀왔어요</div>
-								<div class="nik" th:text="${review.mem_nick}">ppororo89</div>
+								<div class="rv_title" th:text="${review.title}"></div>
+								<div class="nik" th:text="${review.mem_nick}"></div>
 								<div class="date"><time th:text="${#dates.format(review.review_date,'yyyy-MM-dd')}"></time></div>
-								<div class="r_rating" th:text="${review.score}">4.5</div>
+								<div class="r_rating" th:text="${review.score}"></div>
 								<ul>
 									<li id="photo"> 
 									<img th:src="@{/images/trend_2.png}" alt="리뷰사진" >
 												<!-- th:src="${review.review_img}" -->
 									</li>
 									<li id="text">
-									<span th:text="${review.content}">가족들과 경주여행 즐겁고 행복한 시간 어쩌구였어요
-									만족스러운 여행이고 아주 장관이고 절경이고 신이주신 선물이네요</span> 
+									<span th:text="${review.content}"></span> 
 									</li>
 								</ul>
 							</div>
@@ -565,10 +566,10 @@ $(document).ready(function(){
 								<div class="mem_img"><img class="profile" th:src="@{/images/profile_icon.png}"></div>
 								<div class="md_top">
 									<div class="md_rv_title" th:text="${review.title}"></div>
-									<div class="md_nik" th:text="${review.mem_nick}">Eddy777</div>
-									<div class="md_date"><time th:text="${#dates.format(review.review_date,'yyyy-MM-dd')}"></time>2021-04-29</div>
-									<div class="md_r_rating" th:text="${review.score}">3.5</div>
-									<div id="md_text"><span th:text="${review.content}"></span>내용 어쩌구</div>
+									<div class="md_nik" th:text="${review.mem_nick}"></div>
+									<div class="md_date"><time th:text="${#dates.format(review.review_date,'yyyy-MM-dd')}"></time></div>
+									<div class="md_r_rating" th:text="${review.score}"></div>
+									<div id="md_text"><span th:text="${review.content}"></span></div>
 									<img class="md_r_img" th:src="@{/images/trend_2.png}" alt="리뷰사진" ><!-- th:src="${review.review_img}" -->
 								</div>
 							</div>

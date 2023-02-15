@@ -310,7 +310,7 @@ $(document).ready(function(){
 											<li class="offers_icons_item"><img src="images/sailboat.png" alt=""></li>
 										</ul>
 									</div>
-									<div class="button book_button"><a href="#">예약하기<span></span><span></span><span></span></a></div>
+									<div class="button book_button"><a th:href="@{/single_listing(item_code=${list.item_code})}">예약하기<span></span><span></span><span></span></a></div>
 									<div class="offer_reviews">
 										<div class="offer_reviews_content">
 											<div class="offer_reviews_subtitle" th:text="'후기'"></div>
