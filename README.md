@@ -44,7 +44,25 @@
 
 ## 6. 역할 분담
 
-## 7. 트러블슈팅
+## 7. 화면 구성
+- 메인 화면
+![20230216_033833](https://user-images.githubusercontent.com/58433759/219122341-0c14f358-32c5-4f3d-87b2-17f9022f11f3.gif)
+- 테마 혹은 지역을 선택해서 여행 상품을 검색할 수 있다.
+<br><br>
+
+- 챗봇 화면
+![20230216_033253](https://user-images.githubusercontent.com/58433759/219121034-33351554-edf3-49cb-80d2-c6a5f3c2f4e0.gif)
+- Naver Cloud Platform Chatbot 서비스를 이용한 실시간 챗봇 문의 기능이다.<br>
+- 관리자는 질문을 NCP 서버에 추가하고, 사용자는 추가한 질문에 맞게 질문을 입력하면 AI가 답변을 보내준다.<br>
+<br><br>
+- 상품 상세 화면
+![20230216_034540](https://user-images.githubusercontent.com/58433759/219123796-aebe5f63-71fd-4862-810f-6710843dc0f6.gif)
+- 상품의 기본 정보와 사진, 다른 구매자의 리뷰를 볼 수 있다.
+- 카카오 API를 사용하여 db에 있는 위도 & 경도 데이터를 가져와서 해당 위치의 지도 화면에 보여준다.
+
+<br><br>
+
+## 8. 트러블슈팅
 |이름|문제|해결 방법|
 |:--:|--|--|
 |김상민|① mybatis mapper에서 하나 이상의 parameter 종류를 사용할 때 문제가 발생함.<br> ② 스크립트 영역에서 thymeleaf 값을 불러올때 null은 불러올 수 없는 문제가 발생함.<br> ③ thymeleaf를 이용해서 session에 대한 정보 유무를 판단할 때 페이지 parsing을 진행하지 못한다는 문제가 발생함. |① param# 방식으로 넣어서 문제를 해결함.<br>② null check를 설정해서  해결함.<br> ③ session의 null 여부를 확인한 후 삼항연산자를 활용하는 방식으로 해결함.
