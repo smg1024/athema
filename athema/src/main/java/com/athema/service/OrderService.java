@@ -44,6 +44,11 @@ public class OrderService implements AthemaService<Integer, OrderDTO>{
 		return mapper.selectall();
 	}
 	
+	//주문 상세에 넣을 order_code
+	public OrderDTO onum(Integer k) throws Exception{
+		return mapper.onum(k);
+	}
+	
 	// 예정된 여행 
 	public List<OrderDTO> getTravelPlan(int mem_code) throws Exception {
 		return mapper.getTravelPlan(mem_code);
