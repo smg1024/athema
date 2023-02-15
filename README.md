@@ -2,7 +2,7 @@
 멀티캠퍼스 웹서비스 백엔드 개발 4회차 팀 프로젝트 by 3조 포비와 친구들
 
 ## 1. 프로젝트 주제
-- Naver Cloud Platform과 API(지도, 결제, SNS 로그인, 챗봇), 웹소켓을 활용한 테마 기반 여행 예약 웹 서비스 개발 
+- Naver Cloud Platform과 API(지도, 결제, SNS 로그인, 챗봇) 및 웹소켓을 활용한 테마 기반 여행 예약 웹 서비스 개발 
 
 ![image](https://user-images.githubusercontent.com/58433759/218383511-64587501-f643-410e-b3c8-34dcac56ae3f.png)
 
