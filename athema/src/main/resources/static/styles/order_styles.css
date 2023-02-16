@@ -258,6 +258,7 @@ me
             cursor: pointer;
         }
        .modal_table{
+       		
        		text-align: center;
        		border: 2px solid #dcdcdc;
        		border-collapse: collapse;
@@ -267,6 +268,7 @@ me
        }
       th, td{
        	border-right: 1px solid #dcdcdc;
+       	padding:10px;
        }
        .close-ok{
        float:right;

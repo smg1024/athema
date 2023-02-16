@@ -54,7 +54,8 @@ public class MypageController {
 	
 	@RequestMapping("")
 	public String mypage(Model model) {
-		model.addAttribute("content", dir+"mypage");	
+		model.addAttribute("content", dir+"mypage");
+		model.addAttribute("mypageleft",dir+ "mypageleft");
 		model.addAttribute("mypagecenter",dir+ "mypagecenter");
 		return "main";
 	}
@@ -71,7 +72,8 @@ public class MypageController {
 		}
 		model.addAttribute("obj",member);
 		System.out.println(member);
-		model.addAttribute("content", dir+"mypage");	
+		model.addAttribute("content", dir+"mypage");
+		model.addAttribute("mypageleft",dir+ "userpageleft");
 		model.addAttribute("mypagecenter",dir+"userpage");
 		return "main";
 	}
@@ -101,7 +103,8 @@ public class MypageController {
 		}
 		System.out.println("수정된 값"+member);
 		model.addAttribute("obj",member);
-		model.addAttribute("content", dir+"mypage");	
+		model.addAttribute("content", dir+"mypage");
+		model.addAttribute("mypageleft",dir+ "userpageleft");
 		model.addAttribute("mypagecenter",dir+"userpage");
 		return "redirect:userpage?mem_email="+member.getMem_email();
 	}
@@ -141,7 +144,8 @@ public class MypageController {
 			e.printStackTrace();
 			System.out.println("실패");
 		}
-		model.addAttribute("content", dir+"mypage");	
+		model.addAttribute("content", dir+"mypage");
+		model.addAttribute("mypageleft",dir+ "travelleft");
 		model.addAttribute("mypagecenter",dir+"travel_list");
 		return "main";
 	}
@@ -162,7 +166,8 @@ public class MypageController {
 			System.out.println("실패");
 		}
 		
-		model.addAttribute("content", dir+"mypage");	
+		model.addAttribute("content", dir+"mypage");
+		model.addAttribute("mypageleft",dir+ "tplanleft");
 		model.addAttribute("mypagecenter",dir+"travel_plan");
 		return "main";
 	}
@@ -194,7 +199,8 @@ public class MypageController {
 		
 		model.addAttribute("code_list", code_list);
 		model.addAttribute("rev", rev);
-		model.addAttribute("content", dir+"mypage");	
+		model.addAttribute("content", dir+"mypage");
+		model.addAttribute("mypageleft",dir+ "tpastleft");
 		model.addAttribute("mypagecenter",dir+"travel_past");
 		return "main";
 	}
@@ -218,7 +224,8 @@ public class MypageController {
 				e.printStackTrace();
 				System.out.println("등록 실패");
 			}
-			model.addAttribute("content", dir+"mypage");	
+			model.addAttribute("content", dir+"mypage");
+			model.addAttribute("mypageleft",dir+ "tpastleft");
 			model.addAttribute("mypagecenter",dir+"travel_past");
 			return "redirect:travel_past?mem_code="+review.getMem_code();
 		}
@@ -239,7 +246,8 @@ public class MypageController {
 			System.out.println("실패");
 		}
 		
-		model.addAttribute("content", dir+"mypage");	
+		model.addAttribute("content", dir+"mypage");
+		model.addAttribute("mypageleft",dir+ "reviewpageleft");
 		model.addAttribute("mypagecenter",dir+"myreview");
 		
 		return "main";
@@ -261,7 +269,8 @@ public class MypageController {
 			e.printStackTrace();
 			System.out.println("실패");
 		}
-		model.addAttribute("content", dir+"mypage");	
+		model.addAttribute("content", dir+"mypage");
+		model.addAttribute("mypageleft",dir+ "wishleft");
 		model.addAttribute("mypagecenter",dir+"mywishlist");
 		return "main";
 	}

@@ -14,7 +14,7 @@
 
 <script th:inline="javascript">
 $(document).ready(function() {
-	//상품 총 금액 구하기
+	//상품 총 금액 구하기 jQuery
 	let totalPrice=0;
 	$('.price').each(function(){
 		const price = $(this).text();
@@ -117,38 +117,13 @@ $(document).ready(function() {
 	    	$("#order2_chk").prop("checked",false);
 	    }
 	    
-		});
+	});
 	$(".order_button").click(function() {
 	requestPay();
 	
 	});
 });
-function checkclickall()  {
-	  const checkboxes 
-	    = document.querySelectorAll('input[name="order_terms_box"]');
-	  const checked 
-	    = document.querySelectorAll('input[name="order_terms_box"]:checked');
-	  const clickall = document.querySelector('input[name="order_terms_boxall"]');
-	  const target = document.getElementById('input[name="order_button"]');
-	  
-	  if(checkboxes.length === checked.length)  {
-		 clickall.checked = true;
-		 $(target).prop("disabled", false);//활성 jQuery
-	  }else {
-		 clickall.checked = false;
-		 $(target).prop("disabled", true);//비활성
-	  }
 
-	}
-	
-//약관안내 체크박스
-	function clickall(clickall){
-		const checkboxes = document.getElementsByName('order_terms_box');
-	  
-	  checkboxes.forEach((checkbox) => {
-	    checkbox.checked = clickall.checked;
-	  });
-	};
 
 	function requestPay(data) {
 		var IMP = window.IMP; // 생략가능

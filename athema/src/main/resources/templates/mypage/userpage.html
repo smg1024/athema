@@ -1,23 +1,6 @@
 <link rel="stylesheet" type="text/css" th:href="@{/styles/userpage_styles.css}">
 <script th:inline="javascript">
 $(document).ready(function(){
-// 	이름 입력해야만 다른 input창에 focus 가능하게 함
-/* 	$('#mem_name').blur(function(){
-		var name = $(this).val();
-		if (name == '') {
-			$(this).focus();
-			$('#span_name').text("이름을 입력하세요");
-		} else {
-			한글, 영문자만 입력 가능하도록 정규표현식 작성
-			var reg = /[0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
-			if (reg.test(name)) {
-			허용된 문자 이외의 글자 들어오면 blur시 공백으로 replace'
-				$('#mem_name').val(name.replace(reg,''));
-				$(this).focus();
-			}
-			$('#span_name').text('');			
-		}
-	}); */
 	// 비밀번호 : 정규표현식 활용, keyup 이벤트 > span으로 문자 띄우기
 	$('#mem_pwd').keyup(function(){
 		var pwd = $(this).val();
@@ -59,14 +42,6 @@ $(document).ready(function(){
 	
 	
 	$('#update').click(function(){
-		
-		// 이름 비어있거나 1글자만 있을 시 알림창 띄우고 focus 이동
-		/* if($('#mem_name').val() == '' || $('#mem_name').val().length < 2) {
-			alert("2글자 이상 이름을 입력하세요");
-			$('#mem_name').focus();
-			return false;
-		} */
-		
 		// 비밀번호는 존재하나 비밀번호 확인 비어있을 시 알림창 띄우고 focus 이동
 		if ($('#mem_pwd').val() != '' && $('#mem_pwd_confirm').val() == '') {
 			alert("비밀번호 확인을 입력하세요");
