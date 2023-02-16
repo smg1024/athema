@@ -1,0 +1,62 @@
+<script>
+function board_post(){
+	location.href = '/board_post';
+}
+
+$(document).ready(function(){
+});
+</script>
+<!-- attribute : boardlist -->
+<!-- CONTACT -->
+<link rel="stylesheet" type="text/css" th:href="@{/styles/contact_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/contact_responsive.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+
+<!-- Home -->
+
+<div class="home">
+	<div class="home_background parallax-window" data-parallax="scroll" th:data-image-src="@{/images/contact_background.jpg}"></div>
+	<div class="home_content">
+		<div class="home_title">CS center</div>
+	</div>
+</div>
+
+<!-- Contact -->
+
+<div class="contact_form_section">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+
+				<!-- Contact Form -->
+				<div class="contact_form_container" id="faq_container">
+					<div class="faq_header">
+						<div class="faq_title">Q&A<span style="font-size: 0.6em; font-weight: normal;">&nbsp;&nbsp;&nbsp;문의 게시판</span></div><br>
+					</div>
+					<div class="faq_table">
+						<div class="faq_table_header">
+							<p class="faq_table_category">구분</p>
+							<p class="faq_table_subject">제목</p>
+							<p class="faq_table_author">작성자</p>
+							<p class="faq_table_date">날짜</p>
+						</div>
+						<div class="faq_body_box">
+							<div class="faq_table_body">
+								<div class="faq_table_body_list" th:each="board:${boardlist}">
+									<p class="faq_table_category faq_content_category" th:text="${board.board_cate}"></p>
+									<a class="faq_table_subject faq_content_subject" th:href="@{/boardview(board_code=${board.board_code})}"><p th:text="${board.board_subject}"></p></a>
+									<p class="faq_table_author faq_content_author" th:text="${board.mem_nick}"></p>
+									<p class="faq_table_date faq_content_date" th:text="${#dates.format(board.board_rdate, 'yyyy-MM-dd')}"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="button_parent">
+						<button id="board_post" onclick="board_post()">글 등록</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

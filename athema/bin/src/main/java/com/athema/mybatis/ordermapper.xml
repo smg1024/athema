@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.OrderMapper">
+	<select id="select" parameterType="Integer" resultType="OrderDTO">
+		SELECT * FROM `order` WHERE order_code=#{order_code}
+	</select>
+	<select id="selectall" resultType="OrderDTO">
+		SELECT * FROM `order`
+	</select>
+	<insert id="insert" parameterType="OrderDTO">
+		INSERT INTO `order` VALUES (NULL, #{mem_code}, #{tot_price}, now(),#{pay_code},#{book_name},#{book_hp},#{book_email})
+	</insert>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM `order` WHERE order_code=#{order_code}
+	</delete>
+	<update id="update" parameterType="OrderDTO">
+		UPDATE `order` set book_name=#{book_name}, book_hp=#{book_hp}, book_email=#{book_email} WHERE order_code =#{order_code}
+	</update>
+	
+	<!-- 예정된 여행 -->
+	<select id="getTravelPlan" resultType="OrderDTO">
+		SELECT DISTINCT(o.order_code), m.mem_name, i.item_name, i.item_loc, o.tot_price, o.book_name, o.book_hp, o.book_email, o.order_date,ord.exp_date, ord.used
+		FROM `order` o JOIN `member` m ON m.mem_code=o.mem_code
+		JOIN ord_detail ord ON o.order_code = ord.order_code
+		JOIN `option` opt ON ord.opt_code = opt.opt_code
+		join item i on i.item_code=opt.item_code
+		WHERE (ord.used=0 AND <![CDATA[o.order_date < ord.exp_date]]>)
+		AND o.mem_code = #{mem_code}
+	</select>
+	
+	<!-- 다녀온 여행 -->
+	<select id="getTravelPast" resultType="OrderDTO">
+		SELECT DISTINCT(o.order_code), m.mem_name, m.mem_code, i.item_code, i.item_name, i.item_loc, o.tot_price, o.book_name, o.book_hp, o.book_email, o.order_date,ord.exp_date, ord.used, ord.used_date
+		FROM `order` o JOIN `member` m ON m.mem_code=o.mem_code
+		JOIN ord_detail ord ON o.order_code = ord.order_code
+		JOIN `option` opt ON ord.opt_code = opt.opt_code
+		join item i on i.item_code=opt.item_code
+		WHERE ord.used=1 AND m.mem_code=#{mem_code};
+	</select>
+	
+	<!-- 지난 여행 -->
+	<select id="getTravel" resultType="OrderDTO">
+		SELECT DISTINCT(o.order_code), m.mem_name, i.item_name, i.item_loc, o.tot_price, o.book_name, o.book_hp, o.book_email, o.order_date,ord.exp_date, ord.used, ord.used_date
+		FROM `order` o JOIN `member` m ON m.mem_code=o.mem_code
+		JOIN ord_detail ord ON o.order_code = ord.order_code
+		JOIN `option` opt ON ord.opt_code = opt.opt_code
+		join item i on i.item_code=opt.item_code
+		WHERE (ord.used=1 OR <![CDATA[ord.exp_date < now()]]>)
+		AND m.mem_code=#{mem_code};
+	</select>
+	
+	<select id="onum" parameterType="Integer" resultType="OrderDTO">
+		SELECT order_code FROM `order` WHERE mem_code =#{mem_code} ORDER BY order_code DESC LIMIT 1;
+	</select>
+
+</mapper>

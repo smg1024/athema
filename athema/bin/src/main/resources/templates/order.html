@@ -1,0 +1,342 @@
+<!-- ORDER -->
+<link rel="stylesheet" type="text/css" href="styles/order_styles.css">
+<link rel="stylesheet" type="text/css"
+	href="styles/order_responsive.css">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+
+<!-- jQuery -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+
+<script th:inline="javascript">
+$(document).ready(function() {
+	//상품 총 금액 구하기 jQuery
+	let totalPrice=0;
+	$('.price').each(function(){
+		const price = $(this).text();
+
+		totalPrice += parseInt(price);
+		$('.totalprice').text(totalPrice+'원');
+		$('#tot_price').val(totalPrice);
+	});
+	
+	
+	// Modal을 가져옴
+	var modals = document.getElementsByClassName("modal-overlay");
+	// Modal을 띄우는 클래스 이름을 가져옴
+	var btns = document.getElementsByClassName("btn-modal");
+	// Modal을 닫는 close-area 클래스를 가져옴
+	var xkey = document.getElementsByClassName("close-area");
+	var okkey = document.getElementsByClassName("close-ok");
+	var funcs = [];
+
+	// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
+	function Modal(num) {
+	  return function() {
+	    // 해당 클래스의 내용을 클릭하면 Modal을 띄움
+	    btns[num].onclick = function() {
+	      modals[num].style.display = "block";
+	      console.log(num);
+	    };
+
+	    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫음
+	    xkey[num].onclick = function() {
+	      modals[num].style.display = "none";
+	    };
+	    okkey[num].onclick = function() {
+			modals[num].style.display = "none";
+		};
+	  };
+	}
+
+	// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의함
+	for (var i = 0; i < btns.length; i++) {
+	  funcs[i] = Modal(i);
+	}
+
+	// 원하는 Modal 수만큼 funcs 함수를 호출
+	for (var j = 0; j < btns.length; j++) {
+	  funcs[j]();
+	}
+
+	//예약자 정보 가져오기 or 값 없애기
+	 $('input[type="checkbox"][name="order_book_data"]').click(function(){//jquery
+		 if($(this).prop('checked')){//체크박스가 클릭되어있으면
+		 	
+			 //checkbox 전체를 checked 해제 후
+		     $('input[type="checkbox"][name="order_book_data"]').prop('checked',false);
+		  	
+		 	//click한 요소만 true 지정
+		     $(this).prop('checked',true);
+		     if($('#new_book_data').prop('checked')){
+		    	$('#book_name').val('');
+		      	$('#book_hp').val('');
+		      	$('#book_email').val('');
+		     }
+		    }
+		  
+		   });
+	 
+	//전체 체크 클릭 시, 나머지 체크 
+	$("#order2_chk").click(function(){
+	var order2Chk=$("#order2_chk").prop("checked");
+
+	    if(order2Chk){
+	        $(".order2_chks").prop("checked",true);
+	        $(".order_button").prop("disabled",false);//활성화
+	    }
+	    else{
+	        $(".order2_chks").prop("checked",false);
+	        $(".order_button").prop("disabled",true);//비활성화
+	    }
+	});
+
+	// 모든 체크박스를 클릭하면 버튼 활성화시키기
+	$('.order2_chks').click(function(){
+	    var tmpp = $(this).prop('checked'); 
+	    //자식 체크 전체 체크시, 부모 체크박스 체크 됨
+	    var tt = $(".order2_chks").length;
+	    var ss = $(".order2_chks:checked").length;
+	    
+	    //선택한 체크박스 값이 true 이거나 체크박스 2개 이상 체크시 버튼 활성화시키기
+	    if(tmpp==true && ss>1){
+	    $(".order_button").prop("disabled",false);
+	    }
+	    else{
+	    $(".order_button").prop("disabled",true);
+	    }
+	    
+	    // 체크박스가 모두 선택되었을 때 상위 체크박스 선택되도록 설정
+	    if(tt == ss){
+	    	$("#order2_chk").prop("checked",true);
+	    }else{
+	    	$("#order2_chk").prop("checked",false);
+	    }
+	    
+	});
+	$(".order_button").click(function() {
+	requestPay();
+	
+	});
+});
+
+
+	function requestPay(data) {
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp46828311');
+		// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+		//IMP.request_pay(param, callback) 결제창 호출
+		IMP.request_pay({ // param
+			pg : "kakaopay.TC0ONETIME",
+			pay_method : "card",
+			merchant_uid : 'merchant_' + new Date().getTime(),
+			name : "노르웨이 회전 의자",
+			amount : 100,
+			buyer_email : "gildong@gmail.com",
+			buyer_name : "홍길동",
+			buyer_tel : "010-4242-4242",
+			buyer_addr : "서울특별시 강남구 신사동",
+			buyer_postcode : "01181",
+		}, function(rsp) {
+			console.log(rsp);
+			if (rsp.success) {
+				var msg = '결제가 성공하셨습니다.';
+				/* msg += '고유ID : ' + rsp.imp_uid;
+				msg += '상점 거래ID : ' + rsp.merchant_uid;
+				msg += '결제 금액 : ' + rsp.paid_amount;
+				msg += '카드 승인번호 : ' + rsp.apply_num; */
+				alert(msg);
+				$('#bookregister_form').attr({//결제 성공하면 예약자 정보 insert
+				'method':'post',
+				'action':'/order/bookregister'
+				});
+				$('#bookregister_form').submit();
+	
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				/* msg += '에러내용 : ' + rsp.error_msg; */
+				alert(msg);
+			}
+			
+		});
+
+	}
+</script>
+
+<div class="home_order">
+	<div class="home_background parallax-window" data-parallax="scroll"
+		data-image-src="images/background_1.jpg"></div>
+	<div class="home_content">
+		<div class="order_home_title">order</div>
+	</div>
+</div>
+
+<div id="order_content">
+
+	<div id="content">
+		<div class="section_title" id="main_section">
+		<form id="bookregister_form">
+			<div id="order_article_top">
+				<h3 id="order_item_h3">상품 정보</h3>
+				<hr>
+				<div id="order_item">
+ 					<img id="order_img_item" th:src="|@{/images/item/}${item.item_img1}|" alt="상품이미지">
+					<span id="order_item_name" th:text="${item.item_name}"></span>
+					<span id="order_item_exp" th:text="'유효기간 '+${#dates.format(day.exp_day, 'yyyy-MM-dd')}"></span>
+
+					<div id="order_item_option" th:each="o:${olist}">							<!-- oStat.index->	현재 반복 인덱스 (0부터 시작) -->
+						<div id="orda" th:unless="${cnt.get(oStat.index)} == '0'">
+							<div id="order_item_option_info"><span id="opt_code" th:text="${o.opt_code}+'.'+${o.opt_name}"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="cnt" th:text="'수량 : '+${cnt.get(oStat.index)}"></span></div>
+							<div class ="price" id="order_item_option_price" th:text="${o.item_price}*${cnt.get(oStat.index)}"></div>
+						</div>
+						<input type="hidden" name="exp_days" id="exp_days" th:value="${item.exp_days}">
+						<input type="hidden" name="detail_code" id="detail_code" value="0">
+						<input type="hidden" name="cnt" id="cnt" th:value="${cnt.get(oStat.index)}">
+						<input type="hidden" name="opt_code" id="opt_code" th:value="${o.opt_code}">
+						<input type="hidden" name="used" id="used" value="0">
+					</div>
+				</div>
+				<div id="order_item_price">
+					<div id="order_item_price_han">총 상품 금액</div>
+					<div class="totalprice" id="order_item_price_int"></div>
+				</div>
+			</div>
+			<div id="order_article_bottom">
+				
+				<h3 id="order_book_h3">예약자 정보</h3>
+				<div id="order_book_data">
+					<input type='checkbox' name='order_book_data'
+						 id="new_book_data"/> 새로 입력
+				</div>
+				<hr>
+				<div id="order_book">
+					<div>
+						<input type="hidden" name="mem_code" id="mem_code" th:value="${member.mem_code}"/>
+						<input type="hidden" name="tot_price" id="tot_price" value="0"/>
+						<input type="hidden" name="pay_code" id="pay_code" value="1"/>
+						<input type="hidden" name="item_code" id="item_code" th:value="${item.item_code}"/>
+						<div>예약자 이름</div>
+						<input type="text" name="book_name" id="book_name" th:value="${member.mem_name}"/>
+					</div>
+					<div>
+						<div>예약자 전화번호</div>
+						<input type="text" name="book_hp" id="book_hp" th:value="${member.mem_hp}"/>
+					</div>
+					<div>
+						<div>예약자 이메일</div>
+						<input type="text" name="book_email" id="book_email" th:value="${member.mem_email}"/>
+					</div>
+				</div>
+				
+			</div>
+			</form>
+		</div>
+		<div id="order_main_aside">
+			<div id="order_pay">
+				<h3 id="order_pay_h3">결제 상세</h3>
+				<hr>
+				<div id="order_pay_div">
+					<div>총 결제 금액</div>
+					<div class="totalprice"></div>
+				</div>
+			</div>
+			<div id="order_terms">
+				<h3 id="order_pay_h3">약관 안내</h3>
+				<hr>
+				<div id="order_terms_div">
+					<div id="order_terms_box">
+						<input type='checkbox' id="order2_chk" name='order_terms_boxall'
+							onclick='clickall(this)' />전체 약관 동의
+					</div>
+				</div>
+				<div id="order_terms_div">
+					<div id="order_terms_box">
+						<input type='checkbox' class="order2_chks" name='order_terms_box'
+							onclick='checkclickall()' />개인정보 제공 동의(필수)
+					</div>
+					<div class="btn-modal">
+						<img src="images/arrow.jpg" id="img_arrow" alt="arrow">
+					</div>
+				</div>
+				<div id="order_terms_div">
+					<div id="order_terms_box">
+						<input type='checkbox' class="order2_chks" name='order_terms_box'
+							onclick='checkclickall()' />개인정보 수집 및 이용 동의(필수)
+					</div>
+					<div class="btn-modal">
+						<img src="images/arrow.jpg" id="img_arrow" alt="arrow">
+					</div>
+				</div>
+			</div>
+			<div id="order_pay_btn">
+				<button class="order_button" name='order_button' disabled="disabled">결제하기</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="modal-overlay">
+	<div class="modal-window">
+	<span class="close-area">X</span>
+		<h3>개인정보 제공 동의(필수)</h3>
+		<hr>
+		<div class="modal_content">
+			<table class="modal_table">
+				<tr id="table_head">
+					<th>제공 받는자</th>
+					<th>제공목적</th>
+					<th>제공정보</th>
+					<th>보유 및 이용기간</th>
+				</tr>
+				<tr>
+					<td>ATHEMA사업자</td>
+					<td>주문상품의 예약 및 고객 관리(고객상담/불만처리)</td>
+					<td>여행자이름, 이메일주소, 연락처, 추가예약정보</td>
+					<td>예약 확정 후 3개월까지</td>
+				</tr>
+			</table>
+			<div>제3자 제공 동의를 거부할 수 있으며, 거부시 서비스 이용이 제한됩니다.</div>
+		</div>
+		<hr>
+		<button class="close-ok">확인</button>
+		<div id="clear"></div>
+	</div>
+</div>
+
+<div class="modal-overlay">
+	<div class="modal-window">
+		<div class="close-area">X</div>
+		<h3>개인정보 수집 및 이용 동의(필수)</h3>
+		<hr>
+		<div class="modal_content">
+			<div>[필수]개인정보 수집 및 이용 동의</div>
+			<table class="modal_table">
+				<tr id="table_head">
+					<th>수집 목적</th>
+					<th>수집 항목</th>
+					<th>보유기간</th>
+				</tr>
+				<tr>
+					<td>상품/서비스의 예약 또는 고객상담/맞춤형 컨텐츠 및 서비스 제공</td>
+					<td>예약자 정보(예약자 이름, 휴대전화 번호, 이메일 주소)</td>
+					<td rowspan="2">회원탈퇴시까지(단, 관계법령에 따름)</td>
+				</tr>
+				<tr>
+					<td>대금 결제/환불 서비스 제공, 주문/예약/거래 내역 조회 서비스 제공</td>
+					<td>신용카드 정보, 주문/예약/거래 내역</td>
+				</tr>
+			</table>
+			<div>동의를 거부할 수 있으며, 동의 거부시 서비스 이용이 제한됩니다.</div>
+
+		</div>
+		<hr>
+		<button class="close-ok">확인</button>
+		<div id="clear"></div>
+	</div>
+</div>

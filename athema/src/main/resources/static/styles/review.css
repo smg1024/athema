@@ -274,7 +274,7 @@ ul {
 .md_r_rating {
 	display: inline-block;
 	position: absolute;
-	top: 10%;
+	top: 3%;
 	right: 1%;	/* 맨 오른쪽에서 얼마나 떨어질지*/
 	
 	font-size: 18px;
@@ -286,7 +286,11 @@ ul {
 	line-height: 43px;
 	border-radius: 22px;
 }
-
+.md_r_img {
+	width: 300px;
+	height: 300px;
+	
+}
 /* 사진~텍스트 */
 #md_text {
 	border: 2px solid green;
@@ -311,10 +315,3 @@ hr.line {	/* 선 */
 	border: none;
 	border: 1px double #fa9e1c;
 }
-
-
-
-
-
-
-

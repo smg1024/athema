@@ -1,0 +1,331 @@
+<script>
+$(document).ready(function(){
+	// 테마-지역 검색
+	$('.search_button').click(function(){
+		var theme_array = new Array();
+		$('input:checkbox[name=up_cate_code]:checked').each(function(){
+			theme_array.push(this.value);
+		});
+		$('#theme_codes').val(theme_array);
+		
+		var loc_array = new Array();
+		$('input:checkbox[name=cate_name]:checked').each(function(){
+			loc_array.push(this.value);
+		});
+		$('#loc_names').val(loc_array);
+		
+		$('#search_form_1').attr({
+			'method':'get',
+			'action':'[[@{/search}]]'
+		});
+		
+		$('#search_form_1').submit();
+	});
+});
+</script>
+
+<!-- attribute : itemlist, theme_names, loc_names -->
+
+<!-- OFFERS -->
+<link rel="stylesheet" type="text/css" href="styles/offers_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/offers_responsive.css">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+
+<!-- Home -->
+
+<div class="home">
+	<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/about_background.jpg"></div>
+	<div class="home_content">
+		<div class="home_title">테마여행 찾기</div>
+	</div>
+</div>
+
+<!-- Offers -->
+
+<div class="offers">
+
+	<!-- Search -->
+
+	<div class="search">
+		<div class="search_inner">
+
+			<!-- Search Contents -->
+			
+			<div class="container fill_height no-padding">
+				<div class="row fill_height no-margin">
+					<div class="col fill_height no-padding">
+
+						<!-- Search Tabs -->
+
+						<div class="offers_search_tabs_container">
+							<div class="offers_search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+								<div class="offers_search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/suitcase.png" alt=""><span>테마</span></div>
+								<div class="offers_search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/bus.png" alt="">지역</div>
+							</div>		
+						</div>
+
+						<!-- Search Panel -->
+
+						<form id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+						<div class="search_panel active">
+							
+								<div class="extras">
+									<div class="search_item"><div><b>테마를 선택하세요</b></div></div>
+									<ul class="search_extras clearfix">
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_1" class="search_extras_cb" name="up_cate_code" value="1">
+												<label for="search_extras_1">혼자</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_2" class="search_extras_cb" name="up_cate_code" value="2">
+												<label for="search_extras_2">커플</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_3" class="search_extras_cb" name="up_cate_code" value="3">
+												<label for="search_extras_3">가족</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_4" class="search_extras_cb" name="up_cate_code" value="4">
+												<label for="search_extras_4">효도</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_5" class="search_extras_cb" name="up_cate_code" value="5">
+												<label for="search_extras_5">우정</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<input type="hidden" id="theme_codes" name="theme_codes">
+						</div>
+
+						<!-- Search Panel -->
+
+						<div class="search_panel">
+								<div class="extras">
+									<div class="search_item"><div><b>지역을 선택하세요</b></div></div>
+									<ul class="search_extras clearfix">
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_6" class="search_extras_cb" name="cate_name" value="서울">
+												<label for="search_extras_6">서울</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_7" class="search_extras_cb" name="cate_name" value="인천">
+												<label for="search_extras_7">인천</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_8" class="search_extras_cb" name="cate_name" value="부산">
+												<label for="search_extras_8">부산</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_9" class="search_extras_cb" name="cate_name" value="광주">
+												<label for="search_extras_9">광주</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_10" class="search_extras_cb" name="cate_name" value="제주">
+												<label for="search_extras_10">제주</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_11" class="search_extras_cb" name="cate_name" value="경기">
+												<label for="search_extras_11">경기</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_12" class="search_extras_cb" name="cate_name" value="강원">
+												<label for="search_extras_12">강원</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_13" class="search_extras_cb" name="cate_name" value="충북">
+												<label for="search_extras_13">충북</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_14" class="search_extras_cb" name="cate_name" value="충남">
+												<label for="search_extras_14">충남</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_15" class="search_extras_cb" name="cate_name" value="전북">
+												<label for="search_extras_15">전북</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_16" class="search_extras_cb" name="cate_name" value="전남">
+												<label for="search_extras_16">전남</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_17" class="search_extras_cb" name="cate_name" value="경북">
+												<label for="search_extras_17">경북</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_18" class="search_extras_cb" name="cate_name" value="경북">
+												<label for="search_extras_18">경남</label>
+											</div>	
+										</li>
+									</ul>
+								</div>
+								<input type="hidden" id="loc_names" name="loc_names">
+						</div>
+						</form>
+						<button class="button search_button">검색</button>
+					</div>
+				</div>
+			</div>	
+		</div>	
+	</div>
+
+	<!-- Offers -->
+
+	<div class="container">
+		<h3 th:if="${theme_names!=null}"><h3 style="color:black; padding-left:4em;" th:if="${#lists.size(theme_names)}>0">선택한 테마:
+			<th:block th:each="theme:${theme_names}">
+				<span class="theme_name" th:text="${theme}"></span> 
+			</th:block>
+		</h3></h3>
+		<h3 th:if="${loc_names!=null}"><h3 style="color:black; padding-left:4em;" th:if="${#lists.size(loc_names)}>0">선택한 지역:
+			<th:block th:each="loc:${loc_names}">
+				<span class="loc_name" th:text="${loc}"></span> 
+			</th:block>
+		</h3></h3>
+		<div class="row">
+			<div class="col-lg-1 temp_col"></div>
+			<div class="col-lg-11">
+				
+				<!-- Offers Sorting -->
+				<!-- <div class="offers_sorting_container">
+					<ul class="offers_sorting">
+						<li>
+							<span class="sorting_text">price</span>
+							<i class="fa fa-chevron-down"></i>
+							<ul>
+								<li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }' data-parent=".price_sorting"><span>show all</span></li>
+								<li class="sort_btn" data-isotope-option='{ "sortBy": "price" }' data-parent=".price_sorting"><span>ascending</span></li>
+							</ul>
+						</li>
+						<li>
+							<span class="sorting_text">location</span>
+							<i class="fa fa-chevron-down"></i>
+							<ul>
+								<li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>default</span></li>
+								<li class="sort_btn" data-isotope-option='{ "sortBy": "name" }'><span>alphabetical</span></li>
+							</ul>
+						</li>
+						<li>
+							<span class="sorting_text">stars</span>
+							<i class="fa fa-chevron-down"></i>
+							<ul>
+								<li class="filter_btn" data-filter="*"><span>show all</span></li>
+								<li class="sort_btn" data-isotope-option='{ "sortBy": "stars" }'><span>ascending</span></li>
+								<li class="filter_btn" data-filter=".rating_3"><span>3</span></li>
+								<li class="filter_btn" data-filter=".rating_4"><span>4</span></li>
+								<li class="filter_btn" data-filter=".rating_5"><span>5</span></li>
+							</ul>
+						</li>
+						<li class="distance_item">
+							<span class="sorting_text">distance from center</span>
+							<i class="fa fa-chevron-down"></i>
+							<ul>
+								<li class="num_sorting_btn"><span>distance</span></li>
+								<li class="num_sorting_btn"><span>distance</span></li>
+								<li class="num_sorting_btn"><span>distance</span></li>
+							</ul>
+						</li>
+						<li>
+							<span class="sorting_text">reviews</span>
+							<i class="fa fa-chevron-down"></i>
+							<ul>
+								<li class="num_sorting_btn"><span>review</span></li>
+								<li class="num_sorting_btn"><span>review</span></li>
+								<li class="num_sorting_btn"><span>review</span></li>
+							</ul>
+						</li>
+					</ul>
+				</div> -->
+			</div>
+
+			<div class="col-lg-12">
+				<!-- Offers Grid -->
+
+				<div class="offers_grid">
+
+					<!-- Offers Item -->
+
+					<th:block th:each="list:${itemlist}">
+					<div class="offers_item rating_4">
+						<div class="row">
+							<div class="col-lg-1 temp_col"></div>
+							<div class="col-lg-3 col-1680-4">
+								<div class="offers_image_container">
+									<!-- Image by https://unsplash.com/@kensuarez -->
+									<div class="offers_image_background" style="background-image:url(images/offer_1.jpg)"></div>
+									<div class="offer_name"><a th:href="@{/single_listing(item_code=${list.item_code})}"><div th:text="${list.item_name}"></div></a></div>
+								</div>
+							</div>
+							<div class="col-lg-8">
+								<div class="offers_content">
+									<div class="offers_price" th:text="₩+${list.item_price}"></div>
+									<div class="rating_r offers_rating" th:classappend="rating_r_+${#numbers.formatDecimal(list.avg_rating,0,0)}">
+										<i></i>
+										<i></i>
+										<i></i>
+										<i></i>
+										<i></i>
+									</div>
+									<p class="offers_text"><div th:text="${list.item_detail}"></div></p>
+									<div class="offers_icons">
+										<ul class="offers_icons_list">
+											<li class="offers_icons_item"><img src="images/post.png" alt=""></li>
+											<li class="offers_icons_item"><img src="images/compass.png" alt=""></li>
+											<li class="offers_icons_item"><img src="images/bicycle.png" alt=""></li>
+											<li class="offers_icons_item"><img src="images/sailboat.png" alt=""></li>
+										</ul>
+									</div>
+									<div class="button book_button"><a th:href="@{/single_listing(item_code=${list.item_code})}">예약하기<span></span><span></span><span></span></a></div>
+									<div class="offer_reviews">
+										<div class="offer_reviews_content">
+											<div class="offer_reviews_subtitle" th:text="'후기'"></div>
+										</div>
+										<div class="offer_reviews_rating text-center" th:text="${list.avg_rating}"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</th:block>
+
+				</div>
+			</div>
+
+		</div>
+	</div>		
+</div>

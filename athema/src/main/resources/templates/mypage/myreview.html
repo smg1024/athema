@@ -95,7 +95,7 @@ ul {
 
 <div class="my_r">
 	<div class="my_r_main">
-		<h3>나의 리뷰</h3>
+		<h3>나의 후기</h3>
 		 <div id="my_r_top" th:each="review:${reviews}" >					
 			<div class="my_r_item"><a th:href="@{/single_listing(item_code=${review.item_code})}"><div th:text="${review.item_name}"></div></a></div>
 			<div class="my_r_box">
@@ -104,7 +104,8 @@ ul {
             	<div class="my_r_rating" th:text="'평점: '+${review.score}"></div>
 				<div class="my_r_content">	
 					<span th:text="${review.content}">경주에 가족들이랑 다녀왔습니다. 즐거운 시간이었어요. 다만 활동 내용이 다양하지는 않아서 알차게 경주를 즐기다 오진 못한 것 같아 아쉽습니다. </span>
-					<div><img class="my_r_photo" th:src="@{review.review_img}" alt="상품이미지"></div>
+					<div><img class="my_r_photo" th:src="|@{/images/review/}${review.review_img}|" alt="상품이미지"></div>
+				
 				</div>	
 				
 			</div>

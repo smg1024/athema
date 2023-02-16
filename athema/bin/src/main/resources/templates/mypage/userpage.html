@@ -1,0 +1,148 @@
+<link rel="stylesheet" type="text/css" th:href="@{/styles/userpage_styles.css}">
+<script th:inline="javascript">
+$(document).ready(function(){
+	// 비밀번호 : 정규표현식 활용, keyup 이벤트 > span으로 문자 띄우기
+	$('#mem_pwd').keyup(function(){
+		var pwd = $(this).val();
+		var reg = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,15}$/;
+		if (reg.test(pwd)) {
+			$('#span_pwd').text('');
+		} else {
+			$('#span_pwd').text("알파벳, 숫자, 특수문자를 각 1개 이상 포함하여 6~15자 이내로 입력하세요");
+		}
+	});	
+	
+	// 비밀번호 확인 : 위 input val과 같으면 통과
+	$('#mem_pwd_confirm').change(function(){
+		var pwd_con = $(this).val();
+		var pwd = $('#mem_pwd').val();
+		if(pwd_con == pwd) {
+			$('#span_pwd_confirm').text("비밀번호가 일치합니다");
+			$('#span_pwd_confirm').css("color","green");
+		} else {
+			$('#span_pwd_confirm').text("비밀번호가 일치하지 않습니다");
+			$('#span_pwd_confirm').css("color","#96051D");
+		}
+	});
+	// 닉네임 제한 : keyup, 정규표현식 활용
+	$('#mem_nick').on('keyup',function(){
+		var reg = /[0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+		var v = $('#mem_nick').val();
+		if (reg.test(v)) {
+			$('#mem_nick').val(v.replace(reg,''));
+			/*허용된 문자 이외의 글자 들어오면 바로 공백으로 replace'*/
+		}
+	});
+	
+	// 휴대폰 번호 입력 제한
+	// 0-9 이외의 글자 들어오면 공백으로 replace, 11자 입력시 자동으로 (3-4-4)로 하이픈 입력되록 함
+	$('#mem_hp').keyup(function() {
+		$(this).val($(this).val().replace(/[^0-9]/g,"").replace(/([0-9]{3})+([0-9]{4})+([0-9]{4})/, "$1-$2-$3").replace("--","-"))
+	});
+	
+	
+	$('#update').click(function(){
+		// 비밀번호는 존재하나 비밀번호 확인 비어있을 시 알림창 띄우고 focus 이동
+		if ($('#mem_pwd').val() != '' && $('#mem_pwd_confirm').val() == '') {
+			alert("비밀번호 확인을 입력하세요");
+			$('#mem_pwd_confirm').focus();
+			return false;
+		}
+		
+		// 비밀번호 형식 잘못되면 알림창 띄우고 focus 이동
+		if ($('#span_pwd').text() != '') {
+			alert("비밀번호 형식이 잘못되었습니다");
+			$('#mem_pwd').focus();
+			return false;
+		}
+		
+		// 비밀번호 확인과 비밀번호가 맞지 않으면 알림창 띄우고 focus 이동
+		if (($('#mem_pwd').val()) != ($('#mem_pwd_confirm').val())) {
+			alert("비밀번호를 확인하세요");
+			$('#mem_pwd_confirm').focus();
+			return false;
+		}
+	
+		var c= confirm('수정 하시겠습니까?');
+		if(c==true){
+			$('#register_form').attr({
+				'method':'post',
+				'action':'update'
+			});
+			$('#register_form').submit();
+		}
+	});
+/*<![CDATA[*/
+$('#delete').click(function(){
+		var answer= confirm('탈퇴 하시겠습니까?\n회원탈퇴 후 동일한 이메일로 일시적인 기간 회원가입이 불가능합니다.\n탈퇴 시 모든 정보와 데이터가 삭제됩니다. 삭제된 정보는 다시 복구 할 수 없습니다.');
+		if(answer==true){
+			location.href='/mypage/delete?mem_code=[[${obj.mem_code}]]';
+		}
+	});
+	/*]]>*/
+	
+});
+</script>
+<div class="userpage_content">
+<form method="post" id="register_form">
+		<input type="hidden" name="redirectUrl" value="register">
+		<div class="box_register" >
+			<!-- 사용자 코드 -->
+			<input name="mem_code" id="mem_code" type="hidden" th:value="${obj.mem_code}">
+			<!-- 이름 -->
+			<div class="field">
+				<hr>
+        		<b>이름</b>
+           		<input name="mem_name" id="mem_name" type="text" th:value="${obj.mem_name}" readonly="readonly">
+           		<span id="span_name"></span>
+     		</div>
+		    <!-- 아이디(이메일) -->
+			<div class="field">
+				<hr>
+        		<b>이메일</b>
+           		<input id="mem_email" name="mem_email" type="text" th:value="${obj.mem_email}" readonly="readonly">
+    			<span id="span_id"></span>
+     		</div>
+		    <!-- 비밀번호 -->
+      		<div class="field">
+      			<hr>
+      			<b>비밀번호</b>
+				<input id="mem_pwd" name="mem_pwd" type="password" placeholder="6~15자 이내의 영문, 숫자, 특수문자"><br>
+    			<span id="span_pwd"></span>
+      		</div>
+		    <div class="field">
+		    	<hr>
+				<b>비밀번호 확인</b>
+				<input id="mem_pwd_confirm" type="password" placeholder="비밀번호를 한번 더 입력하세요"><br>
+    			<span id="span_pwd_confirm"></span>
+		   	</div>
+			<!-- 닉네임 -->
+			<div class="field">
+				<hr>
+        		<b>닉네임</b>
+        		<input id="mem_nick" name="mem_nick" type="text" maxlength="5" th:value="${obj.mem_nick}" placeholder="5자 이내의 한글, 영문">
+     		</div>
+
+		    <!-- 전화번호 -->
+		    <div class="field tel-number">
+		    	<hr>
+		    	<b>휴대전화번호</b>
+		        <input id="mem_hp" name="mem_hp" type="tel" maxlength="13" th:value="${obj.mem_hp}" placeholder="숫자만 입력">
+		    </div>
+
+		    <!-- 생년월일 -->
+		    <div class="field birth">
+		    	<hr>
+				<b>생년월일<span style="color:#808080; font-size:0.75em;"> (선택사항)</span></b>
+				<input type="date" name="mem_birth" id="mem_birth" data-placeholder="날짜 선택" required
+					aria-required="true" th:value="${obj.mem_birth}"></input>
+				<hr>
+			</div>
+			<div id=userpage_btn>	
+			    <!-- 수정/탈퇴하기 버튼 -->
+			    <a href="#" id="update">수정하기</a>
+			    <a href="#" id="delete">탈퇴하기</a>
+			</div>
+			</div>
+		</form>
+	</div>

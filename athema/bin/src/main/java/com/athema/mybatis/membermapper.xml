@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.MemberMapper">
+	
+	<select id="select" parameterType="int" resultType="MemberDTO">
+		SELECT mem_code, mem_email, mem_pwd, mem_name, mem_hp, mem_nick, mem_birth, mem_date, mem_auth, mem_del, mem_deldate, provider
+		FROM member WHERE mem_code=#{mem_code}
+	</select>
+	
+<!-- 	이메일로 찾기 -->
+	<select id="searchemail" parameterType="String" resultType="MemberDTO">
+		SELECT mem_code, mem_email, mem_pwd, mem_name, mem_hp, mem_nick, mem_birth, mem_date, mem_auth, mem_del, mem_deldate, provider
+		FROM member WHERE mem_email=#{mem_email}
+	</select>
+
+<!-- 	이메일 중복검사 -->
+	<select id="selectemail" parameterType="String" resultType="int">
+		SELECT count(mem_email) FROM member WHERE mem_email=#{mem_email}
+	</select>
+	
+	<select id="selectall" resultType="MemberDTO">
+	
+	</select>
+	
+<!-- 	회원가입 -->
+	<insert id="insert" parameterType="MemberDTO">
+		INSERT INTO member VALUES (mem_code,#{mem_email},#{mem_pwd},#{mem_name},#{mem_hp},#{mem_nick},#{mem_birth},NOW(),'M',0,null,#{provider})
+	</insert>
+	
+<!-- 	수정 -->
+	<update id="update" parameterType="MemberDTO">
+		UPDATE member SET mem_pwd=#{mem_pwd},mem_hp=#{mem_hp},mem_nick=#{mem_nick},mem_birth=#{mem_birth} WHERE mem_code=#{mem_code}
+	</update>
+<!-- 	비밀번호 변경 없는 수정 -->
+	<update id="updatebutpass" parameterType="MemberDTO">
+		UPDATE member SET mem_hp=#{mem_hp},mem_nick=#{mem_nick},mem_birth=#{mem_birth} WHERE mem_code=#{mem_code}
+	</update>
+	
+<!-- 	카카오 가입 추가정보 -->
+	<update id="updatekakao" parameterType="MemberDTO">
+		UPDATE member SET mem_name=#{mem_name},mem_hp=#{mem_hp},mem_birth=#{mem_birth} WHERE mem_code=#{mem_code}
+	</update>
+	
+<!-- 	탈퇴 처리 -->
+	<update id="delete" parameterType="int">
+		UPDATE member SET mem_del=1, mem_deldate=NOW(), mem_pwd=null, mem_birth=null WHERE mem_code=#{mem_code}
+	</update>
+<!-- 	DB에서 완전 삭제 -->
+	<delete id="deleteall" parameterType="int">
+		DELETE FROM member WHERE mem_code=#{mem_code}
+	</delete>
+	
+</mapper>

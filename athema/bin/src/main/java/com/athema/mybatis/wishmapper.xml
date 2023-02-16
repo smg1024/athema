@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.WishMapper">
+	
+	<select id="select" parameterType="Integer" resultType="WishDTO">
+		SELECT wish_code, item_code, mem_code
+		FROM wish WHERE wish_code=#{wish_code}
+	</select>
+	
+	<select id="selectall" resultType="WishDTO">
+		SELECT * FROM wish WHERE mem_code=#{mem_code}
+	</select>
+	
+	<insert id="insert" parameterType="WishDTO">
+		INSERT INTO wish VALUES (wish_code, #{item_code}, #{mem_code})
+	</insert>
+	
+	<update id="update" parameterType="WishDTO">
+		UPDATE wish SET item_code=#{item_code} WHERE wish_code=#{wish_code}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM wish WHERE wish_code=#{wish_code}
+	</delete>
+	
+	<select id="wishlist" parameterType="Integer" resultType="Integer">
+		SELECT count(wish_code) FROM member INNER JOIN wish ON member.mem_code=wish.mem_code WHERE member.mem_code=${param1} AND wish.item_code=${param2}
+	</select>
+	
+	<delete id="del_wishlist" parameterType="Integer">
+		DELETE FROM wish WHERE item_code=${param1} AND mem_code=${param2}
+	</delete>
+	
+	<select id="getWishByMem" resultType="WishDTO">
+		SELECT * FROM wish w
+		INNER JOIN `member` m ON m.mem_code = w.mem_code
+		INNER JOIN item i ON w.item_code = i.item_code
+		INNER JOIN category c ON c.cate_code = i.cate_code
+		where w.mem_code = #{mem_code}
+	</select>
+</mapper>

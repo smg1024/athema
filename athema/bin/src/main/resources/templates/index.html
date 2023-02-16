@@ -1,0 +1,228 @@
+<link rel="stylesheet" type="text/css" th:href="@{/styles/main_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/responsive.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+
+<body>
+
+	
+	<!-- Home -->
+
+	<div class="home">
+		
+		<!-- Home Slider -->
+	
+		<div class="home_slider_container">
+			
+			<div class="owl-carousel owl-theme home_slider">
+	
+				<!-- Slider Item -->
+				<div class="owl-item home_slider_item">
+					<!-- Image by https://unsplash.com/@anikindimitry -->
+					<div class="home_slider_background" th:style="'background-image:url('+@{/images/home_slider.jpg}+');'"></div>
+	
+					<div class="home_slider_content text-center">
+						<div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
+							<h1>ATHEMA</h1><br><br>
+							<h1>Choose your favorite theme</h1>
+						</div>
+					</div>
+				</div>
+	
+			</div>
+			
+		</div>
+	
+	</div>
+	
+	<!-- Search -->
+	
+	<div class="search">
+		
+	
+		<!-- Search Contents -->
+		
+		<div class="container fill_height">
+			<div class="row fill_height">
+				<div class="col fill_height">
+	
+					<!-- Search Tabs -->
+
+					<div class="search_tabs_container">
+						<div class="search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+							<div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/suitcase.png" alt=""><span>테마</span></div>
+							<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="images/bus.png" alt="">지역</div>
+						</div>		
+					</div>
+	
+					<!-- Search Panel -->
+
+						<form id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+						<div class="search_panel active">
+							
+								<div class="extras">
+									<div class="search_item"><div><b>테마를 선택하세요</b></div></div>
+									<ul class="search_extras clearfix">
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_1" class="search_extras_cb" name="up_cate_code" value="1">
+												<label for="search_extras_1">혼자</label>
+											</div>	
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_2" class="search_extras_cb" name="up_cate_code" value="2">
+												<label for="search_extras_2">커플</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_3" class="search_extras_cb" name="up_cate_code" value="3">
+												<label for="search_extras_3">가족</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_4" class="search_extras_cb" name="up_cate_code" value="4">
+												<label for="search_extras_4">효도</label>
+											</div>
+										</li>
+										<li class="search_extras_item">
+											<div class="clearfix">
+												<input type="checkbox" id="search_extras_5" class="search_extras_cb" name="up_cate_code" value="5">
+												<label for="search_extras_5">우정</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<input type="hidden" id="theme_codes" name="theme_codes">
+						</div>
+
+						<!-- Search Panel -->
+
+						<div class="search_panel">
+							<div class="extras">
+								<div class="search_item"><div><b>지역을 선택하세요</b></div></div>
+								<ul class="search_extras clearfix">
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_6" class="search_extras_cb" name="cate_name" value="서울">
+											<label for="search_extras_6">서울</label>
+										</div>	
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_7" class="search_extras_cb" name="cate_name" value="인천">
+											<label for="search_extras_7">인천</label>
+										</div>
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_8" class="search_extras_cb" name="cate_name" value="부산">
+											<label for="search_extras_8">부산</label>
+										</div>	
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_9" class="search_extras_cb" name="cate_name" value="광주">
+											<label for="search_extras_9">광주</label>
+										</div>	
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_10" class="search_extras_cb" name="cate_name" value="제주">
+											<label for="search_extras_10">제주</label>
+										</div>	
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_11" class="search_extras_cb" name="cate_name" value="경기">
+											<label for="search_extras_11">경기</label>
+										</div>	
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_12" class="search_extras_cb" name="cate_name" value="강원">
+											<label for="search_extras_12">강원</label>
+										</div>
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_13" class="search_extras_cb" name="cate_name" value="충북">
+											<label for="search_extras_13">충북</label>
+										</div>
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_14" class="search_extras_cb" name="cate_name" value="충남">
+											<label for="search_extras_14">충남</label>
+										</div>
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_15" class="search_extras_cb" name="cate_name" value="전북">
+											<label for="search_extras_15">전북</label>
+										</div>	
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_16" class="search_extras_cb" name="cate_name" value="전남">
+											<label for="search_extras_16">전남</label>
+										</div>	
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_17" class="search_extras_cb" name="cate_name" value="경북">
+											<label for="search_extras_17">경북</label>
+										</div>	
+									</li>
+									<li class="search_extras_item">
+										<div class="clearfix">
+											<input type="checkbox" id="search_extras_18" class="search_extras_cb" name="cate_name" value="경북">
+											<label for="search_extras_18">경남</label>
+										</div>	
+									</li>
+								</ul>
+							</div>
+							<input type="hidden" id="loc_names" name="loc_names">
+					</div>
+					</form>
+					<button class="button search_button">검색</button>
+				</div>
+			</div>
+		</div>		
+	</div>
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/styles/bootstrap4/popper.js}"></script>
+<script th:src="@{/styles/bootstrap4/bootstrap.min.js}"></script>
+<script th:src="@{/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+<script th:src="@{/plugins/easing/easing.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+<script>
+$(document).ready(function(){
+	// 테마-지역 검색
+	$('.search_button').click(function(){
+		var theme_array = new Array();
+		$('input:checkbox[name=up_cate_code]:checked').each(function(){
+			theme_array.push(this.value);
+		});
+		$('#theme_codes').val(theme_array);
+		
+		var loc_array = new Array();
+		$('input:checkbox[name=cate_name]:checked').each(function(){
+			loc_array.push(this.value);
+		});
+		$('#loc_names').val(loc_array);
+		
+		$('#search_form_1').attr({
+			'method':'get',
+			'action':'[[@{/search}]]'
+		});
+		
+		$('#search_form_1').submit();
+	});
+});
+</script>
+</body>
+
+</html>

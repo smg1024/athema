@@ -115,8 +115,8 @@ div .intro_button {
 	<div class="wish_main">
 		<h3>나의 위시리스트</h3>
 			<div class="wish_box" th:each="wish:${wishs}">
-				<div class="w_pthoto">			<!-- "${roomimg1}" -->
-					<img id="wish_image" th:src="@{/images/LW.JPG}" alt="상품이미지">
+				<div class="w_pthoto">		
+					<img id="wish_image" th:src="|@{/images/item/}${wish.item_img2}|" alt="상품이미지">
 				</div>
 				<div class="wish_content">
 					<div class="intro_title" th:text="${wish.item_name}">[QR바로입장]롯데월드 자유이용권</div>

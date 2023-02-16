@@ -1,0 +1,279 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<!-- CONTACT -->
+<link rel="stylesheet" type="text/css" th:href="@{/styles/contact_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/contact_responsive.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+
+<style>
+.contact_form_container {
+	display: flex;
+	justify-content: center;
+}
+.contact_form_inner {
+	margin: 30px 0 30px 0;
+}
+#todiv::-webkit-scrollbar {
+	display: none;
+}
+#totext::-webkit-scrollbar {
+	display: none;
+}
+
+#to {
+	width: 600px;
+	height: 500px;
+	border-radius: 30px;
+	margin: 20px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #FFFBF5;
+}
+#todiv {
+	overflow: scroll;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 520px;
+	height: 420px;
+}
+.input_send{
+	display: flex;
+	width: 600px;
+}
+#totext {
+	flex: 9;
+	margin-left: 3px;
+	padding: 13px 17px;
+	border-radius: 10px 0 0 10px;
+	border: none;
+	background-color: #F7EFE5;
+	align-self: center;
+	white-space: nowrap;
+	color: black;
+	overflow: scroll;
+}
+#totext:focus
+{
+	border: none;
+	outline: none;
+}
+#sendto {
+	flex: 1;
+	padding: 3px 7px;
+	border-radius: 0 10px 10px 0;
+	border: none;
+	font-size:1.7em;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #F7EFE5;
+	}
+#sendto:focus
+{
+	border: none;
+	outline: none;
+}
+#disconnect
+{
+	color: #044D49;
+	padding: 3px 7px;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+}
+.appendli {
+	margin: 30px 0 20px 0;
+	padding: 7px 13px;
+	color: #674188;
+	border-radius: 10px;
+	margin: 10px 0;
+}
+#appendsendid {
+	background-color : #674188;
+	color: white;
+	max-width: 55%;
+	text-align: left;
+	float: left;
+	clear: both;
+}
+#appendto{
+	float: right;
+	clear: both;
+	background-color: #E8D9F0;
+	color: black;
+ 	max-width: 55%;
+	align-items: right;
+}
+#discon_chat {
+	float: left;
+	clear: both;
+}
+#status {
+	color: black;
+	font-weight: bold;
+	background-color: #F7EFE5;
+	padding: 20px 20px;
+ 	margin-bottom: 15px; 
+ 	border-radius: 10px; 
+	text-align: center;
+}
+</style>
+
+<!-- Home -->
+
+<div class="home">
+	<div class="home_background parallax-window" data-parallax="scroll" th:data-image-src="@{/images/contact_background.jpg}"></div>
+	<div class="home_content">
+		<div class="home_title">CS Center</div>
+	</div>
+</div>
+
+<!-- Contact -->
+
+<div class="contact_form_section">
+	<div>
+		<div class="container">
+			<div class="row" style="margin:auto; width: 80%;">
+				<div class="col">
+					<!-- Contact Form -->
+					<div class="contact_form_container" id="faq_container">
+						<div class="contact_form_inner">
+							<div class="qna_header">
+								<div class="faq_title">1:1 채팅문의<span style="font-size: 0.5em; font-weight: normal;">&nbsp;&nbsp;운영자와의 채팅은 평일 10:00 - 17:00 까지만 가능합니다.</span></div>
+								<div class="qna_info">
+									<a th:href="@{/contact}" class="qna_category">👉 채팅을 남기기 전 자주 묻는 질문을 확인해주세요.</a>
+									<a href="#" class="qna_category">👉 우측 하단의 챗봇 아이콘을 클릭하셔도 자주 묻는 질문에 대한 답변을 확인하실 수 있습니다.</a>
+								</div>
+							</div>
+							<div class="msg-container">
+								<div class="col-sm-5">
+									<button id="disconnect" type="button">채팅 끝내기</button>
+									<!-- To-chat -->
+									<input type="text" id="target" value="admin" hidden>
+									<div id="to">
+										<div id="todiv">
+											<div id="status"></div>
+										</div>
+									</div>
+									<div class="input_send">
+										<div id="totext" class="text-box" contenteditable="true" disabled="true" onkeyup="enterkey()" autofocus></div>
+										<button id="sendto" type="button"><img th:src="@{/images/paper-plane-icon.png}" style="width:40%;"></button>
+									</div>
+								</div>
+							</div>
+						</div>				
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+						
+<script th:inline="javascript">
+
+var stompClient = null;
+var id = '[[${session.loginMember.mem_code}]]';
+
+$(document).ready(function() {
+// 	var socket = new SockJS('http://127.0.0.1:8080/admin/ws'); // local
+	var socket = new SockJS('http://49.50.166.168/admin/ws');	// NCP
+	stompClient = Stomp.over(socket);
+
+	stompClient.connect({}, function(frame) { 
+		setConnected(true);
+		console.log('Connected: ' + frame);
+
+		stompClient.subscribe('/send/to/'+id, function(msg) { 
+			$("#todiv").append(
+					"<div class='appendli' id='appendsendid'>" + JSON.parse(msg.body).content1 + "</div><br/>");
+
+			// 채팅방 스크롤 자동으로 내리기 (관리자 -> 사용자)
+			let chat = document.querySelector('#todiv');
+	        chat.scrollTop = chat.scrollHeight;
+		});
+	});
+	
+// 	$("#connect").click(function() {
+// 		connect();
+// 	});
+	$("#disconnect").click(function() {
+		disconnect();
+	});
+	$("#sendto").click(function() {
+		sendTo();
+	});
+});
+
+	// 서버소켓에 연결
+// 	function connect() {
+// 		var socket = new SockJS('http://127.0.0.1:8080/admin/ws');
+// 		stompClient = Stomp.over(socket);
+	
+// 		stompClient.connect({}, function(frame) { 
+// 			setConnected(true);
+// 			console.log('Connected: ' + frame);
+	
+// 			stompClient.subscribe('/send/to/'+id, function(msg) { 
+// 				$("#to").prepend(
+// 						"<h4>" + JSON.parse(msg.body).sendid +":"+
+// 						JSON.parse(msg.body).content1
+// 								+ "</h4>");
+// 			});
+// 		});
+// 	}
+	
+	// 서버소켓에 연결끊기
+	function disconnect() {
+		if (stompClient != null) {
+			stompClient.disconnect();
+		}
+		setConnected(false);
+		console.log("Disconnected");
+	}
+	
+	// connect&disconnect 버튼 활성화/비활성화
+	function setConnected(connected) {
+		if (connected) {
+			$("#status").text("채팅이 시작되었습니다. 문의 내용을 입력하고 잠시 기다려주세요.");
+		} else {
+			$("#todiv").append(
+					"<div class='appendli' id='discon_chat'>채팅이 종료되었습니다.</br>채팅을 다시 시작하려면 페이지를 새로고침 하시기 바랍니다.</div>");
+			$("#status").text("disconnected");
+		}
+	}
+    
+	// 엔터키 눌렸을 때 send
+	function enterkey() {
+	    if (window.event.keyCode == 13) {
+			sendTo();    	
+	    }
+	}
+	
+	// 서버에 메세지 요청
+	function sendTo() {
+		var msg = JSON.stringify({
+			'sendid' : id,
+			'receiveid' : $('#target').val(),
+			'content1' : $('#totext').text()
+		});
+		// 공백 아닐 때만 보내고 입력창 비우기
+		if($("#totext").text() != "") {
+			stompClient.send('/receiveto', {}, msg);
+		}
+			$("#totext").text('');
+		// div 채팅창에 띄우기
+		var msgc = JSON.parse(msg)	// 문자열 처리된 json parse해서
+		if (msgc.content1 == "") {	// 공백 false 처리
+			return false;
+		}
+		$("#todiv").append(
+			"<div class='appendli' id='appendto'>" + msgc.content1 + "</div>");		// content1(key)만 뽑아내기
+		
+		// 채팅방 스크롤 자동으로 내리기 (사용자 -> 관리자)
+		let chat = document.querySelector('#todiv');
+        chat.scrollTop = chat.scrollHeight;
+	}
+</script>

@@ -39,7 +39,7 @@ $(document).ready(function(){
 				<div id="plan_title" th:text="${order.item_name}">경주 여행</div>
 					<div class="plan_hidden">	
 						<div class="test">
-							<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
+							<div><img id="img_item" th:src="|@{/images/item/}${order.item_img1}|" alt="상품이미지"></div>
 							<div class="test2">
 								<div id="plan_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
 								<div id="plan_div"><span th:text="'위치: '+${order.item_loc}"></span></div>

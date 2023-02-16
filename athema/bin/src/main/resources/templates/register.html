@@ -1,0 +1,328 @@
+<head>
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" th:href="@{/styles/register_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/register_responsive.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+
+<!-- JavaScript -->
+
+<script>
+/* 프론트단의 유효성검사
+: 이메일 중복확인 후 속성변경 및 체크완료 이미지 띄우기 */
+function getdata(email) {
+	$.ajax({
+		type: 'POST',
+		url:'[[@{/checkemail}]]',
+		data: {'email':email},
+		success: function(data){
+			if(data > 0) {
+				alert("이미 가입된 회원입니다.");
+				$('#mem_email').focus();
+			} else {
+				if($('#mem_email').val()=='') {
+					alert("이메일을 입력하세요");
+				} else {
+					alert("사용 가능합니다.");
+					$('#email_hiddenChk').attr("value", "Y"); /*submit할때 N인지 Y인지 확인*/
+					$('#email_check').hide(); /*keyup있으면 다시 show*/
+					$('#id_check').show(); /*중복체크 완료되면 show*/
+				}
+			}
+		}
+	});
+};
+
+
+$(document).ready(function(){
+	
+// 	이름 입력해야만 다른 input창에 focus 가능하게 함
+	$('#mem_name').blur(function(){
+		var name = $(this).val();
+		if (name == '') {
+			$(this).focus();
+			$('#span_name').text("이름을 입력하세요");
+		} else {
+// 			한글, 영문자만 입력 가능하도록 정규표현식 작성
+			var reg = /[0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+			if (reg.test(name)) {
+			/*허용된 문자 이외의 글자 들어오면 blur시 공백으로 replace'*/
+				$('#mem_name').val(name.replace(reg,''));
+				$(this).focus();
+			}
+			$('#span_name').text('');			
+		}
+	});
+	
+	// 이메일 형식 체크 : keyup 이벤트로 화면에 띄워주기
+	$('#mem_email').keyup(function(){
+		$('#email_check').show();
+		$('#id_check').hide();	/*기존에 중복확인 했더라도 keyup 발생하면 다시 중복체크 버튼 띄우기*/
+		var id = $(this).val();
+		// 	문자 및 표시형식 제한은 정규표현식 활용
+		var reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+		if (reg.test(id)) {
+			$('#span_id').text('');
+		} else {
+			$('#span_id').text("올바른 이메일 형식을 입력하세요");
+		}
+	});
+	
+	// 중복확인 버튼 클릭 이벤트
+	$('#email_check').click(function(){
+		var email = $('#mem_email').val();
+		// span에 알림 있으면 alert
+		if ($('#span_id').text() != '') {
+			alert("올바른 이메일 형식을 입력하세요");
+			return false;
+		} else {
+			// span에 경고 글자 없으면 DB에서 email 중복조회 
+			getdata(email);		/*AJAX*/
+		}
+	});
+		
+	// 비밀번호 : 정규표현식 활용, keyup 이벤트 > span으로 문자 띄우기
+	$('#mem_pwd').keyup(function(){
+		var pwd = $(this).val();
+		var reg = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,15}$/;
+		if (reg.test(pwd)) {
+			$('#span_pwd').text('');
+		} else {
+			$('#span_pwd').text("알파벳, 숫자, 특수문자를 각 1개 이상 포함하여 6~15자 이내로 입력하세요");
+		}
+	});	
+	
+	// 비밀번호 확인 : 위 input val과 같으면 통과
+	$('#mem_pwd_confirm').change(function(){
+		var pwd_con = $(this).val();
+		var pwd = $('#mem_pwd').val();
+		if(pwd_con == pwd) {
+			$('#span_pwd_confirm').text("비밀번호가 일치합니다");
+			$('#span_pwd_confirm').css("color","green");
+		} else {
+			$('#span_pwd_confirm').text("비밀번호가 일치하지 않습니다");
+			$('#span_pwd_confirm').css("color","#96051D");
+		}
+	});
+	
+	// 닉네임 제한 : keyup, 정규표현식 활용
+	$('#mem_nick').on('keyup',function(){
+		var reg = /[0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+		var v = $('#mem_nick').val();
+		if (reg.test(v)) {
+			$('#mem_nick').val(v.replace(reg,''));
+			/*허용된 문자 이외의 글자 들어오면 바로 공백으로 replace'*/
+		}
+	});
+	
+	// 휴대폰 번호 입력 제한
+	// 0-9 이외의 글자 들어오면 공백으로 replace, 11자 입력시 자동으로 (3-4-4)로 하이픈 입력되록 함
+	$('#mem_hp').keyup(function() {
+		$(this).val($(this).val().replace(/[^0-9]/g,"").replace(/([0-9]{3})+([0-9]{4})+([0-9]{4})/, "$1-$2-$3").replace("--","-"))
+	});
+	
+	// 동의항목 : 전체 선택 체크박스
+	$('input[name="chkAll"]').click(function(){
+		$('.chk').prop('checked', this.checked);
+	});
+	
+	// 개별 체크박스 2개 중 하나라도 체크 안되어있으면 chkAll > 해제되게끔 만들기
+	$('.chk').click(function(){
+		if ($('.chk:checked').length == 2) {
+			$('.chkAll').prop('checked', true);
+		} else {
+			$('.chkAll').prop('checked', false);
+		}
+	});
+	
+	// submit 버튼 클릭 > 유효성 검사 시작
+	$('#register_submit').click(function(){
+		var c = confirm("완료하시겠습니까?");
+		
+		if (c==true) {
+			// 이름 비어있거나 1글자만 있을 시 알림창 띄우고 focus 이동
+			if($('#mem_name').val() == '' || $('#mem_name').val().length < 2) {
+				alert("2글자 이상 이름을 입력하세요");
+				$('#mem_name').focus();
+				return false;
+			}
+			
+			// 중복확인 안 했으면 알림창 띄우고 focus 이동
+			if ($('#email_hiddenChk').val() == 'N') {
+				alert("이메일 중복검사를 해주세요");
+				$('#mem_email').focus();
+				return false;
+			} 
+			
+			// 비밀번호 비어있을 시 알림창 띄우고 focus 이동
+			if ($('#mem_pwd').val() == '') {
+				alert("비밀번호를 입력하세요");
+				$('#mem_pwd').focus();
+				return false;
+			}
+			
+			// 비밀번호 확인 비어있을 시 알림창 띄우고 focus 이동
+			if ($('#mem_pwd_confirm').val() == '') {
+				alert("비밀번호를 확인하세요");
+				$('#mem_pwd_confirm').focus();
+				return false;
+			}
+			
+			// 비밀번호 형식 잘못되면 알림창 띄우고 focus 이동
+			if ($('#span_pwd').text() != '') {
+				alert("비밀번호 형식이 잘못되었습니다");
+				$('#mem_pwd').focus();
+				return false;
+			}
+			
+			// 비밀번호 확인과 비밀번호가 맞지 않으면 알림창 띄우고 focus 이동
+			if (($('#mem_pwd').val()) != ($('#mem_pwd_confirm').val())) {
+				alert("비밀번호를 확인하세요");
+				$('#mem_pwd_confirm').focus();
+				return false;
+			}
+			
+			// 닉네임 비어있을 시 알림창 띄우고 focus 이동
+			if ($('#mem_nick').val() == '') {
+				alert("닉네임을 입력하세요");
+				$('#mem_nick').focus();
+				return false;
+			}
+			
+			// 전화번호 11자 미만일 시 알림창 띄우고 focus 이동
+			if ($('#mem_hp').val().length < 11) {
+				alert("올바른 전화번호를 입력하세요");
+				$('#mem_hp').focus();
+				return false;
+			}
+			
+			// 필수항목 체크 안되어있으면 알림창 띄우고 focus 이동
+			if ($('.chkAll').is(":checked") == false) {
+				alert("개인정보 수집 동의가 필요합니다");
+				$('.chkAll').focus();
+				return false;
+			}		
+			
+			/*date 형식 YYYYMMDD로 변경해주기*/
+	// 		let datetmp = $('#mem_birth').val().replace(/-/g, '');
+	
+			// 유효성검사 전체 항목 통과시 form > submit > addmember로 이동 (MemberController)
+			$('#register_form').attr({
+				method:'post',
+				action:'[[@{/member/addmember}]]'
+			});
+			$('#register_form').submit(); 
+			alert("가입이 완료되었습니다.");
+		}
+	});
+});
+	
+</script>
+</head>
+
+
+<!-- login_home -->
+
+<div class="register_home" style="margin-bottom:250px;">
+	<div class="register_content" >
+		<div class="register_title">회원가입</div>
+		<div class="title_desc">나를 위한 여행테마 추천, Athema</div>
+		<div class="sns_content">
+			<hr style="width:30%; display:inline-block; color: rgba(0,0,0,0.55);"><br>
+			<div class="sns_register_txt">간편 회원가입</div><br>
+<!-- 				로컬로 돌릴 시 redirect_uri는 127.0.0.1로 수정 -->
+				<div class="sns_register">
+				<a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=9740cda4f593e49b4bf7b3235435574d&redirect_uri=http://49.50.166.168/oauth/kakao&response_type=code">
+	 			 <img th:src="@{/images/member/kakao_login.png}" width="222" alt="카카오 로그인 버튼" style="width:160px;"/></a>
+				<p id="kakao-token-result"></p>
+				<a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=L6VpxEtZonyyvQD8b9hZ&redirect_uri=http://127.0.0.1/oauth/naver&state=randomtxt">
+	 			 <img th:src="@{/images/member/naver_login.png}" width="222" alt="네이버 로그인 버튼" style="width:160px;"/></a>
+				<p id="naver-token-result"></p>
+			</div>
+			<hr style="width:30%; display:inline-block; color: rgba(0,0,0,0.55);"><br>
+		</div>
+        <!-- 회원가입 폼 -->
+		<form method="post" id="register_form">
+			<input type="hidden" name="redirectUrl" value="register">
+			<div class="box_register" >
+		        <!-- 이름 -->
+				<div class="field">
+        			<b>이름</b>
+           			<input name="mem_name" id="mem_name" type="text" placeholder="한글, 영문만 입력">
+           			<span id="span_name"></span>
+     			</div>
+		        <!-- 아이디(이메일) -->
+				<div class="field">
+        			<b>이메일</b>
+        			<input type="hidden" id="email_hiddenChk" name="checked_id" value="N">
+           			<div class="email_field">
+           				<input id="mem_email" name="mem_email" type="text" placeholder="example@athema.com">
+           				<input id="email_check" type="button" value="중복검사">
+           				<img th:src="@{/images/id_check.png}" id="id_check" style="width:30px; margin-left:10px; display:none;">
+    			    </div>
+    			  		<span id="span_id"></span>
+     			</div>
+		        <!-- 비밀번호 -->
+      			<div class="field">
+      				<b>비밀번호</b>
+					<input id="mem_pwd" name="mem_pwd" type="password" placeholder="6~15자 이내의 영문, 숫자, 특수문자">
+    			    <span id="span_pwd"></span>
+      			</div>
+		        <div class="field">
+					<b>비밀번호 확인</b>
+					<input id="mem_pwd_confirm" type="password" placeholder="비밀번호를 한번 더 입력하세요">
+    			    <span id="span_pwd_confirm"></span>
+		        </div>
+			    <!-- 닉네임 -->
+				<div class="field">
+        			<b>닉네임</b>
+        			<input id="mem_nick" name="mem_nick" type="text" maxlength="5" placeholder="5자 이내의 한글, 영문">
+     			</div>
+
+		        <!-- 전화번호 -->
+		        <div class="field tel-number">
+		            <b>휴대전화번호</b>
+		            <input id="mem_hp" name="mem_hp" type="tel" maxlength="13" placeholder="숫자만 입력">
+		        </div>
+
+		        <!-- 생년월일 -->
+		        <div class="field birth">
+					<b>생년월일<span style="color:#808080; font-size:0.75em;"> (선택사항)</span></b>
+					<input type="date" name="mem_birth" id="mem_birth" data-placeholder="날짜 선택" required
+					aria-required="true"></input>
+				</div>
+				
+				<!-- 개인정보 수집 동의 -->
+				<div class="join_box">
+					<div class="private">
+						<b name="private">개인정보 수집 동의</b>
+					</div>
+	                <div class="checkBox check01">
+	                    <div class="clearfix">
+	                        <input type="checkbox" name="chkAll" class="chkAll">
+	                        <b>이용약관, 개인정보 수집 및 이용에 모두 동의합니다.</b>
+	                    </div>
+	                </div>
+	                <div class="checkBox check02">
+	                    <div class="clearfix">
+	                        <b>이용약관 동의(필수)</b>
+	                        <input type="checkbox" class="chk"> 
+	                    </div>
+	                    <textarea name="check_text">여러분을 환영합니다. 어테마 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 어테마 서비스의 이용과 관련하여 어테마 서비스를 제공하는 어테마 주식회사(이하 ‘어테마’)와 이를 이용하는 어테마 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 어테마 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+	       				</textarea>
+	                </div>
+	                <div class="checkBox check03">
+	                    <div class="clearfix">
+	                        <b>개인정보 수집 및 이용에 대한 안내(필수)</b>
+	                        <input type="checkbox" class="chk">
+	                    </div>
+	                  	<textarea style="height:200px;" name="check_text">이용자가 제공한 모든 정보는 다음의 목적을 위해 활용하며, 하기 목적 이외의 용도로는 사용되지 않습니다
+① 개인정보 수집 항목 및 수집·이용 목적 가) 수집 항목 (필수항목) - 성명(국문), 이메일, 연락처, 생년월일(선택) 등 지원 신청서에 기재된 정보 또는 신청자가 제공한 정보 나) 수집 및 이용 목적 - Athema의 서비스 1 이용 - Athema의 서비스 2 이용 - Athema의 서비스 3 이용 ② 개인정보 보유 및 이용기간 - 수집·이용 동의일로부터 개인정보의 수집·이용목적을 달성할 때까지 ③ 동의거부관리 - 귀하께서는 본 안내에 따른 개인정보 수집, 이용에 대하여 동의를 거부하실 권리가 있습니다. 다만, 귀하가 개인정보의 수집/이용에 동의를 거부하시는 경우에 서비스 제공에 있어 불이익이 발생할 수 있음을 알려드립니다.</textarea>
+	                </div>
+           		</div>
+		        <!-- 가입하기 버튼 -->
+		        <a href="#" id="register_submit">가입하기</a>
+			</div>
+		</form>
+	</div>
+</div>

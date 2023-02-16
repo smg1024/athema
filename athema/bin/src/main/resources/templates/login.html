@@ -1,0 +1,128 @@
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" th:href="@{/styles/login_responsive.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/login_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+
+<!-- JavaScript -->
+<script>
+
+function submit() {
+	if ($('#mem_email').val() == '') {
+		alert("이메일을 입력하세요");
+		$('#mem_email').focus();
+		return false;
+	} else if ($('#mem_pwd').val() == '') {
+		alert("비밀번호를 입력하세요");
+		$('#mem_pwd').focus();
+		return false;
+	} else {
+			
+	$('#login_form').attr({
+		method:'post',
+		action:'[[@{/member/loginimpl}]]'
+	});
+	$('#login_form').submit();
+	
+	}
+}
+
+function enterkey() {
+    if (window.event.keyCode == 13) {
+         // 엔터키가 눌렸을 때 submit
+		submit();
+    }
+}
+
+$(document).ready(function(){
+	$('#login_submit').click(function(){
+		if ($('#mem_email').val() == '') {
+			alert("이메일을 입력하세요");
+			$('#mem_email').focus();
+			return false;
+		} else if ($('#mem_pwd').val() == '') {
+			alert("비밀번호를 입력하세요");
+			$('#mem_pwd').focus();
+			return false;
+		} else {
+				
+		$('#login_form').attr({
+			method:'post',
+			action:'[[@{/member/loginimpl}]]'
+		});
+		$('#login_form').submit();
+		
+		}
+	});
+});
+</script>
+
+<!-- login_home -->
+
+<div class="login_home">
+	<div class="login_content">
+		<div class="login_title">ATHEMA</div>
+		<form method="post" id="login_form" action="#">
+			<input type="hidden" name="redirectUrl" value="login">
+			<fieldset style="text-align:center">
+				<div class="box_login" >
+					<div class="inp_text">
+					<input type="email" id="mem_email" name="mem_email" placeholder="E-MAIL" onkeyup="enterkey()">
+					<input type="password" id="mem_pwd" name="mem_pwd" placeholder="PASSWORD" onkeyup="enterkey()">
+					</div>
+				</div>
+				<div class="button login_add_button">
+					<div class="button_bcg"></div>
+					<a id="login_submit" style="cursor:pointer; color:#fff">login</a>
+				</div>
+				<div class="sns_login_txt">SNS로 로그인하기</div>
+				<div class="sns_login">
+<!-- 						로컬로 돌릴 시 아래 redirect_uri=127.0.0.1로 수정 -->
+					<ul>
+						<li>
+						<a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=9740cda4f593e49b4bf7b3235435574d&redirect_uri=http://49.50.166.168/oauth/kakao&response_type=code">
+	 					<img th:src="@{/images/member/icon_kakao.png}" width="50px" alt="카카오 로그인 아이콘"/></a>
+						<p id="kakao-token-result"></p>
+						</li>
+						<li>
+						<a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=L6VpxEtZonyyvQD8b9hZ&redirect_uri=http://127.0.0.1/oauth/naver&state=randomtxt">
+	 					<img th:src="@{/images/member/icon_naver.png}" width="50px" alt="네이버 로그인 아이콘"/></a>
+						<p id="naver-token-result"></p>
+						</li>
+					</ul>
+				</div>
+				<div class="txt_find">
+					<ul>
+						<li><a href="#">아이디/비밀번호 찾기</a></li>
+						<li><a th:href="@{/register}">회원이 아니신가요?</a></li>
+					</ul>
+				</div>
+			</fieldset>
+			</form>
+	</div>
+</div>
+
+<!-- login_add -->
+
+<div class="login_add">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="login_add_container">
+					<div class="login_add_background"
+						style="background-image: url(images/add.jpg)"></div>
+					<div class="login_add_content">
+						<h1 class="login_add_title">thailand</h1>
+						<div class="login_add_subtitle">
+							From <span>$999</span>
+						</div>
+						<div class="button login_add_button">
+							<div class="button_bcg"></div>
+							<a href="#">explore now<span></span><span></span><span></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

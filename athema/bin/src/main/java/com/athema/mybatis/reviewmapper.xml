@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.ReviewMapper">
+	
+	<select id="select" parameterType="Integer" resultType="ReviewDTO">
+		SELECT review_code, mem_code, item_code, title, content, score
+		FROM review WHERE review_code=#{review_code}
+	</select>
+	
+	<select id="selectall" resultType="ReviewDTO">
+		SELECT * FROM review 
+	</select>
+	<insert id="insert" parameterType="ReviewDTO">
+		INSERT INTO review VALUES (0, #{mem_code}, #{item_code}, #{title}, #{content}, #{score}, NOW(), #{review_img})
+	</insert>
+	<update id="update" parameterType="ReviewDTO">
+		UPDATE review SET title=#{title}, content=#{content}, score=#{score}, review_date=NOW(), review_img=#{review_img} WHERE review_code=#{review_code}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM review where review_code=#{review_code}
+	</delete>
+	
+	<select id="avg_rating" parameterType="Integer" resultType="Double">
+		SELECT ROUND(AVG(score),1) avg_rating FROM review WHERE item_code=${item_code}
+	</select>
+	
+	<select id="getReviewByMem" resultType="ReviewDTO">
+		SELECT * FROM review r
+		INNER JOIN member m ON r.mem_code = m.mem_code
+		INNER JOIN item i ON r.item_code = i.item_code
+		where r.mem_code = #{mem_code};
+	</select>
+	
+	<select id="getReviewByItem" resultType="ReviewDTO">
+		SELECT * FROM review r
+		INNER JOIN member m ON r.mem_code = m.mem_code
+		INNER JOIN item i ON r.item_code = i.item_code
+		where r.item_code = #{item_code};
+	</select>
+	
+	
+	
+	<!-- 리뷰 작성 -->
+	<select id="getReview" resultType="ReviewDTO">
+		SELECT * FROM review 
+	</select>
+	
+	
+</mapper>

@@ -532,7 +532,7 @@ $(document).ready(function(){
 								<div class="r_rating" th:text="${review.score}"></div>
 								<ul>
 									<li id="photo"> 
-									<img th:src="@{/images/trend_2.png}" alt="리뷰사진" >
+									<img th:src="|@{/images/review/}${review.review_img}|" alt="리뷰사진" >
 												<!-- th:src="${review.review_img}" -->
 									</li>
 									<li id="text">
@@ -570,7 +570,7 @@ $(document).ready(function(){
 									<div class="md_date"><time th:text="${#dates.format(review.review_date,'yyyy-MM-dd')}"></time></div>
 									<div class="md_r_rating" th:text="${review.score}"></div>
 									<div id="md_text"><span th:text="${review.content}"></span></div>
-									<img class="md_r_img" th:src="@{/images/trend_2.png}" alt="리뷰사진" ><!-- th:src="${review.review_img}" -->
+									<img class="md_r_img" th:src="|@{/images/review/}${review.review_img}|" alt="리뷰사진" ><!-- th:src="${review.review_img}" -->
 								</div>
 							</div>
 							

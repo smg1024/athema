@@ -1,0 +1,64 @@
+<link rel="stylesheet" type="text/css" href="/styles/travel_plan.css">
+
+<script>
+$(document).ready(function(){
+	var hiddens = document.getElementsByClassName("plan_hidden");
+	var open_btns = document.getElementsByClassName("view_detail");
+	var close_btns = document.getElementsByClassName("close_detail");
+	var funcs = []
+	function hide(num) {
+		return function() {
+			 open_btns[num].onclick = function() {
+				 hiddens[num].style.display = "block";
+				 open_btns[num].style.display = "none";
+				 close_btns[num].style.display = "block";
+		    };
+		    close_btns[num].onclick = function() {
+				 hiddens[num].style.display = "none";
+				 close_btns[num].style.display = "none";
+				 open_btns[num].style.display = "block";
+		    };
+		};
+	};	
+	for (var i = 0; i < open_btns.length; i++) {
+	  funcs[i] = hide(i);
+}
+
+	for (var j = 0; j < open_btns.length; j++) {
+	  funcs[j]();
+}
+});
+	
+</script>
+<div class="paln">
+	<div class="plan_main">
+		<h3>예정된 여행</h3>
+		<div id="div_line" th:each="order:${orders}">
+			<div id="plan_day"><time th:text="${#dates.format(order.exp_date,'yyyy-MM-dd')}">여행 예정일</time></div>
+			<div class="plan_content">
+				<div id="plan_title" th:text="${order.item_name}">경주 여행</div>
+					<div class="plan_hidden">	
+						<div class="test">
+							<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
+							<div class="test2">
+								<div id="plan_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
+								<div id="plan_div"><span th:text="'위치: '+${order.item_loc}"></span></div>
+								<div id="plan_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 12월 31일까지</time></div>
+								<div id="plan_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
+								<hr id="line1">
+								
+								<div id="book">
+									<div id="plan_div" th:text="'예약자:'+${order.book_name}"></div>
+									<div id="plan_div" th:text="'예약자 전화번호:'+${order.book_hp}"></div>
+									<div id="plan_div" th:text="'예약자 이메일:'+${order.book_email}"></div>
+								</div>
+							</div>
+						</div>	
+					</div>
+					<div><button class="view_detail">상세보기</button></div>
+					<div><button class="close_detail">상세닫기</button></div>
+					<div id="clear"></div>
+			</div>
+			</div>
+	</div>
+</div>

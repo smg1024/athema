@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.BoardMapper">
+	
+	<select id="select" parameterType="Integer" resultType="BoardDTO">
+		SELECT * FROM board WHERE board_code=${board_code}
+	</select>
+	<select id="selectall" resultType="BoardDTO">
+		SELECT b.board_code, b.mem_code, b.board_cate, b.board_subject, b.board_filename1, b.board_filename2, b.board_rdate, m.mem_nick 
+		FROM board b INNER JOIN member m ON b.mem_code=m.mem_code WHERE b.up_board_code IS NULL
+	</select>
+	<insert id="insert" parameterType="BoardDTO">
+		INSERT INTO board(mem_code, board_cate, board_subject, board_content, board_filename1, board_filename2) 
+		VALUES(${mem_code}, #{board_cate}, #{board_subject}, #{board_content}, #{board_filename1}, #{board_filename2})
+	</insert>
+	<update id="update" parameterType="BoardDTO">
+		UPDATE board SET board_subject=#{board_subject}, board_content=#{board_content} WHERE board_code=${board_code}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM board where board_code=#{board_code}
+	</delete>
+	
+	<select id="avg_rating" parameterType="Integer" resultType="Double">
+		SELECT AVG(score) avg_rating FROM board WHERE item_code=${item_code}
+	</select>
+	
+	<select id="getboard_code" parameterType="BoardDTO" resultType="Integer">
+		SELECT board_code FROM board WHERE mem_code=#{mem_code} AND board_subject=#{board_subject} AND board_cate=#{board_cate}
+	</select>
+	
+	<select id="getcomments" parameterType="Integer" resultType="BoardDTO">
+		SELECT b.board_code, b.board_content, b.mem_code, m.mem_nick, b.board_rdate FROM board b INNER JOIN member m ON b.mem_code=m.mem_code WHERE up_board_code=${param1} ORDER BY board_rdate
+	</select>
+	
+	<delete id="delcomment" parameterType="Integer">
+		DELETE FROM board b INNER JOIN member m ON b.mem_code=m.mem_code WHERE board_code=${param1}
+	</delete>
+	
+	<insert id="comment" parameterType="BoardDTO">
+		INSERT INTO board(mem_code, board_content, up_board_code) 
+		VALUES(${mem_code}, #{board_content}, ${up_board_code})
+	</insert>
+	
+</mapper>

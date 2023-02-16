@@ -1,0 +1,88 @@
+<head>
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+</head>
+
+
+
+<style>
+*{ list-style:none;}
+	.mypage{width:78%; overflow: hidden; margin:0 auto; color:black;}
+	.mypage2{margin:50px 10%; margin-top: 180px;}
+	.mypage_menu{float: left; font-weight: 500;}
+	.center{width:75%; padding:10px 0; float: left; margin-left: 9%;}
+	div{
+   display: block;
+   position: relative;
+   -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+a, a:hover, a:visited, a:active, a:link{
+   text-decoration: none;
+   -webkit-font-smoothing: antialiased;
+   -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+   text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+#mypagetop {
+	font-size: 44px;
+	font-weight: 700;
+	color: #2d2c2c;
+}
+.mypage_menu > ul{
+padding: 10px 0;
+}
+.mypage_menu > ul>li{
+padding: 4px 0;
+}
+a{text-decoration:none;color:inherit;}
+
+#mypage_menu_title{
+	color:#969696;
+	font-size: 17px;
+	font-weight: 500;
+}
+.mypage_menu>ul>li:hover>a{
+	color :#8d4fff;
+	font-weight: 800;
+}
+.mypage_menu > ul > li > a{
+	color:#282828;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+#travel_menu{
+position: relative;
+ z-index: 597;
+ }
+#submenu{
+border: 5px solid red;
+width: 150px;
+display: none; 
+position: absolute;
+border: 3px solid #8d4fff;
+border-radius:10px;
+top:5px;
+ font-size: 20px;
+ font-weight: 600;
+ padding: 10px 10px;
+ color:#505050;
+ z-index: 599;
+  background: #ffffff;
+}
+
+#travel_menu:hover > #submenu{display: inline-block;}
+#submenu > li >a:hover {
+	color :#8d4fff;
+	font-weight:800;
+}
+</style>
+<div class="mypage">
+<div class="mypage2">
+<h1 id="mypagetop">마이페이지</h1>
+<hr>
+<div class="mypage_menu" th:include="${mypageleft} ? ${mypageleft} : mypageleft"></div>
+<div class="center" th:include="${mypagecenter} ? ${mypagecenter} : mypagecenter"></div>
+</div>
+</div>

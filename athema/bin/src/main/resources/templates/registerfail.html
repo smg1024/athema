@@ -1,0 +1,15 @@
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" th:href="@{/styles/register_result.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/register_result_responsive.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+
+<div class="register_result">
+	<div class="result_fail_content">
+		<div id="fail_inner">
+			<p th:text="'🚫 '+${femail}+'가 사용할 수 없는 이메일이거나, 제출된 정보 오류로 회원가입에 실패하였습니다.'"></p>
+			<p>가입 양식을 준수하여 다시 시도해주십시오.</p>
+			<p><a th:href="@{/register}">📌 회원가입 페이지로 돌아가기</a></p>
+		</div>
+	</div>
+</div>

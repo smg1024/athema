@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.OrdDetailMapper">
+	<select id="select" parameterType="Integer" resultType="OrdDetailDTO">
+		SELECT * FROM ord_detail WHERE detail_code=#{detail_code}
+	</select>
+	<select id="selectall" resultType="OrdDetailDTO">
+		SELECT * FROM ord_detail
+	</select>
+	<insert id="insert" parameterType="OrdDetailDTO">
+		INSERT INTO ord_detail VALUES (NULL, #{cnt}, DATE_ADD(now(), INTERVAL #{exp_days} day), #{opt_code}, #{order_code}, #{used}, now())
+	</insert>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM ord_detail WHERE detail_code=#{detail_code}
+	</delete>
+	<update id="update" parameterType="OrdDetailDTO">
+		UPDATE ord_detail set cnt=#{cnt}, used=#{used},used_date=now() WHERE detail_code=#{detail_code}
+	</update>
+</mapper>

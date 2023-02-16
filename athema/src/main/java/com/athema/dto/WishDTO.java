@@ -20,6 +20,7 @@ public class WishDTO {
 	
 	private String item_name;
 	private String item_detail;
+	private String item_img2;
 	private String cate_name;
 	
 	

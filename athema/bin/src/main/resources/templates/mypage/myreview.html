@@ -1,0 +1,115 @@
+<style>
+h3 {
+	font-size: 32px;
+	font-weight: 800;
+	color: #2d2c2c;
+}
+
+#my_r_top {
+	/* border: 2px solid red; */
+	margin-top: 5%;
+	height: auto;
+}
+.my_r_item, .my_r_box {
+	margin: 0 10%;
+}
+/*페이지 이동*/
+.my_r_item a, .my_r_item a:hover {
+	text-decoration: none;
+	color: #ffffff;
+}
+.my_r_item {
+	border: 2px solid #fbab40;
+	border-radius: 10px;
+	padding: 5px 0;
+	
+	text-align:center;
+	text-decoration: none;
+	font-size: 22px;
+	font-weight: 600;
+	color: #ffffff;
+	background-color: #fbab40;
+	
+}
+
+.my_r_item:hover {
+	color: #ffffff;
+	font-weight: 800;
+	background-color: #b183fe;
+	border: 2px solid #b183fe;
+}
+
+.my_r_box {
+	background-color: #fee4a0;
+	width: 80%;
+	margin: 1% auto;
+	border-radius: 5px;
+	padding: 2% 3%;
+	overflow: auto;
+}
+
+#my_r_title{
+	text-align: center;
+	font-size: 20px;
+	font-weight: 600;
+}
+#my_r_day, .my_r_rating {
+	font-size: 18px;
+	font-weight: 500;
+	color: #2d2c2c;
+	margin-top: 1%;
+
+}
+
+#my_r_day{
+	margin-left: 25%;
+	margin-right: 15%;
+	float: left;
+}
+
+ul {
+	list-style:none;
+}
+
+.my_r_content {
+	width:90%;
+	margin: 1% 0 1% 5%;
+	padding: 2% 2%;
+	border: 1px solid gray;
+	background-color: #ffffff;
+	border-radius: 10px;
+	overflow: auto;
+	
+	font-size: 17px;
+	font-weight: 600;
+}
+.my_r_photo {
+	width: 150px;
+	height: 150px;
+	margin-top: 2%;
+	margin-left: 5%;
+	border-radius: 5px;
+}
+
+</style>
+
+<div class="my_r">
+	<div class="my_r_main">
+		<h3>나의 리뷰</h3>
+		 <div id="my_r_top" th:each="review:${reviews}" >					
+			<div class="my_r_item"><a th:href="@{/single_listing(item_code=${review.item_code})}"><div th:text="${review.item_name}"></div></a></div>
+			<div class="my_r_box">
+			 	<div id="my_r_title">제목: <span th:text="${review.title}"></span></div>
+				<div id="my_r_day">작성 날짜: <time th:text="${#dates.format(review.review_date,'yyyy-MM-dd')}"></time></div>
+            	<div class="my_r_rating" th:text="'평점: '+${review.score}"></div>
+				<div class="my_r_content">	
+					<span th:text="${review.content}">경주에 가족들이랑 다녀왔습니다. 즐거운 시간이었어요. 다만 활동 내용이 다양하지는 않아서 알차게 경주를 즐기다 오진 못한 것 같아 아쉽습니다. </span>
+					<div><img class="my_r_photo" th:src="@{review.review_img}" alt="상품이미지"></div>
+				</div>	
+				
+			</div>
+		</div> 
+	</div>
+</div>
+		
+

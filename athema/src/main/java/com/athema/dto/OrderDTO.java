@@ -32,6 +32,7 @@ public class OrderDTO {
 	private int item_code;
 	private String item_name;
 	private String item_loc;
+	private String item_img1;
 	private int cnt;
 	private Date exp_date;
 	private Date used_date;

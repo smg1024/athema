@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athema.mapper.OptionMapper">
+	<select id="select" parameterType="Integer" resultType="OptionDTO">
+		SELECT * FROM `option` where opt_code=${opt_code} 
+	</select>
+	<select id="selectall" resultType="OptionDTO">
+		SELECT * FROM `option`
+	</select>
+	<insert id="insert" parameterType="OptionDTO">
+		INSERT INTO `option` VALUES (opt_code, #{item_code}, #{opt_name}, #{item_price})
+	</insert>
+	<update id="update" parameterType="OptionDTO">
+		UPDATE `option` SET item_code=#{item_code}, opt_name=#{opt_name}, item_price=#{item_price}
+		WHERE opt_code=#{opt_code}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM `option` WHERE opt_code=${opt_code}
+	</delete>
+	
+	<select id="getprice" parameterType="Integer" resultType="Integer">
+		SELECT ${opt_quantity}*item_price FROM (SELECT opt_code, item_price FROM `option` o INNER JOIN item i ON o.item_code=i.item_code WHERE i.item_code=${item_code}) opt where opt.opt_code=${opt_code};
+	</select>
+</mapper>

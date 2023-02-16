@@ -1,0 +1,16 @@
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" th:href="@{/styles/register_result.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/register_result_responsive.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/headfoot_responsive.css}">
+
+<div class="login_result">
+	<div class="login_fail_content">
+		<div id="fail_inner">
+			<h4 style="color:#db5246; font-weight:bold">⛔ 로그인에 실패하였습니다. ⛔</h4>
+			<p>&#128679; 회원 정보 확인 후 다시 시도하시기 바랍니다.
+			<br>&#128679; 소셜로그인 가입자는 해당 서비스로 로그인하셔야 합니다.</p>
+			<p><a th:href="@{/register}">📌 회원가입하기</a>&emsp;<a th:href="@{/login}">&#128281; 로그인하기</a></p>
+		</div>
+	</div>
+</div>
