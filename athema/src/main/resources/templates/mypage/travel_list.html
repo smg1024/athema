@@ -1,121 +1,5 @@
 <!-- ORDER DETAIL-->
-<style>
-.ord {
-	/* border: 2px solid red; */
-}
-
-.view_detail{
-z-index: 596;
-	padding:4px 18px;
-	border-radius: 10px;
-	border:0px;
-	float: right;
-	margin: 0 10px 10px;
-	background-color:#C8D7FF;
-	border: 2px solid #BECDFF;
-	cursor: pointer;
-}
-.view_detail:hover {
-	background-color: #7B68EE;
-	color:white;
-	border: 2px solid #7B68EE;
-}
-.close_detail{
-	display:none;
-	padding:4px 18px;
-	border:0px;
-	border-radius: 10px;
-	float: right;
-	margin: 0 10px 10px;
-	background-color:#C8D7FF;
-	border: 2px solid #BECDFF;
-	cursor: pointer;
-}
-.close_detail:hover {
-	background-color: #7B68EE;
-	border: 2px solid #7B68EE;
-	color:white;
-}
-h3 {
-	font-size: 30px;
-	font-weight: 800;
-	color: #2d2c2c;
-}
-.ord_list_name {
-	font-size: 20px;
-	font-weight: 700;
-	color: #2d2c2c;
-	
-	border: 3px solid #fed46b;
-	border-radius: 10px;
-	width: 20%;
-	text-align: center;
-}
-#div_line {
-	margin-left: 10%;
-	margin-top: 3%;
-	/* border: 2px solid blue; */
-}
-.test2 #line1 {
-	width: 90%;
-	border: none;
-	border: 0.5px dashed lightgray;
-}
-#day{
-	font-size: 18px;
-	font-weight: 600;
-	padding : 5px 20px;
-	display: inline-block;
-	margin-left: 10px;
-}
-.ord_content{
-	width: 90%;
-	margin: 0 0 35px 30px;
-	border: 2px solid ;
-	border-radius: 10px;
-	overflow: auto;
-}
-
-.ord_hidden{
-	display: none;
-	padding: 15px 0 5px 0;
-	font-weight: 500;
-}
-#ord_title{
-	margin:auto;
-	text-align: center;
-	font-size: 18px;
-	padding: 20px 0 0 0;
-	font-weight: 600;
-}
-.test {
-	display: flex;
-	flex-direction: row;
-}
-.test2 {
-	margin-left: 10px;
-	margin-right: 10px;
-	width: 650px;
-}
-#img_item{
-    width: 200px;
-    height: 200px;
-    border-radius:8px;
-    margin: 0 10px 10px; 
-    
-  /* border: 2px solid green;  */
-}
-#img_item img{
-	position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(50, 50);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    margin: auto;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="/styles/travel_list.css">
 <script>
 $(document).ready(function(){
 	var hiddens = document.getElementsByClassName("ord_hidden");
@@ -187,18 +71,22 @@ $(document).ready(function(){
 				<div class="ord_content">
 					<div id="ord_title" th:text="${order.item_name}">경주 여행</div>
 						<div class="ord_hidden">	
-							<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
-							<div id="ord_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
-							<div id="ord_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 12월 31일까지</time></div>
-							<div id="past_div"><span th:text="'위치: '+${order.item_loc}"></span></div>
-							<div id="past_div" th:text="'사용일: '+${#dates.format(order.used_date,'yyyy-MM-dd')}"></div>
-							<div id="ord_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
-							<hr>
-							<div id="book">
-								<div id="ord_div" th:text="'예약자: '+${order.book_name}"></div>
-								<div id="ord_div" th:text="'예약자 전화번호: '+${order.book_hp}"></div>
-								<div id="ord_div" th:text="'예약자 이메일: '+${order.book_email}"></div>
-							</div>
+							<div class="test">
+								<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
+								<div class="test2">
+									<div id="ord_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
+									<div id="ord_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}">2023년 12월 31일까지</time></div>
+									<div id="ord_div"><span th:text="'위치: '+${order.item_loc}"></span></div>
+									<div id="ord_div" th:text="'사용일: '+${#dates.format(order.used_date,'yyyy-MM-dd')}"></div>
+									<div id="ord_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
+									<hr id="line1">
+									<div id="book">
+										<div id="ord_div" th:text="'예약자: '+${order.book_name}"></div>
+										<div id="ord_div" th:text="'예약자 전화번호: '+${order.book_hp}"></div>
+										<div id="ord_div" th:text="'예약자 이메일: '+${order.book_email}"></div>
+									</div>
+								</div>
+							</div>	
 						</div>	
 						<div><button class="view_detail">상세보기</button></div>
 						<div><button class="close_detail">상세닫기</button></div>

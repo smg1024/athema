@@ -1,144 +1,23 @@
-<style>
-h3 {
-   font-size: 30px;
-   font-weight: 800;
-   color: #2d2c2c;
-   
-}
-.view_detail{
-   z-index: 596;
-   padding:4px 18px;
-   border-radius: 10px;
-   border:0px;
-   float: right;
-   margin: 0 10px 10px;
-   background-color:#C8D7FF;
-   border: 2px solid #BECDFF;
-   cursor: pointer;
-}
-.view_detail:hover {
-   background-color: #7B68EE;
-   color:white;
-   border: 2px solid #7B68EE;
-}
-.close_detail{
-   display:none;
-   padding:4px 18px;
-   border:0px;
-   border-radius: 10px;
-   float: right;
-   margin: 0 10px 10px;
-   background-color:#C8D7FF;
-   border: 2px solid #BECDFF;
-   cursor: pointer;
-}
-.close_detail:hover {
-   background-color: #7B68EE;
-   border: 2px solid #7B68EE;
-   color:white;
-}
-#past_day{
-   font-size: 18px;
-   font-weight: 700;
-   padding : 5px 20px;
-   display: inline-block;
-   margin-left: 10px;
-}
-.past_content{
-   width: 90%;
-   margin: 0 0 35px 30px;
-   border: 2px solid ;
-   border-radius: 10px;
-   overflow: auto;
-}
-
-.past_hidden{
-   display: none;
-   padding: 15px 0 5px 0;
-   font-weight: 500;
-   font-size: 16px;
-}
-#past_title{
-   margin:auto;
-   text-align: center;
-   font-size: 18px;
-   padding: 20px 0 0 0;
-   font-weight: 600;
-}
-   #img_item{
-      position: relative;
-      display: inline-block;
-       width: 200px;
-       height: 200px;
-       border-radius:8px;
-       margin: 0 10px 10px; 
-       vertical-align:top;
-       float: left;
-   }
-   #img_item img{
-      position: absolute;
-       top: 0;
-       left: 0;
-       transform: translate(50, 50);
-       width: 100%;
-       height: 100%;
-       object-fit: cover;
-       margin: auto;
-   }
-#w_r_register {
-   cursor: pointer;
-}   
-
-#book {
-	margin-top: 3%;
-}
-
-.test2 #line1 {
-	width: 90%;
-	border: none;
-	border: 0.5px dashed lightgray;
-}
-
-/* 리뷰 작성하기 버튼 */
-#summary {
-	border: 2px solid #fee39e;
-	background: #fee39e;
-	border-radius: 5px;
-	width: 100px;
-	margin-left: 75%;
-	
-	color: #4a4a4a;
-	cursor: pointer;
-	text-align: center;
-	font-size: 16px;
-	font-weight: 600;
-}
-#line2 {
-	margin-right: 20%;
-	width: 90%;
-	border-top: 2px solid #bbb;
-}
-</style>
-
+<link rel="stylesheet" type="text/css" href="/styles/travel_past.css">
 <link rel="stylesheet" type="text/css" href="/styles/write_review.css">
 
 <div class="past">
    <div class="past_main">
-   <h3>지난 여행</h3>
+   <h3>다녀온 여행</h3>
       <div id="div_line" th:each="order:${ord}"> 
 	      <div id="past_day"><time th:text="${#dates.format(order.used_date,'yyyy-MM-dd')}">사용일</time></div>
-	          
 	      <div class="past_content">
 	         <div id="past_title" th:text="${order.item_name}">경주 여행</div> 
 	            <div class="past_hidden"> 
-	            	<div id="past_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
-			            <div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div> 
+	            	<div class="test">
+		            	<div><img id="img_item" th:src="@{/images/item_1.jpg}" alt="상품이미지"></div>
 			            <div class="test2">
+			            	<div id="past_div" th:text="'상품명: '+${order.item_name}">상품명 해변 투어</div>
 				            <div id="past_div"><time th:text="'유효기간: '+${#dates.format(order.order_date,'yyyy-MM-dd')}+'~'+${#dates.format(order.exp_date,'yyyy-MM-dd')}"></time></div>
 					        <div id="past_div"><span th:text="'위치: '+${order.item_loc}"></span></div>  
 					        <div id="past_div" th:text="'사용일: '+${#dates.format(order.used_date,'yyyy-MM-dd')}">사용일</div>
 				            <div id="past_div" th:text="'총 결제 금액: '+${order.tot_price}+'원'">총 금액</div>
-				            <hr id="#line1">
+				            <hr id="line1">
 			               
 				            <div id="book">
 				               	<div id="past_div" th:text="'예약자: '+${order.book_name}"></div>
@@ -146,7 +25,8 @@ h3 {
 								<div id="past_div" th:text="'예약자 이메일: '+${order.book_email}"></div>
 							</div>
 						</div>
-	            </div>   
+		            </div> 
+		        </div>      
 	            <div><button class="view_detail">상세보기</button></div>
 	            <div><button class="close_detail">상세닫기</button></div>
 	            <div id="clear"></div>

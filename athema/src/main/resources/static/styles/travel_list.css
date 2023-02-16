@@ -1,0 +1,144 @@
+@charset "UTF-8";
+/* 펼쳐보기 버튼*/
+.view_detail{
+z-index: 596;
+	padding:4px 18px;
+	border-radius: 10px;
+	border:0px;
+	float: right;
+	margin: 0 10px 10px;
+	background-color:#BECDFF;
+	border: 2px solid #BECDFF;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 600;
+}
+.view_detail:hover {
+	background-color: #7B68EE;
+	color:white;
+	border: 2px solid #7B68EE;
+}
+.close_detail{
+	display:none;
+	padding:4px 18px;
+	border:0px;
+	border-radius: 10px;
+	float: right;
+	margin: 0 10px 10px;
+	background-color:#C8D7FF;
+	border: 2px solid #BECDFF;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 600;
+}
+.close_detail:hover {
+	background-color: #7B68EE;
+	border: 2px solid #7B68EE;
+	color:white;
+}
+
+/*여행리스트*/
+h3 {
+	font-size: 32px;
+	font-weight: 800;
+	color: #2d2c2c;
+}
+
+.ord_list_name { /*예정된 여행*/
+	font-size: 20px;
+	font-weight: 700;
+	color: #ffffff;
+	
+	background: #fbb53d;
+	border: 3px solid #fbb53d;
+	border-radius: 10px;
+	width: 20%;
+	text-align: center;
+}
+
+#div_line {
+	margin-left: 5%;
+	margin-top: 3%;
+	/* border: 2px solid blue; */
+}
+#day{
+	font-size: 22px;
+	font-weight: 600;
+	padding : 5px 20px;
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.ord_content{	/* 바탕 색 */
+	width: 90%;
+	margin: 0 0 35px 30px;
+	border: 2px solid #fee4a0;
+	border-radius: 10px;
+	overflow: auto;
+	background: #fee4a0;
+}
+
+#ord_title{
+	margin:auto;
+	text-align: center;
+	font-size: 22px;
+	padding: 20px 0 0 0;
+	font-weight: 600;
+}
+
+.ord_hidden{
+	display: none;
+	padding: 15px 0 5px 0;
+	font-weight: 500;
+	font-size: 16px;
+}
+
+.test {
+	display: flex;
+	flex-direction: row;
+	margin-top: 10px;
+	margin-left: 20px;
+	background: #ffffff;
+	border-radius: 5px;
+	width: 95%;
+}
+.test2 {
+	margin: 10px 20px 0 20px;
+	width: 650px;
+	
+	font-size: 17px;
+	font-weight: 500;
+}
+#ord_div {
+	margin: 5px 0;
+}
+
+#img_item{
+    width: 250px;
+    height: 250px;
+    margin: 5px 20px 0 10px; 
+    padding: 15px 5px;
+    
+  /* border: 2px solid green;  */
+}
+
+#img_item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  	margin: auto;
+}
+
+#book {
+	margin-top: 3%;
+}
+
+/* 선 */
+.ord #t_line{
+	border-top: 3px dashed #fbb53d; 
+}
+
+.test2 #line1 {
+	border: none;
+	border: 1px dashed #faa81f;
+}

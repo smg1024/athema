@@ -1,10 +1,10 @@
 <style>
 h3 {
-	font-size: 30px;
+	font-size: 32px;
 	font-weight: 800;
 	color: #2d2c2c;
-	
 }
+
 #my_r_top {
 	/* border: 2px solid red; */
 	margin-top: 5%;
@@ -19,29 +19,28 @@ h3 {
 	color: #ffffff;
 }
 .my_r_item {
-	border: 2px solid #ef910a;
+	border: 2px solid #fbab40;
 	border-radius: 10px;
-	width: 30%;
-	padding: 5px 30px;
+	padding: 5px 0;
 	
 	text-align:center;
 	text-decoration: none;
-	font-size: 18px;
+	font-size: 22px;
 	font-weight: 600;
 	color: #ffffff;
-	background-color: #fa9e1b;
+	background-color: #fbab40;
 	
 }
 
 .my_r_item:hover {
 	color: #ffffff;
 	font-weight: 800;
-	background-color: rgb(169, 123, 255);
-	border: 2px solid #8d4fff;
+	background-color: #b183fe;
+	border: 2px solid #b183fe;
 }
 
 .my_r_box {
-	background-color: rgb(253, 223, 145);
+	background-color: #fee4a0;
 	width: 80%;
 	margin: 1% auto;
 	border-radius: 5px;
@@ -51,24 +50,19 @@ h3 {
 
 #my_r_title{
 	text-align: center;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: 600;
 }
-#my_r_t_day, #my_r_day, .my_r_rating {
-	font-size: 14px;
+#my_r_day, .my_r_rating {
+	font-size: 18px;
 	font-weight: 500;
 	color: #2d2c2c;
 	margin-top: 1%;
-}
 
-#my_r_t_day {
-	margin-left: 10%;
-	margin-right: 10%;
-	float: left;
 }
 
 #my_r_day{
-	margin-left: 5%;
+	margin-left: 25%;
 	margin-right: 15%;
 	float: left;
 }
@@ -86,21 +80,15 @@ ul {
 	border-radius: 10px;
 	overflow: auto;
 	
-	font-size: 14px;
+	font-size: 17px;
 	font-weight: 600;
 }
 .my_r_photo {
+	width: 150px;
+	height: 150px;
 	margin-top: 2%;
 	margin-left: 5%;
-	font-size: 16px;
-	font-weight: 600;
-}
-.my_r_photo ul li img{
-	/* border: 1px solid green; */
-	width: 15%;
-	height: 15%;
-	float: left;
-	margin: 10px 10px;
+	border-radius: 5px;
 }
 
 </style>
@@ -114,9 +102,11 @@ ul {
 			 	<div id="my_r_title">제목: <span th:text="${review.title}"></span></div>
 				<div id="my_r_day">작성 날짜: <time th:text="${#dates.format(review.review_date,'yyyy-MM-dd')}"></time></div>
             	<div class="my_r_rating" th:text="'평점: '+${review.score}"></div>
-					<div class="my_r_content">	
-						<span th:text="${review.content}">경주에 가족들이랑 다녀왔습니다. 즐거운 시간이었어요. 다만 활동 내용이 다양하지는 않아서 알차게 경주를 즐기다 오진 못한 것 같아 아쉽습니다. </span>
-					</div>	
+				<div class="my_r_content">	
+					<span th:text="${review.content}">경주에 가족들이랑 다녀왔습니다. 즐거운 시간이었어요. 다만 활동 내용이 다양하지는 않아서 알차게 경주를 즐기다 오진 못한 것 같아 아쉽습니다. </span>
+					<div><img class="my_r_photo" th:src="@{review.review_img}" alt="상품이미지"></div>
+				</div>	
+				
 			</div>
 		</div> 
 	</div>

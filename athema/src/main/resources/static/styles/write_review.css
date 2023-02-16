@@ -142,7 +142,26 @@
 	border: none;
     border-bottom: 5px solid #8d4fff;    
 }
-
+ 
 #w_r_register {
    cursor: pointer;
+}
+
+/* 리뷰 쓰기 버튼 */
+#summary {
+	border: 2px solid #fdba0b;
+	background: #fdba0b;
+	border-radius: 10px;
+	padding: 4px 5px;
+	width: 100px;
+	margin-left: 80%;
+	
+	color: #4a4a4a;
+	cursor: pointer;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
+}
+#summary:hover {
+	color: #ffffff;
 }
