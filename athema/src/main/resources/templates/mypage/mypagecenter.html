@@ -1,1 +1,5 @@
-<h3 th:text="${session.loginMember.mem_nick}+ '님 환영합니다.'"></h3>
+<style>
+	#aveh3{margin: 10px 0;}
+</style>
+<h3 id="aveh3" th:text="${session.loginMember.mem_nick}+ '님 환영합니다.'"></h3>
+<div th:text="'가입날짜 : '+${#dates.format(session.loginMember.mem_date, 'yyyy-MM-dd')}"></div>
