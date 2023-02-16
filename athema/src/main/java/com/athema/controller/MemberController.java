@@ -26,6 +26,11 @@ public class MemberController {
 	public String loginimpl(HttpServletRequest request, HttpSession session, String mem_email, String mem_pwd, Model model) {
 		MemberDTO member = null;
 		String result = "loginfail";
+		String referer = request.getHeader("Referer");
+		String local_login = "http://127.0.0.1/login";
+		String ncp_login = "http://49.50.166.168/login";
+		System.out.println(referer);
+
 		try {
 			member = mservice.searchemail(mem_email);
 			// 비밀번호 일치
@@ -37,6 +42,13 @@ public class MemberController {
 					if(member.getProvider() == null) {
 						session.setAttribute("loginMember", member);
 						result = "index";		// 메인으로 바로 이동
+						// 로그인 메뉴로 들어가서 로그인한 경우에는 index 페이지 반환
+						if (referer.equals(local_login) || referer.equals(ncp_login)) {
+							model.addAttribute("content", result);
+							return "main";
+						} else {
+							return "redirect:"+referer;
+						}
 					}
 				}
 			}
@@ -44,19 +56,8 @@ public class MemberController {
 			System.out.println(e.getMessage()+" : 사용자 정보 조회 실패");
 			model.addAttribute("content", result);
 		}
-		
-		String referer = request.getHeader("Referer");
-		String local_login = "http://127.0.0.1/login";
-		String ncp_login = "http://49.50.166.168/login";
-		System.out.println(referer);
-		
-		// 로그인 메뉴로 들어가서 로그인한 경우에는 index 페이지 반환
-		if (referer.equals(local_login) || referer.equals(ncp_login)) {
-			model.addAttribute("content", result);
-			return "main";
-		} else {
-			return "redirect:"+referer;
-		}
+		model.addAttribute("content", result);
+		return "main";
 	}
 	
 	@RequestMapping("/addmember")
