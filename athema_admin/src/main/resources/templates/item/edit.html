@@ -1,18 +1,6 @@
 <script>
 $(document).ready(function(){
 	$('#edit_item_btn').click(function(){
-		var opt_name_array = new Array();
-		$('input[name=opt_name]').each(function(){
-			opt_name_array.push(this.value);
-		});
-		$('input[name=opt_names]').val(opt_name_array);
-		
-		var item_price_array = new Array();
-		$('input[name=item_price]').each(function(){
-			item_price_array.push(this.value);
-		});
-		$('input[name=item_prices]').val(item_price_array);
-		
 		$('#edit_form').attr({
 			'enctype':'multipart/form-data',
 			'method':'post',
@@ -44,6 +32,7 @@ $(document).ready(function(){
 		<div class="card-body">
 			<div class="table-responsive">
 				<form id="edit_form">
+					<input type="hidden" name="item_code" th:value="${item.item_code}">
 					<h5>상품 정보</h5>
 					이름 <input type="text" name="item_name" th:value="${item.item_name}"><br>
 					위치 <input type="text" name="item_loc" th:value="${item.item_loc}"><br>
@@ -80,8 +69,6 @@ $(document).ready(function(){
 					첨부파일1<input type="file" name="img1"><br>
 					첨부파일2<input type="file" name="img2"><hr>
 					<h5>옵션 정보</h5>
-					<input type="hidden" name="opt_names">
-					<input type="hidden" name="item_prices">
 					<div id="option_tags" th:each="option:${options}">
 					옵션 이름 <input type="text" name="opt_name" th:value="${option.opt_name}"><br>
 					가격 <input type="number" name="item_price" th:value="${option.item_price}"><br>

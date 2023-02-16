@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	INSERT INTO item VALUES(null, #{item_name}, #{item_loc}, #{item_detail}, (SELECT cate_code FROM category WHERE cate_name=#{location} and UP_cate_code=${theme}), #{lat}, #{lng}, #{item_img1}, #{item_img2}, current_date(), #{exp_days})
 	</insert>
 	<update id="update" parameterType="ItemDTO">
-	UPDATE item SET item_name=#{item_name}, item_loc=#{item_loc}, item_detail=#{item_detail}, exp_days=#{exp_days}
+	UPDATE item SET item_name=#{item_name}, item_loc=#{item_loc}, item_detail=#{item_detail}, exp_days=#{exp_days} WHERE item_code=${item_code}
 	</update>
 	<delete id="delete" parameterType="Integer">
 	DELETE FROM item WHERE item_code=${item_code}
