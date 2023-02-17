@@ -44,13 +44,19 @@
 
 
 ## 6. 역할 분담
+|이름|역할|
+|:--:|--|
+|김상민|상품 관리<br>테마/지역 검색<br>상품 옵션<br>지도 API 위치 기능<br>문의게시판<br>|
+|선주연|예약<br>결제<br>리뷰<br>예약, 결제, 리뷰 DB<br>결제 API<br>관리자-매출 현황|
+|임민하|예약<br>결제<br>리뷰<br>예약, 결제, 리뷰 DB<br>결제 API<br>관리자-주문 목록|
+|조재호|문의게시판<br>위시리스트|
+|최효정|회원가입<br>사용자/관리자-로그인&로그아웃<br>소셜로그인 API<br>회원관리<br>챗봇 API<br>1:1 실시간 채팅 문의<br>문의게시판 view|
 
 ## 7. 화면 구성
 - 메인 화면
 ![20230216_033833](https://user-images.githubusercontent.com/58433759/219122341-0c14f358-32c5-4f3d-87b2-17f9022f11f3.gif)
 - 테마 혹은 지역을 선택해서 여행 상품을 검색할 수 있다.
 <br><br>
-
 - 챗봇 화면
 ![20230216_033253](https://user-images.githubusercontent.com/58433759/219121034-33351554-edf3-49cb-80d2-c6a5f3c2f4e0.gif)
 - Naver Cloud Platform Chatbot 서비스를 이용한 실시간 챗봇 문의 기능이다.<br>
@@ -60,8 +66,26 @@
 ![20230216_034540](https://user-images.githubusercontent.com/58433759/219123796-aebe5f63-71fd-4862-810f-6710843dc0f6.gif)
 - 상품의 기본 정보와 사진, 다른 구매자의 리뷰를 볼 수 있다.
 - 카카오 API를 사용하여 db에 있는 위도 & 경도 데이터를 가져와서 해당 위치의 지도 화면에 보여준다.
-
 <br><br>
+- 상품 결제 화면
+![20230217_061402](https://user-images.githubusercontent.com/58433759/219489276-0c2de09b-aec5-4fe6-81e8-aea9e6407623.gif)
+- 원하는 상품을 고른 후 구매할 장수를 담고 결제하는 방식이다.
+- 결제창은 카카오페이 API를 활용했다.
+<br><br>
+- 리뷰 작성 화면
+![그림1](https://user-images.githubusercontent.com/58433759/219492597-2cb4d02d-b779-4d1e-a998-baec13d7e273.gif)
+- 사용을 완료한 상품에 대해 리뷰를 1회 작성할 수 있게 설계했다.
+<br><br>
+- 관리자 페이지 메인 화면
+![2023-02-17 (2)](https://user-images.githubusercontent.com/58433759/219521263-1bfe9498-bd4e-4f2e-b22c-208143d45f7f.png)
+<br><br>
+- 관리자 페이지 회원 정보 화면
+![2023-02-17](https://user-images.githubusercontent.com/58433759/219520792-698f13c4-5629-4940-836a-85c03af9aa43.png)
+- 가입한 회원의 정보를 한 곳에서 볼 수 있다.
+<br><br>
+- 관리자 페이지 회원 수 변화 화면
+![2023-02-17 (1)](https://user-images.githubusercontent.com/58433759/219521010-b5b74300-87fc-4511-8f7d-43e33376d7dc.png)
+- 회원 수 변화에 관한 자료를 쉽게 볼 수 있는 화면이다.
 
 ## 8. 트러블슈팅
 |이름|문제|해결 방법|
