@@ -178,8 +178,8 @@ var stompClient = null;
 var id = '[[${session.loginMember.mem_code}]]';
 
 $(document).ready(function() {
-// 	var socket = new SockJS('http://127.0.0.1:8080/admin/ws'); // local
-	var socket = new SockJS('http://49.50.166.168/admin/ws');	// NCP
+	var socket = new SockJS('http://127.0.0.1:8080/admin/ws'); // local
+// 	var socket = new SockJS('http://49.50.166.168/admin/ws');	// NCP
 	stompClient = Stomp.over(socket);
 
 	stompClient.connect({}, function(frame) { 
