@@ -182,7 +182,8 @@ var id = 'admin';
 
 $(document).ready(function() {
 	// local에서 사용 시 127~:8080/admin으로 주소 수정할 것
-	var socket = new SockJS('http://49.50.166.168/admin/ws');
+// 	var socket = new SockJS('http://49.50.166.168/admin/ws');
+	var socket = new SockJS('http://127.0.0.1:8080/admin/ws');
 	stompClient = Stomp.over(socket);
 
 	stompClient.connect({}, function(frame) { 
